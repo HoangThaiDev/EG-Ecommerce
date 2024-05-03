@@ -1,0 +1,10 @@
+.main {
+  display: flex;
+  gap: 20;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.main>div {
+  width: 30%;
+}
