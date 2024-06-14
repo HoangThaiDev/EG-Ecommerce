@@ -1,29 +1,32 @@
-import { useEffect, useState } from "react";
+// Import Modules
+import { useSelector } from "react-redux";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+// Import Files CSS
 import "./App.css";
-import axios from "axios";
+
+// Import Components
+// ------------------- Layout --------------------
+import RootLayout from "./layout/RootLayout";
+
+// ------------------- Pages --------------------
+import Home from "./pages/Home";
+import SideMenu from "./layout/SideMenu";
 
 function App() {
-  const [users, setUsers] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      const { data } = await axios.get("http://localhost:5000/users");
-      setUsers(data);
-      setIsLoading(true);
-    };
-    fetchUser();
-  }, []);
+  // Create + use hooks
+  const { isShow: isShowSideMenu } = useSelector((state) => state.sideMenu);
 
   return (
-    <div className="main">
-      {isLoading &&
-        users.length > 0 &&
-        users.map((user) => (
-          <div key={user._id}>
-            <p>{user.name} -</p>
-          </div>
-        ))}
+    <div className="App">
+      {isShowSideMenu && <SideMenu />}
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<RootLayout />}>
+            <Route index element={<Home />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

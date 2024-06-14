@@ -1,5 +1,10 @@
 <<<<<<< HEAD
 
+<!-- @media screen and (max-width:575px) {}
+@media screen and (min-width:576px) and (max-width:767px) {}
+@media screen and (min-width:768px) and (max-width:991px) {}
+@media screen and (min-width:992px) and (max-width:1199px) {} -->
+
 # EG-Shop
 
 =======

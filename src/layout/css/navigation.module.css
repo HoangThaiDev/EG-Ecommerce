@@ -1,0 +1,150 @@
+:root {
+    --color: #264653;
+    --color-content: #34A296;
+}
+
+.navigation {
+    width: 100%;
+}
+
+/* CSS: Container */
+.navigation__container {
+    width: 100%;
+}
+
+/* CSS: Row */
+.navigation__row {
+    align-items: center;
+    padding: 25px 50px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/* CSS: Col - Logo */
+.nav__col__logo {
+    font-family: "Lora", serif;
+}
+
+.nav__col__logo>h1 {
+    color: var(--color);
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+}
+
+.nav__col__logo>span {
+    display: inline-block;
+    color: var(--color-content);
+    font-weight: 600;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    margin-top: 3px;
+}
+
+/* CSS: Col - Form */
+.nav__col__form-search {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.nav__col__form-search .form__input {
+    font-family: "Roboto", sans-serif;
+    border: 2px solid var(--color);
+    padding: 8px 10px;
+    font-size: 0.9rem;
+    color: rgb(37, 37, 37);
+    border-radius: 0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    width: 83%;
+}
+
+.nav__col__form-search .form__btn {
+    cursor: pointer;
+    background-color: var(--color);
+    padding: 8px 20px;
+    color: #fff;
+    font-size: 1rem;
+    border: 2px solid transparent;
+    border-radius: 0;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/* CSS: Col - Menu */
+.nav__col__menu {
+    display: flex;
+    font-size: 1.3rem;
+    gap: 0 20px;
+    justify-content: flex-end;
+}
+
+.menu__icon {
+    position: relative;
+}
+
+
+/* CSS: Col - Contact */
+.nav__col__contact {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 2px;
+}
+
+.nav__col__contact .icon-phone {
+    grid-row: 1/3;
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+
+.nav__col__contact>p {
+    font-size: 0.9rem;
+    font-family: "EB Garamond", serif;
+}
+
+.nav__col__contact>p:nth-child(2) {
+    color: gray;
+    font-size: 0.8rem;
+}
+
+.nav__col__contact>p:nth-child(3) {
+    color: var(--color);
+    font-weight: 700;
+}
+
+/* CSS: Icons */
+.menu__icon .icon {
+    cursor: pointer;
+    color: var(--color);
+    transition: 0.3s all ease;
+}
+
+/* CSS: Active */
+.menu__icon>span {
+    position: absolute;
+    font-size: 0.5rem;
+    right: -6px;
+    top: -3px;
+    color: #fff;
+    background-color: var(--color);
+    border-radius: 100%;
+    padding: 3px 4px;
+}
+
+.form__input::placeholder {
+    font-family: "Roboto", sans-serif;
+    font-size: 0.8rem;
+    color: rgb(177, 173, 173);
+}
+
+/* CSS: Effect */
+.nav__col__form-search .form__input:focus {
+    outline: 0;
+}
+
+
+/* CSS: Responsive */
