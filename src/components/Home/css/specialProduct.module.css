@@ -1,0 +1,29 @@
+.products {
+    margin: 8% 0;
+    width: 100%;
+}
+
+/* CSS: products Container */
+.products__container {
+    width: 1140px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* CSS: products Header */
+.products__header {
+    font-family: "Playfair Display", serif;
+    color: rgb(38, 70, 83);
+}
+
+.products__header>h2 {
+    font-weight: 600;
+    font-size: 1.8rem;
+}
+
+.products__header>p {
+    margin-top: 15px;
+    color: gray;
+    font-size: 1rem;
+    font-style: italic;
+}

@@ -13,10 +13,10 @@ export default function SpecialProduct() {
     <div className={classes.products}>
       <div className={classes["products__container"]}>
         <div className={classes["products__header"]}>
-          <h2>What do you looking for ?</h2>
+          <h2>Top Rated Product!</h2>
           <p>
-            Start your day great with organic products. We have a lot of
-            category organic
+            These products have been rated appreciated and loved by loyal
+            customers
           </p>
         </div>
 

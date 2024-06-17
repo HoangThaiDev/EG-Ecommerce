@@ -5,7 +5,8 @@ import React from "react";
 import classes from "./css/header.module.css";
 
 // Import Components
-import bannerHome from "../../assets/images-banner/banner-home.jpg";
+import bannerHome from "../../assets/images-banner/banner-home.avif";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
@@ -13,18 +14,16 @@ export default function Header() {
       <div className={classes["header__container"]}>
         <img src={bannerHome} alt={bannerHome} />
         <div className={classes["header__card"]}>
+          <span>Up to 50% OFF</span>
           <h1>Enjoy Organic Grocery With The Best Quality</h1>
-          <p>Get your products delivered at your doorsteps all day everyday</p>
-          <form className={classes["card__form"]}>
-            <input
-              type="text"
-              placeholder="Search Your Products..."
-              className={classes["form__input"]}
-            />
-            <button type="submit" className={classes["form__btn"]}>
-              SEARCH
-            </button>
-          </form>
+          <p>
+            Discover a world of high-quality organic groceries, enjoy daily
+            doorstep delivery, and get discounts of up to 50%.
+          </p>
+
+          <Link to="/products" className={classes["header__link"]}>
+            Shop Now
+          </Link>
         </div>
       </div>
     </div>

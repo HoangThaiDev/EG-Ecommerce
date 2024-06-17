@@ -22,7 +22,7 @@
     margin: 0 25px;
     top: 30px;
     transition: 0.3s all ease;
-    transition-delay: 0.2s;
+    /* transition-delay: 0.2s; */
 }
 
 .slide-item>img {

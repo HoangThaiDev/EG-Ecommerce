@@ -15,6 +15,7 @@ export default function ItemCategories() {
       <div className={classes["category__container"]}>
         <div className={classes["category__header"]}>
           <h2>What do you looking for ?</h2>
+
           <p>
             Start your day great with organic products. We have a lot of
             category organic
