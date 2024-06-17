@@ -1,0 +1,111 @@
+/* CSS: Category Slider */
+.slider-categories {
+    width: 100%;
+}
+
+/* CSS: Category Slick Slide */
+.slick-track {
+    overflow-x: initial;
+    height: 200px;
+}
+
+.slick-slide {
+    cursor: pointer;
+}
+
+/* CSS: Category Slide Item */
+.slide-item {
+    position: relative;
+    border: 2px solid rgba(220, 217, 217, 0.3);
+    width: 150px !important;
+    padding: 30px 10px;
+    margin: 0 25px;
+    top: 30px;
+    transition: 0.3s all ease;
+    transition-delay: 0.2s;
+}
+
+.slide-item>img {
+    width: 50px;
+    margin: 0 auto;
+}
+
+
+.slide-item>p {
+    font-family: "Playfair Display", serif;
+    font-size: 1.1rem;
+    margin-top: 8px;
+    color: rgb(27, 51, 60);
+}
+
+/* CSS: Slick Icon */
+.slick-arrow {
+    border: 2px solid rgb(224, 196, 157);
+    border-radius: 100%;
+    padding: 8px;
+    transition: 0.3s all ease;
+}
+
+.slick-arrow::before {
+    position: relative;
+    color: rgb(224, 196, 157) !important;
+    opacity: 1;
+    font-size: 1.5rem;
+    transition: 0.3s all ease;
+}
+
+.slick-next::before {
+    content: '\21FE';
+    top: -5px;
+}
+
+.slick-prev::before {
+    content: '\21FD';
+    top: -5px;
+}
+
+
+/* CSS: Active */
+
+.slick-center .slide-item {
+    transition-delay: 0.5s;
+    background-color: rgb(224, 196, 157);
+}
+
+.slick-center .slide-item>p {
+    transition-delay: 0.5s;
+    color: #fff;
+}
+
+.slick-center .slide-item::before {
+    content: '\21FD';
+    position: absolute;
+    bottom: -20px;
+    left: 37%;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    line-height: 37px;
+    font-size: 1.3rem;
+    transform: rotate(270deg);
+    background-color: #fff;
+    border: 2px solid rgb(224, 196, 157);
+    color: rgb(224, 196, 157);
+
+}
+
+/* CSS: Effect */
+.slide-item:hover {
+    border: 2px solid rgb(224, 196, 157);
+}
+
+.slick-arrow:hover {
+    border: 2px solid transparent;
+    background-color: rgb(224, 196, 157);
+}
+
+.slick-arrow:hover.slick-arrow::before {
+    color: #fff !important;
+}
+
+/* CSS: Animation */

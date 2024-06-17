@@ -2,6 +2,7 @@
 .App {
     position: relative;
     max-width: 100%;
+<<<<<<< HEAD
     height: 300vh;
 }
 =======
@@ -48,3 +49,6 @@
   color: #888;
 }
 >>>>>>> f3e9f5fb5ed84aa979405083e7e3db2c9c598a07
+=======
+}
+>>>>>>> navigation

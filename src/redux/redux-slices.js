@@ -3,7 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 // Create initialStates
 const initialSideMenu = { isShow: false };
+const initialSideUserMenu = { isShow: false };
 
+// Create Slide
 const sideMenuSlide = createSlice({
   name: "sideMenu",
   initialState: initialSideMenu,
@@ -17,4 +19,17 @@ const sideMenuSlide = createSlice({
   },
 });
 
-export { sideMenuSlide };
+const sideUserMenuSlide = createSlice({
+  name: "sideMenu",
+  initialState: initialSideUserMenu,
+  reducers: {
+    showSideUserMenu(state) {
+      return { ...state, isShow: true };
+    },
+    hideSideUserMenu(state) {
+      return { ...state, isShow: false };
+    },
+  },
+});
+
+export { sideMenuSlide, sideUserMenuSlide };

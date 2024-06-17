@@ -2,34 +2,164 @@
     --color: #264653;
 }
 
+/* CSS: Overlay */
+.overlay {
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 4;
+}
 
-.sideMenu {
+/* CSS: sideBar */
+.sideBar {
     box-sizing: border-box;
     position: fixed;
-    z-index: 2;
+    z-index: 5;
     background-color: #fff;
-    right: -400px;
-    border: 2px solid var(--color);
+    top: 0;
+    left: -400px;
     height: 100vh;
-    width: 400px;
+    width: 300px;
+    padding: 20px;
+    transition: 1s all ease;
+}
 
+.sideBar__container {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* CSS: SideBar Header */
+.sideBar__header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    color: #264653;
+    font-weight: 700;
+}
+
+.sideBar__header .icon-close {
+    cursor: pointer;
+    font-size: 2rem;
+}
+
+.sideBar__header>h2 {
+    font-family: "Bodoni Moda", serif;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+}
+
+
+/* CSS: SideBar User */
+.sideBar__user {
+    font-family: "Bodoni Moda", serif;
+    width: 100%;
+    margin-top: 5%;
+    display: grid;
+    grid-template-columns: auto 200px;
+    grid-template-rows: auto auto;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0 15px;
+}
+
+.sideBar__user .avatar {
+    grid-row: 1/3;
+}
+
+.sideBar__user .user__name,
+.sideBar__user .user__email {
+    position: relative;
+    word-break: break-all;
+}
+
+.sideBar__user .user__name {
+    color: #373737;
+    font-weight: 600;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+}
+
+.sideBar__user .user__email {
+    color: #5f5f5f;
+    font-size: 1rem;
+}
+
+.user__name .icon-edit {
+    color: #264653;
+    cursor: pointer;
+    position: absolute;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+
+/* CSS: SideBar Row - Menu */
+.sideBar__row {
+    border-top: 2px solid rgba(195, 198, 198, 0.3);
+    margin: 10% 0;
+    flex-direction: column;
+}
+
+/* CSS: SideBar Col - Menu */
+.sideBar__col {
+    margin-top: 15px;
+}
+
+.sideBar__menu-item {
+    position: relative;
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    color: #264653;
+    padding: 10px 0;
+}
+
+.sideBar__menu-item::before {
+    position: absolute;
+    content: '';
+    height: 2px;
+    width: 10%;
+    background-color: #264653;
+    bottom: 0;
+    transition: 0.5s all ease;
+}
+
+.sideBar__menu-item .link {
+    cursor: pointer;
+    width: 85%;
+    color: #264653;
+    font-size: 1rem;
+    transition: 0.3s all ease;
+}
+
+.sideBar__menu-item .icon {
+    width: 10%;
+    font-size: 1.3rem;
 }
 
 /* CSS: Active */
-
-.sideMenu.active {
-    right: 0;
-    animation: showSideMenu 0.8s ease-in-out 1 forwards;
+.overlay.hide {
+    display: none;
 }
 
+.sideBar.show {
+    left: 0;
+}
 
-/* Animations */
-@keyframes showSideMenu {
-    0% {
-        right: -400px;
-    }
+.sideBar__menu-item .link.active {
+    font-weight: 600;
+}
 
-    100% {
-        right: 0;
-    }
+/* CSS: Effect */
+.sideBar__menu-item:hover.sideBar__menu-item::before {
+    width: 100%;
 }
