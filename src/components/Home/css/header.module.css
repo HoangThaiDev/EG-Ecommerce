@@ -1,0 +1,100 @@
+.header,
+.header__container {
+    width: 100%;
+    position: relative;
+}
+
+/* CSS: Header Img */
+.header__container img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+}
+
+
+/* CSS: Header Card */
+.header__card {
+    width: 750px;
+    font-family: "Playfair Display", serif;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    color: #fff;
+    transform: translate(51%, 60%);
+    text-align: center;
+}
+
+.header__card>h1 {
+    font-size: 3rem;
+    letter-spacing: 1px;
+    line-height: 3.5rem;
+}
+
+.header__card>p {
+    margin: 30px 0 40px;
+    font-family: "Roboto", sans-serif;
+    font-size: 1.1rem;
+    color: rgb(243, 242, 242);
+}
+
+/* CSS: Header Form */
+.card__form {
+    position: relative;
+    width: 90%;
+    background-color: #fff;
+    transform: translateX(5%);
+    border-radius: 50px;
+    height: 60px;
+}
+
+.card__form .form__input {
+    font-family: "Roboto", sans-serif;
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    border: 0;
+    width: 75%;
+}
+
+.card__form .form__btn {
+    font-family: "Roboto", sans-serif;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 7px;
+    color: #fff;
+    background-color: rgb(38, 70, 83);
+    border: 0;
+    border-radius: 50px;
+    padding: 14px 25px;
+    font-size: 1rem;
+    transition: 0.3s all ease;
+}
+
+/* CSS: Active */
+.header__container::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 600px;
+    background-image: linear-gradient(to right, rgba(34, 34, 34, 0.7), rgba(31, 40, 55, 0.6));
+    filter: brightness(60%);
+    z-index: 2;
+}
+
+.form__input::placeholder {
+    font-family: "Roboto", sans-serif;
+    color: lightgray;
+}
+
+/* CSS: Effect */
+.card__form .form__input:focus {
+    outline: none;
+}
+
+.card__form .form__btn:hover {
+    background-color: rgb(53, 95, 111);
+}

@@ -1,0 +1,29 @@
+.category {
+    margin: 5% 0;
+    width: 100%;
+}
+
+/* CSS: Category Container */
+.category__container {
+    width: 1140px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* CSS: Category Header */
+.category__header {
+    font-family: "Playfair Display", serif;
+    color: rgb(38, 70, 83);
+}
+
+.category__header>h2 {
+    font-weight: 600;
+    font-size: 1.8rem;
+}
+
+.category__header>p {
+    margin-top: 15px;
+    color: gray;
+    font-size: 0.9rem;
+    font-style: italic;
+}

@@ -1,0 +1,229 @@
+/* CSS: Footer */
+.footer {
+    max-width: 100%;
+    box-sizing: border-box;
+    background-color: rgb(34, 34, 34);
+}
+
+/* CSS: Footer Container */
+.footer__container {
+    width: 1140px;
+    margin: 0 auto;
+    padding: 5% 0;
+}
+
+/* CSS: Footer Row */
+.footer__row {
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+
+/* CSS: About Section  */
+.about__section {
+    position: relative;
+    width: 100%;
+    color: lightgray;
+    font-family: "Bodoni Moda", serif;
+}
+
+.about__section .section__title {
+    position: relative;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    color: #fff;
+}
+
+.about__section .section__title::after {
+    position: absolute;
+    content: '';
+    height: 2px;
+    width: 40px;
+    background-color: #fff;
+    border-radius: 5px;
+    bottom: -6px;
+    left: 0;
+}
+
+.about__section .section__content {
+    font-family: "Roboto", sans-serif;
+    margin: 13% 0;
+    line-height: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.about__section .section__contact {
+    position: relative;
+}
+
+.section__contact::before {
+    position: absolute;
+    content: '';
+    background-color: #fff;
+    height: 90px;
+    width: 2px;
+    top: 20px;
+    left: 4px;
+    border-radius: 10px;
+}
+
+.section__contact>div {
+    font-family: "Roboto", sans-serif;
+    position: relative;
+    display: grid;
+    grid-template-columns: 30px auto;
+    grid-template-rows: auto auto;
+    align-items: center;
+    margin: 15px 0;
+    padding-left: 30px;
+    transition: 0.5s all ease;
+}
+
+.section__contact>div>.icon {
+    grid-row: 1/3;
+    font-size: 1.3rem;
+}
+
+.section__contact>div>p {
+    font-size: 0.8rem;
+    margin: 2px 0;
+}
+
+.section__contact>div::before {
+    position: absolute;
+    content: '';
+    background-color: #fff;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+}
+
+/* CSS: Footer MailList */
+.mailList__section {
+    color: #fff;
+    text-align: center;
+    font-family: "Bodoni Moda", serif;
+}
+
+.mailList__section .section__title {
+    color: transparent;
+    font-size: 3rem;
+    -webkit-text-stroke: 0.5px #fff;
+    margin-bottom: 5px;
+}
+
+.mailList__section .section__title-small {
+    letter-spacing: 17px;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.mailList__section .section__content {
+    font-family: "Roboto", sans-serif;
+    margin: 5% 0;
+    line-height: 1.3rem;
+    letter-spacing: 0.5px;
+    font-size: 0.8rem;
+    color: #e2dfdf;
+    word-spacing: px;
+}
+
+.section__form {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form__input-email {
+    font-family: "Roboto", sans-serif;
+    width: 73%;
+    padding: 10px 15px;
+    border: 1px solid gray;
+    background-color: rgb(34, 34, 34);
+    color: #fff;
+    font-size: 0.8rem;
+}
+
+.form__btn {
+    font-family: "Roboto", sans-serif;
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: #fff;
+    background-color: rgb(248, 104, 34);
+    border: 1px solid transparent;
+    padding: 10px 25px;
+}
+
+.section__socials-network {
+    display: flex;
+    margin-top: 10%;
+    justify-content: center;
+    gap: 0 20px;
+}
+
+.section__socials-network .icon {
+    border-radius: 100%;
+    border: 1px dashed #fff;
+    padding: 13px;
+    font-size: 0.9rem;
+    transition: 0.5s all ease;
+}
+
+/* CSS: Companys Section  */
+.companys__section {
+    position: relative;
+    width: 100%;
+    color: lightgray;
+}
+
+.companys__section .section__title {
+    font-family: "Bodoni Moda", serif;
+    position: relative;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    color: #fff;
+}
+
+.companys__section .section__title::after {
+    position: absolute;
+    content: '';
+    height: 2px;
+    width: 40px;
+    background-color: #fff;
+    border-radius: 5px;
+    bottom: -6px;
+    left: 0;
+}
+
+.companys__section .section__list-info {
+    font-family: "Roboto", sans-serif;
+    margin-top: 15%;
+}
+
+.companys__section .section__item-info {
+    font-size: 0.9rem;
+    margin: 20px 0;
+}
+
+/* CSS: Active */
+.form__input-email::placeholder {
+    font-size: 0.7rem;
+    color: #6e6e6e;
+}
+
+/* CSS: Effect */
+.section__contact>div:hover .icon {
+    color: #fff;
+    font-weight: 700;
+}
+
+.form__input-email:focus {
+    border-radius: 0;
+    outline: 0;
+}
+
+.section__socials-network .icon:hover {
+    background-color: rgb(248, 104, 34);
+    border: 1px solid transparent;
+}
