@@ -9,31 +9,37 @@ const APIContext = createContext();
 
 export default function Provider({ children }) {
   // Create + use Hooks
-  const [categroies, setCategories] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchCategories = async () => {
       try {
-        const response = await axiosInstance("/category/categories");
+        const resOfCategory = await axiosInstance("/category/categories");
+        const resOfProduct = await axiosInstance("/product/products");
 
-        if (response.status === 200) {
-          setCategories(response.data);
+        if (resOfCategory.status === 200 && resOfProduct.status === 200) {
+          setCategories(resOfCategory.data);
+          setProducts(resOfProduct.data);
           setIsLoading(true);
           return false;
         }
-        console.log(response);
       } catch (error) {
         console.log(error);
       }
     };
-    fetchData();
+    fetchCategories();
   }, []);
 
   return (
     <>
       {isLoading && (
-        <APIContext.Provider value={categroies}>{children}</APIContext.Provider>
+        <APIContext.Provider
+          value={{ categories: categories, products: products }}
+        >
+          {children}
+        </APIContext.Provider>
       )}
     </>
   );

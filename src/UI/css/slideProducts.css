@@ -1,0 +1,518 @@
+/* CSS: Products Slider */
+.slider-products {
+    width: 100%;
+}
+
+/* CSS: Category Slick Slide */
+.slider-products .slick-track {
+    overflow-x: initial;
+}
+
+.slider-products .slick-slide {
+    cursor: pointer;
+}
+
+/* CSS: Products Slide Item */
+.slider-products .slick-slide>div {
+    margin: 30px 15px !important;
+}
+
+/* CSS: Slick Icon */
+.slider-products .slick-arrow {
+    border: 2px solid rgb(38, 70, 83);
+    border-radius: 100%;
+    padding: 5px;
+    transition: 0.3s all ease;
+}
+
+.slider-products .slick-arrow::before {
+    position: relative;
+    color: rgb(38, 70, 83);
+    font-size: 1.3rem;
+    transition: 0.3s all ease;
+}
+
+.slider-products .slick-prev {
+    top: -15px;
+    left: 12px;
+}
+
+.slider-products .slick-next {
+    top: -15px;
+    left: 60px;
+}
+
+.slider-products .slick-next::before {
+    content: '\21FE';
+    top: -2px;
+}
+
+.slider-products .slick-prev::before {
+    content: '\21FD';
+    top: -2px;
+}
+
+/* CSS: Products Card */
+
+.card {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    font-family: "Roboto", sans-serif;
+    box-shadow: 0 0 10px 1px rgba(210, 210, 212, .3);
+    border-radius: 5px;
+    overflow: hidden;
+    transition: 0.5s all ease;
+}
+
+.card__percent-discount {
+    position: absolute;
+    display: inline-block;
+    background-color: #FF5B5C;
+    border-radius: 25px;
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 0.7rem;
+    left: 20px;
+    top: 20px;
+    transition: .5s all ease;
+}
+
+.card>img {
+    margin: 50px auto 20px;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    transition: 1s all ease;
+}
+
+.card-desc {
+    margin-top: 20px;
+    font-family: "Roboto", sans-serif;
+}
+
+.card__name {
+    font-family: "Playfair Display", serif;
+    font-size: 1.1rem;
+    color: rgb(38, 70, 83);
+    font-weight: 600;
+}
+
+.card__price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 15px 0 10px;
+}
+
+.card__price-origin {
+    color: #BCBCBC;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: line-through;
+}
+
+.card__price-discount {
+    margin-left: 10px;
+    color: #00152A;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.card__btn-add {
+    cursor: pointer;
+    overflow: hidden;
+    font-family: "Roboto", sans-serif;
+    position: relative;
+    bottom: -50px;
+    text-align: left;
+    background-color: #264653;
+    color: #fff;
+    border: 0;
+    width: 150px;
+    border-radius: 25px;
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    transition: 1s all ease;
+}
+
+/* CSS: Active */
+.card-active {
+    position: relative;
+    left: 0;
+    transition: 1s all ease;
+}
+
+/* CSS: Icons */
+.icon-btn {
+    position: absolute;
+    top: 3.5px;
+    right: 4px;
+    font-size: 1.4rem;
+    padding: 2px;
+    color: #264653;
+    background-color: #fff;
+    border-radius: 100%;
+}
+
+.card__icon-search {
+    position: absolute;
+    font-size: 1rem;
+    color: #fff;
+    border-radius: 100%;
+    padding: 8px;
+    background-color: rgb(38, 70, 83);
+    top: 10px;
+    right: -100px;
+    transition: .8s all ease;
+}
+
+/* CSS: Effect */
+.card:hover {
+    cursor: pointer;
+    box-shadow: 0 0 10px 1px #264653;
+}
+
+.card:hover>img {
+    border-radius: 100%;
+    box-shadow: 0 0 2px 2px rgba(219, 219, 242, .4);
+}
+
+.card:hover .card__btn-add {
+    bottom: 15px;
+}
+
+.card:hover .card__icon-search {
+    right: 10px;
+}
+
+
+.card:hover .card-active {
+    left: -300px;
+}
+
+.slider-products .slick-arrow:hover {
+    background-color: rgb(38, 70, 83);
+}
+
+.slider-products .slick-arrow:hover.slick-arrow::before {
+    color: #fff;
+}
+
+/* CSS: Responsives */
+@media screen and (max-width:575px) {
+    .slider-products {
+        margin-top: 3%;
+    }
+
+    .slider-products .slick-slide>div {
+        margin: 5px !important;
+    }
+
+    .slider-products .slick-prev,
+    .slider-products .slick-next {
+        display: none !important;
+    }
+
+    .card {
+        box-shadow: 0 0 5px 1px rgba(219, 219, 242, .6);
+    }
+
+    .card__percent-discount {
+        top: 0;
+        left: 0;
+        font-size: .6rem;
+        border-radius: 0;
+        border-bottom-right-radius: 25px;
+        padding: 5px 15px 5px 5px;
+    }
+
+    .card>img {
+        margin: 0 0 20px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .card__name {
+        font-size: 1rem;
+    }
+
+    .card__price {
+        gap: 5px 0;
+    }
+
+    .card__price-origin {
+        width: 100%;
+        font-size: .8rem;
+    }
+
+    .card__price-discount {
+        width: 100%;
+        font-size: 1rem;
+        margin: 0;
+    }
+
+    .card__btn-add {
+        width: 110px;
+        text-align: center;
+        padding: 8px 10px;
+        font-size: .8rem;
+    }
+
+    .icon-btn {
+        display: none;
+    }
+
+    .card__icon-search {
+        font-size: .9rem;
+    }
+
+    /* CSS: Effect */
+    .card:hover {
+        box-shadow: 0 0 5px 1px rgba(219, 219, 242, .6);
+    }
+
+    .card:hover>img {
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .card:hover .card__icon-search {
+        top: -3px;
+        right: -3px;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width:767px) {
+    .slider-products {
+        margin-top: 3%;
+    }
+
+    .slider-products .slick-slide>div {
+        margin: 5px !important;
+    }
+
+    .slider-products .slick-prev,
+    .slider-products .slick-next {
+        display: none !important;
+    }
+
+    .card {
+        box-shadow: 0 0 5px 1px rgba(219, 219, 242, .6);
+    }
+
+    .card__percent-discount {
+        top: 0;
+        left: 0;
+        font-size: .6rem;
+        border-radius: 0;
+        border-bottom-right-radius: 25px;
+        padding: 5px 15px 5px 5px;
+    }
+
+    .card>img {
+        margin: 0 0 20px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .card__name {
+        font-size: 1rem;
+    }
+
+    .card__price {
+        gap: 5px 0;
+    }
+
+    .card__price-origin {
+        width: 100%;
+        font-size: .7rem;
+    }
+
+    .card__price-discount {
+        width: 100%;
+        font-size: .9rem;
+        margin: 0;
+    }
+
+    .card__btn-add {
+        width: 110px;
+        text-align: center;
+        padding: 8px 10px;
+        font-size: .8rem;
+    }
+
+    .icon-btn {
+        display: none;
+    }
+
+    .card__icon-search {
+        font-size: .9rem;
+    }
+
+    /* CSS: Effect */
+    .card:hover {
+        box-shadow: 0 0 5px 1px rgba(219, 219, 242, .6);
+    }
+
+    .card:hover>img {
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .card:hover .card__icon-search {
+        top: -3px;
+        right: -3px;
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:991px) {
+    .slider-products {
+        margin-top: 3%;
+    }
+
+    .slider-products .slick-slide>div {
+        margin: 5px !important;
+    }
+
+    .slider-products .slick-prev,
+    .slider-products .slick-next {
+        display: none !important;
+    }
+
+    .card {
+        box-shadow: 0 0 5px 1px rgba(219, 219, 242, .6);
+    }
+
+    .card__percent-discount {
+        top: 0;
+        left: 0;
+        font-size: .6rem;
+        border-radius: 0;
+        border-bottom-right-radius: 25px;
+        padding: 5px 15px 5px 5px;
+    }
+
+    .card>img {
+        margin: 0 0 20px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .card__name {
+        font-size: 1rem;
+    }
+
+    .card__price-origin {
+        font-size: .8rem;
+    }
+
+    .card__price-discount {
+        font-size: 1rem;
+    }
+
+    .card__btn-add {
+        width: 110px;
+        text-align: center;
+        padding: 8px 10px;
+        font-size: .8rem;
+    }
+
+    .icon-btn {
+        display: none;
+    }
+
+    .card__icon-search {
+        font-size: .9rem;
+    }
+
+    /* CSS: Effect */
+    .card:hover {
+        box-shadow: 0 0 5px 1px rgba(219, 219, 242, .6);
+    }
+
+    .card:hover>img {
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .card:hover .card__icon-search {
+        top: -3px;
+        right: -3px;
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+    .slider-products {
+        margin-top: 3%;
+    }
+
+    .slider-products .slick-slide>div {
+        margin: 5px !important;
+    }
+
+    .slider-products .slick-prev,
+    .slider-products .slick-next {
+        display: none !important;
+    }
+
+    .slider-products .slick-next {
+        top: -55px;
+    }
+
+    .card {
+        box-shadow: 0 0 5px 1px rgba(219, 219, 242, .6);
+    }
+
+    .card__percent-discount {
+        top: 0;
+        left: 0;
+        font-size: .6rem;
+        border-radius: 0;
+        border-bottom-right-radius: 25px;
+        padding: 5px 15px 5px 5px;
+    }
+
+    .card>img {
+        margin: 0 0 20px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .card__name {
+        font-size: 1rem;
+    }
+
+    .card__price-origin {
+        font-size: .8rem;
+    }
+
+    .card__price-discount {
+        font-size: 1rem;
+    }
+
+    .card__btn-add {
+        width: 130px;
+        font-size: .8rem;
+    }
+
+    .card__icon-search {
+        font-size: .9rem;
+    }
+
+    /* CSS: Effect */
+    .card:hover {
+        box-shadow: 0 0 5px 1px rgba(219, 219, 242, .6);
+    }
+
+    .card:hover>img {
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .card:hover .card__icon-search {
+        top: -3px;
+        right: -3px;
+    }
+}

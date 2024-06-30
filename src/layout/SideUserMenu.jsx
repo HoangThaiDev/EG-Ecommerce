@@ -1,6 +1,5 @@
 // Import Modules
 import { useDispatch, useSelector } from "react-redux";
-import { createPortal } from "react-dom";
 import reduxActions from "../redux/redux-actions";
 
 // Import Files CSS
@@ -24,8 +23,8 @@ function SideBar() {
   );
 
   // Create + use Event handlers
-  const hideSideUserMenu = (event) => {
-    dispatch(reduxActions.sideUserMenu.hideSideUserMenu());
+  const hideSideUserMenu = () => {
+    dispatch(reduxActions.sideUserMenu.toggleSideUserMenu());
   };
 
   return (

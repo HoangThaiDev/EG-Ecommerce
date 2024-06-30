@@ -27,3 +27,72 @@
     font-size: 1rem;
     font-style: italic;
 }
+
+/* CSS: Responsive */
+@media screen and (max-width:575px) {
+    .category__container {
+        width: 90%;
+        margin: 15% auto;
+    }
+
+    .category__header>h2 {
+        font-weight: 600;
+        font-size: 1.3rem;
+    }
+
+    .category__header>p {
+        font-size: .8rem;
+        line-height: 1.2rem;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width:767px) {
+    .category__container {
+        width: 90%;
+        margin: 15% auto;
+    }
+
+    .category__header>h2 {
+        font-weight: 600;
+        font-size: 1.3rem;
+    }
+
+    .category__header>p {
+        font-size: .9rem;
+        line-height: 1.2rem;
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:991px) {
+    .category__container {
+        width: 90%;
+        margin: 15% auto;
+    }
+
+    .category__header>h2 {
+        font-weight: 600;
+        font-size: 1.5rem;
+    }
+
+    .category__header>p {
+        font-size: 1rem;
+        line-height: 1.2rem;
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+    .category__container {
+        width: 90%;
+        margin: 10% auto;
+    }
+
+    .category__header>h2 {
+        font-weight: 600;
+        font-size: 1.5rem;
+    }
+
+    .category__header>p {
+        font-size: 1rem;
+        line-height: 1.2rem;
+    }
+}

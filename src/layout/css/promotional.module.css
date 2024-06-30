@@ -13,6 +13,7 @@
 .promotional__row {
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 /* CSS: Promotional Row*/
@@ -45,7 +46,6 @@
     font-size: 0.9rem;
     color: gray;
 }
-
 
 /* CSS: Icons */
 .icon {
@@ -85,4 +85,97 @@
 .promotional__col:hover .card::before,
 .promotional__col:hover .card>span {
     color: #fff;
+}
+
+/* CSS: Responsive */
+@media screen and (max-width:575px) {
+    .promotional {
+        margin-bottom: 20%;
+    }
+
+    .promotional__container {
+        width: 90%;
+    }
+
+    .promotional__row {
+        gap: 20px 0;
+        justify-content: center;
+    }
+
+    .promotional__col {
+        width: 100%;
+        transition: .3s all ease;
+    }
+
+    /* CSS: Effect */
+    .promotional__col:hover {
+        top: 0;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width:767px) {
+    .promotional {
+        margin-bottom: 15%;
+    }
+
+    .promotional__container {
+        width: 90%;
+    }
+
+    .promotional__row {
+        gap: 20px;
+    }
+
+    .promotional__col {
+        width: 48%;
+        transition: .3s all ease;
+    }
+
+    /* CSS: Effect */
+    .promotional__col:hover {
+        top: 5px;
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:991px) {
+    .promotional {
+        margin-bottom: 15%;
+    }
+
+    .promotional__container {
+        width: 90%;
+    }
+
+    .promotional__row {
+        gap: 20px;
+    }
+
+    .promotional__col {
+        width: 48%;
+        transition: .3s all ease;
+    }
+
+    /* CSS: Effect */
+    .promotional__col:hover {
+        top: 5px;
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+    .promotional__container {
+        width: 90%;
+    }
+
+    .promotional__row {
+        gap: 30px 0;
+    }
+
+    .promotional__col {
+        width: 48%;
+    }
+
+    /* CSS: Effect */
+    .promotional__col:hover {
+        top: 5px;
+    }
 }

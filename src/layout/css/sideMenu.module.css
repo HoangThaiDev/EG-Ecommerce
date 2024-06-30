@@ -20,7 +20,7 @@
     z-index: 5;
     background-color: #fff;
     top: 0;
-    left: -400px;
+    left: -500px;
     height: 100vh;
     width: 300px;
     padding: 20px;
@@ -114,13 +114,14 @@
 
 .sideBar__menu-item {
     position: relative;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     color: #264653;
     padding: 10px 0;
+    transition: .8s all ease;
 }
 
 .sideBar__menu-item::before {
@@ -162,4 +163,86 @@
 /* CSS: Effect */
 .sideBar__menu-item:hover.sideBar__menu-item::before {
     width: 100%;
+}
+
+/* CSS: Responsive */
+@media screen and (max-width:575px) {
+    .sideBar {
+        width: 100%;
+        left: -700px;
+    }
+
+    .sideBar__menu-item:hover {
+        background: linear-gradient(to right, rgba(38, 70, 83), rgba(38, 70, 83, .8), rgba(38, 70, 83, .6), #fff);
+        color: #fff;
+        padding: 10px 15px;
+    }
+
+    .sideBar__menu-item:hover .link {
+        color: #fff;
+    }
+
+    .sideBar__menu-item:hover.sideBar__menu-item::before {
+        width: 0;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width:767px) {
+    .sideBar {
+        left: -700px;
+    }
+
+    .sideBar__menu-item:hover {
+        background: linear-gradient(to right, rgba(38, 70, 83), rgba(38, 70, 83, .8), rgba(38, 70, 83, .6), #fff);
+        color: #fff;
+        padding: 10px 15px;
+    }
+
+    .sideBar__menu-item:hover .link {
+        color: #fff;
+    }
+
+    .sideBar__menu-item:hover.sideBar__menu-item::before {
+        width: 0;
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:991px) {
+    .sideBar {
+        left: -700px;
+    }
+
+    .sideBar__menu-item:hover {
+        background: linear-gradient(to right, rgba(38, 70, 83), rgba(38, 70, 83, .8), rgba(38, 70, 83, .6), #fff);
+        color: #fff;
+        padding: 10px 15px;
+    }
+
+    .sideBar__menu-item:hover .link {
+        color: #fff;
+    }
+
+    .sideBar__menu-item:hover.sideBar__menu-item::before {
+        width: 0;
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+    .sideBar {
+        left: -700px;
+    }
+
+    .sideBar__menu-item:hover {
+        background: linear-gradient(to right, rgba(38, 70, 83), rgba(38, 70, 83, .8), rgba(38, 70, 83, .6), #fff);
+        color: #fff;
+        padding: 10px 15px;
+    }
+
+    .sideBar__menu-item:hover .link {
+        color: #fff;
+    }
+
+    .sideBar__menu-item:hover.sideBar__menu-item::before {
+        width: 0;
+    }
 }

@@ -7,17 +7,16 @@
 /* CSS: Header Img */
 .header__container img {
     width: 100%;
-    height: 600px;
+    height: 550px;
     object-fit: cover;
 }
-
 
 /* CSS: Header Card */
 .header__card {
     width: 700px;
     font-family: "Roboto", sans-serif;
     position: absolute;
-    top: 25%;
+    top: 20%;
     left: 3%;
     color: rgb(38, 70, 83);
 }
@@ -63,4 +62,133 @@
     color: rgb(38, 70, 83);
     background-color: #fff;
     border-radius: 0;
+}
+
+/* CSS: Responsive */
+@media screen and (max-width:575px) {
+    .header__container {
+        width: 100%;
+    }
+
+    .header__card {
+        padding: 20px;
+        width: 80%;
+        left: 0;
+        top: 20%;
+    }
+
+    .header__card>span {
+        font-size: .8rem;
+    }
+
+    .header__card>h1 {
+        font-size: 2rem;
+        line-height: 3rem;
+        margin: 5% 0 25px;
+    }
+
+    .header__card>p {
+        font-size: .9rem;
+    }
+
+    .header__link {
+        display: inline-block;
+        font-size: .8rem;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width:767px) {
+    .header__container {
+        width: 100%;
+    }
+
+    .header__card {
+        padding: 20px;
+        width: 400px;
+        left: 0;
+        top: 20%;
+    }
+
+    .header__card>span {
+        font-size: .8rem;
+    }
+
+    .header__card>h1 {
+        font-size: 2rem;
+        line-height: 3rem;
+        margin: 5% 0 25px;
+    }
+
+    .header__card>p {
+        font-size: .9rem;
+    }
+
+    .header__link {
+        display: inline-block;
+        font-size: .8rem;
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:991px) {
+    .header__container {
+        width: 100%;
+    }
+
+    .header__card {
+        padding: 20px;
+        width: 450px;
+        left: 0;
+        top: 20%;
+    }
+
+    .header__card>span {
+        font-size: .9rem;
+    }
+
+    .header__card>h1 {
+        font-size: 2rem;
+        line-height: 3rem;
+        margin: 3% 0 25px;
+    }
+
+    .header__card>p {
+        font-size: .9rem;
+    }
+
+    .header__link {
+        display: inline-block;
+        font-size: .8rem;
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+    .header__container {
+        width: 100%;
+    }
+
+    .header__card {
+        padding: 20px;
+        width: 550px;
+        left: 0;
+        top: 20%;
+    }
+
+    .header__card>span {
+        font-size: .9rem;
+    }
+
+    .header__card>h1 {
+        font-size: 2.5rem;
+        line-height: 3.5rem;
+        margin: 3% 0 25px;
+    }
+
+    .header__card>p {
+        font-size: 1rem;
+    }
+
+    .header__link {
+        display: inline-block;
+        font-size: .8rem;
+    }
 }

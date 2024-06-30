@@ -10,8 +10,8 @@ const sideMenuSlide = createSlice({
   name: "sideMenu",
   initialState: initialSideMenu,
   reducers: {
-    showSideMenu(state) {
-      return { ...state, isShow: true };
+    toggleSideMenu(state) {
+      return { ...state, isShow: !state.isShow };
     },
     hideSideMenu(state) {
       return { ...state, isShow: false };
@@ -23,8 +23,8 @@ const sideUserMenuSlide = createSlice({
   name: "sideMenu",
   initialState: initialSideUserMenu,
   reducers: {
-    showSideUserMenu(state) {
-      return { ...state, isShow: true };
+    toggleSideUserMenu(state) {
+      return { ...state, isShow: !state.isShow };
     },
     hideSideUserMenu(state) {
       return { ...state, isShow: false };

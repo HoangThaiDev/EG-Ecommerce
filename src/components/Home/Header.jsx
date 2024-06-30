@@ -5,17 +5,22 @@ import React from "react";
 import classes from "./css/header.module.css";
 
 // Import Components
-import bannerHome from "../../assets/images-banner/banner-home.avif";
+import bannerHome from "../../assets/images-banner/banner-home.jpg";
 import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
     <div className={classes.header}>
       <div className={classes["header__container"]}>
-        <img src={bannerHome} alt={bannerHome} />
+        <img
+          src="https://img.freepik.com/premium-photo/flat-lay-composition-with-fresh-ripe-fruits-berries-white-background_795422-6366.jpg"
+          srcSet={bannerHome}
+        />
         <div className={classes["header__card"]}>
           <span>Up to 50% OFF</span>
-          <h1>Enjoy Organic Grocery With The Best Quality</h1>
+          <h1 className={classes["header__title"]}>
+            Enjoy Organic Grocery With The Best Quality
+          </h1>
           <p>
             Discover a world of high-quality organic groceries, enjoy daily
             doorstep delivery, and get discounts of up to 50%.

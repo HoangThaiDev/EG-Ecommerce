@@ -1,0 +1,485 @@
+.news {
+    max-width: 100%;
+}
+
+/* CSS: News Container */
+.news__container {
+    width: 1140px;
+    margin: 0 auto;
+}
+
+/* CSS: News Header */
+.news__header {
+    text-align: center;
+    font-family: "Playfair Display", serif;
+    color: rgb(38, 70, 83);
+}
+
+.news__header>h2 {
+    font-weight: 600;
+    font-size: 1.8rem;
+}
+
+.news__header>p {
+    margin-top: 15px;
+    color: gray;
+    font-size: 1rem;
+    letter-spacing: 0.7px;
+}
+
+/* CSS: News Row */
+.news__row {
+    margin: 4% 0 10px;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* CSS: News Col */
+.news__col:nth-child(1) {
+    width: 48%;
+}
+
+.news__col:nth-child(2) {
+    width: 47%;
+}
+
+/* CSS: News Card-Active */
+.news__card-active {
+    position: relative;
+    overflow: hidden;
+    opacity: 1;
+    transition: .8s all ease;
+}
+
+.news__card-active>img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+}
+
+.news__card-active .card__content {
+    font-family: "Roboto", sans-serif;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    background-color: #00142C;
+    color: #fff;
+    padding: auto 20px auto;
+    transition: 1s all ease;
+}
+
+.news__card-active .card__content>div {
+    width: 90%;
+    margin: 20px auto;
+}
+
+.news__card-active .card__content .content__title {
+    font-weight: 700;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+}
+
+.news__card-active .card__content .content__desc {
+    color: lightgray;
+    font-size: 0.9rem;
+    line-height: 1.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 15px 0 30px;
+}
+
+.news__card-active .card__content .content__link {
+    color: #00142C;
+    background-color: #fff;
+    border-radius: 25px;
+    padding: 8px 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.news__card-active .card__content .content__date {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    margin-right: 10px;
+    color: rgba(226, 226, 226);
+    font-size: .8rem;
+}
+
+/* CSS: News Card */
+.news__card {
+    font-family: "Roboto", sans-serif;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: 0 0 10px 1px rgba(226, 226, 226, .4);
+    padding: 20px;
+    margin: 20px 0;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.news__card>img {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+}
+
+.news__card .card__content {
+    width: 70%;
+}
+
+.news__card .card__content .content__title {
+    color: rgb(38, 70, 83);
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.3rem;
+}
+
+.news__card .card__content .content__desc {
+    color: gray;
+    font-size: .9rem;
+    margin: 15px 0;
+}
+
+.news__card .card__content .content__desc>span {
+    cursor: pointer;
+    font-weight: 700;
+    margin-right: 5px;
+}
+
+.news__card .card__content .content__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    color: rgb(38, 70, 83);
+}
+
+.content__footer .content__auth {
+    position: relative;
+    font-weight: 700;
+    font-size: .9rem;
+}
+
+.content__footer .content__auth .icon-user {
+    position: relative;
+    font-size: 1.1rem;
+    top: 2px;
+    margin-right: 5px;
+}
+
+.content__footer .content__date {
+    font-weight: 600;
+    font-size: .8rem;
+}
+
+/* CSS: Responsives */
+@media screen and (max-width:575px) {
+    .news__container {
+        width: 90%;
+        margin: 15% auto;
+    }
+
+    .news__header>h2 {
+        font-weight: 600;
+        font-size: 1.3rem;
+    }
+
+    .news__header>p {
+        font-size: .8rem;
+        line-height: 1.2rem;
+    }
+
+    .news__col:nth-child(1),
+    .news__col:nth-child(2) {
+        width: 100%;
+    }
+
+    .news__card-active>img {
+        height: 400px;
+    }
+
+    .news__card-active .card__content .content__title {
+        font-size: 1rem;
+        width: 95%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    /* CSS: Cart Active */
+    .news__card-active .card__content .content__desc {
+        font-size: .8rem;
+    }
+
+    .news__card-active .card__content .content__link {
+        font-size: .7rem;
+    }
+
+    .news__card-active .card__content .content__date {
+        font-size: .7rem;
+    }
+
+    /* CSS: Another Carts */
+    .news__card {
+        gap: 20px 0;
+    }
+
+    .news__card>img {
+        width: 100%;
+    }
+
+    .news__card .card__content {
+        width: 100%;
+    }
+
+    .news__card .card__content .content__title {
+        font-size: .9rem;
+        width: 95%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .news__card .card__content .content__desc {
+        font-size: .8rem;
+    }
+
+    .content__footer .content__auth {
+        font-size: .8rem;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width:767px) {
+    .news__container {
+        width: 90%;
+        margin: 15% auto;
+    }
+
+    .news__header>h2 {
+        font-weight: 600;
+        font-size: 1.3rem;
+    }
+
+    .news__header>p {
+        font-size: .9rem;
+        line-height: 1.2rem;
+    }
+
+    .news__col:nth-child(1),
+    .news__col:nth-child(2) {
+        width: 100%;
+    }
+
+    .news__card-active>img {
+        height: 400px;
+    }
+
+    .news__card-active .card__content .content__title {
+        font-size: 1rem;
+        width: 95%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    /* CSS: Cart Active */
+    .news__card-active .card__content .content__desc {
+        font-size: .8rem;
+    }
+
+    .news__card-active .card__content .content__link {
+        font-size: .7rem;
+    }
+
+    .news__card-active .card__content .content__date {
+        font-size: .7rem;
+    }
+
+    /* CSS: Another Carts */
+    .news__col:nth-child(2) {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .news__card {
+        width: 42%;
+        gap: 20px 0;
+    }
+
+    .news__card>img {
+        width: 100%;
+    }
+
+    .news__card .card__content {
+        width: 100%;
+    }
+
+    .news__card .card__content .content__title {
+        font-size: .9rem;
+        width: 95%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .news__card .card__content .content__desc {
+        font-size: .8rem;
+    }
+
+    .content__footer .content__auth {
+        font-size: .8rem;
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:991px) {
+    .news__container {
+        width: 90%;
+        margin: 10% auto;
+    }
+
+    .news__header>h2 {
+        font-weight: 600;
+        font-size: 1.3rem;
+    }
+
+    .news__header>p {
+        font-size: .8rem;
+        line-height: 1.2rem;
+    }
+
+    .news__col:nth-child(1),
+    .news__col:nth-child(2) {
+        width: 100%;
+    }
+
+    .news__card-active>img {
+        height: 400px;
+    }
+
+    .news__card-active .card__content .content__title {
+        font-size: 1.1rem;
+        width: 100%;
+    }
+
+    /* CSS: Cart Active */
+    .news__card-active .card__content .content__desc {
+        font-size: .9rem;
+    }
+
+    .news__card-active .card__content .content__link {
+        font-size: .8rem;
+    }
+
+    .news__card-active .card__content .content__date {
+        font-size: .8rem;
+    }
+
+    /* CSS: Another Carts */
+    .news__col:nth-child(2) {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .news__card {
+        width: 43%;
+        gap: 20px 0;
+    }
+
+    .news__card>img {
+        width: 100%;
+    }
+
+    .news__card .card__content {
+        width: 100%;
+    }
+
+    .news__card .card__content .content__title {
+        font-size: .9rem;
+        width: 95%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .news__card .card__content .content__desc {
+        font-size: .8rem;
+    }
+
+    .content__footer .content__auth {
+        font-size: .8rem;
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+    .news__container {
+        width: 90%;
+        margin: 15% auto;
+    }
+
+    .news__header>h2 {
+        font-weight: 600;
+        font-size: 1.5rem;
+    }
+
+    .news__header>p {
+        font-size: 1rem;
+        line-height: 1.2rem;
+    }
+
+    .news__col:nth-child(1) {
+        width: 50%;
+    }
+
+    .news__card-active .card__content .content__title {
+        font-size: 1rem;
+        width: 100%;
+    }
+
+    /* CSS: Cart Active */
+    .news__card-active .card__content .content__desc {
+        font-size: .9rem;
+    }
+
+    .news__card-active .card__content .content__link {
+        font-size: .8rem;
+    }
+
+    .news__card-active .card__content .content__date {
+        font-size: .8rem;
+    }
+
+    /* CSS: Another Carts */
+    .news__col:nth-child(2) {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .news__card {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .news__card .card__content {
+        width: 65%;
+    }
+
+    .news__card .card__content .content__title {
+        font-size: .9rem;
+        width: 95%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .news__card .card__content .content__desc {
+        font-size: .8rem;
+    }
+
+    .content__footer .content__auth {
+        font-size: .8rem;
+    }
+}

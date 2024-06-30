@@ -13,7 +13,7 @@ import { APIContext } from "../storeContext/APIContext";
 // Custom Slide
 function CustomSlide(props) {
   // Create + use props
-  const { index, title, path, activePath, isActive, ...otherProps } = props;
+  const { title, path, activePath, isActive, ...otherProps } = props;
 
   // Create + use event handlers
   const getTitleCategory = (title) => {
@@ -28,7 +28,6 @@ function CustomSlide(props) {
     >
       <img src={isActive ? activePath : path} alt={title} loading="lazy" />
       <p>{title}</p>
-      <div className="test"></div>
     </div>
   );
 }
@@ -51,11 +50,10 @@ function SamplePrevArrow(props) {
 export default function SlideCategories() {
   // Create + use Hooks
   const [centerIndex, setCenterIndex] = useState(0);
-  const categories = useContext(APIContext);
+  const { categories } = useContext(APIContext);
 
   // Create + use setting of slider
   const settings = {
-    className: "center",
     centerMode: true,
     swipe: false,
     speed: 700,
@@ -63,6 +61,48 @@ export default function SlideCategories() {
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     afterChange: (current) => setCenterIndex(current),
+    responsive: [
+      {
+        breakpoint: 1199,
+        settings: {
+          swipe: true,
+          slidesToShow: 3,
+          speed: 1000,
+          autoplay: true,
+          autoplaySpeed: 3000,
+        },
+      },
+      {
+        breakpoint: 991,
+        settings: {
+          swipe: true,
+          slidesToShow: 3,
+          speed: 1000,
+          autoplay: true,
+          autoplaySpeed: 3000,
+        },
+      },
+      {
+        breakpoint: 770,
+        settings: {
+          swipe: true,
+          slidesToShow: 2,
+          speed: 1000,
+          autoplay: true,
+          autoplaySpeed: 3000,
+        },
+      },
+      {
+        breakpoint: 500,
+        settings: {
+          swipe: true,
+          slidesToShow: 1,
+          speed: 2000,
+          autoplay: true,
+          autoplaySpeed: 3000,
+        },
+      },
+    ],
   };
 
   return (
@@ -70,11 +110,10 @@ export default function SlideCategories() {
       {categories.map((category, index) => (
         <div key={category._id}>
           <CustomSlide
-            index={1}
             path={category.logo.outline}
             activePath={category.logo.active}
             title={category.title}
-            key={category.id}
+            key={category._id}
             isActive={index === centerIndex}
           />
         </div>

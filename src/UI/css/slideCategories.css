@@ -4,34 +4,33 @@
 }
 
 /* CSS: Category Slick Slide */
-.slick-track {
+.slider-categories .slick-track {
     overflow-x: initial;
     height: 200px;
 }
 
-.slick-slide {
+.slider-categories .slick-slide {
     cursor: pointer;
 }
 
 /* CSS: Category Slide Item */
-.slide-item {
+.slider-categories .slide-item {
     position: relative;
     border: 2px solid rgba(220, 217, 217, 0.3);
     width: 150px !important;
     padding: 30px 10px;
     margin: 0 25px;
     top: 30px;
-    transition: 0.3s all ease;
-    /* transition-delay: 0.2s; */
+    transition: 1s all ease;
 }
 
-.slide-item>img {
+.slider-categories .slide-item>img {
     width: 50px;
     margin: 0 auto;
 }
 
 
-.slide-item>p {
+.slider-categories .slide-item>p {
     font-family: "Playfair Display", serif;
     font-size: 1.1rem;
     margin-top: 8px;
@@ -39,14 +38,14 @@
 }
 
 /* CSS: Slick Icon */
-.slick-arrow {
+.slider-categories .slick-arrow {
     border: 2px solid rgb(224, 196, 157);
     border-radius: 100%;
     padding: 8px;
     transition: 0.3s all ease;
 }
 
-.slick-arrow::before {
+.slider-categories .slick-arrow::before {
     position: relative;
     color: rgb(224, 196, 157) !important;
     opacity: 1;
@@ -54,12 +53,12 @@
     transition: 0.3s all ease;
 }
 
-.slick-next::before {
+.slider-categories .slick-next::before {
     content: '\21FE';
     top: -5px;
 }
 
-.slick-prev::before {
+.slider-categories .slick-prev::before {
     content: '\21FD';
     top: -5px;
 }
@@ -67,17 +66,22 @@
 
 /* CSS: Active */
 
-.slick-center .slide-item {
+.slider-categories .slick-center .slide-item {
     transition-delay: 0.5s;
     background-color: rgb(224, 196, 157);
 }
 
-.slick-center .slide-item>p {
-    transition-delay: 0.5s;
+.slider-categories .slick-center .slide-item>p {
+    transition-delay: 0.7s;
     color: #fff;
 }
 
-.slick-center .slide-item::before {
+.slider-categories .slick-center>div,
+.slider-categories .slick-center>div>div {
+    height: inherit;
+}
+
+.slider-categories .slick-center .slide-item::before {
     content: '\21FD';
     position: absolute;
     bottom: -20px;
@@ -95,17 +99,112 @@
 }
 
 /* CSS: Effect */
-.slide-item:hover {
+.slider-categories .slide-item:hover {
     border: 2px solid rgb(224, 196, 157);
 }
 
-.slick-arrow:hover {
+.slider-categories .slick-arrow:hover {
     border: 2px solid transparent;
     background-color: rgb(224, 196, 157);
 }
 
-.slick-arrow:hover.slick-arrow::before {
+.slider-categories .slick-arrow:hover.slick-arrow::before {
     color: #fff !important;
 }
 
-/* CSS: Animation */
+/* CSS: Responsives */
+@media screen and (max-width:575px) {
+    .slider-categories .slide-item {
+        margin: 0 auto;
+        width: auto !important;
+    }
+
+    .slider-categories .slick-prev,
+    .slider-categories .slick-next,
+    .slider-categories .slick-next::before,
+    .slider-categories .slick-prev::before {
+        display: none !important;
+    }
+
+    .slider-categories .slick-center .slide-item::before {
+        display: none;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width:767px) {
+    .slider-categories .slide-item {
+        width: auto !important;
+        margin: 0 auto;
+    }
+
+    .slider-categories .slick-center .slide-item::before,
+    .slider-categories .slick-prev,
+    .slider-categories .slick-next,
+    .slider-categories .slick-next::before,
+    .slider-categories .slick-prev::before {
+        display: none !important;
+    }
+
+}
+
+@media screen and (min-width:768px) and (max-width:991px) {
+    .slider-categories .slide-item {
+        width: auto !important;
+        margin: 0 auto;
+    }
+
+    .slider-categories .slick-next {
+        margin-right: 30px;
+        z-index: 2;
+    }
+
+    .slider-categories .slick-prev {
+        margin-left: 30px;
+        z-index: 2;
+    }
+
+    .slider-categories .slick-next::before,
+    .slider-categories .slick-prev::before {
+        font-size: 1.3rem;
+        top: -2px;
+    }
+
+    .slider-categories .slick-arrow {
+        padding: 6px;
+    }
+
+    .slider-categories .slick-center .slide-item::before {
+        left: 40%;
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+    .slider-categories .slide-item {
+        width: 250px !important;
+        margin: 0 auto;
+    }
+
+    .slider-categories .slick-next {
+        margin-right: 30px;
+        z-index: 2;
+    }
+
+    .slider-categories .slick-prev {
+        margin-left: 30px;
+        z-index: 2;
+    }
+
+    .slider-categories .slick-next::before,
+    .slider-categories .slick-prev::before {
+        font-size: 1.3rem;
+        top: -2px;
+    }
+
+    .slider-categories .slick-arrow {
+        padding: 6px;
+    }
+
+    .slider-categories .slick-center .slide-item::before {
+        left: 42%;
+    }
+}

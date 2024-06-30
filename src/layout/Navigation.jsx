@@ -15,6 +15,7 @@ import { IoMenuOutline } from "react-icons/io5";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { FiPhoneCall } from "react-icons/fi";
 import { useRef } from "react";
+import { IoSearchSharp } from "react-icons/io5";
 
 export default function Navigation() {
   // Create + use Hooks
@@ -28,11 +29,11 @@ export default function Navigation() {
   };
 
   const showSideMenu = () => {
-    dispatch(reduxActions.sideMenu.showSideMenu());
+    dispatch(reduxActions.sideMenu.toggleSideMenu());
   };
 
   const showSideMenuUser = () => {
-    dispatch(reduxActions.sideUserMenu.showSideUserMenu());
+    dispatch(reduxActions.sideUserMenu.toggleSideUserMenu());
   };
 
   const searchProductHandler = (event) => {
@@ -51,10 +52,11 @@ export default function Navigation() {
               <h1>EG SHOP</h1>
               <span>GROCERY</span>
             </div>
+            <h1 className={classes["nav__col__logo-mobile"]}>EG</h1>
           </Col>
 
           {/* -------------------------JSX: Form Search------------------------------- */}
-          <Col className={classes["navigation__col"]} xl={13}>
+          <Col className={classes["navigation__col"]} xl={14}>
             <form
               className={classes["nav__col__form-search"]}
               onSubmit={searchProductHandler}
@@ -65,6 +67,10 @@ export default function Navigation() {
                 placeholder="Search Product"
                 className={classes["form__input"]}
                 ref={nameProductRef}
+              />
+              <IoSearchSharp
+                className={classes["form__icon-search"]}
+                onClick={searchProductHandler}
               />
               <button className={classes["form__btn"]} type="submit">
                 Search

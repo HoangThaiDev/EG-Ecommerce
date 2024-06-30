@@ -1,0 +1,287 @@
+.products-best-seller {
+    position: relative;
+    margin: 4% 0;
+    width: 100%;
+}
+
+/* CSS: Products Container */
+.products__container {
+    width: 1140px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* CSS: Products Header */
+.products__header {
+    font-family: "Playfair Display", serif;
+    color: rgb(38, 70, 83);
+}
+
+.products__header>h2 {
+    font-weight: 600;
+    font-size: 1.8rem;
+}
+
+.products__header>p {
+    margin-top: 15px;
+    color: gray;
+    font-size: 1rem;
+    letter-spacing: 0.7px;
+}
+
+/* CSS: Products Section */
+.section__header {
+    text-align: right;
+    margin: 5% 0 10px;
+}
+
+.section__link {
+    font-family: "Roboto", sans-serif;
+    color: rgb(38, 70, 83);
+    border: 2px solid rgb(38, 70, 83);
+    border-radius: 25px;
+    padding: 5px 15px;
+    text-decoration: none;
+    font-size: .8rem;
+    transition: .8s all ease;
+}
+
+/* CSS: Section Row */
+.section__row {
+    margin-top: 3%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.section__col {
+    width: 23%;
+}
+
+.card {
+    position: relative;
+    font-family: "Roboto", sans-serif;
+    padding: 30px 20px;
+    box-shadow: 0 0 10px 1px rgba(210, 210, 212, .3);
+    border-radius: 5px;
+    height: 260px;
+    overflow: hidden;
+    transition: 0.5s all ease;
+}
+
+.card__percent-discount {
+    position: absolute;
+    display: inline-block;
+    background-color: #FF5B5C;
+    border-radius: 25px;
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 0.7rem;
+    left: 20px;
+    top: 20px;
+    transition: .5s all ease;
+}
+
+.card>img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.card-desc {
+    margin-top: 20px;
+    font-family: "Roboto", sans-serif;
+}
+
+.card__name {
+    font-family: "Playfair Display", serif;
+    font-size: 1.1rem;
+    color: rgb(38, 70, 83);
+    font-weight: 600;
+}
+
+.card__price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0 10px;
+}
+
+.card__price-origin {
+    color: #BCBCBC;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: line-through;
+}
+
+.card__price-discount {
+    margin-left: 10px;
+    color: #00152A;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.card__btn-add {
+    cursor: pointer;
+    overflow: hidden;
+    font-family: "Roboto", sans-serif;
+    position: relative;
+    bottom: -50px;
+    text-align: left;
+    background-color: #264653;
+    color: #fff;
+    border: 0;
+    width: 150px;
+    border-radius: 25px;
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    transition: 1s all ease;
+}
+
+/* CSS: Section Footer */
+.section__footer {
+    display: block;
+    margin-top: 5%;
+}
+
+/* CSS: Active */
+.card-active {
+    position: relative;
+    left: 0;
+    transition: 1s all ease;
+}
+
+.products-best-seller::after {
+    content: '';
+    position: absolute;
+    top: 0%;
+    left: 15%;
+    box-shadow: 0 0 200px 200px rgba(241, 176, 176, 0.3);
+    z-index: -1;
+}
+
+/* CSS: Icons */
+.icon-btn {
+    position: absolute;
+    top: 3.5px;
+    right: 4px;
+    font-size: 1.4rem;
+    padding: 2px;
+    color: #264653;
+    background-color: #fff;
+    border-radius: 100%;
+}
+
+/* CSS: Effect */
+
+.card:hover {
+    cursor: pointer;
+    box-shadow: 0 0 10px 1px #264653;
+}
+
+.card:hover .card__btn-add {
+    bottom: 15px;
+}
+
+.card:hover .card-active {
+    left: -300px;
+}
+
+.section__link:hover {
+    background-color: rgb(38, 70, 83);
+    color: #fff;
+    border-radius: 0;
+}
+
+/* CSS: Responsive */
+@media screen and (max-width:575px) {
+    .products__container {
+        width: 90%;
+        margin: 15% auto;
+    }
+
+    .products__header>h2 {
+        font-weight: 600;
+        font-size: 1.3rem;
+    }
+
+    .products__header>p {
+        font-size: .8rem;
+        line-height: 1.4rem;
+    }
+
+    .section__link {
+        display: inline-block;
+        margin-top: 5%;
+    }
+
+}
+
+@media screen and (min-width:576px) and (max-width:767px) {
+    .products__container {
+        width: 90%;
+        margin: 10% auto;
+    }
+
+    .products__header>h2 {
+        font-weight: 600;
+        font-size: 1.3rem;
+    }
+
+    .products__header>p {
+        font-size: .9rem;
+        line-height: 1.2rem;
+    }
+
+    .section__header {
+        text-align: right;
+        margin: 10% 0 10px;
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:991px) {
+    .products__container {
+        width: 90%;
+        margin: 10% auto;
+    }
+
+    .products__header>h2 {
+        font-weight: 600;
+        font-size: 1.5rem;
+    }
+
+    .products__header>p {
+        font-size: 1rem;
+        line-height: 1.2rem;
+    }
+
+    .section__header {
+        text-align: right;
+        margin: 10% 0 10px;
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+    .products-rated {
+        margin: 0 auto;
+    }
+
+    .products__container {
+        width: 90%;
+    }
+
+    .products__header>h2 {
+        font-weight: 600;
+        font-size: 1.5rem;
+    }
+
+    .products__header>p {
+        font-size: 1rem;
+        line-height: 1.2rem;
+    }
+
+    .section__header {
+        text-align: right;
+        margin: 10% 0 10px;
+    }
+}

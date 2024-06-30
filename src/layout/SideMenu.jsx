@@ -2,13 +2,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { createPortal } from "react-dom";
 import reduxActions from "../redux/redux-actions";
-import { useState } from "react";
 
 // Import Files CSS
 import classes from "./css/sideMenu.module.css";
 
 // Import Components
-import { Row, Col, Avatar } from "antd";
+import { Row, Col } from "antd";
 import { NavLink } from "react-router-dom";
 
 // Import Icons
@@ -48,21 +47,14 @@ function Overlay({ isShowSideMenu, isShowSideUserMenu }) {
 function SideBar({ isShowSideMenu }) {
   // Create + use Hooks
   const dispatch = useDispatch();
-  const [isChangeSide, setIsChangeSide] = useState(true);
 
   // Create + use Event handlers
-  const hideSideMenu = (event) => {
-    dispatch(reduxActions.sideMenu.hideSideMenu());
+  const hideSideMenu = () => {
+    dispatch(reduxActions.sideMenu.toggleSideMenu());
   };
 
   const showSideMenuUser = () => {
-    if (isChangeSide) {
-      dispatch(reduxActions.sideUserMenu.showSideUserMenu());
-      setIsChangeSide(!isChangeSide);
-    } else {
-      dispatch(reduxActions.sideUserMenu.hideSideUserMenu());
-      setIsChangeSide(!isChangeSide);
-    }
+    dispatch(reduxActions.sideUserMenu.toggleSideUserMenu());
   };
 
   return (
@@ -217,6 +209,7 @@ export default function SideMenu() {
   const { isShow: isShowSideUserMenu } = useSelector(
     (state) => state.sideUserMenu
   );
+
   return (
     <>
       {createPortal(

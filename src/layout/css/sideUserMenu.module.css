@@ -9,7 +9,7 @@
     z-index: 5;
     background-color: #fff;
     top: 0;
-    right: -400px;
+    right: -500px;
     width: 300px;
     padding: 20px;
     transition: 1s all ease;
@@ -35,7 +35,7 @@
 /* CSS: sideBar User  */
 .sideBar__user {
     font-family: "Roboto", sans-serif;
-    margin: 5% 0;
+    margin: 5% 0 0;
     padding-bottom: 10px;
     display: grid;
     grid-template-columns: auto;
@@ -43,7 +43,6 @@
     align-items: center;
     justify-content: center;
     gap: 0 10px;
-    border-bottom: 2px solid rgba(195, 198, 198, 0.3);
 }
 
 .sideBar__user .avatar {
@@ -89,13 +88,12 @@
 
 .sideBar__menu-item {
     font-family: "Roboto", sans-serif;
-    box-shadow: 0 0 10px 2px rgba(212, 212, 214, 0.4);
-    position: relative;
-    margin-bottom: 20px;
     display: flex;
     flex-wrap: wrap;
+    position: relative;
+    margin-bottom: 20px;
+    border: 2px solid #264653;
     color: #264653;
-    border-radius: 5px;
     transition: 0.5s all ease;
 }
 
@@ -112,10 +110,6 @@
 }
 
 /* CSS: Active */
-.overlay.hide {
-    display: none;
-}
-
 .sideBar.show {
     right: 0;
 }
@@ -135,7 +129,6 @@
 
 .sideBar__menu-item:hover {
     background-color: #264653;
-    border-radius: 0;
 }
 
 .sideBar__menu-item:last-child:hover {
@@ -146,4 +139,110 @@
 
 .sideBar__menu-item:hover .link {
     color: #fff;
+}
+
+/* CSS: Responsive */
+@media screen and (max-width:575px) {
+    .sideBar {
+        width: 100%;
+        height: 100vh;
+        right: -700px;
+    }
+
+    .sideBar__header {
+        height: 40px;
+    }
+
+    .sideBar__header .icon-close {
+        position: absolute;
+        right: 0;
+    }
+
+    .sideBar__row {
+        margin: 20px 0;
+    }
+
+    .sideBar__col {
+        width: 300px;
+        margin: 0 auto 20px;
+    }
+
+    .sideBar__menu-item {
+        flex: 1;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width:767px) {
+    .sideBar {
+        height: 100vh;
+        left: -700px;
+    }
+
+    .sideBar.show {
+        left: 0;
+    }
+
+    .sideBar__header {
+        height: 40px;
+    }
+
+    .sideBar__header .icon-close {
+        position: absolute;
+        right: 0;
+    }
+
+    .sideBar__row {
+        margin: 20px 0;
+    }
+
+    .sideBar__col {
+        width: 300px;
+        margin: 0 auto 20px;
+    }
+
+    .sideBar__menu-item {
+        flex: 1;
+    }
+}
+
+
+@media screen and (min-width:768px) and (max-width:991px) {
+    .sideBar {
+        height: 100vh;
+        right: -700px;
+    }
+
+    .sideBar__row {
+        margin: 20px 0;
+    }
+
+    .sideBar__col {
+        width: 300px;
+        margin: 0 auto 20px;
+    }
+
+    .sideBar__menu-item {
+        flex: 1;
+    }
+}
+
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+    .sideBar {
+        height: 100vh;
+        right: -700px;
+    }
+
+    .sideBar__row {
+        margin: 20px 0;
+    }
+
+    .sideBar__col {
+        width: 300px;
+        margin: 0 auto 20px;
+    }
+
+    .sideBar__menu-item {
+        flex: 1;
+    }
 }

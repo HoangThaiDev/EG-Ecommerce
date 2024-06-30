@@ -18,6 +18,10 @@
     flex-wrap: wrap;
 }
 
+/* CSS: Footer Col */
+.footer__col {
+    position: relative;
+}
 
 /* CSS: About Section  */
 .about__section {
@@ -120,12 +124,12 @@
 
 .mailList__section .section__content {
     font-family: "Roboto", sans-serif;
-    margin: 5% 0;
+    margin: 8% 0;
     line-height: 1.3rem;
     letter-spacing: 0.5px;
     font-size: 0.8rem;
     color: #e2dfdf;
-    word-spacing: px;
+    word-spacing: 2px;
 }
 
 .section__form {
@@ -171,13 +175,13 @@
 }
 
 /* CSS: Companys Section  */
-.companys__section {
+.companies__section {
     position: relative;
     width: 100%;
     color: lightgray;
 }
 
-.companys__section .section__title {
+.companies__section .section__title {
     font-family: "Bodoni Moda", serif;
     position: relative;
     font-size: 1.3rem;
@@ -185,7 +189,7 @@
     color: #fff;
 }
 
-.companys__section .section__title::after {
+.companies__section .section__title::after {
     position: absolute;
     content: '';
     height: 2px;
@@ -196,12 +200,12 @@
     left: 0;
 }
 
-.companys__section .section__list-info {
+.companies__section .section__list-info {
     font-family: "Roboto", sans-serif;
     margin-top: 15%;
 }
 
-.companys__section .section__item-info {
+.companies__section .section__item-info {
     font-size: 0.9rem;
     margin: 20px 0;
 }
@@ -226,4 +230,326 @@
 .section__socials-network .icon:hover {
     background-color: rgb(248, 104, 34);
     border: 1px solid transparent;
+}
+
+/* CSS: Responsive */
+@media screen and (max-width:575px) {
+    .footer__container {
+        width: 90%;
+        padding: 10% 0 5%;
+    }
+
+    .footer__col {
+        margin-top: 10%;
+        width: 100%;
+    }
+
+    .footer__col:nth-child(1) {
+        order: 2;
+        border-bottom: 1px solid rgba(255, 255, 255, .4);
+    }
+
+    .footer__col:nth-child(2) {
+        order: 1;
+        margin-top: 0;
+        padding-bottom: 40px;
+        border-bottom: 1px solid rgba(255, 255, 255, .4);
+    }
+
+    .footer__col:nth-child(3) {
+        order: 3;
+    }
+
+    /* CSS: Col MailList */
+    .mailList__section .section__title {
+        font-size: 2rem;
+        letter-spacing: 2px;
+    }
+
+    .mailList__section .section__title-small {
+        font-size: .8rem;
+        letter-spacing: 12px;
+    }
+
+    .section__form {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+
+    .section__form .form__input-email {
+        width: 100%;
+    }
+
+    .section__socials-network {
+        gap: 0 15px;
+    }
+
+    /* CSS: About */
+    .about__section {
+        text-align: center;
+    }
+
+    .about__section .section__title::after {
+        display: none;
+    }
+
+    .about__section .section__content {
+        margin: 8% 0;
+    }
+
+    .about__section .section__contact {
+        display: inline-block;
+        text-align: left;
+    }
+
+    .about__section .section__contact>div {
+        word-break: break-all;
+    }
+
+    .section__contact::before {
+        top: 35px;
+    }
+
+    /* CSS: Companies */
+    .companies__section {
+        text-align: center;
+    }
+
+    .companies__section .section__title::after {
+        display: none;
+    }
+
+    .companies__section .section__list-info {
+        margin-top: 10%;
+    }
+
+}
+
+@media screen and (min-width:576px) and (max-width:767px) {
+    .footer__container {
+        width: 90%;
+        padding: 10% 0 5%;
+    }
+
+    .footer__col {
+        margin-top: 10%;
+        width: 100%;
+    }
+
+    .footer__col:nth-child(1) {
+        order: 2;
+        width: 45%;
+    }
+
+    .footer__col:nth-child(2) {
+        order: 1;
+        padding-bottom: 40px;
+        margin-top: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, .4);
+    }
+
+    .footer__col:nth-child(3) {
+        order: 3;
+        width: 45%;
+    }
+
+    /* CSS: Col MailList */
+    .mailList__section .section__title {
+        font-size: 2rem;
+        letter-spacing: 2px;
+    }
+
+    .mailList__section .section__title-small {
+        font-size: .8rem;
+        letter-spacing: 12px;
+    }
+
+    .mailList__section .section__content {
+        width: 80%;
+        margin: 5% auto;
+    }
+
+    .section__form {
+        width: 80%;
+        margin: 0 auto;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+
+    .section__form .form__input-email {
+        width: 100%;
+    }
+
+    .section__socials-network {
+        gap: 0 20px;
+    }
+
+    /* CSS: About */
+    .about__section .section__title::after {
+        display: none;
+    }
+
+    .about__section .section__title::after {
+        display: none;
+    }
+
+    /* CSS: Companies */
+    .companies__section {
+        text-align: right;
+    }
+
+    .companies__section .section__title::after {
+        display: none;
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:991px) {
+    .footer__container {
+        width: 90%;
+        padding: 10% 0 5%;
+    }
+
+    .footer__col {
+        margin-top: 10%;
+        width: 100%;
+    }
+
+    .footer__col:nth-child(1) {
+        order: 2;
+        width: 30%;
+    }
+
+    .footer__col:nth-child(2) {
+        order: 1;
+        padding-bottom: 40px;
+        margin-top: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, .4);
+    }
+
+    .footer__col:nth-child(3) {
+        order: 3;
+        width: 30%;
+    }
+
+    /* CSS: Col MailList */
+    .mailList__section .section__title {
+        font-size: 2rem;
+        letter-spacing: 2px;
+    }
+
+    .mailList__section .section__title-small {
+        font-size: .8rem;
+        letter-spacing: 12px;
+    }
+
+    .mailList__section .section__content {
+        width: 80%;
+        margin: 5% auto;
+    }
+
+    .section__form {
+        width: 50%;
+        margin: 0 auto;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+
+    .section__form .form__input-email {
+        width: 100%;
+    }
+
+    .section__socials-network {
+        margin-top: 5%;
+        gap: 0 20px;
+    }
+
+    /* CSS: About */
+    .about__section .section__title::after {
+        display: none;
+    }
+
+    .about__section .section__title::after {
+        display: none;
+    }
+
+    /* CSS: Companies */
+    .companies__section {
+        text-align: right;
+    }
+
+    .companies__section .section__title::after {
+        display: none;
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+    .footer__container {
+        width: 90%;
+        padding: 5% 0;
+    }
+
+    .footer__col {
+        width: 100%;
+    }
+
+    .footer__col:nth-child(1) {
+        width: 20%;
+    }
+
+    .footer__col:nth-child(2) {
+        width: 50%;
+    }
+
+    .footer__col:nth-child(3) {
+        width: 20%;
+    }
+
+    /* CSS: Col MailList */
+    .mailList__section .section__title {
+        font-size: 2rem;
+        letter-spacing: 2px;
+    }
+
+    .mailList__section .section__title-small {
+        font-size: .8rem;
+        letter-spacing: 12px;
+    }
+
+    .mailList__section .section__content {
+        width: 80%;
+        margin: 5% auto;
+    }
+
+    .section__form {
+        width: 80%;
+        margin: 0 auto;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+
+    .section__form .form__input-email {
+        width: 100%;
+    }
+
+    .section__socials-network {
+        gap: 0 20px;
+    }
+
+    /* CSS: About */
+    .about__section .section__contact {
+        word-break: break-all;
+    }
+
+    .about__section .section__title::after {
+        display: none;
+    }
+
+    /* CSS: Companies */
+    .companies__section {
+        text-align: right;
+    }
+
+    .companies__section .section__title::after {
+        display: none;
+    }
 }

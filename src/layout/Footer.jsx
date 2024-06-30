@@ -96,12 +96,12 @@ export default function Footer() {
             </div>
           </Col>
 
-          {/* -------------------------JSX: Companys------------------------------- */}
+          {/* -------------------------JSX: Companies------------------------------- */}
           <Col
-            className={`${classes["footer__col"]} ${classes["footer__col__companys"]}`}
+            className={`${classes["footer__col"]} ${classes["footer__col__companies"]}`}
             xl={4}
           >
-            <div className={classes["companys__section"]}>
+            <div className={classes["companies__section"]}>
               <h3 className={classes["section__title"]}>Company</h3>
               <ul className={classes["section__list-info"]}>
                 <li className={classes["section__item-info"]}>Pivacy Policy</li>
@@ -114,7 +114,7 @@ export default function Footer() {
                   Terms & Service
                 </li>
                 <li className={classes["section__item-info"]}>Checkout</li>
-                <li className={classes["section__item-info"]}>other Issues</li>
+                <li className={classes["section__item-info"]}>Other Issues</li>
               </ul>
             </div>
           </Col>
