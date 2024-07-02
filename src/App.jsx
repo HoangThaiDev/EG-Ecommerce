@@ -8,6 +8,7 @@ import "./App.css";
 // Import Components
 // ------------------- UI --------------------
 import ScrollButton from "./UI/ScrollTop";
+
 // ------------------- Layout --------------------
 import RootLayout from "./layout/RootLayout";
 import SideMenu from "./layout/SideMenu";
@@ -16,6 +17,7 @@ import SideUserMenu from "./layout/SideUserMenu";
 // ------------------- Pages --------------------
 import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
+import Products from "./pages/Products";
 
 function App() {
   // Create + use Hooks
@@ -63,6 +65,7 @@ function App() {
           <Route path="/" element={<RootLayout />}>
             <Route index element={<Home />} />
             <Route path="about-us" element={<AboutUs />} />
+            <Route path="products" element={<Products />} />
           </Route>
         </Routes>
       </BrowserRouter>
