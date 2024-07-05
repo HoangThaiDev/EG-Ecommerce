@@ -46,111 +46,7 @@
     transition: .8s all ease;
 }
 
-/* CSS: Section Row */
-.section__row {
-    margin-top: 3%;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
-}
-
-.section__col {
-    width: 23%;
-}
-
-.card {
-    position: relative;
-    font-family: "Roboto", sans-serif;
-    padding: 30px 20px;
-    box-shadow: 0 0 10px 1px rgba(210, 210, 212, .3);
-    border-radius: 5px;
-    height: 260px;
-    overflow: hidden;
-    transition: 0.5s all ease;
-}
-
-.card__percent-discount {
-    position: absolute;
-    display: inline-block;
-    background-color: #FF5B5C;
-    border-radius: 25px;
-    color: #fff;
-    padding: 5px 10px;
-    font-size: 0.7rem;
-    left: 20px;
-    top: 20px;
-    transition: .5s all ease;
-}
-
-.card>img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-}
-
-.card-desc {
-    margin-top: 20px;
-    font-family: "Roboto", sans-serif;
-}
-
-.card__name {
-    font-family: "Playfair Display", serif;
-    font-size: 1.1rem;
-    color: rgb(38, 70, 83);
-    font-weight: 600;
-}
-
-.card__price {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 15px 0 10px;
-}
-
-.card__price-origin {
-    color: #BCBCBC;
-    font-weight: 600;
-    font-size: 0.9rem;
-    text-decoration: line-through;
-}
-
-.card__price-discount {
-    margin-left: 10px;
-    color: #00152A;
-    font-size: 1.1rem;
-    font-weight: 700;
-}
-
-.card__btn-add {
-    cursor: pointer;
-    overflow: hidden;
-    font-family: "Roboto", sans-serif;
-    position: relative;
-    bottom: -50px;
-    text-align: left;
-    background-color: #264653;
-    color: #fff;
-    border: 0;
-    width: 150px;
-    border-radius: 25px;
-    padding: 8px 20px;
-    font-size: 0.9rem;
-    transition: 1s all ease;
-}
-
-/* CSS: Section Footer */
-.section__footer {
-    display: block;
-    margin-top: 5%;
-}
-
 /* CSS: Active */
-.card-active {
-    position: relative;
-    left: 0;
-    transition: 1s all ease;
-}
-
 .products-best-seller::after {
     content: '';
     position: absolute;
@@ -160,33 +56,7 @@
     z-index: -1;
 }
 
-/* CSS: Icons */
-.icon-btn {
-    position: absolute;
-    top: 3.5px;
-    right: 4px;
-    font-size: 1.4rem;
-    padding: 2px;
-    color: #264653;
-    background-color: #fff;
-    border-radius: 100%;
-}
-
 /* CSS: Effect */
-
-.card:hover {
-    cursor: pointer;
-    box-shadow: 0 0 10px 1px #264653;
-}
-
-.card:hover .card__btn-add {
-    bottom: 15px;
-}
-
-.card:hover .card-active {
-    left: -300px;
-}
-
 .section__link:hover {
     background-color: rgb(38, 70, 83);
     color: #fff;

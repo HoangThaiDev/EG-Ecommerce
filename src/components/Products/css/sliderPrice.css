@@ -1,0 +1,301 @@
+.slider-price {
+    width: 100%;
+    margin: 15% 0;
+}
+
+.slider__title {
+    position: relative;
+    font-family: "Playfair Display", serif;
+    color: rgb(38, 70, 83);
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding-bottom: 15px;
+    border-bottom: 3px solid rgb(210, 210, 210);
+}
+
+.slider__title::before {
+    content: '';
+    position: absolute;
+    background-color: rgb(38, 70, 83);
+    height: 2px;
+    width: 80px;
+    bottom: -2px;
+}
+
+/* CSS: Slider */
+.slider-range-price {
+    width: 90%;
+    margin: 30px auto;
+}
+
+.slider-range-price .ant-slider-track {
+    background-color: rgb(38, 70, 83) !important;
+}
+
+
+.slider-range-price .ant-slider-handle::after {
+    box-shadow: 0 0 0 3px rgb(38, 70, 83);
+}
+
+/* CSS: Slider Form */
+.slider__footer-form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.slider__footer-form .form-btn-filter {
+    cursor: pointer;
+    font-family: "Roboto", sans-serif;
+    background-color: rgb(38, 70, 83);
+    color: #fff;
+    padding: 8px 25px;
+    border-radius: 25px;
+    border: 0;
+    font-size: .9rem;
+    transition: .5s all ease;
+}
+
+.slider__footer-form .form-range-price {
+    font-family: "Roboto", sans-serif;
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    color: rgb(38, 70, 83);
+    font-size: 1rem;
+}
+
+.slider__footer-form .form-range-price .price-title {
+    margin-right: 5px;
+    font-weight: 600;
+}
+
+.slider__footer-form .form-range-price .price-symbol {
+    margin: 0 5px;
+}
+
+/* CSS: Effect */
+.slider__footer-form .form-btn-filter:hover {
+    opacity: .8;
+}
+
+.slider-range-price .ant-slider-handle:hover::after {
+    background-color: rgb(38, 70, 83) !important;
+    box-shadow: 0 0 0 5px rgb(38, 70, 83) !important;
+}
+
+.slider-range-price:hover .ant-slider-handle::after {
+    box-shadow: 0 0 0 5px rgb(38, 70, 83) !important;
+
+}
+
+.slider-range-price .ant-slider-handle:focus::after {
+    background-color: rgb(38, 70, 83) !important;
+    box-shadow: 0 0 0 5px rgb(38, 70, 83) !important;
+    width: 6px !important;
+    height: 6px !important;
+    top: 2px;
+}
+
+/* CSS: Responsives */
+@media screen and (max-width:575px) {
+    .slider-price {
+        grid-column: 1/3;
+        margin: 10% 0 0 0;
+        padding-bottom: 30px;
+        border-bottom: 2px solid rgba(205, 204, 204, .4);
+    }
+
+    .slider__container {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .slider__title {
+        font-size: 1rem;
+        border: 0;
+        padding: 0;
+    }
+
+    .slider__title::before {
+        display: none;
+    }
+
+    .slider-range-price {
+        margin: 15px auto;
+    }
+
+    .slider-range-price .ant-slider-track {
+        height: 3px;
+    }
+
+    .slider__footer-form .form-btn-filter {
+        font-size: .8rem;
+        padding: 8px 20px;
+    }
+
+    .slider__footer-form .form-range-price {
+        font-size: .9rem;
+    }
+
+    .slider-range-price .ant-slider-handle::after {
+        width: 8px;
+        height: 8px;
+    }
+
+    .slider-range-price .ant-slider:focus .ant-slider-handle::after {
+        box-shadow: 0 0 0 3px rgb(38, 70, 83);
+    }
+}
+
+@media screen and (min-width:576px) and (max-width:767px) {
+    .slider-price {
+        grid-column: 1/3;
+        margin: 10% 0 0 0;
+        padding-bottom: 30px;
+        border-bottom: 2px solid rgba(205, 204, 204, .4);
+    }
+
+    .slider__container {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .slider__title {
+        font-size: 1rem;
+        border: 0;
+        padding: 0;
+    }
+
+    .slider__title::before {
+        display: none;
+    }
+
+    .slider-range-price {
+        margin: 15px auto;
+    }
+
+    .slider-range-price .ant-slider-track {
+        height: 3px;
+    }
+
+    .slider__footer-form .form-btn-filter {
+        font-size: .8rem;
+        padding: 8px 20px;
+    }
+
+    .slider__footer-form .form-range-price {
+        font-size: .9rem;
+    }
+
+    .slider-range-price .ant-slider-handle::after {
+        width: 8px;
+        height: 8px;
+    }
+
+    .slider-range-price .ant-slider:focus .ant-slider-handle::after {
+        box-shadow: 0 0 0 3px rgb(38, 70, 83);
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:991px) {
+    .slider-price {
+        grid-column: 1/3;
+        margin: 10% 0 0 0;
+        padding-bottom: 30px;
+        border-bottom: 2px solid rgba(205, 204, 204, .4);
+    }
+
+    .slider__container {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .slider__title {
+        font-size: 1rem;
+        border: 0;
+        padding: 0;
+    }
+
+    .slider__title::before {
+        display: none;
+    }
+
+    .slider-range-price {
+        margin: 15px auto;
+    }
+
+    .slider-range-price .ant-slider-track {
+        height: 4px;
+    }
+
+    .slider__footer-form .form-btn-filter {
+        font-size: .9rem;
+        padding: 8px 25px;
+    }
+
+    .slider__footer-form .form-range-price {
+        font-size: .9rem;
+    }
+
+    .slider-range-price .ant-slider-handle::after {
+        width: 10px;
+        height: 10px;
+    }
+
+    .slider-range-price .ant-slider:focus .ant-slider-handle::after {
+        box-shadow: 0 0 0 3px rgb(38, 70, 83);
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+    .slider-price {
+        grid-column: 1/3;
+        margin: 10% 0 0 0;
+        padding-bottom: 30px;
+        border-bottom: 2px solid rgba(205, 204, 204, .4);
+    }
+
+    .slider__container {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .slider__title {
+        font-size: 1rem;
+        border: 0;
+        padding: 0;
+    }
+
+    .slider__title::before {
+        display: none;
+    }
+
+    .slider-range-price {
+        margin: 15px auto;
+    }
+
+    .slider-range-price .ant-slider-track {
+        height: 4px;
+    }
+
+    .slider__footer-form .form-btn-filter {
+        font-size: .9rem;
+        padding: 8px 25px;
+    }
+
+    .slider__footer-form .form-range-price {
+        font-size: .9rem;
+    }
+
+    .slider-range-price .ant-slider-handle::after {
+        width: 10px;
+        height: 10px;
+    }
+
+    .slider-range-price .ant-slider:focus .ant-slider-handle::after {
+        box-shadow: 0 0 0 3px rgb(38, 70, 83);
+    }
+}

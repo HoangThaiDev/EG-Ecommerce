@@ -1,0 +1,364 @@
+.sidebarProduct {
+    margin: 5% 0;
+    position: relative;
+}
+
+/* CSS: Container */
+.products__container {
+    width: 1140px;
+    margin: 0 auto;
+}
+
+/* CSS: Row*/
+.products__row {
+
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* CSS: Col Header */
+.products__col__section {
+    width: 74%;
+}
+
+.products__col__section>p {
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+    color: rgb(38, 70, 83);
+    font-weight: 600;
+}
+
+/* CSS: Product */
+.section__list {
+    margin-top: 10%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px 0;
+}
+
+.section__col__item {
+    width: 31%;
+}
+
+/* CSS: Col Header Form */
+.products__col__sidebar {
+    width: 23%;
+    align-self: flex-start;
+}
+
+.header__form {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 0 10px;
+}
+
+.icon-show-menu-sidebar,
+.icon-hide-menu-sidebar {
+    display: none;
+}
+
+/* CSS: Responsives */
+@media screen and (max-width:575px) {
+    .sidebarProduct {
+        margin: 15% 0;
+        overflow: hidden;
+    }
+
+    /* CSS: Container */
+    .products__container {
+        width: 90%;
+    }
+
+    /* CSS: Row */
+    .section__list {
+        gap: 20px 10px;
+    }
+
+    /* CSS: Col */
+    .products__col__section {
+        width: 100%;
+    }
+
+    .section__col__item {
+        width: 47%;
+    }
+
+    /* CSS: Menu sidebar */
+    .products__col__sidebar {
+        position: fixed;
+        top: 0;
+        right: -600px;
+        width: 100%;
+        transition: 1s all ease;
+        height: 100vh;
+        overflow: scroll;
+    }
+
+    .icon-show-menu-sidebar {
+        display: block;
+        position: fixed;
+        top: 30%;
+        right: 0;
+        font-size: 1.5rem;
+        padding: 8px;
+        background-color: rgb(38, 70, 83);
+        color: #fff;
+    }
+
+    .products__col__sidebar .header__form {
+        padding: 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 40px auto auto auto;
+    }
+
+    /* CSS: Active */
+    .icon-hide-menu-sidebar {
+        display: block;
+        position: relative;
+        padding: 8px;
+        font-size: 1.5rem;
+        background-color: rgb(64, 66, 66);
+        color: #fff;
+        top: 0%;
+        left: 0;
+    }
+
+    .products__col__sidebar-active {
+        background-color: #fff;
+        right: 0;
+        z-index: 4;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width:767px) {
+    .sidebarProduct {
+        margin: 15% 0;
+        overflow: hidden;
+    }
+
+    /* CSS: Container */
+    .products__container {
+        width: 90%;
+    }
+
+    /* CSS: Row */
+    .section__list {
+        gap: 20px;
+    }
+
+    /* CSS: Col */
+    .products__col__section {
+        width: 100%;
+    }
+
+    .section__col__item {
+        width: 48%;
+    }
+
+
+    /* CSS: Menu sidebar */
+    .products__col__sidebar {
+        position: fixed;
+        top: 0;
+        right: -800px;
+        width: 50%;
+        transition: 1s all ease;
+        height: 100vh;
+        overflow: scroll;
+        box-shadow: -2px 0 20px 2px rgba(191, 191, 191, 0.6);
+    }
+
+    .icon-show-menu-sidebar {
+        display: block;
+        position: fixed;
+        top: 30%;
+        right: 0;
+        font-size: 1.5rem;
+        padding: 8px;
+        background-color: rgb(38, 70, 83);
+        color: #fff;
+    }
+
+    .products__col__sidebar .header__form {
+        padding: 20px 20px 10px 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 40px auto auto auto;
+    }
+
+    /* CSS: Active */
+    .icon-hide-menu-sidebar {
+        display: block;
+        position: relative;
+        border-radius: 100%;
+        padding: 6px;
+        font-size: 1.3rem;
+        background-color: rgb(64, 66, 66);
+        color: #fff;
+        top: 10px;
+        left: 10px;
+    }
+
+    .products__col__sidebar-active {
+        background-color: #fff;
+        right: 0;
+        z-index: 4;
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:991px) {
+    .sidebarProduct {
+        margin: 15% 0;
+        overflow: hidden;
+    }
+
+    /* CSS: Container */
+    .products__container {
+        width: 90%;
+    }
+
+    /* CSS: Row */
+    .section__list {
+        gap: 20px;
+    }
+
+    /* CSS: Col */
+    .products__col__section {
+        width: 100%;
+    }
+
+    .section__col__item {
+        width: 31%;
+    }
+
+
+    /* CSS: Menu sidebar */
+    .products__col__sidebar {
+        position: fixed;
+        top: 0;
+        right: -800px;
+        width: 40%;
+        transition: 1s all ease;
+        height: 100vh;
+        overflow: scroll;
+        box-shadow: -2px 0 20px 2px rgba(191, 191, 191, 0.6);
+    }
+
+    .icon-show-menu-sidebar {
+        display: block;
+        position: fixed;
+        top: 30%;
+        right: 0;
+        font-size: 1.5rem;
+        padding: 8px;
+        background-color: rgb(38, 70, 83);
+        color: #fff;
+    }
+
+    .products__col__sidebar .header__form {
+        padding: 20px 20px 10px 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 40px auto auto auto;
+    }
+
+    /* CSS: Active */
+    .icon-hide-menu-sidebar {
+        display: block;
+        position: relative;
+        border-radius: 100%;
+        padding: 6px;
+        font-size: 1.3rem;
+        background-color: rgb(64, 66, 66);
+        color: #fff;
+        top: 10px;
+        left: 10px;
+    }
+
+    .products__col__sidebar-active {
+        background-color: #fff;
+        right: 0;
+        z-index: 4;
+    }
+
+}
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+    .sidebarProduct {
+        margin: 15% 0;
+        overflow: hidden;
+    }
+
+    /* CSS: Container */
+    .products__container {
+        width: 90%;
+    }
+
+    /* CSS: Row */
+    .section__list {
+        gap: 20px;
+    }
+
+    /* CSS: Col */
+    .products__col__section {
+        width: 100%;
+    }
+
+    .section__col__item {
+        width: 48%;
+    }
+
+
+    /* CSS: Menu sidebar */
+    .products__col__sidebar {
+        position: fixed;
+        top: 0;
+        right: -800px;
+        width: 50%;
+        transition: 1s all ease;
+        height: 100vh;
+        overflow: scroll;
+        box-shadow: -2px 0 20px 2px rgba(191, 191, 191, 0.6);
+    }
+
+    .icon-show-menu-sidebar {
+        display: block;
+        position: fixed;
+        top: 30%;
+        right: 0;
+        font-size: 1.5rem;
+        padding: 8px;
+        background-color: rgb(38, 70, 83);
+        color: #fff;
+    }
+
+    .products__col__sidebar .header__form {
+        padding: 20px 20px 10px 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 40px auto auto auto;
+    }
+
+    /* CSS: Active */
+    .icon-hide-menu-sidebar {
+        display: block;
+        position: relative;
+        border-radius: 100%;
+        padding: 6px;
+        font-size: 1.3rem;
+        background-color: rgb(64, 66, 66);
+        color: #fff;
+        top: 10px;
+        left: 10px;
+    }
+
+    .products__col__sidebar-active {
+        background-color: #fff;
+        right: 0;
+        z-index: 4;
+    }
+}

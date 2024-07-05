@@ -1,17 +1,23 @@
 import React from "react";
+
+// Import File CSS
+import "./css/selectRate.css";
+import "./css/selectFilter.css";
+
 // Import Components
 import { Select } from "antd";
 
-export default function Select({
+export default function SelectOptions({
   className,
   popupClassName,
   defaultValue,
   options,
   placeholder,
+  onSaveValueOption,
 }) {
   // Create + use event handlers
   const onChange = (value) => {
-    console.log(`selected ${value}`);
+    onSaveValueOption(value);
   };
   return (
     <Select
@@ -19,7 +25,7 @@ export default function Select({
       className={className}
       popupClassName={popupClassName}
       placeholder={placeholder}
-      defaultValue="Filter"
+      defaultValue={defaultValue}
       optionFilterProp="label"
       onChange={onChange}
       options={options}

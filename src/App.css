@@ -51,3 +51,39 @@
         left: 12px;
     }
 }
+
+@media screen and (max-width:576px) and (max-width:765px) {
+    .btn-home {
+        width: 40px;
+        height: 40px;
+    }
+
+    .btn-home span {
+        top: 0px;
+        left: 12px;
+    }
+}
+
+@media screen and (max-width:766px) and (max-width:765px) {
+    .btn-home {
+        width: 40px;
+        height: 40px;
+    }
+
+    .btn-home span {
+        top: 0px;
+        left: 12px;
+    }
+}
+
+@media screen and (max-width:576px) and (max-width:765px) {
+    .btn-home {
+        width: 45px;
+        height: 45px;
+    }
+
+    .btn-home span {
+        top: 0px;
+        left: 12px;
+    }
+}

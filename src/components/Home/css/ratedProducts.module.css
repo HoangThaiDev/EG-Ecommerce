@@ -94,6 +94,11 @@
         margin: 10% auto;
     }
 
+    .section__header {
+        text-align: right;
+        margin: 10% 0 10px;
+    }
+
     .products__header>h2 {
         font-weight: 600;
         font-size: 1.3rem;
@@ -104,16 +109,18 @@
         line-height: 1.2rem;
     }
 
-    .section__header {
-        text-align: right;
-        margin: 10% 0 10px;
-    }
+
 }
 
 @media screen and (min-width:768px) and (max-width:991px) {
     .products__container {
         width: 90%;
         margin: 10% auto;
+    }
+
+    .section__header {
+        text-align: right;
+        margin: 10% 0 10px;
     }
 
     .products__header>h2 {
@@ -126,10 +133,7 @@
         line-height: 1.2rem;
     }
 
-    .section__header {
-        text-align: right;
-        margin: 10% 0 10px;
-    }
+
 }
 
 @media screen and (min-width:992px) and (max-width:1199px) {
@@ -141,6 +145,11 @@
         width: 90%;
     }
 
+    .section__header {
+        text-align: right;
+        margin: 10% 0 10px;
+    }
+
     .products__header>h2 {
         font-weight: 600;
         font-size: 1.5rem;
@@ -151,8 +160,5 @@
         line-height: 1.2rem;
     }
 
-    .section__header {
-        text-align: right;
-        margin: 10% 0 10px;
-    }
+
 }

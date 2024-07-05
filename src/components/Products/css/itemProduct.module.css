@@ -1,60 +1,4 @@
-/* CSS: Products Slider */
-.slider-products {
-    width: 100%;
-}
-
-/* CSS: Category Slick Slide */
-.slider-products .slick-track {
-    overflow-x: initial;
-}
-
-.slider-products .slick-slide {
-    cursor: pointer;
-}
-
-/* CSS: Products Slide Item */
-.slider-products .slick-slide>div {
-    margin: 30px 15px !important;
-}
-
-/* CSS: Slick Icon */
-.slider-products .slick-arrow {
-    border: 2px solid rgb(38, 70, 83);
-    border-radius: 100%;
-    padding: 5px;
-    transition: 0.3s all ease;
-}
-
-.slider-products .slick-arrow::before {
-    position: relative;
-    color: rgb(38, 70, 83);
-    font-size: 1.3rem;
-    transition: 0.3s all ease;
-}
-
-.slider-products .slick-prev {
-    top: -20px;
-    left: 12px;
-}
-
-.slider-products .slick-next {
-    top: -20px;
-    left: 60px;
-}
-
-.slider-products .slick-next::before {
-    content: '\21FE';
-    top: -2px;
-}
-
-.slider-products .slick-prev::before {
-    content: '\21FD';
-    top: -2px;
-}
-
-/* CSS: Products Card */
-
-.card {
+.section__card {
     width: 100%;
     text-align: center;
     position: relative;
@@ -62,10 +6,10 @@
     box-shadow: 0 0 10px 1px rgba(210, 210, 212, .3);
     border-radius: 5px;
     overflow: hidden;
-    transition: 0.5s all ease;
+    animation: showCard 1.5s ease 1 forwards;
 }
 
-.card__percent-discount {
+.section__card__percent-discount {
     position: absolute;
     display: inline-block;
     background-color: #FF5B5C;
@@ -78,10 +22,10 @@
     transition: .5s all ease;
 }
 
-.card>img {
-    margin: 50px auto 20px;
-    width: 150px;
-    height: 150px;
+.section__card>img {
+    margin: 30px auto 20px;
+    width: 140px;
+    height: 140px;
     object-fit: cover;
     transition: 1s all ease;
 }
@@ -126,7 +70,6 @@
     font-family: "Roboto", sans-serif;
     position: relative;
     bottom: -50px;
-    left: 2px;
     text-align: left;
     background-color: #264653;
     color: #fff;
@@ -170,56 +113,50 @@
 }
 
 /* CSS: Effect */
-.card:hover {
+
+.section__card:hover {
     cursor: pointer;
     box-shadow: 0 0 10px 1px #264653;
 }
 
-.card:hover>img {
+.section__card:hover .card-detail-btn-add {
+    bottom: 15px;
+    left: 5px;
+}
+
+.section__card:hover .card-detail-rating {
+    left: -300px;
+}
+
+.section__card:hover .card-icon-search {
+    right: 10px;
+}
+
+.section__card:hover>img {
     border-radius: 100%;
     box-shadow: 0 0 2px 2px rgba(219, 219, 242, .4);
 }
 
-.card:hover .card-detail-btn-add {
-    bottom: 15px;
+/* CSS: Animations */
+@keyframes showCard {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
-.card:hover .card-icon-search {
-    right: 10px;
-}
+/* CSS: Animations */
 
-.card:hover .card-detail-rating {
-    left: -300px;
-}
-
-.slider-products .slick-arrow:hover {
-    background-color: rgb(38, 70, 83);
-}
-
-.slider-products .slick-arrow:hover.slick-arrow::before {
-    color: #fff;
-}
-
-/* CSS: Responsives */
 @media screen and (max-width:575px) {
-    .slider-products {
-        margin-top: 3%;
-    }
 
-    .slider-products .slick-slide>div {
-        margin: 15px 10px !important;
-    }
-
-    .slider-products .slick-prev,
-    .slider-products .slick-next {
-        display: none !important;
-    }
-
-    .card {
+    .section__card {
         box-shadow: 0 0 5px 1px rgba(219, 219, 242, .6);
     }
 
-    .card__percent-discount {
+    .secion__card__percent-discount {
         top: 0;
         left: 0;
         font-size: .6rem;
@@ -228,7 +165,7 @@
         padding: 5px 15px 5px 5px;
     }
 
-    .card>img {
+    .section__card>img {
         margin: 20px auto;
         width: 130px;
         height: 130px;
@@ -266,36 +203,28 @@
         font-size: .9rem;
     }
 
+
     /* CSS: Effect */
-    .card:hover {
+    .section__card:hover {
         box-shadow: 0 0 5px 1px rgba(219, 219, 242, .6);
     }
 
-    .card:hover .card-icon-search {
+    .section__card:hover .card-detail-btn-add {
+        left: 0px;
+    }
+
+    .section__card:hover .card-icon-search {
         top: -3px;
         right: -3px;
     }
 }
 
 @media screen and (min-width:576px) and (max-width:767px) {
-    .slider-products {
-        margin-top: 3%;
-    }
-
-    .slider-products .slick-slide>div {
-        margin: 15px 10px !important;
-    }
-
-    .slider-products .slick-prev,
-    .slider-products .slick-next {
-        display: none !important;
-    }
-
-    .card {
+    .section__card {
         box-shadow: 0 0 5px 1px rgba(219, 219, 242, .6);
     }
 
-    .card__percent-discount {
+    .secion__card__percent-discount {
         top: 0;
         left: 0;
         font-size: .6rem;
@@ -304,7 +233,7 @@
         padding: 5px 15px 5px 5px;
     }
 
-    .card>img {
+    .section__card>img {
         margin: 20px auto;
         width: 150px;
         height: 150px;
@@ -341,32 +270,28 @@
         font-size: .9rem;
     }
 
+
     /* CSS: Effect */
-    .card:hover {
+    .section__card:hover {
         box-shadow: 0 0 5px 1px rgba(219, 219, 242, .6);
     }
 
+    .section__card:hover .card-detail-btn-add {
+        left: 0px;
+    }
+
+    .section__card:hover .card-icon-search {
+        top: -3px;
+        right: -3px;
+    }
 }
 
 @media screen and (min-width:768px) and (max-width:991px) {
-    .slider-products {
-        margin-top: 3%;
-    }
-
-    .slider-products .slick-slide>div {
-        margin: 15px 10px !important;
-    }
-
-    .slider-products .slick-prev,
-    .slider-products .slick-next {
-        display: none !important;
-    }
-
-    .card {
+    .section__card {
         box-shadow: 0 0 5px 1px rgba(219, 219, 242, .6);
     }
 
-    .card__percent-discount {
+    .secion__card__percent-discount {
         top: 0;
         left: 0;
         font-size: .6rem;
@@ -375,7 +300,7 @@
         padding: 5px 15px 5px 5px;
     }
 
-    .card>img {
+    .section__card>img {
         margin: 20px auto;
         width: 130px;
         height: 130px;
@@ -384,6 +309,10 @@
 
     .card-detail-name {
         font-size: 1rem;
+    }
+
+    .card-detail-price {
+        gap: 5px 0;
     }
 
     .card-detail-price-origin {
@@ -410,36 +339,22 @@
     }
 
     /* CSS: Effect */
-    .card:hover {
+    .section__card:hover {
         box-shadow: 0 0 5px 1px rgba(219, 219, 242, .6);
     }
 
+    .section__card:hover .card-detail-btn-add {
+        left: 0px;
+    }
 
 }
 
 @media screen and (min-width:992px) and (max-width:1199px) {
-    .slider-products {
-        margin-top: 3%;
-    }
-
-    .slider-products .slick-slide>div {
-        margin: 15px 10px !important;
-    }
-
-    .slider-products .slick-prev,
-    .slider-products .slick-next {
-        display: none !important;
-    }
-
-    .slider-products .slick-next {
-        top: -55px;
-    }
-
-    .card {
+    .section__card {
         box-shadow: 0 0 5px 1px rgba(219, 219, 242, .6);
     }
 
-    .card__percent-discount {
+    .secion__card__percent-discount {
         top: 0;
         left: 0;
         font-size: .6rem;
@@ -448,7 +363,7 @@
         padding: 5px 15px 5px 5px;
     }
 
-    .card>img {
+    .section__card>img {
         margin: 20px auto;
         width: 130px;
         height: 130px;
@@ -457,6 +372,10 @@
 
     .card-detail-name {
         font-size: 1rem;
+    }
+
+    .card-detail-price {
+        gap: 5px 0;
     }
 
     .card-detail-price-origin {
@@ -483,8 +402,12 @@
     }
 
     /* CSS: Effect */
-    .card:hover {
+    .section__card:hover {
         box-shadow: 0 0 5px 1px rgba(219, 219, 242, .6);
+    }
+
+    .section__card:hover .card-detail-btn-add {
+        left: 0px;
     }
 
 }

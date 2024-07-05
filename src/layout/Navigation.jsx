@@ -52,7 +52,12 @@ export default function Navigation() {
               <h1>EG SHOP</h1>
               <span>GROCERY</span>
             </div>
-            <h1 className={classes["nav__col__logo-mobile"]}>EG</h1>
+            <h1
+              className={classes["nav__col__logo-mobile"]}
+              onClick={goHomeHandler}
+            >
+              EG
+            </h1>
           </Col>
 
           {/* -------------------------JSX: Form Search------------------------------- */}

@@ -38,41 +38,41 @@ function CustomSlide(props) {
           </span>
         )}
         <IoSearchSharp
-          className="card__icon-search"
+          className="card-icon-search"
           onClick={() => viewProductDetailHandler(product.name, product._id)}
         />
         <img
           src={product.image_detail.banner}
           alt={product.image_detail.banner}
         />
-        <div className="card-desc">
-          <h3 className="card__name">{product.name}</h3>
-          <div className="card__price">
+        <div className="card-detail">
+          <h3 className="card-detail-name">{product.name}</h3>
+          <div className="card-detail-price">
             {product.percent_discount > 0 && (
-              <p className="card__price-origin">
+              <p className="card-detail-price-origin">
                 ${product.price}/ {product.unit}
               </p>
             )}
 
-            <p className="card__price-discount">
+            <p className="card-detail-price-discount">
               ${product.price_discount}/ {product.unit}
             </p>
           </div>
-          <div className="card-active">
+          <div className="card-detail-rating">
             <Rate
-              className="card__rate"
+              className="card__rates"
               allowHalf
               disabled
               defaultValue={product.rating}
             />
           </div>
           <button
-            className="card__btn-add"
+            className="card-detail-btn-add"
             type="button"
             onClick={() => addToCartHandler(product._id)}
           >
             Add To Cart
-            <HiOutlinePlusSm className="icon-btn" />
+            <HiOutlinePlusSm className="card-detail-icon-btn" />
           </button>
         </div>
       </div>
@@ -130,12 +130,12 @@ export default function SlideProducts({ products }) {
         breakpoint: 767,
         settings: {
           swipe: true,
-          slidesToShow: 3,
+          slidesToShow: 2,
           rows: 2,
-          slidesToScroll: 3,
-          speed: 2000,
+          slidesToScroll: 2,
+          speed: 1000,
           autoplay: true,
-          autoplaySpeed: 5000,
+          autoplaySpeed: 8000,
         },
       },
       {
@@ -145,9 +145,9 @@ export default function SlideProducts({ products }) {
           slidesToShow: 2,
           rows: 2,
           slidesToScroll: 2,
-          speed: 2000,
+          speed: 1000,
           autoplay: true,
-          autoplaySpeed: 5000,
+          autoplaySpeed: 8000,
         },
       },
     ],

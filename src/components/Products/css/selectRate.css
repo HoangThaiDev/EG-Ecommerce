@@ -1,0 +1,104 @@
+.form-filter-rating .ant-select-selector {
+    font-family: "Playfair Display", serif;
+    border: 2px solid #264653 !important;
+    color: #264653;
+    width: 120px !important;
+    border-radius: 0;
+}
+
+.form-filter-rating .ant-select-selection-item,
+.form-filter-rating .ant-select-selection-placeholder {
+    font-size: .9rem;
+    padding-right: 20px !important;
+    font-weight: 600;
+    color: #264653;
+}
+
+.form-filter-rating .anticon-close-circle,
+.form-filter-rating .anticon-down {
+    color: #264653 !important;
+}
+
+.form-filter-rating.ant-select-open .ant-select-selection-item {
+    color: #264653 !important;
+}
+
+/* CSS: Popup */
+.form__popup-filter-rating {
+    font-family: "Roboto", sans-serif;
+    border-radius: 0;
+    padding: 0;
+}
+
+.form__popup-filter-rating .ant-select-item-option {
+    font-size: .9rem;
+}
+
+.form__popup-filter-rating .ant-select-item-option-selected {
+    background: linear-gradient(to right,
+            rgb(38, 70, 83),
+            rgba(38, 70, 83),
+            rgba(38, 70, 83, .8),
+            rgba(38, 70, 83, .6),
+            rgba(38, 70, 83, .4)) !important;
+    border-radius: 0;
+}
+
+.form__popup-filter-rating .ant-select-item-option-selected .ant-select-item-option-content {
+    color: #fff;
+}
+
+.form__popup-filter-rating .ant-select-item-option .ant-select-item-option-content {
+    transition: .5s all ease;
+}
+
+/* CSS: Effect */
+.form__popup-filter-rating .ant-select-item-option:hover {
+    background-color: #264653;
+    border-radius: 0;
+}
+
+.form__popup-filter-rating .ant-select-item-option:not(.ant-select-item-option-selected):hover .ant-select-item-option-content {
+    color: #fff;
+}
+
+/* CSS: Responsives */
+@media screen and (max-width:575px) {
+    .form-filter-rating {
+        width: 100% !important;
+    }
+
+    .form-filter-rating .ant-select-selector {
+        width: 100% !important;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width:767px) {
+    .form-filter-rating {
+        width: 100% !important;
+    }
+
+    .form-filter-rating .ant-select-selector {
+        width: 100% !important;
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:991px) {
+    .form-filter-rating {
+        width: 100% !important;
+    }
+
+    .form-filter-rating .ant-select-selector {
+        width: 100% !important;
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+    .form-filter-rating {
+        width: 100% !important;
+    }
+
+    .form-filter-rating .ant-select-selector {
+        width: 100% !important;
+    }
+}

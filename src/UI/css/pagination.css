@@ -1,0 +1,121 @@
+.products__pagination {
+    margin-top: 5%;
+    text-align: center;
+}
+
+.products__pagination .ant-pagination-item {
+    font-family: "Roboto", sans-serif;
+    border: 2px solid rgb(38, 70, 83);
+    color: rgb(38, 70, 83);
+    font-weight: 700;
+    border-radius: 0;
+    font-size: .9rem;
+    margin: 0 8px !important;
+    margin-inline-end: 0;
+    transition: .5s all ease;
+    height: 35px;
+    width: 35px;
+    line-height: 35px;
+}
+
+.products__pagination button.ant-pagination-item-link {
+    border: 2px solid rgb(38, 70, 83) !important;
+    border-radius: 0 !important;
+}
+
+.products__pagination .ant-pagination-prev,
+.products__pagination .ant-pagination-next {
+    height: 35px !important;
+    width: 35px !important;
+}
+
+.products__pagination .ant-pagination-next {
+    margin-left: 8px;
+}
+
+.products__pagination .ant-pagination-item-link .anticon {
+    color: rgb(38, 70, 83);
+}
+
+.products__pagination .anticon-double-left,
+.products__pagination .anticon-double-right {
+    color: rgb(38, 70, 83) !important;
+}
+
+/* CSS: Active */
+.products__pagination .ant-pagination-item-active {
+    background-color: rgb(38, 70, 83);
+    border-radius: 0;
+}
+
+.products__pagination .ant-pagination-item-active>a {
+    color: #fff;
+
+}
+
+/* CSS: Effect */
+.products__pagination .ant-pagination-item:hover,
+.products__pagination .ant-pagination-item-link:hover {
+    background-color: rgb(38, 70, 83) !important;
+}
+
+.products__pagination .ant-pagination-item:hover>a,
+.products__pagination .ant-pagination-item-link:hover .anticon {
+    color: #fff;
+}
+
+.products__pagination .ant-pagination-item-active:hover {
+    border: 2px solid transparent;
+}
+
+/* CSS: Responsives */
+@media screen and (max-width:575px) {
+    .products__pagination .ant-pagination-item {
+        font-size: .8rem;
+        margin: 0 5px !important;
+        height: 33px;
+        width: 33px;
+        line-height: 33px;
+    }
+
+    .products__pagination .ant-pagination-prev,
+    .products__pagination .ant-pagination-next {
+        display: none !important;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width:767px) {
+    .products__pagination .ant-pagination-item {
+        font-size: .8rem;
+        margin: 0 5px !important;
+        height: 33px;
+        width: 33px;
+        line-height: 33px;
+    }
+
+    .products__pagination .ant-pagination-prev,
+    .products__pagination .ant-pagination-next {
+        display: none !important;
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:991px) {
+    .products__pagination .ant-pagination-item {
+        font-size: .8rem;
+        margin: 0 5px !important;
+        height: 33px;
+        width: 33px;
+        line-height: 33px;
+    }
+
+}
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+    .products__pagination .ant-pagination-item {
+        font-size: .8rem;
+        margin: 0 5px !important;
+        height: 33px;
+        width: 33px;
+        line-height: 33px;
+    }
+}

@@ -1,0 +1,125 @@
+.form-filter-options .ant-select-selector {
+    font-family: "Playfair Display", serif;
+    background-color: #264653 !important;
+    color: #fff;
+    width: 120px !important;
+    border: 1px solid transparent !important;
+    border-radius: 0;
+}
+
+.form-filter-options.ant-select-open .ant-select-selection-item {
+    color: #fff !important;
+}
+
+.form-filter-options .ant-select-selection-item,
+.form-filter-options .ant-select-selection-placeholder {
+    color: #fff;
+    font-size: .9rem;
+    padding-right: 30px !important;
+}
+
+.form-filter-options .anticon-close-circle,
+.form-filter-options .anticon-down {
+    color: #fff !important;
+}
+
+/* CSS: Popup */
+.form__popup-filter-options {
+    font-family: "Roboto", sans-serif;
+    border-radius: 0;
+    padding: 0;
+}
+
+.form__popup-filter-options .ant-select-item-option {
+    font-size: .9rem;
+}
+
+.form__popup-filter-options .ant-select-item-option-selected {
+    background: linear-gradient(to right,
+            rgb(38, 70, 83),
+            rgba(38, 70, 83),
+            rgba(38, 70, 83, .8),
+            rgba(38, 70, 83, .6),
+            rgba(38, 70, 83, .4)) !important;
+    border-radius: 0;
+}
+
+.form__popup-filter-options .ant-select-item-option-selected .ant-select-item-option-content {
+    color: #fff;
+}
+
+.form__popup-filter-options .ant-select-item-option .ant-select-item-option-content {
+    transition: .5s all ease;
+}
+
+
+/* CSS: Icons */
+.form__popup-filter-options .ant-select-item-option-content {
+    font-family: "Roboto", sans-serif;
+}
+
+.form__popup-filter-options .ant-select-item-option-content .symbol-arrow {
+    font-size: 1rem;
+}
+
+.form__popup-filter-options .ant-select-item-option-content .symbol-arrow-up {
+    display: inline-block;
+    transform: rotate(270deg);
+}
+
+.form__popup-filter-options .ant-select-item-option-content .symbol-arrow-down {
+    display: inline-block;
+    transform: rotate(90deg);
+}
+
+/* CSS: Effect */
+.form__popup-filter-options .ant-select-item-option:hover {
+    background-color: #264653;
+    border-radius: 0;
+}
+
+.form__popup-filter-options .ant-select-item-option:not(.ant-select-item-option-selected):hover .ant-select-item-option-content {
+    color: #fff;
+    padding-left: 15px;
+}
+
+/* CSS: Responsives */
+@media screen and (max-width:575px) {
+    .form-filter-options {
+        width: 100% !important;
+    }
+
+    .form-filter-options .ant-select-selector {
+        width: 100% !important;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width:767px) {
+    .form-filter-options {
+        width: 100% !important;
+    }
+
+    .form-filter-options .ant-select-selector {
+        width: 100% !important;
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:991px) {
+    .form-filter-options {
+        width: 100% !important;
+    }
+
+    .form-filter-options .ant-select-selector {
+        width: 100% !important;
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+    .form-filter-options {
+        width: 100% !important;
+    }
+
+    .form-filter-options .ant-select-selector {
+        width: 100% !important;
+    }
+}

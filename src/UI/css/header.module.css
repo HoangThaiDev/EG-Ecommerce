@@ -3,14 +3,12 @@
     width: 100%;
 }
 
-
 .header__container {
     width: 100%;
     height: 350px;
     background: linear-gradient(to left, rgba(34, 46, 59, 0.9), rgba(37, 51, 65, 0.9)), url('https://res.cloudinary.com/dqrughrs2/image/upload/v1719816573/flat-lay-vegetables-frame-with-copy-space_23-2149271076_lrqspy.jpg') no-repeat center;
     background-size: cover;
 }
-
 
 .header__card {
     padding: 20px;
