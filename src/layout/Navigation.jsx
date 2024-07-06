@@ -68,7 +68,6 @@ export default function Navigation() {
             >
               <input
                 type="text"
-                id="name"
                 placeholder="Search Product"
                 className={classes["form__input"]}
                 ref={nameProductRef}

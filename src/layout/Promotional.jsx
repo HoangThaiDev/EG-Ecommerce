@@ -1,3 +1,6 @@
+// Import Modules
+import { useLocation } from "react-router-dom";
+
 // Import Components
 import { Row, Col } from "antd";
 
@@ -11,55 +14,67 @@ import { GiReceiveMoney } from "react-icons/gi";
 import { RiSecurePaymentLine } from "react-icons/ri";
 
 export default function Promotional() {
+  //  Create + use DUMMY_PATH_NAME
+  const DUMMY_PATH_NAME = ["/", "/faqs", "/about-us", "/products"];
+
+  // Create + use Hooks
+  const { pathname } = useLocation();
+
+  const isCheckPathNameValid = DUMMY_PATH_NAME.includes(pathname);
+
   return (
-    <div className={classes.promotional}>
-      <div className={classes["promotional__container"]}>
-        <Row className={classes["promotional__row"]}>
-          {/* -------------------------JSX: Promotional-Shipping------------------------------- */}
-          <Col className={classes["promotional__col"]}>
-            <div className={classes["card"]}>
-              <FaShippingFast
-                className={`${classes.icon} ${classes["icon-shipping"]}`}
-              />
-              <h3>Fast Free Shipping</h3>
-              <span>Around the world</span>
-            </div>
-          </Col>
+    <>
+      {isCheckPathNameValid && (
+        <div className={classes.promotional}>
+          <div className={classes["promotional__container"]}>
+            <Row className={classes["promotional__row"]}>
+              {/* -------------------------JSX: Promotional-Shipping------------------------------- */}
+              <Col className={classes["promotional__col"]}>
+                <div className={classes["card"]}>
+                  <FaShippingFast
+                    className={`${classes.icon} ${classes["icon-shipping"]}`}
+                  />
+                  <h3>Fast Free Shipping</h3>
+                  <span>Around the world</span>
+                </div>
+              </Col>
 
-          {/* -------------------------JSX: Promotional-Contact------------------------------- */}
-          <Col className={classes["promotional__col"]}>
-            <div className={classes["card"]}>
-              <TfiHeadphoneAlt
-                className={`${classes.icon} ${classes["icon-headPhone"]}`}
-              />
-              <h3>24/7 Supports</h3>
-              <span>Contact us 24 hours</span>
-            </div>
-          </Col>
+              {/* -------------------------JSX: Promotional-Contact------------------------------- */}
+              <Col className={classes["promotional__col"]}>
+                <div className={classes["card"]}>
+                  <TfiHeadphoneAlt
+                    className={`${classes.icon} ${classes["icon-headPhone"]}`}
+                  />
+                  <h3>24/7 Supports</h3>
+                  <span>Contact us 24 hours</span>
+                </div>
+              </Col>
 
-          {/* -------------------------JSX: Promotional-Secure Money------------------------------- */}
-          <Col className={classes["promotional__col"]}>
-            <div className={classes["card"]}>
-              <GiReceiveMoney
-                className={`${classes.icon} ${classes["icon-money"]}`}
-              />
-              <h3>100% Money Back</h3>
-              <span>Guarantee of money return</span>
-            </div>
-          </Col>
+              {/* -------------------------JSX: Promotional-Secure Money------------------------------- */}
+              <Col className={classes["promotional__col"]}>
+                <div className={classes["card"]}>
+                  <GiReceiveMoney
+                    className={`${classes.icon} ${classes["icon-money"]}`}
+                  />
+                  <h3>100% Money Back</h3>
+                  <span>Guarantee of money return</span>
+                </div>
+              </Col>
 
-          {/* -------------------------JSX: Promotional-Secure Payment------------------------------- */}
-          <Col className={classes["promotional__col"]}>
-            <div className={classes["card"]}>
-              <RiSecurePaymentLine
-                className={`${classes.icon} ${classes["icon-payment"]}`}
-              />
-              <h3>100% Secure Payment</h3>
-              <span>Your payment are safe with us</span>
-            </div>
-          </Col>
-        </Row>
-      </div>
-    </div>
+              {/* -------------------------JSX: Promotional-Secure Payment------------------------------- */}
+              <Col className={classes["promotional__col"]}>
+                <div className={classes["card"]}>
+                  <RiSecurePaymentLine
+                    className={`${classes.icon} ${classes["icon-payment"]}`}
+                  />
+                  <h3>100% Secure Payment</h3>
+                  <span>Your payment are safe with us</span>
+                </div>
+              </Col>
+            </Row>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

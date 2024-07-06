@@ -18,6 +18,9 @@ import SideUserMenu from "./layout/SideUserMenu";
 import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
 import Products from "./pages/Products";
+import ContactUs from "./pages/ContactUs";
+import Error from "./pages/Error";
+import ProductDetail from "./pages/ProductDetail";
 
 function App() {
   // Create + use Hooks
@@ -65,7 +68,10 @@ function App() {
           <Route path="/" element={<RootLayout />}>
             <Route index element={<Home />} />
             <Route path="about-us" element={<AboutUs />} />
+            <Route path="contact-us" element={<ContactUs />} />
             <Route path="products" element={<Products />} />
+            <Route path="products/:productName" element={<ProductDetail />} />
+            <Route path="*" element={<Error />} />
           </Route>
         </Routes>
       </BrowserRouter>

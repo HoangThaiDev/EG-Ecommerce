@@ -112,7 +112,7 @@ function SideBar({ isShowSideMenu }) {
                 className={`${classes.icon} ${classes["icon-blogs"]}`}
               />
               <NavLink
-                to="/products"
+                to="/blogs"
                 className={({ isActive }) =>
                   isActive
                     ? `${classes.link} ${classes.active}`
@@ -136,7 +136,7 @@ function SideBar({ isShowSideMenu }) {
                 className={`${classes.icon} ${classes["icon-about"]}`}
               />
               <NavLink
-                to="about-us  "
+                to="/about-us"
                 className={({ isActive }) =>
                   isActive
                     ? `${classes.link} ${classes.active}`
@@ -153,7 +153,7 @@ function SideBar({ isShowSideMenu }) {
                 className={`${classes.icon} ${classes["icon-contact"]}`}
               />
               <NavLink
-                to="/products"
+                to="/contact-us"
                 className={({ isActive }) =>
                   isActive
                     ? `${classes.link} ${classes.active}`
@@ -170,7 +170,7 @@ function SideBar({ isShowSideMenu }) {
                 className={`${classes.icon} ${classes["icon-faq"]}`}
               />
               <NavLink
-                to="/products"
+                to="/faqs"
                 className={({ isActive }) =>
                   isActive
                     ? `${classes.link} ${classes.active}`
