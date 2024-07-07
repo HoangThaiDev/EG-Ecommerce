@@ -1,0 +1,212 @@
+/* CSS: Introduce Row */
+.introduce__row {
+    gap: 30px 0;
+}
+
+/* CSS: Introduce Col */
+.introduce__col {
+    width: 100%;
+}
+
+
+/* CSS: Introduce Header */
+.introduce__header {
+    font-family: "Playfair Display", serif;
+}
+
+.introduce__header>h3 {
+    color: rgb(38, 70, 83);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.introduce__header>p {
+    font-family: "Roboto", sans-serif;
+    color: gray;
+    font-size: .9rem;
+    line-height: 1.7rem;
+}
+
+/* CSS: Introduce Address */
+.introduce__address {
+    font-family: "Playfair Display", serif;
+    padding: 20px;
+    box-shadow: 0 0 10px 1px rgba(203, 202, 202, 0.4);
+}
+
+.introduce__address>h3 {
+    color: rgb(38, 70, 83);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.introduce__address>p {
+    font-family: "Roboto", sans-serif;
+    margin: 7px 0;
+    color: gray;
+    font-size: .9rem;
+}
+
+/* CSS: Introduce Form */
+.introduce__form {
+    font-family: "Playfair Display", serif;
+}
+
+.introduce__form>h3 {
+    color: rgb(38, 70, 83);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.introduce__form>p {
+    font-family: "Roboto", sans-serif;
+    margin: 7px 0;
+    color: gray;
+    letter-spacing: 1px;
+    font-size: .8rem;
+}
+
+.form-input {
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    gap: 15px 0;
+}
+
+.form-input>label {
+    color: rgb(38, 70, 83);
+    font-size: 1rem;
+}
+
+.form-input .form-input-name {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 15px;
+    border: 2px solid rgba(188, 186, 186, .7)
+}
+
+.form-input .form-input-name::placeholder {
+    color: gray;
+    font-size: .8rem;
+}
+
+.form-input .form-input-text {
+    margin-top: 10px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 150px;
+    padding: 15px;
+    border: 2px solid rgba(188, 186, 186, .7)
+}
+
+.form-input .form-btn-send {
+    display: inline-block;
+    margin-top: 20px;
+    cursor: pointer;
+    font-family: "Roboto", sans-serif;
+    color: #fff;
+    background-color: rgb(38, 70, 83);
+    border: 2px solid transparent;
+    padding: 12px 25px;
+    width: 130px;
+}
+
+/* CSS: Responsives */
+@media screen and (max-width:575px) {
+    .introduce__header>h3 {
+        font-size: 1rem;
+    }
+
+    .introduce__header>p {
+        font-size: .8rem;
+        line-height: 1.5rem;
+    }
+
+    .introduce__address>h3 {
+        font-size: 1rem;
+    }
+
+    .introduce__address>p {
+        font-size: .8rem;
+    }
+
+    .introduce__form>h3 {
+        font-size: 1.2rem;
+    }
+
+    .introduce__form>p {
+        font-size: .7rem;
+    }
+
+    .form-input>label {
+        font-size: .9rem;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width:767px) {
+    .introduce__header>h3 {
+        font-size: 1rem;
+    }
+
+    .introduce__header>p {
+        font-size: .8rem;
+        line-height: 1.5rem;
+    }
+
+    .introduce__address>h3 {
+        font-size: 1rem;
+    }
+
+    .introduce__address>p {
+        font-size: .8rem;
+    }
+
+    .introduce__form>h3 {
+        font-size: 1.2rem;
+    }
+
+    .introduce__form>p {
+        font-size: .7rem;
+    }
+
+    .form-input>label {
+        font-size: .9rem;
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:991px) {}
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+    .introduce__header>h3 {
+        font-size: 1rem;
+    }
+
+    .introduce__header>p {
+        font-size: .8rem;
+        line-height: 1.5rem;
+    }
+
+    .introduce__address>h3 {
+        font-size: 1rem;
+    }
+
+    .introduce__address>p {
+        font-size: .8rem;
+    }
+
+    .introduce__form>h3 {
+        font-size: 1.2rem;
+    }
+
+    .introduce__form>p {
+        font-size: .7rem;
+    }
+
+    .form-input>label {
+        font-size: .9rem;
+    }
+}

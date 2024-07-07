@@ -1,0 +1,194 @@
+/* CSS: Container */
+.collapse-faq-container>h2 {
+    font-family: "Playfair Display", serif;
+    color: rgb(38, 70, 83);
+    font-weight: 600;
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+}
+
+.collapse-faq-container .ant-collapse {
+    margin-bottom: 50px;
+    background-color: #fff;
+}
+
+/* CSS: Collapse General + Collapse Payment*/
+.collapse-general-faq,
+.collapse-payment-faq {
+    border-radius: 0;
+    border: 0;
+}
+
+.collapse-general-faq .ant-collapse-item,
+.collapse-payment-faq .ant-collapse-item {
+    background-color: rgb(245, 245, 245);
+    border-bottom: none;
+    margin: 20px 0;
+}
+
+.collapse-general-faq .ant-collapse-item:last-child,
+.collapse-payment-faq .ant-collapse-item:last-child {
+    border-radius: 0;
+}
+
+.collapse-general-faq .ant-collapse-header,
+.collapse-payment-faq .ant-collapse-header {
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    padding: 15px 20px !important;
+}
+
+.collapse-general-faq .ant-collapse-header .ant-collapse-expand-icon,
+.collapse-payment-faq .ant-collapse-header .ant-collapse-expand-icon {
+    order: 2;
+}
+
+.collapse-general-faq .ant-collapse-header .ant-collapse-expand-icon .ant-collapse-arrow,
+.collapse-payment-faq .ant-collapse-header .ant-collapse-expand-icon .ant-collapse-arrow {
+    font-size: 1rem;
+}
+
+.collapse-general-faq .ant-collapse-header .ant-collapse-header-text,
+.collapse-payment-faq .ant-collapse-header .ant-collapse-header-text {
+    color: gray;
+    font-size: .9rem;
+}
+
+/* CSS: Active */
+.collapse-general-faq .ant-collapse-item-active,
+.collapse-payment-faq .ant-collapse-item-active {
+    box-shadow: 0 0 100px 1px rgba(200, 199, 199, .6);
+}
+
+.collapse-general-faq .ant-collapse-item-active .ant-collapse-header,
+.collapse-payment-faq .ant-collapse-item-active .ant-collapse-header {
+    font-family: "Roboto", sans-serif;
+    background-color: #fff;
+}
+
+.collapse-general-faq .ant-collapse-item-active .ant-collapse-header .ant-collapse-header-text,
+.collapse-payment-faq .ant-collapse-item-active .ant-collapse-header .ant-collapse-header-text {
+    color: rgb(38, 70, 83);
+    font-weight: 600;
+    font-size: .9rem;
+}
+
+.collapse-general-faq .ant-collapse-item-active .ant-collapse-header .ant-collapse-expand-icon .ant-collapse-arrow,
+.collapse-payment-faq .ant-collapse-item-active .ant-collapse-header .ant-collapse-expand-icon .ant-collapse-arrow {
+    color: rgb(38, 70, 83);
+    font-weight: 600;
+    transform: rotate(-90deg);
+}
+
+.collapse-general-faq .ant-collapse-content-active,
+.collapse-general-faq .ant-collapse-content,
+.collapse-payment-faq .ant-collapse-content-active,
+.collapse-payment-faq .ant-collapse-content {
+    border-top: 0;
+
+}
+
+.collapse-general-faq .ant-collapse-content-active .ant-collapse-content-box,
+.collapse-payment-faq .ant-collapse-content-active .ant-collapse-content-box {
+    width: 95%;
+    padding: 0 16px 16px 16px;
+}
+
+.collapse-general-faq .ant-collapse-content-active .ant-collapse-content-box .collapse-list,
+.collapse-payment-faq .ant-collapse-content-active .ant-collapse-content-box .collapse-list {
+    font-family: "Roboto", sans-serif;
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.collapse-general-faq .ant-collapse-content-active .ant-collapse-content-box .collapse-item,
+.collapse-payment-faq .ant-collapse-content-active .ant-collapse-content-box .collapse-item {
+    font-size: .9rem;
+    margin-bottom: 10px;
+    color: gray;
+}
+
+.collapse-general-faq .ant-collapse-content-active .ant-collapse-content-box .collapse-item::marker,
+.collapse-payment-faq .ant-collapse-content-active .ant-collapse-content-box .collapse-item::marker {
+    color: rgb(38, 70, 83);
+}
+
+/* CSS: Responsives */
+@media screen and (max-width:575px) {
+
+    /* CSS: Container */
+    .collapse-faq-container>h2 {
+        font-size: 1.5rem;
+    }
+
+    .collapse-general-faq .ant-collapse-header .ant-collapse-expand-icon .ant-collapse-arrow,
+    .collapse-payment-faq .ant-collapse-header .ant-collapse-expand-icon .ant-collapse-arrow {
+        font-size: .9rem;
+    }
+
+    .collapse-general-faq .ant-collapse-header .ant-collapse-header-text,
+    .collapse-payment-faq .ant-collapse-header .ant-collapse-header-text {
+        color: gray;
+        font-size: .9rem;
+        margin-right: 10px !important;
+    }
+
+    .collapse-general-faq .ant-collapse-item-active .ant-collapse-header .ant-collapse-header-text,
+    .collapse-payment-faq .ant-collapse-item-active .ant-collapse-header .ant-collapse-header-text {
+        font-size: .9rem;
+        margin-right: 10px;
+    }
+
+    .collapse-general-faq .ant-collapse-content-active .ant-collapse-content-box .collapse-item,
+    .collapse-payment-faq .ant-collapse-content-active .ant-collapse-content-box .collapse-item {
+        font-size: .8rem;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width:767px) {
+
+    /* CSS: Container */
+    .collapse-faq-container>h2 {
+        font-size: 1.5rem;
+    }
+
+    .collapse-general-faq .ant-collapse-header .ant-collapse-expand-icon .ant-collapse-arrow,
+    .collapse-payment-faq .ant-collapse-header .ant-collapse-expand-icon .ant-collapse-arrow {
+        font-size: .9rem;
+    }
+
+    .collapse-general-faq .ant-collapse-header .ant-collapse-header-text,
+    .collapse-payment-faq .ant-collapse-header .ant-collapse-header-text {
+        color: gray;
+        font-size: .9rem;
+        margin-right: 10px !important;
+    }
+
+    .collapse-general-faq .ant-collapse-item-active .ant-collapse-header .ant-collapse-header-text,
+    .collapse-payment-faq .ant-collapse-item-active .ant-collapse-header .ant-collapse-header-text {
+        font-size: .9rem;
+        margin-right: 10px;
+    }
+
+    .collapse-general-faq .ant-collapse-content-active .ant-collapse-content-box .collapse-item,
+    .collapse-payment-faq .ant-collapse-content-active .ant-collapse-content-box .collapse-item {
+        font-size: .8rem;
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:991px) {
+
+    /* CSS: Container */
+    .collapse-faq-container>h2 {
+        font-size: 1.6rem;
+    }
+
+}
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+
+    /* CSS: Container */
+    .collapse-faq-container>h2 {
+        font-size: 1.5rem;
+    }
+}

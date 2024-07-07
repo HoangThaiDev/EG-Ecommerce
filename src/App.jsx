@@ -20,6 +20,7 @@ import AboutUs from "./pages/AboutUs";
 import Products from "./pages/Products";
 import ContactUs from "./pages/ContactUs";
 import Error from "./pages/Error";
+import FAQ from "./pages/FAQ";
 import ProductDetail from "./pages/ProductDetail";
 
 function App() {
@@ -70,6 +71,7 @@ function App() {
             <Route path="about-us" element={<AboutUs />} />
             <Route path="contact-us" element={<ContactUs />} />
             <Route path="products" element={<Products />} />
+            <Route path="faqs" element={<FAQ />} />
             <Route path="products/:productName" element={<ProductDetail />} />
             <Route path="*" element={<Error />} />
           </Route>
