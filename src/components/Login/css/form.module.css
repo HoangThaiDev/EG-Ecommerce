@@ -1,0 +1,322 @@
+.main-login {
+    margin: 5% 0;
+}
+
+.main-login-container {
+    width: 500px;
+    margin: 0 auto;
+}
+
+/* CSS: Header */
+
+.main-login-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0 30px;
+    margin-bottom: 40px;
+}
+
+.main-login-header .main-login-header-link {
+    text-decoration: none;
+    font-size: 1.2rem;
+    width: 140px;
+    font-weight: 600;
+    padding: 15px;
+    text-align: center;
+    border-radius: 3px;
+    border: none;
+}
+
+.main-login-header .main-login-header-link-register {
+    color: #00152C;
+    box-shadow: 0 0 10px 2px rgba(225, 223, 223, 0.4);
+}
+
+.main-login-header .main-login-header-link-login {
+    color: #fff;
+    background-color: rgb(38, 70, 83);
+}
+
+/* CSS: Form */
+.main-login-form {
+    box-shadow: 0 0 10px 2px rgba(225, 223, 223, 0.4);
+    padding: 50px 30px;
+    border-radius: 5px;
+}
+
+.main-login-form>h2 {
+    font-family: "Playfair Display", serif;
+    text-align: center;
+    color: #03162E;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.form-input {
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px 0;
+    margin-bottom: 20px;
+}
+
+.form-input:nth-child(3) {
+    margin-bottom: 10px;
+}
+
+
+.form-input>label {
+    width: 100%;
+    color: rgb(38, 70, 83);
+    font-size: .9rem;
+    padding-left: 15px;
+}
+
+.form-input>input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px 15px;
+    font-size: .8rem;
+    border: 1px solid rgba(128, 128, 128, 0.4)
+}
+
+.form-input>input::placeholder {
+    font-family: "Roboto", sans-serif;
+    color: gray;
+    font-size: .8rem;
+}
+
+.form-input-footer {
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px 0;
+}
+
+.form-input-footer .form-input-check-remember {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    gap: 0 5px;
+}
+
+.form-input-footer .form-input-check-remember .form-input-checkbox {
+    /* accent-color: #00152C; */
+    position: relative;
+    cursor: pointer;
+}
+
+/* .form-input-footer .form-input-check-remember*/
+.form-input-checkbox::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -1px;
+    width: 14px;
+    height: 14px;
+    border: 2px solid #00152C;
+    background-color: #fff;
+    border-radius: 3px;
+    transition: .8s all ease;
+}
+
+.form-input-checkbox:checked::before {
+    background-color: #00152C;
+}
+
+.form-input-footer .form-input-check-remember>label {
+    cursor: pointer;
+    font-size: .9rem;
+    font-weight: 600;
+    color: #00152C;
+}
+
+.form-input-footer .form-input-footer-forgot-password {
+    width: 40%;
+    text-align: right;
+    text-decoration: none;
+    font-size: .9rem;
+    color: #00152C;
+    font-weight: 600;
+}
+
+.form-input-footer .form-btn-create {
+    font-family: "Roboto", sans-serif;
+    cursor: pointer;
+    width: 100%;
+    background-color: rgb(38, 70, 83);
+    color: #fff;
+    border: 0;
+    padding: 15px 0;
+    font-size: .9rem;
+    border-radius: 5px;
+}
+
+.form-signin-social {
+    font-family: "Roboto", sans-serif;
+    margin-top: 30px;
+    text-align: center;
+    border: 1px solid rgba(211, 211, 211, 0.4);
+    padding: 20px 10px;
+}
+
+.form-signin-social>p {
+    margin-bottom: 20px;
+    color: rgb(63, 63, 63);
+    font-weight: 600;
+    font-size: .9rem;
+}
+
+.form-signin-social .form-signin-btn {
+    display: flex;
+    gap: 0 30px;
+    justify-content: center;
+}
+
+.form-signin-social .form-signin-btn>a {
+    text-decoration: none;
+    font-size: .7rem;
+    color: #fff;
+    width: 160px;
+    padding: 12px;
+    border-radius: 4px;
+}
+
+.form-signin-social .form-signin-btn>a:nth-child(1) {
+    background-color: #4385F5;
+}
+
+.form-signin-social .form-signin-btn>a:nth-child(2) {
+    background-color: #4268B3;
+}
+
+.form-signin-social .form-signin-btn>a>.icon {
+    position: relative;
+    top: 2px;
+    margin-right: 5px;
+}
+
+/* CSS: Responsives */
+@media screen and (max-width:575px) {
+    .main-login {
+        margin: 20% 0;
+    }
+
+    .main-login-container {
+        width: 90%;
+    }
+
+    .main-login-header .main-login-header-link {
+        font-size: 1.1rem;
+    }
+
+    .main-login-form {
+        padding: 40px 20px;
+    }
+
+    .main-login-form>h2 {
+        font-size: 1.3rem;
+    }
+
+    .form-input>label {
+        font-size: .8rem;
+    }
+
+    .form-input-footer .form-input-check-remember {
+        width: 50%;
+    }
+
+    .form-input-footer .form-input-check-remember>label {
+        font-size: .8rem;
+    }
+
+    .form-input-footer .form-input-footer-forgot-password {
+        width: 50%;
+        font-size: .8rem;
+    }
+
+    .form-input-footer .form-btn-create {
+        font-size: .8rem;
+    }
+
+    .form-signin-social .form-signin-btn {
+        gap: 10px 0;
+        flex-wrap: wrap;
+    }
+
+    .form-signin-social .form-signin-btn>a {
+        width: 70%;
+    }
+}
+
+
+@media screen and (min-width:576px) and (max-width:767px) {
+    .main-login {
+        margin: 15% 0;
+    }
+
+    .main-login-container {
+        width: 75%;
+    }
+
+    .main-login-header .main-login-header-link {
+        font-size: 1.1rem;
+    }
+
+    .main-login-form>h2 {
+        font-size: 1.3rem;
+    }
+
+    .form-input>label {
+        font-size: .8rem;
+    }
+
+    .form-input-footer .form-input-check-remember {
+        width: 50%;
+    }
+
+    .form-input-footer .form-input-check-remember>label {
+        font-size: .8rem;
+    }
+
+    .form-input-footer .form-input-footer-forgot-password {
+        width: 50%;
+        font-size: .8rem;
+    }
+
+    .form-input-footer .form-btn-create {
+        font-size: .8rem;
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:991px) {
+    .main-login {
+        margin: 10% 0;
+    }
+
+    .main-login-container {
+        width: 60%;
+    }
+
+    .form-input>label {
+        font-size: .8rem;
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+    .main-login {
+        margin: 10% 0;
+    }
+
+    .main-login-container {
+        width: 50%;
+    }
+
+    .form-input>label {
+        font-size: .8rem;
+    }
+}

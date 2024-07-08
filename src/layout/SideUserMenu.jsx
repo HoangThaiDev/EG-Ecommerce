@@ -62,7 +62,7 @@ function SideBar() {
             {/* -------------------------------JSX: COL ITEM--------------------------------------------- */}
             <div className={classes["sideBar__menu-item"]}>
               <NavLink
-                to="/"
+                to="/login"
                 className={({ isActive }) =>
                   isActive
                     ? `${classes.link} ${classes.active}`
@@ -76,7 +76,7 @@ function SideBar() {
             {/* -------------------------------JSX: COL ITEM--------------------------------------------- */}
             <div className={classes["sideBar__menu-item"]}>
               <NavLink
-                to="/products"
+                to="/register"
                 className={({ isActive }) =>
                   isActive
                     ? `${classes.link} ${classes.active}`

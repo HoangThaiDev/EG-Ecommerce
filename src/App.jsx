@@ -22,6 +22,8 @@ import ContactUs from "./pages/ContactUs";
 import Error from "./pages/Error";
 import FAQ from "./pages/FAQ";
 import ProductDetail from "./pages/ProductDetail";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
   // Create + use Hooks
@@ -72,6 +74,8 @@ function App() {
             <Route path="contact-us" element={<ContactUs />} />
             <Route path="products" element={<Products />} />
             <Route path="faqs" element={<FAQ />} />
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
             <Route path="products/:productName" element={<ProductDetail />} />
             <Route path="*" element={<Error />} />
           </Route>

@@ -15,14 +15,14 @@ const Home = () => {
   const { products } = useContext(APIContext);
 
   return (
-    <div className="home">
+    <>
       <Header />
       <ItemCategories />
       <RatedProducts products={products} />
       <PromotionalBanners />
       <BestSellerProducts products={products} />
       <SpecialNews />
-    </div>
+    </>
   );
 };
 
