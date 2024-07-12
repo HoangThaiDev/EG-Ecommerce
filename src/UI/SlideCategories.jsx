@@ -1,5 +1,7 @@
 // Import Modules
 import React, { useContext, useState } from "react";
+import axiosInstance from "../axios/customAxios";
+import { useNavigate } from "react-router-dom";
 
 // Import File CSS
 import "./css/slideCategories.css";
@@ -12,20 +14,35 @@ import { APIContext } from "../storeContext/APIContext";
 
 // Custom Slide
 function CustomSlide(props) {
+  // Create + use Hooks
+  const navigate = useNavigate();
+
   // Create + use props
-  const { title, path, activePath, isActive, ...otherProps } = props;
+  const { title, categoryId, path, activePath, isActive, ...otherProps } =
+    props;
 
   // Create + use event handlers
-  const getTitleCategory = (title) => {
-    console.log("title", title);
+  const getTitleCategory = () => {
+    fetchProductByCategory();
+  };
+
+  const fetchProductByCategory = async () => {
+    try {
+      const response = await axiosInstance(
+        `/products/search?category=${categoryId}`
+      );
+
+      navigate(`/products?category=${title}`, {
+        state: { searchedProducts: response.data },
+      });
+    } catch (error) {
+      const { message } = error.response.data;
+      console.log(message);
+    }
   };
 
   return (
-    <div
-      {...otherProps}
-      className="slide-item"
-      onClick={() => getTitleCategory(title)}
-    >
+    <div {...otherProps} className="slide-item" onClick={getTitleCategory}>
       <img src={isActive ? activePath : path} alt={title} loading="lazy" />
       <p>{title}</p>
     </div>
@@ -114,6 +131,7 @@ export default function SlideCategories() {
             activePath={category.logo.active}
             title={category.title}
             key={category._id}
+            categoryId={category._id}
             isActive={index === centerIndex}
           />
         </div>

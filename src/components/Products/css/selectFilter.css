@@ -62,12 +62,14 @@
     font-size: 1rem;
 }
 
-.form__popup-filter-options .ant-select-item-option-content .symbol-arrow-up {
+.form__popup-filter-options .ant-select-item-option-content .symbol-arrow-up,
+.form-filter-options .symbol-arrow-up {
     display: inline-block;
     transform: rotate(270deg);
 }
 
-.form__popup-filter-options .ant-select-item-option-content .symbol-arrow-down {
+.form__popup-filter-options .ant-select-item-option-content .symbol-arrow-down,
+.form-filter-options .symbol-arrow-down {
     display: inline-block;
     transform: rotate(90deg);
 }

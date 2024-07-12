@@ -11,13 +11,7 @@ import SlideProducts from "../../UI/SlideProducts";
 export default function RatedProducts({ products }) {
   // Create + use Hooks
   const filteredTopRateProducts = useMemo(() => {
-    return products.filter((product) => {
-      if (product.rating === 5) {
-        product.price_discount =
-          product.price - (product.price * product.percent_discount) / 100;
-        return product;
-      }
-    });
+    return products.filter((product) => product.rating === 5);
   }, [products]);
 
   return (
@@ -37,10 +31,6 @@ export default function RatedProducts({ products }) {
               View All
             </Link>
           </div>
-
-          {filteredTopRateProducts.length === 0 && (
-            <h1>No found top rate product!</h1>
-          )}
 
           <div className={classes["section__row"]}>
             {filteredTopRateProducts.length > 0 && (

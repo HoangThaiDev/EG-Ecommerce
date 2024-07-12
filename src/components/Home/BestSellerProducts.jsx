@@ -21,6 +21,9 @@ export default function BestSellerProducts({ products }) {
     });
   }, [products]);
 
+  // Create + use event handlers
+  const viewBestSellerProducts = () => {}; // Chua co y tuong
+
   return (
     <div className={classes["products-best-seller"]}>
       <div className={classes["products__container"]}>
@@ -35,10 +38,6 @@ export default function BestSellerProducts({ products }) {
               View All
             </Link>
           </div>
-
-          {filteredBestSellerProducts.length === 0 && (
-            <h1>No found top rate product!</h1>
-          )}
 
           <div className={classes["section__row"]}>
             {filteredBestSellerProducts.length > 0 && (

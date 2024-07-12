@@ -52,14 +52,24 @@
 
 .nav__col__form-search .form__input {
     font-family: "Roboto", sans-serif;
+    position: relative;
     border: 2px solid var(--color);
-    padding: 8px 10px;
+    padding: 8px 30px 8px 10px;
     font-size: 0.9rem;
     color: rgb(37, 37, 37);
     border-radius: 0;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     width: 83%;
+}
+
+.form__icon-clear {
+    cursor: pointer;
+    position: absolute;
+    font-size: 1.3rem;
+    right: 105px;
+    top: 8px;
+    color: #264653;
 }
 
 .nav__col__form-search .form__btn {
@@ -217,7 +227,12 @@ input:-webkit-autofill:active {
         border-radius: 0;
         width: 100%;
         font-size: .8rem;
-        padding: 8px 30px 8px 10px;
+        padding: 8px 50px 8px 10px;
+    }
+
+    .form__icon-clear {
+        right: 27px;
+        top: 6px;
     }
 
     .form__icon-search {
@@ -285,7 +300,12 @@ input:-webkit-autofill:active {
         border-radius: 0;
         width: 100%;
         font-size: .8rem;
-        padding: 8px 30px 8px 10px;
+        padding: 8px 60px 8px 10px;
+    }
+
+    .form__icon-clear {
+        right: 27px;
+        top: 6px;
     }
 
     .form__icon-search {
@@ -346,6 +366,11 @@ input:-webkit-autofill:active {
         padding: 8px 30px 8px 10px;
     }
 
+    .form__icon-clear {
+        right: 27px;
+        top: 6px;
+    }
+
     .form__icon-search {
         position: absolute;
         right: 5px;
@@ -400,7 +425,12 @@ input:-webkit-autofill:active {
         border-radius: 0;
         width: 100%;
         font-size: .8rem;
-        padding: 8px 100px 8px 10px;
+        padding: 8px 120px 8px 10px;
+    }
+
+    .form__icon-clear {
+        right: 90px;
+        top: 7px;
     }
 
     .nav__col__form-search .form__btn {

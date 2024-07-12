@@ -16,9 +16,11 @@ export default function SelectOptions({
   onSaveValueOption,
 }) {
   // Create + use event handlers
+
   const onChange = (value) => {
     onSaveValueOption(value);
   };
+
   return (
     <Select
       allowClear={true}

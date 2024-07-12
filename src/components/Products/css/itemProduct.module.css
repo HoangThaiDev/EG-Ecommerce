@@ -23,6 +23,7 @@
 }
 
 .section__card>img {
+    cursor: pointer;
     margin: 30px auto 20px;
     width: 140px;
     height: 140px;
@@ -36,6 +37,8 @@
 }
 
 .card-detail-name {
+    display: inline-block;
+    cursor: pointer;
     font-family: "Playfair Display", serif;
     font-size: 1.1rem;
     color: rgb(38, 70, 83);
@@ -50,7 +53,7 @@
     margin: 15px 0 10px;
 }
 
-.card-detail-price-origin {
+.card-detail-price-origin-old {
     color: #BCBCBC;
     font-weight: 600;
     font-size: 0.9rem;
@@ -58,7 +61,8 @@
     margin-right: 10px;
 }
 
-.card-detail-price-discount {
+.card-detail-price-discount,
+.card-detail-price-origin {
     color: #00152A;
     font-size: 1.1rem;
     font-weight: 700;
@@ -74,6 +78,7 @@
     background-color: #264653;
     color: #fff;
     border: 0;
+    left: 2px;
     width: 150px;
     border-radius: 25px;
     padding: 8px 20px;
@@ -101,6 +106,7 @@
 }
 
 .card-icon-search {
+    cursor: pointer;
     position: absolute;
     font-size: 1rem;
     color: #fff;
@@ -115,13 +121,16 @@
 /* CSS: Effect */
 
 .section__card:hover {
-    cursor: pointer;
     box-shadow: 0 0 10px 1px #264653;
 }
 
 .section__card:hover .card-detail-btn-add {
     bottom: 15px;
-    left: 5px;
+    left: 2px;
+}
+
+.card-detail-name:hover {
+    color: #e0500d;
 }
 
 .section__card:hover .card-detail-rating {
@@ -130,6 +139,11 @@
 
 .section__card:hover .card-icon-search {
     right: 10px;
+}
+
+.card-icon-search:hover,
+.card-detail-btn-add:hover {
+    background-color: #e0500d;
 }
 
 .section__card:hover>img {
@@ -156,7 +170,7 @@
         box-shadow: 0 0 5px 1px rgba(219, 219, 242, .6);
     }
 
-    .secion__card__percent-discount {
+    .section__card__percent-discount {
         top: 0;
         left: 0;
         font-size: .6rem;
@@ -177,15 +191,16 @@
     }
 
     .card-detail-price {
-        margin: 10px 0;
+        margin: 15px 0;
     }
 
-    .card-detail-price-origin {
+    .card-detail-price-origin-old {
         font-size: .8rem;
     }
 
-    .card-detail-price-discount {
-        font-size: 1rem;
+    .card-detail-price-discount,
+    .card-detail-price-origin {
+        font-size: .9rem;
     }
 
     .card-detail-btn-add {
@@ -214,8 +229,8 @@
     }
 
     .section__card:hover .card-icon-search {
-        top: -3px;
-        right: -3px;
+        top: -4px;
+        right: -4px;
     }
 }
 
@@ -224,13 +239,11 @@
         box-shadow: 0 0 5px 1px rgba(219, 219, 242, .6);
     }
 
-    .secion__card__percent-discount {
-        top: 0;
-        left: 0;
-        font-size: .6rem;
-        border-radius: 0;
-        border-bottom-right-radius: 25px;
-        padding: 5px 15px 5px 5px;
+    .section__card__percent-discount {
+        top: 10px;
+        left: 10px;
+        font-size: .7rem;
+        padding: 5px 10px;
     }
 
     .section__card>img {
@@ -246,13 +259,15 @@
 
     .card-detail-price {
         gap: 5px 0;
+        margin: 13px 0;
     }
 
-    .card-detail-price-origin {
+    .card-detail-price-origin-old {
         font-size: .9rem;
     }
 
-    .card-detail-price-discount {
+    .card-detail-price-discount,
+    .card-detail-price-origin {
         font-size: 1rem;
     }
 
@@ -281,8 +296,7 @@
     }
 
     .section__card:hover .card-icon-search {
-        top: -3px;
-        right: -3px;
+        top: 10px;
     }
 }
 
@@ -291,13 +305,11 @@
         box-shadow: 0 0 5px 1px rgba(219, 219, 242, .6);
     }
 
-    .secion__card__percent-discount {
-        top: 0;
-        left: 0;
-        font-size: .6rem;
-        border-radius: 0;
-        border-bottom-right-radius: 25px;
-        padding: 5px 15px 5px 5px;
+    .section__card__percent-discount {
+        top: 10px;
+        left: 10px;
+        font-size: .7rem;
+        padding: 5px 10px;
     }
 
     .section__card>img {
@@ -315,11 +327,12 @@
         gap: 5px 0;
     }
 
-    .card-detail-price-origin {
+    .card-detail-price-origin-old {
         font-size: .8rem;
     }
 
-    .card-detail-price-discount {
+    .card-detail-price-discount,
+    .card-detail-price-origin {
         font-size: 1rem;
     }
 
@@ -347,6 +360,9 @@
         left: 0px;
     }
 
+    .section__card:hover .card-icon-search {
+        top: 5px;
+    }
 }
 
 @media screen and (min-width:992px) and (max-width:1199px) {
@@ -354,13 +370,11 @@
         box-shadow: 0 0 5px 1px rgba(219, 219, 242, .6);
     }
 
-    .secion__card__percent-discount {
-        top: 0;
-        left: 0;
+    .section__card__percent-discount {
+        top: 10px;
+        left: 10px;
         font-size: .6rem;
-        border-radius: 0;
-        border-bottom-right-radius: 25px;
-        padding: 5px 15px 5px 5px;
+        padding: 5px 10px;
     }
 
     .section__card>img {
@@ -378,11 +392,12 @@
         gap: 5px 0;
     }
 
-    .card-detail-price-origin {
+    .card-detail-price-origin-old {
         font-size: .8rem;
     }
 
-    .card-detail-price-discount {
+    .card-detail-price-discount,
+    .card-detail-price-origin {
         font-size: 1rem;
     }
 
@@ -410,4 +425,7 @@
         left: 0px;
     }
 
+    .section__card:hover .card-icon-search {
+        top: 5px;
+    }
 }

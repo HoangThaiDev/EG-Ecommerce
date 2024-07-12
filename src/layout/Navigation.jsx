@@ -2,6 +2,7 @@
 import { useDispatch } from "react-redux";
 import reduxActions from "../redux/redux-actions";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../axios/customAxios";
 
 // Import File CSS
 import classes from "./css/navigation.module.css";
@@ -14,16 +15,28 @@ import { LuUser2 } from "react-icons/lu";
 import { IoMenuOutline } from "react-icons/io5";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { FiPhoneCall } from "react-icons/fi";
-import { useRef } from "react";
+import { useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
+import { IoMdCloseCircle } from "react-icons/io";
 
 export default function Navigation() {
   // Create + use Hooks
-  const nameProductRef = useRef("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [valueName, setValueName] = useState(
+    JSON.parse(sessionStorage.getItem("search-product"))
+      ? JSON.parse(sessionStorage.getItem("search-product"))
+      : ""
+  );
 
   // Create + use Event handlers
+  const changeValueNameHandler = (e) => {
+    setValueName(e.target.value);
+  };
+
+  const clearValueIpnutSearchHandler = () => {
+    setValueName("");
+  };
   const goHomeHandler = () => {
     navigate("/");
   };
@@ -36,10 +49,39 @@ export default function Navigation() {
     dispatch(reduxActions.sideUserMenu.toggleSideUserMenu());
   };
 
-  const searchProductHandler = (event) => {
+  const searchProductsHandler = (event) => {
     event.preventDefault();
-    console.log(nameProductRef.current.value);
-    // Chuyển sang trang Products (Dù có dữ liệu hay không)
+    fetchProduct(valueName);
+  };
+
+  const fetchProduct = async (valueName) => {
+    try {
+      const response = await axiosInstance(
+        `/products/search?name=${valueName}`
+      );
+      if (valueName.length === 0) {
+        navigate(`/products`, {
+          state: { searchedProducts: response.data },
+        });
+        sessionStorage.removeItem("search-product"); // cLear value input search when search no name
+      } else {
+        // Remember value input search when search has name
+        sessionStorage.setItem("search-product", JSON.stringify(valueName));
+        navigate(`/products?name=${valueName}`, {
+          state: { searchedProducts: response.data },
+        });
+      }
+
+      window.location.reload();
+    } catch (error) {
+      const message = error.response.data;
+      console.log(message);
+      if (message) {
+        navigate(`/products?name=${valueName}`, {
+          state: { searchedProducts: [] },
+        });
+      }
+    }
   };
 
   return (
@@ -64,18 +106,25 @@ export default function Navigation() {
           <Col className={classes["navigation__col"]} xl={14}>
             <form
               className={classes["nav__col__form-search"]}
-              onSubmit={searchProductHandler}
+              onSubmit={searchProductsHandler}
             >
               <input
                 type="text"
                 placeholder="Search Product"
                 className={classes["form__input"]}
-                ref={nameProductRef}
+                onChange={changeValueNameHandler}
+                value={valueName}
               />
               <IoSearchSharp
                 className={classes["form__icon-search"]}
-                onClick={searchProductHandler}
+                onClick={searchProductsHandler}
               />
+              {valueName.length > 0 && (
+                <IoMdCloseCircle
+                  className={classes["form__icon-clear"]}
+                  onClick={clearValueIpnutSearchHandler}
+                />
+              )}
               <button className={classes["form__btn"]} type="submit">
                 Search
               </button>

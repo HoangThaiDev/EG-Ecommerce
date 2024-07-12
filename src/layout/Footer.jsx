@@ -13,8 +13,17 @@ import { FaTwitter } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { BiLogoGmail } from "react-icons/bi";
 import { FaGoogle } from "react-icons/fa";
+import { useRef } from "react";
 
 export default function Footer() {
+  // Create + use Hooks
+  const emailInput = useRef();
+
+  // Create + use event handlers
+  const submitFormHandler = (e) => {
+    e.preventDefault();
+    console.log(emailInput.current.value);
+  };
   return (
     <div className={classes.footer}>
       <div className={classes["footer__container"]}>
@@ -68,11 +77,15 @@ export default function Footer() {
                 Register Now To Get Update On Promotion And Coupons. Don't
                 Worry! It's Not Spam
               </p>
-              <form className={classes["section__form"]}>
+              <form
+                className={classes["section__form"]}
+                onSubmit={submitFormHandler}
+              >
                 <input
                   type="text"
                   placeholder="Your Email"
                   className={classes["form__input-email"]}
+                  ref={emailInput}
                 />
                 <button type="submit" className={classes["form__btn"]}>
                   Send

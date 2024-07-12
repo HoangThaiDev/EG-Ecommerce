@@ -12,10 +12,10 @@ export default function CollapseCategory({
   products,
   categories,
   onSaveValueCategory,
+  categoryValueSearch,
 }) {
   // Create + use Hooks
   const [categoryActive, setCategoryActive] = useState("");
-
   // Create + use item of Collapse
   const modifiedCategories = categories.map((category) => {
     return {
@@ -29,7 +29,7 @@ export default function CollapseCategory({
 
   const items = [
     {
-      key: "1",
+      key: "category",
       label: "Categories",
       children: (
         <ul className="category-list">
@@ -43,8 +43,23 @@ export default function CollapseCategory({
               }
               onClick={() => getValueCategoryHandler(item._id, item.title)}
             >
-              <span className="category-item-name">{item.title}</span>
-              <span className="category-item-quantity">
+              <span
+                className={
+                  categoryActive === item.title
+                    ? "category-item-name active"
+                    : "category-item-name"
+                }
+              >
+                {item.title}
+              </span>
+
+              <span
+                className={
+                  categoryValueSearch === item.title
+                    ? "category-item-quantity active"
+                    : "category-item-quantity"
+                }
+              >
                 {item.products.length > 10
                   ? `(${item.products.length})`
                   : `(0${item.products.length})`}
@@ -58,14 +73,25 @@ export default function CollapseCategory({
 
   // Create + use event handlers
   const getValueCategoryHandler = (_id, title) => {
-    onSaveValueCategory(_id, title);
-    setCategoryActive(title);
+    // Check category chosen by client
+    if (title !== categoryActive) {
+      onSaveValueCategory(_id, title);
+      setCategoryActive(title);
+    } else {
+      onSaveValueCategory("", "");
+      setCategoryActive("");
+    }
   };
 
   return (
     <div className="collapse__container">
       <h2 className="collapse__title">EXPLORE</h2>
-      <Collapse accordion className={className} items={items} />
+      <Collapse
+        accordion
+        className={className}
+        items={items}
+        defaultActiveKey={categoryValueSearch ? ["category"] : []}
+      />
     </div>
   );
 }

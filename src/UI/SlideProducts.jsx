@@ -1,5 +1,6 @@
 // Import Modules
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 // Import File CSS
 import "slick-carousel/slick/slick.css";
@@ -17,16 +18,26 @@ import { IoSearchSharp } from "react-icons/io5";
 
 // Custom Slide
 function CustomSlide(props) {
+  // Create + use Hooks
+  const navigate = useNavigate();
+
   // Create + use props
   const { product, ...otherProps } = props;
 
+  // Add + calculate Price Discount (percent-discount > 0)
+  product.price_discount =
+    product.price - (product.price * product.percent_discount) / 100;
+
   // Create + use event handlers
   const viewProductDetailHandler = (product_name, product_id) => {
-    console.log(product_name, product_id);
+    const modifiedProductName = product_name.split(" ").join("-");
+    navigate(`./product/${modifiedProductName}`, {
+      state: { productId: product_id },
+    });
   };
 
   const addToCartHandler = (productId) => {
-    console.log(productId);
+    console.log("add to cart:", productId);
   };
 
   return (
@@ -44,19 +55,33 @@ function CustomSlide(props) {
         <img
           src={product.image_detail.banner}
           alt={product.image_detail.banner}
+          onClick={() => viewProductDetailHandler(product.name, product._id)}
         />
         <div className="card-detail">
-          <h3 className="card-detail-name">{product.name}</h3>
+          <h3
+            className="card-detail-name"
+            onClick={() => viewProductDetailHandler(product.name, product._id)}
+          >
+            {product.name}
+          </h3>
           <div className="card-detail-price">
             {product.percent_discount > 0 && (
+              <>
+                <p className="card-detail-price-origin-old">
+                  ${product.price}/ {product.unit}
+                </p>
+
+                <p className="card-detail-price-discount">
+                  ${product.price_discount}/ {product.unit}
+                </p>
+              </>
+            )}
+
+            {product.percent_discount === 0 && (
               <p className="card-detail-price-origin">
                 ${product.price}/ {product.unit}
               </p>
             )}
-
-            <p className="card-detail-price-discount">
-              ${product.price_discount}/ {product.unit}
-            </p>
           </div>
           <div className="card-detail-rating">
             <Rate
@@ -134,7 +159,7 @@ export default function SlideProducts({ products }) {
           rows: 2,
           slidesToScroll: 2,
           speed: 1000,
-          autoplay: true,
+          autoplay: false,
           autoplaySpeed: 8000,
         },
       },

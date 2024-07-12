@@ -16,8 +16,8 @@ export default function Provider({ children }) {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const resOfCategory = await axiosInstance("/category/categories");
-        const resOfProduct = await axiosInstance("/product/products");
+        const resOfCategory = await axiosInstance("/categories");
+        const resOfProduct = await axiosInstance("/products");
 
         if (resOfCategory.status === 200 && resOfProduct.status === 200) {
           setCategories(resOfCategory.data);

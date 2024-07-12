@@ -7,7 +7,7 @@ import "./App.css";
 
 // Import Components
 // ------------------- UI --------------------
-import ScrollButton from "./UI/ScrollTop";
+import ScrollTop from "./UI/ScrollTop";
 
 // ------------------- Layout --------------------
 import RootLayout from "./layout/RootLayout";
@@ -24,6 +24,9 @@ import FAQ from "./pages/FAQ";
 import ProductDetail from "./pages/ProductDetail";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import SettingAccount from "./pages/SettingAccount";
+import Introduce from "./components/SettingAccount/Introduce";
+import Profile from "./components/SettingAccount/Profile";
 
 function App() {
   // Create + use Hooks
@@ -61,8 +64,8 @@ function App() {
       >
         <span>&#171;</span>
       </button>
-
       <BrowserRouter>
+        <ScrollTop />
         <SideMenu />
         <SideUserMenu />
 
@@ -72,11 +75,16 @@ function App() {
             <Route index element={<Home />} />
             <Route path="about-us" element={<AboutUs />} />
             <Route path="contact-us" element={<ContactUs />} />
-            <Route path="products" element={<Products />} />
             <Route path="faqs" element={<FAQ />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
-            <Route path="products/:productName" element={<ProductDetail />} />
+            <Route path="products" element={<Products />} />
+            <Route path="product/:productName" element={<ProductDetail />} />
+
+            <Route path="setting-account" element={<SettingAccount />}>
+              <Route index element={<Introduce />} />
+              <Route path="profile" element={<Profile />} />
+            </Route>
             <Route path="*" element={<Error />} />
           </Route>
         </Routes>

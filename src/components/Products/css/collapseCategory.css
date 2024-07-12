@@ -88,6 +88,11 @@
     font-weight: normal;
 }
 
+.collapse-category .category-item-name.active,
+.collapse-category .category-item-quantity.active {
+    font-weight: bold;
+}
+
 /* CSS: Effect */
 .collapse-category .category-item:hover {
     color: rgb(38, 70, 83);
