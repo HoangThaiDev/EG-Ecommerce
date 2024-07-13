@@ -8,5 +8,6 @@ if (env.BUILD_MODE === "development") {
 if (env.BUILD_MODE === "production") {
   apiRootServer = env.URL_SERVER_PRODUCTION;
 }
-
+console.log(env);
+console.log(apiRootServer);
 export const API_ROOT = apiRootServer;
