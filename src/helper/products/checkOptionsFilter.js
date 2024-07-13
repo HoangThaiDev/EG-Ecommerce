@@ -2,7 +2,7 @@ const checkOptionsFilter = (pathSearch, optionFilterObj) => {
   const { option, rate, category, price, tag } = optionFilterObj;
   let urlQuery = pathSearch.length > 0 ? pathSearch : "";
   const isCheckURLHasQuery = urlQuery.includes("?");
-  console.log(category);
+
   //   Function check options filter
   urlQuery = getURLQueryByOption(urlQuery, option, isCheckURLHasQuery);
   urlQuery = getURLQueryByRate(urlQuery, rate, isCheckURLHasQuery);

@@ -104,14 +104,7 @@ export default function SidebarProduct() {
   const categoryValueSearch = searchParams.get("category");
   const navigate = useNavigate();
 
-  // Update New products after search value
-  useEffect(() => {
-    if (stateProducts && stateProducts.searchedProducts.length > 0) {
-      setProductsFromSearch(stateProducts.searchedProducts);
-      setProducts(stateProducts.searchedProducts);
-      setSliceProduct(stateProducts.searchedProducts.slice(0, 12));
-    }
-  }, [stateProducts]);
+  // -------------------------------------------------------------
 
   const { categories, products: productsAPI } = useContext(APIContext); // Get data products from server
   const [productsFromSearch, setProductsFromSearch] = useState([]); // Get data products from input search
@@ -130,6 +123,23 @@ export default function SidebarProduct() {
   const [rangePrice, setRangePrice] = useState(null);
   const [tags, setTags] = useState([]);
   const [isShowSideBarMenu, setIsShowSideBarMenu] = useState(false);
+
+  // Update New products after search value
+  useEffect(() => {
+    if (stateProducts && stateProducts.searchedProducts.length > 0) {
+      setProductsFromSearch(stateProducts.searchedProducts);
+      setProducts(stateProducts.searchedProducts);
+      setSliceProduct(stateProducts.searchedProducts.slice(0, 12));
+    }
+  }, [stateProducts]);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 450,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, [sliceProduct]);
 
   //  Create + use event handlers
   const clearOptionsFilterHandler = () => {
@@ -262,24 +272,27 @@ export default function SidebarProduct() {
               <Col
                 className={`${classes["products__col"]} ${classes["products__col__section"]}`}
               >
-                <p className={classes["section__note"]}>Showing 1 - 12 items</p>
+                <div className={classes["col__section__header"]}>
+                  <p className={classes["section__note"]}>
+                    Showing 1 - 12 items
+                  </p>
 
-                {(optionFilter ||
-                  rateFilter ||
-                  categoryFilter.title ||
-                  rangePrice ||
-                  tags.length > 0) && (
-                  <div className={classes["section__options"]}>
-                    <button
-                      type="button"
-                      className={classes["section__btn-clear-options"]}
-                      onClick={clearOptionsFilterHandler}
-                    >
-                      Clear <span>X</span>
-                    </button>
-                  </div>
-                )}
-
+                  {(optionFilter ||
+                    rateFilter ||
+                    categoryFilter.title ||
+                    rangePrice ||
+                    tags.length > 0) && (
+                    <div className={classes["section__options"]}>
+                      <button
+                        type="button"
+                        className={classes["section__btn-clear-options"]}
+                        onClick={clearOptionsFilterHandler}
+                      >
+                        Clear <span>X</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
                 {/* JSX: Rendering Products */}
                 <Row className={classes["section__list"]}>
                   {sliceProduct.map((product) => (

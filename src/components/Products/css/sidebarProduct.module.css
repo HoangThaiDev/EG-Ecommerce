@@ -18,14 +18,15 @@
 /* CSS: Col Header */
 .products__col__section {
     width: 74%;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
 }
 
-.products__col__section>p {
-    width: 20%;
+.col__section__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.col__section__header>p {
     font-family: "Roboto", sans-serif;
     font-size: 1rem;
     color: rgb(38, 70, 83);
@@ -34,7 +35,6 @@
 
 .section__options {
     margin-right: 20px;
-    width: 20%;
     text-align: right;
 }
 
@@ -55,7 +55,7 @@
 /* CSS: Product */
 .section__list {
     width: 100%;
-    margin-top: 10%;
+    margin-top: 6%;
     flex-wrap: wrap;
     align-items: center;
     gap: 20px;
@@ -146,12 +146,16 @@
         width: 100%;
     }
 
-    .products__col__section>p {
-        width: 50%;
+    .col__section__header>p {
+        font-size: .9rem;
     }
 
     .section__options {
         width: 30%;
+        margin: 0;
+    }
+
+    .section__btn-clear-options {
         font-size: .8rem;
     }
 
@@ -250,14 +254,17 @@
         width: 100%;
     }
 
-    .products__col__section>p {
-        width: 50%;
+    .col__section__header>p {
+        font-size: .9rem;
     }
 
     .section__options {
         width: 30%;
-        font-size: .8rem;
         margin: 0;
+    }
+
+    .section__btn-clear-options {
+        font-size: .8rem;
     }
 
     .section__col__item {
@@ -357,14 +364,17 @@
         width: 100%;
     }
 
-    .products__col__section>p {
-        width: 30%;
+    .col__section__header>p {
+        font-size: .9rem;
     }
 
     .section__options {
         width: 30%;
-        font-size: .8rem;
-        margin-right: 10px;
+        margin: 0;
+    }
+
+    .section__btn-clear-options {
+        font-size: .9rem;
     }
 
     .section__col__item {

@@ -15,12 +15,13 @@ import { LuUser2 } from "react-icons/lu";
 import { IoMenuOutline } from "react-icons/io5";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { FiPhoneCall } from "react-icons/fi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 import { IoMdCloseCircle } from "react-icons/io";
 
 export default function Navigation() {
   // Create + use Hooks
+  const [isScrollActive, setIsScrollActive] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [valueName, setValueName] = useState(
@@ -28,6 +29,24 @@ export default function Navigation() {
       ? JSON.parse(sessionStorage.getItem("search-product"))
       : ""
   );
+
+  // Side Effect Scroll Navbar
+  useEffect(() => {
+    const scrollHandler = () => {
+      if (window.scrollY > 500) {
+        setIsScrollActive(true);
+      } else {
+        setIsScrollActive(false);
+      }
+    };
+
+    document.addEventListener("scroll", scrollHandler);
+
+    // Clear event DOM
+    return () => {
+      document.removeEventListener("scroll", scrollHandler);
+    };
+  }, []);
 
   // Create + use Event handlers
   const changeValueNameHandler = (e) => {
@@ -85,7 +104,13 @@ export default function Navigation() {
   };
 
   return (
-    <div className={classes.navigation}>
+    <div
+      className={
+        isScrollActive
+          ? `${classes.navigation} ${classes["navigation-active"]}`
+          : `${classes.navigation}`
+      }
+    >
       <div className={classes["navigation__container"]}>
         <Row className={classes["navigation__row"]}>
           {/* -------------------------JSX: Logo------------------------------- */}
