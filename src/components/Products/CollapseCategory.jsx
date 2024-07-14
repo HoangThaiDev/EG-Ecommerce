@@ -16,6 +16,7 @@ export default function CollapseCategory({
 }) {
   // Create + use Hooks
   const [categoryActive, setCategoryActive] = useState("");
+
   // Create + use item of Collapse
   const modifiedCategories = categories.map((category) => {
     return {
@@ -37,15 +38,15 @@ export default function CollapseCategory({
             <li
               key={item._id}
               className={
-                categoryActive === item.title
-                  ? `${"category-item"} ${"category-item-active"} `
+                categoryValueSearch === item.title
+                  ? "category-item active"
                   : "category-item"
               }
               onClick={() => getValueCategoryHandler(item._id, item.title)}
             >
               <span
                 className={
-                  categoryActive === item.title
+                  categoryValueSearch === item.title
                     ? "category-item-name active"
                     : "category-item-name"
                 }

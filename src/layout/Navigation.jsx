@@ -33,7 +33,7 @@ export default function Navigation() {
   // Side Effect Scroll Navbar
   useEffect(() => {
     const scrollHandler = () => {
-      if (window.scrollY > 500) {
+      if (window.scrollY > 400) {
         setIsScrollActive(true);
       } else {
         setIsScrollActive(false);
@@ -90,8 +90,6 @@ export default function Navigation() {
           state: { searchedProducts: response.data },
         });
       }
-
-      window.location.reload();
     } catch (error) {
       const message = error.response.data;
       console.log(message);

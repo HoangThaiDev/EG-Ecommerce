@@ -61,11 +61,11 @@
 }
 
 /* CSS: Active */
-.collapse-category .category-item-active {
+.collapse-category .category-item.active {
     font-weight: 700;
 }
 
-.collapse-category .category-item-active::after {
+.collapse-category .category-item.active::after {
     content: '';
     position: absolute;
     width: 6px;

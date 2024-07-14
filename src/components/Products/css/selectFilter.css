@@ -2,7 +2,7 @@
     font-family: "Playfair Display", serif;
     background-color: #264653 !important;
     color: #fff;
-    width: 120px !important;
+    width: 130px !important;
     border: 1px solid transparent !important;
     border-radius: 0;
 }
@@ -49,7 +49,7 @@
 }
 
 .form__popup-filter-options .ant-select-item-option .ant-select-item-option-content {
-    transition: .5s all ease;
+    transition: .3s all ease;
 }
 
 
@@ -82,7 +82,6 @@
 
 .form__popup-filter-options .ant-select-item-option:not(.ant-select-item-option-selected):hover .ant-select-item-option-content {
     color: #fff;
-    padding-left: 15px;
 }
 
 /* CSS: Responsives */

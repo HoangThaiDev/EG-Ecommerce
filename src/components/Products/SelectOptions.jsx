@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 // Import File CSS
 import "./css/selectRate.css";
@@ -10,15 +10,24 @@ import { Select } from "antd";
 export default function SelectOptions({
   className,
   popupClassName,
-  defaultValue,
   options,
   placeholder,
   onSaveValueOption,
+  stateProducts,
 }) {
-  // Create + use event handlers
+  // Create + use Hooks
+  const [selectedValue, setSelectedValue] = useState(null);
 
-  const onChange = (value) => {
-    onSaveValueOption(value);
+  useEffect(() => {
+    if (stateProducts && stateProducts.searchedProducts.length > 0) {
+      setSelectedValue(null); // Reset selected value on page refresh
+    }
+  }, [stateProducts]);
+
+  // Create + use event handlers
+  const onChange = (valueSelect) => {
+    setSelectedValue(valueSelect);
+    onSaveValueOption(valueSelect);
   };
 
   return (
@@ -27,10 +36,10 @@ export default function SelectOptions({
       className={className}
       popupClassName={popupClassName}
       placeholder={placeholder}
-      defaultValue={defaultValue}
       optionFilterProp="label"
       onChange={onChange}
       options={options}
+      value={selectedValue}
     />
   );
 }

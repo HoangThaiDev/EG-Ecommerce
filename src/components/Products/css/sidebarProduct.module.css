@@ -55,7 +55,7 @@
 /* CSS: Product */
 .section__list {
     width: 100%;
-    margin-top: 6%;
+    margin-top: 10%;
     flex-wrap: wrap;
     align-items: center;
     gap: 20px;
@@ -74,7 +74,6 @@
     display: flex;
     justify-content: flex-end;
     flex-wrap: wrap;
-    gap: 0 10px;
 }
 
 .icon-show-menu-sidebar,

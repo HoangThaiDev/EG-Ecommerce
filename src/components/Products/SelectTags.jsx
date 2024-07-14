@@ -1,5 +1,5 @@
 // Import Modules
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 // Import File CSS
 import "./css/selectTags.css";
@@ -8,13 +8,19 @@ import { APIContext } from "../../storeContext/APIContext";
 // Import Components
 import { Tag } from "antd";
 
-export default function SelectTags({ onSaveValueTags }) {
+export default function SelectTags({ stateProducts, onSaveValueTags }) {
   // Create + use Hooks
   const [selectedTags, setSelectedTags] = useState([]);
   const { products } = useContext(APIContext);
   const tagsData = [
     ...new Set(products.flatMap((product) => product.tags)),
-  ].filter((tag) => tag !== "Can" && tag !== "Bottle");
+  ].filter((tag) => tag !== "Can");
+
+  useEffect(() => {
+    if (stateProducts && stateProducts.searchedProducts.length > 0) {
+      setSelectedTags([]); // Reset selected value on page refresh
+    }
+  }, [stateProducts]);
 
   // Create + use event handlers
   const handleChange = (tag, checked) => {

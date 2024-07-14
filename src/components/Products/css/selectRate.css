@@ -1,8 +1,8 @@
 .form-filter-rating .ant-select-selector {
     font-family: "Playfair Display", serif;
     border: 2px solid #264653 !important;
-    color: #264653;
-    width: 120px !important;
+    color: hsl(197, 37%, 24%);
+    width: 130px !important;
     border-radius: 0;
 }
 
@@ -49,7 +49,7 @@
 }
 
 .form__popup-filter-rating .ant-select-item-option .ant-select-item-option-content {
-    transition: .5s all ease;
+    transition: .3s all ease;
 }
 
 /* CSS: Effect */

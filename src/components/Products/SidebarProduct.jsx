@@ -127,12 +127,14 @@ export default function SidebarProduct() {
   // Update New products after search value
   useEffect(() => {
     if (stateProducts && stateProducts.searchedProducts.length > 0) {
+      // Update data product after search key
       setProductsFromSearch(stateProducts.searchedProducts);
       setProducts(stateProducts.searchedProducts);
       setSliceProduct(stateProducts.searchedProducts.slice(0, 12));
     }
   }, [stateProducts]);
 
+  // Effect Scroll To Top when transfer pagination products
   useEffect(() => {
     window.scrollTo({
       top: 450,
@@ -293,6 +295,7 @@ export default function SidebarProduct() {
                     </div>
                   )}
                 </div>
+
                 {/* JSX: Rendering Products */}
                 <Row className={classes["section__list"]}>
                   {sliceProduct.map((product) => (
@@ -324,17 +327,18 @@ export default function SidebarProduct() {
                 />
                 <div className={classes["header__form"]}>
                   <SelectOptions
+                    stateProducts={stateProducts}
                     className="form-filter-options"
                     popupClassName="form__popup-filter-options"
-                    defaultValue="Filter"
                     placeholder="Filter"
                     options={optionsFilter}
                     onSaveValueOption={getValueOptionFilterHandler}
                   />
+
                   <SelectOptions
+                    stateProducts={stateProducts}
                     className="form-filter-rating"
                     popupClassName="form__popup-filter-rating"
-                    defaultValue="Popularity"
                     placeholder="Popularity"
                     options={optionsRating}
                     onSaveValueOption={getValueRateFilterHandler}
@@ -347,9 +351,13 @@ export default function SidebarProduct() {
                     onSaveValueCategory={getValueCategoryHandler}
                   />
                   <SliderPrice
+                    stateProducts={stateProducts}
                     onSaveValueRangePrice={getValueRangePriceHandler}
                   />
-                  <SelectTags onSaveValueTags={getValueTagsHandler} />
+                  <SelectTags
+                    stateProducts={stateProducts}
+                    onSaveValueTags={getValueTagsHandler}
+                  />
                 </div>
               </Col>
             </Row>
