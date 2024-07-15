@@ -1,3 +1,6 @@
+// Import Modules
+import { useRef, useState } from "react";
+
 // Import Components
 import { Row, Col } from "antd";
 
@@ -13,17 +16,38 @@ import { FaTwitter } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { BiLogoGmail } from "react-icons/bi";
 import { FaGoogle } from "react-icons/fa";
-import { useRef } from "react";
 
 export default function Footer() {
   // Create + use Hooks
   const emailInput = useRef();
+  const [isShowTooltip, setIsShowTooltip] = useState(false);
+  const [textTooltip, setTextTooltip] = useState("");
 
   // Create + use event handlers
+  const changeEmailHandler = () => {
+    if (emailInput.current.value.length > 0) {
+      setIsShowTooltip(false);
+    }
+  };
+
   const submitFormHandler = (e) => {
     e.preventDefault();
-    console.log(emailInput.current.value);
+    const valueEmail = emailInput.current.value;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const isEmailValid = emailRegex.test(valueEmail);
+
+    // Check email valid or invalid
+    if (valueEmail.length === 0) {
+      setTextTooltip("Field Email isn't must empty!");
+      setIsShowTooltip(true);
+    } else if (valueEmail.length > 0 && !isEmailValid) {
+      setTextTooltip("Field Email isn't valid!");
+      setIsShowTooltip(true);
+    } else {
+      setIsShowTooltip(false);
+    }
   };
+
   return (
     <div className={classes.footer}>
       <div className={classes["footer__container"]}>
@@ -86,10 +110,18 @@ export default function Footer() {
                   placeholder="Your Email"
                   className={classes["form__input-email"]}
                   ref={emailInput}
+                  onChange={changeEmailHandler}
                 />
                 <button type="submit" className={classes["form__btn"]}>
                   Send
                 </button>
+
+                {/* JSX: Tooltip */}
+                {isShowTooltip && (
+                  <div className={classes["tooltip-email"]}>
+                    <p>{textTooltip}</p>
+                  </div>
+                )}
               </form>
               <div className={classes["section__socials-network"]}>
                 <FaFacebookF

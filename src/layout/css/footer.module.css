@@ -133,6 +133,7 @@
 }
 
 .section__form {
+    position: relative;
     width: 100%;
     box-sizing: border-box;
     display: flex;
@@ -209,6 +210,30 @@
     font-size: 0.9rem;
     margin: 20px 0;
 }
+
+.tooltip-email {
+    position: absolute;
+    background-color: #F86822;
+    color: #fff;
+    padding: 10px;
+    bottom: 0;
+    left: 0;
+    transform: translateY(120%);
+    border-radius: 5px;
+    font-size: .7rem;
+}
+
+.tooltip-email::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 30%;
+    width: 15px;
+    height: 15px;
+    background-color: #F86822;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
 
 /* CSS: Active */
 .form__input-email::placeholder {
@@ -322,7 +347,6 @@
     .companies__section .section__list-info {
         margin-top: 10%;
     }
-
 }
 
 @media screen and (min-width:576px) and (max-width:767px) {
