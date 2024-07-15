@@ -134,15 +134,6 @@ export default function SidebarProduct() {
     }
   }, [stateProducts]);
 
-  // Effect Scroll To Top when transfer pagination products
-  useEffect(() => {
-    window.scrollTo({
-      top: 450,
-      left: 0,
-      behavior: "smooth",
-    });
-  }, [sliceProduct]);
-
   //  Create + use event handlers
   const clearOptionsFilterHandler = () => {
     window.history.replaceState(null, null, "/products");
@@ -156,6 +147,11 @@ export default function SidebarProduct() {
 
   const getValueNextPageHanlder = (value) => {
     setSliceProduct(value);
+    window.scrollTo({
+      top: 450,
+      left: 0,
+      behavior: "smooth",
+    });
   };
 
   const getValueTagsHandler = (valueTags) => {

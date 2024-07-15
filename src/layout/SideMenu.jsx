@@ -1,4 +1,5 @@
 // Import Modules
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createPortal } from "react-dom";
 import reduxActions from "../redux/redux-actions";
@@ -8,7 +9,7 @@ import classes from "./css/sideMenu.module.css";
 
 // Import Components
 import { Row, Col } from "antd";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 // Import Icons
 import { IoMdClose } from "react-icons/io";
@@ -47,6 +48,15 @@ function Overlay({ isShowSideMenu, isShowSideUserMenu }) {
 function SideBar({ isShowSideMenu }) {
   // Create + use Hooks
   const dispatch = useDispatch();
+  const state = useLocation();
+
+  // Side Effect
+  useEffect(() => {
+    if (state.pathname !== "") {
+      dispatch(reduxActions.sideMenu.hideSideMenu());
+      dispatch(reduxActions.sideUserMenu.hideSideUserMenu());
+    }
+  }, [state]);
 
   // Create + use Event handlers
   const hideSideMenu = () => {
