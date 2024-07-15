@@ -24,6 +24,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 40px;
 }
 
 .col__section__header>p {
@@ -177,6 +178,7 @@
         cursor: pointer;
         display: block;
         position: fixed;
+        z-index: 1;
         top: 30%;
         right: 0;
         font-size: 1.5rem;
@@ -287,6 +289,7 @@
         display: block;
         position: fixed;
         top: 30%;
+        z-index: 1;
         right: 0;
         font-size: 1.5rem;
         padding: 8px;
@@ -397,6 +400,7 @@
         cursor: pointer;
         display: block;
         position: fixed;
+        z-index: 1;
         top: 30%;
         right: 0;
         font-size: 1.5rem;
@@ -495,6 +499,7 @@
         cursor: pointer;
         display: block;
         position: fixed;
+        z-index: 1;
         top: 30%;
         right: 0;
         font-size: 1.5rem;

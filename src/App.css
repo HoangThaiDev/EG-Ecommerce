@@ -1,5 +1,6 @@
 .btn-home {
     cursor: pointer;
+    z-index: 1;
     display: inline-block;
     border: 1px solid rgb(38, 70, 83);
     color: rgb(38, 70, 83) !important;

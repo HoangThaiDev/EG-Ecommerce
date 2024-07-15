@@ -343,10 +343,11 @@ export default function SidebarProduct() {
                     options={optionsRating}
                     onSaveValueOption={getValueRateFilterHandler}
                   />
+
                   <CollapseCategory
                     categoryValueSearch={categoryValueSearch}
                     className="collapse-category"
-                    products={productsAPI}
+                    products={products}
                     categories={categories}
                     onSaveValueCategory={getValueCategoryHandler}
                   />

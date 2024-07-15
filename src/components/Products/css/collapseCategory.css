@@ -66,13 +66,13 @@
 }
 
 .collapse-category .category-item.active::after {
-    content: '';
+    content: '\21BA';
     position: absolute;
-    width: 6px;
-    height: 6px;
-    background-color: rgb(38, 70, 83);
+    font-size: 1rem;
     border-radius: 100%;
-    left: -10px;
+    left: -13px;
+    font-weight: bold;
+    transform: rotate(-80deg);
 }
 
 .collapse-category .ant-collapse-item-active .ant-collapse-header {

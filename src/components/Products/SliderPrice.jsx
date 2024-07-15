@@ -34,7 +34,7 @@ export default function SliderPrice({ onSaveValueRangePrice, stateProducts }) {
     <div className="slider-price">
       <div className="slider__container">
         <h2 className="slider__title">PRICE</h2>
-        {console.log(rangePrice)}
+
         <Slider
           className="slider-range-price"
           range

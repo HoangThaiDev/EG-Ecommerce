@@ -1,36 +1,48 @@
 // Import Modules
 import { useDispatch } from "react-redux";
 import reduxActions from "../redux/redux-actions";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axiosInstance from "../axios/customAxios";
+import { APIContext } from "../storeContext/APIContext";
 
 // Import File CSS
 import classes from "./css/navigation.module.css";
 
 // Import Components
 import { Row, Col } from "antd";
+import MenuProductDropdown from "./MenuProductDropdown";
 
 // Import Icons
 import { LuUser2 } from "react-icons/lu";
 import { IoMenuOutline } from "react-icons/io5";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { FiPhoneCall } from "react-icons/fi";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 import { IoMdCloseCircle } from "react-icons/io";
 
 export default function Navigation() {
+  // Get API From Server
+  const { products } = useContext(APIContext);
   // Create + use Hooks
   const [isScrollActive, setIsScrollActive] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const state = useLocation();
+
+  const [isShowMenuDropdown, setIsShowMenuDropdown] = useState(false);
+  const [productSearch, setProductSearch] = useState([]);
   const [valueName, setValueName] = useState(
     JSON.parse(sessionStorage.getItem("search-product"))
       ? JSON.parse(sessionStorage.getItem("search-product"))
       : ""
   );
 
-  // Side Effect Scroll Navbar
+  // Side Effect
+  useEffect(() => {
+    setIsShowMenuDropdown(false);
+  }, [state]);
+
   useEffect(() => {
     const scrollHandler = () => {
       if (window.scrollY > 400) {
@@ -50,10 +62,29 @@ export default function Navigation() {
 
   // Create + use Event handlers
   const changeValueNameHandler = (e) => {
-    setValueName(e.target.value);
+    let valueSearch = e.target.value;
+    // Filter data products by value search
+    const filterProducts = products.filter((p) =>
+      p.name.toLowerCase().includes(
+        valueSearch
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/đ/g, "d")
+          .replace(/Đ/g, "D")
+          .toLowerCase()
+      )
+    );
+    if (valueSearch.length > 0) {
+      setIsShowMenuDropdown(true);
+    } else {
+      setIsShowMenuDropdown(false);
+    }
+    setProductSearch(filterProducts);
+    setValueName(valueSearch);
   };
 
   const clearValueIpnutSearchHandler = () => {
+    setIsShowMenuDropdown(false);
     setValueName("");
   };
   const goHomeHandler = () => {
@@ -152,6 +183,14 @@ export default function Navigation() {
                 Search
               </button>
             </form>
+
+            {/* -------------------------JSX: Menu Product Dropdown------------------------------- */}
+            {isShowMenuDropdown && (
+              <MenuProductDropdown
+                productSearch={productSearch}
+                valueName={valueName}
+              />
+            )}
           </Col>
 
           {/* -------------------------JSX: Menu------------------------------- */}

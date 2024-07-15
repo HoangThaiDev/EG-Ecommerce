@@ -24,6 +24,11 @@
     flex-wrap: wrap;
 }
 
+/* CSS: Col */
+.navigation__col {
+    position: relative;
+}
+
 /* CSS: Col - Logo */
 .nav__col__logo {
     cursor: pointer;
@@ -64,14 +69,14 @@
     border-radius: 0;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
-    width: 83%;
+    width: 78%;
 }
 
 .form__icon-clear {
     cursor: pointer;
     position: absolute;
     font-size: 1.3rem;
-    right: 105px;
+    right: 145px;
     top: 8px;
     color: #264653;
 }
