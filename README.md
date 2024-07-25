@@ -3,12 +3,14 @@
 @media screen and (min-width:768px) and (max-width:991px) {}
 @media screen and (min-width:992px) and (max-width:1199px) {} -->
 
-# EG-Shop
+# EG-Shop ==> Project Second
 
 =======
 
 =======
->>>>>>> f3e9f5fb5ed84aa979405083e7e3db2c9c598a07
+
+> > > > > > > f3e9f5fb5ed84aa979405083e7e3db2c9c598a07
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
