@@ -1,11 +1,12 @@
 // Import Modules
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Import File CSS
 import "./css/collapseCategory.css";
 
 // Import Components
 import { Collapse } from "antd";
+import { useLocation } from "react-router-dom";
 
 export default function CollapseCategory({
   className,
@@ -15,7 +16,19 @@ export default function CollapseCategory({
   categoryValueSearch,
 }) {
   // Create + use Hooks
-  const [categoryActive, setCategoryActive] = useState("");
+  const [categoryActive, setCategoryActive] = useState({
+    state: false,
+    title: "",
+  });
+  const { search: pathSearch } = useLocation();
+
+  // Side Effect: Update CategoryActive
+  useEffect(() => {
+    if (pathSearch.length > 0) {
+      const valueCategorySearch = pathSearch.split("=")[1].replace(/%20/g, " ");
+      setCategoryActive({ state: true, title: valueCategorySearch });
+    }
+  }, []);
 
   // Create + use item of Collapse
   const modifiedCategories = categories.map((category) => {
@@ -75,12 +88,13 @@ export default function CollapseCategory({
   // Create + use event handlers
   const getValueCategoryHandler = (_id, title) => {
     // Check category chosen by client
-    if (title !== categoryActive) {
+
+    if (title !== categoryActive.title) {
+      setCategoryActive({ state: true, title: title });
       onSaveValueCategory(_id, title);
-      setCategoryActive(title);
     } else {
+      setCategoryActive({ state: false, title: "" });
       onSaveValueCategory("", "");
-      setCategoryActive("");
     }
   };
 
