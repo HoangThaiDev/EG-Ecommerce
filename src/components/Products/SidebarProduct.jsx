@@ -128,6 +128,11 @@ export default function SidebarProduct() {
   useEffect(() => {
     if (stateProducts && stateProducts.searchedProducts.length > 0) {
       // Update data product after search key
+      const valueCategorySearch = pathSearch.split("=")[1].replace(/%20/g, " ");
+      setCategoryFilter((prevState) => ({
+        ...prevState,
+        title: valueCategorySearch,
+      }));
       setProductsFromSearch(stateProducts.searchedProducts);
       setProducts(stateProducts.searchedProducts);
       setSliceProduct(stateProducts.searchedProducts.slice(0, 12));
@@ -217,6 +222,7 @@ export default function SidebarProduct() {
     valuePrice,
     valueTags
   ) => {
+    // Get value category from url if domain has
     const optionsFilterObj = {
       option: valueOption,
       rate: valueRate,
@@ -225,8 +231,17 @@ export default function SidebarProduct() {
       tag: valueTags,
     };
 
-    const productsToFilter =
-      productsFromSearch.length > 0 ? productsFromSearch : productsAPI; // Check use data to filter with options
+    let productsToFilter =
+      productsFromSearch.length > 0 ? productsFromSearch : productsAPI;
+
+    // When client dont choose category or change category ==> Call data API original
+    if (productsFromSearch.length > 0 && optionsFilterObj.category === "") {
+      productsToFilter = productsAPI;
+      setProductsFromSearch([]);
+    } else {
+      productsToFilter = productsAPI;
+      setProductsFromSearch([]);
+    }
 
     // Starting filter by options + Get urlQuery follow filter
     const modifiedURL = funcCheckOptionsFilter(pathSearch, optionsFilterObj);
@@ -275,7 +290,8 @@ export default function SidebarProduct() {
                     Showing 1 - 12 items
                   </p>
 
-                  {(optionFilter ||
+                  {(pathSearch.length > 0 ||
+                    optionFilter ||
                     rateFilter ||
                     categoryFilter.title ||
                     rangePrice ||

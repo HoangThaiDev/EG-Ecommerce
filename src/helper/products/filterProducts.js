@@ -51,6 +51,7 @@ const modifiedProductsByOption = (newProducts, option) => {
         newSortProducts = newSortProducts.filter(
           (product) => product.percent_discount > 0
         );
+
       //----------------------------Sort: Best-Seller -------------------------------------------
       case "bestSeller":
         newSortProducts = newSortProducts.filter(

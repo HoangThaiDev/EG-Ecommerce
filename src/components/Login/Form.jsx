@@ -32,12 +32,12 @@ function Form() {
         <form className={classes["main-login-form"]}>
           <h2>Login Your Account</h2>
           <div className={classes["form-input"]}>
-            <label htmlFor="username">User Name*</label>
+            <label htmlFor="email">Email*</label>
             <input
-              className={classes["form-input-username"]}
-              type="text"
-              id="username"
-              placeholder="Your Name"
+              className={classes["form-input-email"]}
+              type="email"
+              id="email"
+              placeholder="Your Email"
             />
           </div>
           <div className={classes["form-input"]}>
