@@ -1,5 +1,5 @@
 // Import Modules
-import React from "react";
+import React, { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Import File CSS
@@ -14,8 +14,13 @@ import { IoSearchSharp } from "react-icons/io5";
 
 export default function ItemProduct({ product }) {
   // Add + calculate Price Discount (percent-discount > 0)
-  product.price_discount =
-    product.price - (product.price * product.percent_discount) / 100;
+  const modifiedProduct = useMemo(() => {
+    product.price_discount = (
+      product.price -
+      (product.price * product.percent_discount) / 100
+    ).toFixed(2);
+    return product;
+  }, []);
 
   // Create + use Hooks
   const navigate = useNavigate();
@@ -33,43 +38,49 @@ export default function ItemProduct({ product }) {
   };
   return (
     <div className={classes["section__card"]}>
-      {product.percent_discount > 0 && (
+      {modifiedProduct.percent_discount > 0 && (
         <span className={classes["section__card__percent-discount"]}>
-          -{product.percent_discount}% Off
+          -{modifiedProduct.percent_discount}% Off
         </span>
       )}
       <IoSearchSharp
         className={classes["card-icon-search"]}
-        onClick={() => viewProductDetailHandler(product.name, product._id)}
+        onClick={() =>
+          viewProductDetailHandler(modifiedProduct.name, modifiedProduct._id)
+        }
       />
       <img
-        src={product.image_detail.banner}
-        alt={product.image_detail.banner}
-        onClick={() => viewProductDetailHandler(product.name, product._id)}
+        src={modifiedProduct.image_detail.banner}
+        alt={modifiedProduct.image_detail.banner}
+        onClick={() =>
+          viewProductDetailHandler(modifiedProduct.name, modifiedProduct._id)
+        }
       />
       <div className={classes["card-detail"]}>
         <h3
           className={classes["card-detail-name"]}
-          onClick={() => viewProductDetailHandler(product.name, product._id)}
+          onClick={() =>
+            viewProductDetailHandler(modifiedProduct.name, modifiedProduct._id)
+          }
         >
-          {product.name}
+          {modifiedProduct.name}
         </h3>
         <div className={classes["card-detail-price"]}>
-          {product.percent_discount > 0 && (
+          {modifiedProduct.percent_discount > 0 && (
             <>
               <p className="card-detail-price-origin-old">
-                ${product.price}/ {product.unit}
+                ${modifiedProduct.price}/ {modifiedProduct.unit}
               </p>
 
               <p className="card-detail-price-discount">
-                ${product.price_discount}/ {product.unit}
+                ${modifiedProduct.price_discount}/ {modifiedProduct.unit}
               </p>
             </>
           )}
 
-          {product.percent_discount === 0 && (
+          {modifiedProduct.percent_discount === 0 && (
             <p className="card-detail-price-origin">
-              ${product.price}/ {product.unit}
+              ${modifiedProduct.price}/ {modifiedProduct.unit}
             </p>
           )}
         </div>
@@ -78,13 +89,13 @@ export default function ItemProduct({ product }) {
             className="card__rates"
             allowHalf
             disabled
-            defaultValue={product.rating}
+            defaultValue={modifiedProduct.rating}
           />
         </div>
         <button
           className={classes["card-detail-btn-add"]}
           type="button"
-          onClick={() => addToCartHandler(product._id)}
+          onClick={() => addToCartHandler(modifiedProduct._id)}
         >
           Add To Cart
           <HiOutlinePlusSm className={classes["card-detail-icon-btn"]} />

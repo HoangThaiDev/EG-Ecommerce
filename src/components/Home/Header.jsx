@@ -6,11 +6,13 @@ import classes from "./css/header.module.css";
 
 // Import Components
 import { Link } from "react-router-dom";
+import bannerImage from "../../assets/images-banner/banner-home2.jpeg";
 
 export default function Header() {
   return (
     <div className={classes.header}>
       <div className={classes["header__container"]}>
+        <img src={bannerImage} alt={bannerImage} loading="lazy" />
         <div className={classes["header__card"]}>
           <span>Up to 50% OFF</span>
           <h1 className={classes["header__title"]}>

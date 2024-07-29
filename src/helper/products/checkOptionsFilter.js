@@ -9,7 +9,7 @@ const checkOptionsFilter = (pathSearch, optionFilterObj) => {
   urlQuery = getURLQueryByCategory(urlQuery, category, isCheckURLHasQuery);
   urlQuery = getURLQueryByPrice(urlQuery, price, isCheckURLHasQuery);
   urlQuery = getURLQueryByTags(urlQuery, tag, isCheckURLHasQuery);
-  // console.log(urlQuery);
+
   return urlQuery;
 };
 
@@ -73,6 +73,10 @@ const getURLQueryByRate = (urlQuery, rate, isCheckURLHasQuery) => {
 
 const getURLQueryByCategory = (urlQuery, name_category, isCheckURLHasQuery) => {
   // Checkoption has value
+  if (urlQuery.includes("?name")) {
+    isCheckURLHasQuery = false;
+    urlQuery = "";
+  }
 
   if (name_category.length > 0) {
     // Check URL already exists query

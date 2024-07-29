@@ -17,7 +17,6 @@ export default function CollapseCategory({
 }) {
   // Create + use Hooks
   const [categoryActive, setCategoryActive] = useState({
-    state: false,
     title: "",
   });
   const { search: pathSearch } = useLocation();
@@ -90,10 +89,10 @@ export default function CollapseCategory({
     // Check category chosen by client
 
     if (title !== categoryActive.title) {
-      setCategoryActive({ state: true, title: title });
+      setCategoryActive({ title: title });
       onSaveValueCategory(_id, title);
     } else {
-      setCategoryActive({ state: false, title: "" });
+      setCategoryActive({ title: "" });
       onSaveValueCategory("", "");
     }
   };

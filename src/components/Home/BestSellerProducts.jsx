@@ -14,12 +14,14 @@ export default function BestSellerProducts({ products }) {
   const filteredBestSellerProducts = useMemo(() => {
     return products.filter((product) => {
       if (product.best_seller) {
-        product.price_discount =
-          product.price - (product.price * product.percent_discount) / 100;
+        product.price_discount = (
+          product.price -
+          (product.price * product.percent_discount) / 100
+        ).toFixed(2);
         return product;
       }
     });
-  }, [products]);
+  }, []);
 
   // Create + use event handlers
   const viewBestSellerProducts = () => {}; // Chua co y tuong

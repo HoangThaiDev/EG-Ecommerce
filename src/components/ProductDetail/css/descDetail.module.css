@@ -1,0 +1,27 @@
+.main-desc {
+    box-shadow: 0 0 15px 2px rgba(234, 233, 233, 0.6);
+    padding: 30px;
+    border-radius: 5px;
+}
+
+.main-desc-list {
+    width: 100%;
+    gap: 20px 0;
+    justify-content: space-between;
+}
+
+.main-desc-item {
+    width: 100%;
+}
+
+.main-desc-item-card .card-title {
+    color: #284855;
+    font: 600 1.2rem/1.5rem "Bodoni Moda", serif;
+    margin-bottom: 8px;
+    letter-spacing: .8px;
+}
+
+.main-desc-item-card .card-content {
+    color: gray;
+    font: 1rem/1.5rem "EB Garamond", serif;
+}

@@ -83,7 +83,7 @@
     border-radius: 25px;
     padding: 8px 20px;
     font-size: 0.9rem;
-    transition: 1s all ease;
+    transition: left 1s ease, bottom 1s ease, background-color .3s ease;
 }
 
 /* CSS: Active */
@@ -115,7 +115,7 @@
     background-color: rgb(38, 70, 83);
     top: 10px;
     right: -100px;
-    transition: .8s all ease;
+    transition: .3s all ease;
 }
 
 /* CSS: Effect */

@@ -46,6 +46,10 @@ export default function Footer() {
     } else {
       setIsShowTooltip(false);
     }
+
+    setTimeout(() => {
+      setIsShowTooltip(false);
+    }, 3000);
   };
 
   return (

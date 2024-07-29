@@ -1,0 +1,79 @@
+.main-section-product {
+    width: 1140px;
+    margin: auto;
+}
+
+.section-product-detail {
+    margin: 10% 0;
+}
+
+.section-product-detail>h3 {
+    position: relative;
+    color: #00152B;
+    font: 700 1.8rem/1.8rem "Playfair Display", serif;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(211, 211, 211, 0.7);
+}
+
+.section-product-detail>h3::after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 1.5px;
+    background-color: #F86822;
+    left: 0;
+    bottom: -2px;
+}
+
+/* CSS: Section Product Row */
+.section-product-row {
+    margin-top: 4%;
+    justify-content: space-between;
+}
+
+/* CSS: Section Product Col */
+
+.section-product-options {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px 0;
+}
+
+.section-product-option-desc,
+.section-product-option-reviews,
+.section-product-option-evalute {
+    cursor: pointer;
+    font-family: "EB Garamond", serif;
+    border-radius: 5px;
+    padding: 10px 20px;
+    width: 100%;
+    height: 55px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.7px;
+    border: 0;
+    transition: .5s all ease;
+}
+
+.section-product-option-desc,
+.section-product-option-reviews,
+.section-product-option-evalute {
+    background-color: #fff;
+    color: rgba(100, 99, 99, 0.6);
+    box-shadow: 0 2px 5px 1px rgba(212, 212, 213, .6);
+}
+
+.section-product-options-content {
+    width: 75%;
+}
+
+/* CSS: Active */
+.section-product-option-desc-active,
+.section-product-option-reviews-active,
+.section-product-option-evalute-active {
+    background-color: #F86822;
+    color: #fff;
+    font-weight: 500;
+    font-weight: 600;
+}

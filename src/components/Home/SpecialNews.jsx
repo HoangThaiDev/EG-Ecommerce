@@ -90,10 +90,12 @@ export default function SpecialNews() {
                   <p className={classes["content__desc"]}>
                     {specialNewActive.content}
                   </p>
-                  <Link className={classes["content__link"]}>Read More</Link>
-                  <span className={classes["content__date"]}>
-                    Date: {specialNewActive.createAt}
-                  </span>
+                  <div className={classes["content__footer"]}>
+                    <Link className={classes["content__link"]}>Read More</Link>
+                    <span className={classes["content__date"]}>
+                      Date: {specialNewActive.createAt}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>

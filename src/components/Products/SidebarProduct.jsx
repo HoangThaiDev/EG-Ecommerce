@@ -128,11 +128,15 @@ export default function SidebarProduct() {
   useEffect(() => {
     if (stateProducts && stateProducts.searchedProducts.length > 0) {
       // Update data product after search key
-      const valueCategorySearch = pathSearch.split("=")[1].replace(/%20/g, " ");
-      setCategoryFilter((prevState) => ({
-        ...prevState,
-        title: valueCategorySearch,
-      }));
+      if (pathSearch.includes("=")) {
+        const valueCategorySearch = pathSearch
+          .split("=")[1]
+          .replace(/%20/g, " ");
+        setCategoryFilter((prevState) => ({
+          ...prevState,
+          title: valueCategorySearch,
+        }));
+      }
       setProductsFromSearch(stateProducts.searchedProducts);
       setProducts(stateProducts.searchedProducts);
       setSliceProduct(stateProducts.searchedProducts.slice(0, 12));

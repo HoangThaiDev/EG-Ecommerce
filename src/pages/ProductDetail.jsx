@@ -1,11 +1,11 @@
 // Import Modules
 import axiosInstance from "../axios/customAxios";
 import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 // Import Component
-import ItemDetail from "../components/ProductDetail/ItemDetail";
 import Header from "../UI/Header";
-import { useEffect, useState } from "react";
+import MainSection from "../components/ProductDetail/MainSection";
 
 function ProductDetail() {
   // Create + use Hooks
@@ -18,7 +18,6 @@ function ProductDetail() {
       const response = await axiosInstance.post(
         `products/detail/${state.productId}`
       );
-      console.log(state);
       setProductDetail(response.data);
       setIsLoading(true);
     };
@@ -35,7 +34,7 @@ function ProductDetail() {
         linkBack="Home"
         linkCurrent="Product Details"
       />
-      {isLoading && <ItemDetail productDetail={productDetail} />}
+      {isLoading && <MainSection productDetail={productDetail} />}
     </>
   );
 }

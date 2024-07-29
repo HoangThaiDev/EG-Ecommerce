@@ -1,0 +1,8 @@
+.card-user-rate-product {
+    color: #FFA800;
+    font-size: .7rem;
+}
+
+.card-user-rate-product .ant-rate-star:not(:last-child) {
+    margin-inline-end: 5px;
+}

@@ -90,6 +90,12 @@
     margin: 15px 0 30px;
 }
 
+.news__card-active .card__content .content__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .news__card-active .card__content .content__link {
     color: #00142C;
     background-color: #fff;
@@ -100,10 +106,6 @@
 }
 
 .news__card-active .card__content .content__date {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    margin-right: 10px;
     color: rgba(226, 226, 226);
     font-size: .8rem;
 }
