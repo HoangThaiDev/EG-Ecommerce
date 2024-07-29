@@ -49,19 +49,19 @@
     font-size: .9rem;
 }
 
-/* CSS: Introduce Form */
-.introduce__form {
+/* CSS: Introduce Card */
+.introduce-card {
     font-family: "Playfair Display", serif;
 }
 
-.introduce__form>h3 {
+.introduce-card>h3 {
     color: rgb(38, 70, 83);
     font-size: 1.3rem;
     font-weight: 600;
     margin-bottom: 20px;
 }
 
-.introduce__form>p {
+.introduce-card>p {
     font-family: "Roboto", sans-serif;
     margin: 7px 0;
     color: gray;
@@ -69,17 +69,25 @@
     font-size: .8rem;
 }
 
+/* CSS: Introduce Form */
+.introduce__form {
+    margin-top: 30px;
+}
+
 .form-input {
     font-family: "Roboto", sans-serif;
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 20px;
-    gap: 15px 0;
+}
+
+.form-input:nth-child(2) {
+    margin-top: 10px;
 }
 
 .form-input>label {
-    color: rgb(38, 70, 83);
+    display: block;
+    color: rgba(38, 70, 83, .9);
     font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
 }
 
 .form-input .form-input-name {
@@ -103,7 +111,13 @@
     border: 2px solid rgba(188, 186, 186, .7)
 }
 
-.form-input .form-btn-send {
+.form-input .error-message-input {
+    font-size: .9rem;
+    color: rgb(232, 61, 61);
+    margin-top: 8px;
+}
+
+.introduce__form .form-btn-send {
     display: inline-block;
     margin-top: 20px;
     cursor: pointer;
@@ -113,6 +127,12 @@
     border: 2px solid transparent;
     padding: 12px 25px;
     width: 130px;
+    transition: .5s all ease;
+}
+
+/* CSS: Effect */
+.introduce__form .form-btn-send:hover {
+    opacity: .8;
 }
 
 /* CSS: Responsives */
@@ -134,11 +154,11 @@
         font-size: .8rem;
     }
 
-    .introduce__form>h3 {
+    .introduce-card>h3 {
         font-size: 1.2rem;
     }
 
-    .introduce__form>p {
+    .introduce-card>p {
         font-size: .7rem;
     }
 
@@ -165,11 +185,11 @@
         font-size: .8rem;
     }
 
-    .introduce__form>h3 {
+    .introduce-card>h3 {
         font-size: 1.2rem;
     }
 
-    .introduce__form>p {
+    .introduce-card>p {
         font-size: .7rem;
     }
 
@@ -178,7 +198,36 @@
     }
 }
 
-@media screen and (min-width:768px) and (max-width:991px) {}
+@media screen and (min-width:768px) and (max-width:991px) {
+    .introduce__header>h3 {
+        font-size: 1rem;
+    }
+
+    .introduce__header>p {
+        font-size: .8rem;
+        line-height: 1.5rem;
+    }
+
+    .introduce__address>h3 {
+        font-size: 1rem;
+    }
+
+    .introduce__address>p {
+        font-size: .8rem;
+    }
+
+    .introduce-card>h3 {
+        font-size: 1.2rem;
+    }
+
+    .introduce-card>p {
+        font-size: .7rem;
+    }
+
+    .form-input>label {
+        font-size: .9rem;
+    }
+}
 
 @media screen and (min-width:992px) and (max-width:1199px) {
     .introduce__header>h3 {
@@ -198,11 +247,11 @@
         font-size: .8rem;
     }
 
-    .introduce__form>h3 {
+    .introduce-card>h3 {
         font-size: 1.2rem;
     }
 
-    .introduce__form>p {
+    .introduce-card>p {
         font-size: .7rem;
     }
 
