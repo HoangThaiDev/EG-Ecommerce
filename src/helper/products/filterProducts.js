@@ -125,7 +125,6 @@ const modifiedProductsByTags = (newProducts, tags) => {
 
   // Check option have value is not
   if (tags.length > 0) {
-    console.log(tags);
     newTagsProducts = newTagsProducts.filter((product) =>
       product.tags.some((tag) => tags.includes(tag))
     );

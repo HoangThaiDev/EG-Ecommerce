@@ -34,6 +34,7 @@ export default function MenuProductDropdown({ productSearch, valueName }) {
     const modifiedProductName = product_name.split(" ").join("-");
     navigate(`./product/${modifiedProductName}`, {
       state: { productId: product_id },
+      replace: true,
     });
   };
   const showProductsHandler = async () => {

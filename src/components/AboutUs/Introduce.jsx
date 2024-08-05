@@ -15,8 +15,9 @@ export default function Introduce() {
         <Row className={classes["introduce__row"]}>
           <Col className={classes["introduce__col"]}>
             <img
-              src="https://img.freepik.com/free-photo/man-woman-with-medical-masks-out-grocery-shopping-with-shopping-cart_23-2149483201.jpg?t=st=1719818808~exp=1719822408~hmac=b12980bab981b308d59f0c0daf82f5b5f998e2c486625c666fcd372549a908dd&w=996"
-              alt=""
+              src="https://res.cloudinary.com/dqrughrs2/image/upload/v1722772544/hombre-mujer-mascaras-medicas-comprando-comestibles-carrito-compras_23-2149483201_ailjer.jpg"
+              alt="https://res.cloudinary.com/dqrughrs2/image/upload/v1722772544/hombre-mujer-mascaras-medicas-comprando-comestibles-carrito-compras_23-2149483201_ailjer.jpg"
+              loading="lazy"
             />
           </Col>
           <Col className={classes["introduce__col"]}>

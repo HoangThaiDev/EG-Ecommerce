@@ -1,0 +1,25 @@
+.related-product {
+    width: 100%;
+}
+
+.related-product-container {
+    margin-top: 10%;
+}
+
+.section-related-product>h3 {
+    position: relative;
+    color: #00152B;
+    font: 700 1.8rem/1.8rem "Playfair Display", serif;
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid rgba(211, 211, 211, 0.7);
+}
+
+.section-related-product>h3::after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 1.5px;
+    background-color: #F86822;
+    left: 0;
+    bottom: -1.5px;
+}

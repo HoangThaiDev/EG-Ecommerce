@@ -1,3 +1,14 @@
+/* CSS: Component Item Detail */
+.info-header-rating-product {
+    color: #FFA800;
+    font-size: 1.2rem;
+}
+
+.info-header-rating-product .ant-rate-star:not(:last-child) {
+    margin-inline-end: 12px;
+}
+
+/* CSS: Component Review Detail */
 .card-user-rate-product {
     color: #FFA800;
     font-size: .7rem;
@@ -5,4 +16,64 @@
 
 .card-user-rate-product .ant-rate-star:not(:last-child) {
     margin-inline-end: 5px;
+}
+
+
+/* CSS: Component Form Comment */
+.rate-product {
+    color: #FFA800;
+    font-size: .8rem;
+}
+
+/* CSS: Responsives */
+@media screen and (max-width:575px) {
+
+    /* CSS: Component Item Detail */
+    .info-header-rating-product {
+        color: #FFA800;
+        font-size: 1rem;
+    }
+
+    .info-header-rating-product .ant-rate-star:not(:last-child) {
+        margin-inline-end: 6px;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width:765px) {
+
+    /* CSS: Component Item Detail */
+    .info-header-rating-product {
+        color: #FFA800;
+        font-size: 1rem;
+    }
+
+    .info-header-rating-product .ant-rate-star:not(:last-child) {
+        margin-inline-end: 6px;
+    }
+}
+
+@media screen and (min-width:766px) and (max-width:991px) {
+
+    /* CSS: Component Item Detail */
+    .info-header-rating-product {
+        color: #FFA800;
+        font-size: 1rem;
+    }
+
+    .info-header-rating-product .ant-rate-star:not(:last-child) {
+        margin-inline-end: 6px;
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+
+    /* CSS: Component Item Detail */
+    .info-header-rating-product {
+        color: #FFA800;
+        font-size: 1rem;
+    }
+
+    .info-header-rating-product .ant-rate-star:not(:last-child) {
+        margin-inline-end: 6px;
+    }
 }

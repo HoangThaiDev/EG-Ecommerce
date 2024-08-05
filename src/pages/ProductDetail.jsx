@@ -15,17 +15,23 @@ function ProductDetail() {
 
   useEffect(() => {
     const fetchProductDetail = async () => {
-      const response = await axiosInstance.post(
-        `products/detail/${state.productId}`
-      );
-      setProductDetail(response.data);
-      setIsLoading(true);
+      try {
+        const response = await axiosInstance.post(
+          `products/detail/${state.productId}`
+        );
+        if (response.status === 200) {
+          setProductDetail(response.data);
+          setIsLoading(true);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     if (state.productId !== "") {
       fetchProductDetail();
     }
-  }, []);
+  }, [state]);
 
   return (
     <>

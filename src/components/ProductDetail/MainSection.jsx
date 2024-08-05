@@ -9,6 +9,8 @@ import { Row, Col } from "antd";
 import ItemDetail from "./ItemDetail";
 import DescDetail from "./DescDetail";
 import ReviewDetail from "./ReviewDetail";
+import FormComment from "./FormComment";
+import RelatedProduct from "./RelatedProduct";
 
 export default function MainSection({ productDetail }) {
   // Create + use Hooks
@@ -63,7 +65,7 @@ export default function MainSection({ productDetail }) {
               }
               onClick={() => chooseOptionHandler("review")}
             >
-              Our Review (0)
+              Our Review
             </button>
             <button
               type="button"
@@ -80,8 +82,13 @@ export default function MainSection({ productDetail }) {
           <Col className={classes["section-product-options-content"]}>
             {optionActive.desc && <DescDetail listDesc={productDetail.desc} />}
             {optionActive.review && <ReviewDetail />}
+            {optionActive.evalute && <FormComment />}
           </Col>
         </Row>
+        <RelatedProduct
+          category={productDetail.categoryId.title}
+          productId={productDetail._id}
+        />
       </div>
     </div>
   );

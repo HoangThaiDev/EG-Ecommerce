@@ -94,7 +94,7 @@
     width: 100%;
     box-sizing: border-box;
     padding: 10px 15px;
-    border: 2px solid rgba(188, 186, 186, .7)
+    border: 1px solid rgba(188, 186, 186, .7)
 }
 
 .form-input .form-input-name::placeholder {
@@ -108,7 +108,8 @@
     width: 100%;
     height: 150px;
     padding: 15px;
-    border: 2px solid rgba(188, 186, 186, .7)
+    border: 1px solid rgba(188, 186, 186, .7);
+    resize: none;
 }
 
 .form-input .error-message-input {

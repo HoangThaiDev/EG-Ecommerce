@@ -15,6 +15,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { FaRegComment } from "react-icons/fa";
 import { FaComment } from "react-icons/fa6";
+import { IoMdSend } from "react-icons/io";
 
 // Fake Data
 const DUMMY_LIST_REVIEWS = [
@@ -101,11 +102,7 @@ const DUMMY_LIST_REVIEWS = [
 export default function ReviewDetail() {
   // Create + use Hooks
   const [reviews, setReviews] = useState(DUMMY_LIST_REVIEWS);
-  // const [isActiveEmotion, setIsActiveEmotion] = useState({
-  //   like: false,
-  //   heart: false,
-  //   comment: false,
-  // });
+  const [isShowFormComment, setIsShowFormComment] = useState(false);
 
   // Create + use event handlers
   const activeEmotionHandler = (icon_name, itemId) => {
@@ -125,6 +122,7 @@ export default function ReviewDetail() {
         break;
       case "comment":
         itemReviews.desc.comment.isActive = !itemReviews.desc.comment.isActive;
+        setIsShowFormComment(!isShowFormComment);
         break;
 
       default:
@@ -137,7 +135,7 @@ export default function ReviewDetail() {
     cloneReviews[findIndexItem] = itemReviews;
     setReviews(cloneReviews);
   };
-
+  console.log(reviews[0].desc);
   return (
     <div className={classes["review-detail"]}>
       <Row className={classes["review-detail-row"]}>
@@ -222,6 +220,31 @@ export default function ReviewDetail() {
                       />
                     )}
                   </div>
+
+                  <div className={classes["card-user-footer-emotion-quantity"]}>
+                    <p>
+                      {item.desc.like.amount} Like, {item.desc.heart.amount}{" "}
+                      Heart, {item.desc.comment.amount} Comments
+                    </p>
+                  </div>
+
+                  {item.desc.comment.isActive && isShowFormComment && (
+                    <form className={classes["card-user-footer-form"]}>
+                      <div className={classes["form-input"]}>
+                        <img
+                          src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                          alt=""
+                          loading="lazy"
+                        />
+                        <textarea
+                          type="text"
+                          className={classes["form-input-comment"]}
+                          placeholder="Write a public comment..."
+                        ></textarea>
+                        <IoMdSend className={classes["form-icon-send"]} />
+                      </div>
+                    </form>
+                  )}
                 </div>
               </div>
             </Col>

@@ -73,11 +73,7 @@ const getURLQueryByRate = (urlQuery, rate, isCheckURLHasQuery) => {
 
 const getURLQueryByCategory = (urlQuery, name_category, isCheckURLHasQuery) => {
   // Checkoption has value
-  if (urlQuery.includes("?name")) {
-    isCheckURLHasQuery = false;
-    urlQuery = "";
-  }
-
+  console.log(name_category);
   if (name_category.length > 0) {
     // Check URL already exists query
     if (isCheckURLHasQuery) {

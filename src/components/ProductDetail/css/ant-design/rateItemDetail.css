@@ -1,8 +1,0 @@
-.info-header-rating-product {
-    color: #FFA800;
-    font-size: 1.2rem;
-}
-
-.info-header-rating-product .ant-rate-star:not(:last-child) {
-    margin-inline-end: 12px;
-}

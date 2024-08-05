@@ -3,7 +3,7 @@
 }
 
 .review-detail-col {
-    width: 80%;
+    width: 100%;
 }
 
 /* CSS: Card User Review*/
@@ -44,7 +44,7 @@
     align-self: flex-start;
     flex: 3;
     text-align: right;
-    font: 600 .9rem/1.2rem "Roboto", sans-serif;
+    font: 600 .8rem/1.2rem "Roboto", sans-serif;
     color: rgba(52, 51, 51, 0.7);
     padding-top: 2px;
 }
@@ -74,6 +74,10 @@
 /* CSS: Card User Footer*/
 .card-user-footer {
     margin-top: 20px;
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto 200px;
+    grid-template-rows: 40px auto;
 }
 
 .card-user-footer-emotion {
@@ -90,6 +94,74 @@
     box-shadow: 0 0 10px 2px rgba(217, 217, 218, 0.4);
 }
 
+.card-user-footer-emotion-quantity {
+    font: 600 .9rem/1.2rem "Roboto", sans-serif;
+    color: rgba(49, 48, 48, 0.8);
+    width: 200px;
+    text-align: right;
+}
+
+.card-user-footer-emotion-quantity>p {
+    cursor: pointer;
+    display: inline-block;
+    width: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* CSS: Card User Footer Form*/
+.card-user-footer-form {
+    font-family: "Roboto", sans-serif;
+    margin-top: 20px;
+    grid-column: 1/3;
+}
+
+.form-input {
+    position: relative;
+    width: 100%;
+    display: flex;
+    gap: 0 10px;
+}
+
+.form-input>img {
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    background-color: rgba(255, 228, 196, 0.4);
+    padding: 5px;
+}
+
+.form-input .form-input-comment {
+    box-sizing: border-box;
+    width: 100%;
+    height: auto !important;
+    line-height: 1.5em;
+    padding: 10px 40px 10px 10px;
+    border: 1px solid lightgray;
+    overflow-y: scroll;
+    resize: none;
+    white-space: pre-wrap;
+    font-size: .9rem;
+}
+
+.form-input .form-input-comment::placeholder {
+    font-family: "Roboto", sans-serif;
+    color: rgb(128, 128, 128);
+    font-size: .9rem;
+}
+
+.form-input .form-icon-send {
+    cursor: pointer;
+    color: rgb(128, 128, 128);
+    font-size: 1.2rem;
+    position: absolute;
+    top: 20px;
+    right: 0;
+    margin-right: 25px;
+    transition: .3s all ease;
+}
+
 /* CSS: Actice */
 .card-user-footer-emotion .emotion-icon-like-active {
     color: rgb(30, 118, 255);
@@ -104,4 +176,89 @@
 .card-user-footer-emotion .emotion-icon-comment-active {
     color: rgb(84, 84, 84);
     box-shadow: 0 0 10px 2px rgba(84, 84, 84, .4);
+}
+
+/* CSS: Effect */
+.form-input .form-input-comment:focus {
+    outline: none;
+}
+
+.form-input .form-icon-send:hover {
+    color: rgb(49, 159, 193);
+}
+
+.card-user-footer-emotion-quantity>p:hover {
+    color: black;
+}
+
+/* CSS: Responsives */
+@media screen and (max-width:575px) {
+    .card-user-review {
+        padding: 15px;
+    }
+
+    .card-user-footer-emotion-quantity {
+        display: none;
+    }
+
+    .card-user-footer {
+        grid-template-columns: auto auto;
+    }
+
+    .form-input .form-input-comment {
+        padding: 10px 30px 10px 10px;
+        font-size: .8rem;
+    }
+
+    .form-input .form-icon-send {
+        right: -15px;
+    }
+
+    .form-input .form-input-comment::placeholder {
+        font-size: .8rem;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width:765px) {
+    .card-user-footer-emotion-quantity>p {
+        font-size: .8rem;
+    }
+
+    .form-input .form-input-comment {
+        padding: 10px 30px 10px 10px;
+        font-size: .8rem;
+    }
+
+    .form-input .form-icon-send {
+        right: -15px;
+    }
+
+    .form-input .form-input-comment::placeholder {
+        font-size: .8rem;
+    }
+}
+
+@media screen and (min-width:766px) and (max-width:991px) {
+    .card-user-footer-emotion-quantity>p {
+        font-size: .8rem;
+    }
+
+    .form-input .form-input-comment {
+        padding: 10px 30px 10px 10px;
+        font-size: .8rem;
+    }
+
+    .form-input .form-icon-send {
+        right: -15px;
+    }
+
+    .form-input .form-input-comment::placeholder {
+        font-size: .8rem;
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+    .card-user-footer-emotion-quantity>p {
+        font-size: .9rem;
+    }
 }

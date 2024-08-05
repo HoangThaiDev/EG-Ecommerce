@@ -95,8 +95,8 @@ export default function Navigation() {
     dispatch(reduxActions.sideMenu.toggleSideMenu());
   };
 
-  const showSideMenuUser = () => {
-    dispatch(reduxActions.sideUserMenu.toggleSideUserMenu());
+  const nextPageHandler = () => {
+    navigate("/login");
   };
 
   const searchProductsHandler = (event) => {
@@ -117,6 +117,7 @@ export default function Navigation() {
       } else {
         // Remember value input search when search has name
         sessionStorage.setItem("search-product", JSON.stringify(valueName));
+
         navigate(`/products?name=${valueName}`, {
           state: { searchedProducts: response.data },
         });
@@ -199,7 +200,7 @@ export default function Navigation() {
               <div className={classes["menu__icon"]}>
                 <LuUser2
                   className={`${classes.icon} ${classes["icon-user"]}`}
-                  onClick={showSideMenuUser}
+                  onClick={nextPageHandler}
                 />
               </div>
               <div className={classes["menu__icon"]}>
@@ -212,7 +213,7 @@ export default function Navigation() {
                 <AiOutlineShoppingCart
                   className={`${classes.icon} ${classes["icon-cart"]}`}
                 />
-                <span>0</span>
+                <span>10</span>
               </div>
             </div>
           </Col>

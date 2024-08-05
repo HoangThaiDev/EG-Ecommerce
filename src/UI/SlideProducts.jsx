@@ -22,7 +22,7 @@ function CustomSlide(props) {
   const navigate = useNavigate();
 
   // Create + use props
-  const { product, ...otherProps } = props;
+  const { product, isPageProductDetail, ...otherProps } = props;
 
   // Add + calculate Price Discount (percent-discount > 0)
   const modifiedProduct = useMemo(() => {
@@ -31,14 +31,21 @@ function CustomSlide(props) {
       (product.price * product.percent_discount) / 100
     ).toFixed(2);
     return product;
-  }, []);
+  }, [product]);
 
   // Create + use event handlers
   const viewProductDetailHandler = (product_name, product_id) => {
+    // Check page current is a page product detail
     const modifiedProductName = product_name.split(" ").join("-");
-    navigate(`./product/${modifiedProductName}`, {
-      state: { productId: product_id },
-    });
+    if (isPageProductDetail) {
+      navigate(`../product/${modifiedProductName}`, {
+        state: { productId: product_id },
+      });
+    } else {
+      navigate(`./product/${modifiedProductName}`, {
+        state: { productId: product_id },
+      });
+    }
   };
 
   const addToCartHandler = (productId) => {
@@ -119,83 +126,21 @@ function CustomSlide(props) {
   );
 }
 
-// Custom Arrow Slider
-function SampleNextArrow(props) {
-  // Create + use props
-  const { className, style, onClick } = props;
-
-  return <div className={className} onClick={onClick} style={style} />;
-}
-
-function SamplePrevArrow(props) {
-  // Create + use props
-  const { className, style, onClick } = props;
-
-  return <div className={className} onClick={onClick} style={style} />;
-}
-
-export default function SlideProducts({ products }) {
-  // Create + use setting of slider
-  const settings = {
-    swipe: false,
-    speed: 1500,
-    slidesToShow: 4,
-    rows: 2,
-    slidesToScroll: 4,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-    responsive: [
-      {
-        breakpoint: 1199,
-        settings: {
-          swipe: true,
-          slidesToShow: 4,
-          rows: 2,
-          slidesToScroll: 4,
-          speed: 700,
-        },
-      },
-      {
-        breakpoint: 991,
-        settings: {
-          swipe: true,
-          slidesToShow: 3,
-          rows: 2,
-          slidesToScroll: 3,
-          speed: 700,
-        },
-      },
-      {
-        breakpoint: 767,
-        settings: {
-          swipe: true,
-          slidesToShow: 2,
-          rows: 2,
-          slidesToScroll: 2,
-          speed: 1000,
-          autoplay: false,
-          autoplaySpeed: 8000,
-        },
-      },
-      {
-        breakpoint: 575,
-        settings: {
-          swipe: true,
-          slidesToShow: 2,
-          rows: 2,
-          slidesToScroll: 2,
-          speed: 1000,
-          autoplay: true,
-          autoplaySpeed: 8000,
-        },
-      },
-    ],
-  };
+export default function SlideProducts({
+  className,
+  products,
+  settings,
+  pageProductDetail,
+}) {
   return (
-    <Slider {...settings} className="slider-products">
+    <Slider {...settings} className={className}>
       {products.map((product) => (
-        <div key={product._id}>
-          <CustomSlide product={product} key={products.id} />
+        <div key={product._id} className="slider-product-container">
+          <CustomSlide
+            product={product}
+            key={products.id}
+            isPageProductDetail={pageProductDetail}
+          />
         </div>
       ))}
     </Slider>

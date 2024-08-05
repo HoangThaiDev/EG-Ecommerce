@@ -38,7 +38,6 @@
 
 /* CSS: Benefit Col*/
 .benefit__col {
-    cursor: pointer;
     width: 23%;
     border: 0.5px solid rgba(211, 211, 211, .7);
     padding: 15px;
@@ -72,25 +71,27 @@
 }
 
 .benefit__card .card__link {
+    cursor: pointer;
     color: #656565;
     font-weight: 600;
     font-size: 1rem;
 }
 
 /* CSS: Effect */
-
 .benefit__col:hover {
     border-color: transparent;
-    box-shadow: 0 0 20px 2px rgb(219, 219, 219);
+    box-shadow: 0 0 .8px 1px rgb(126, 124, 124);
 }
 
-.benefit__col:hover .card__link {
-    color: rgb(38, 70, 83);
+.benefit__col .card__link:hover {
+    color: #FB854B;
     font-weight: 800;
 }
 
-/* CSS: Responsives */
+/* CSS: Animations */
 
+
+/* CSS: Responsives */
 @media screen and (max-width:575px) {
 
     /* CSS: Benefit Container */

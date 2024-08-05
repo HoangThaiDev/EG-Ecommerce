@@ -21,7 +21,7 @@ import { IoMdHelpCircleOutline } from "react-icons/io";
 import { FiPhoneCall } from "react-icons/fi";
 import { AiOutlineUser } from "react-icons/ai";
 
-function Overlay({ isShowSideMenu, isShowSideUserMenu }) {
+function Overlay({ isShowSideMenu }) {
   // Create + use Hooks
   const dispatch = useDispatch();
 
@@ -29,16 +29,13 @@ function Overlay({ isShowSideMenu, isShowSideUserMenu }) {
   const hideSideMenu = (event) => {
     if (event.target.classList.value) {
       dispatch(reduxActions.sideMenu.hideSideMenu());
-      dispatch(reduxActions.sideUserMenu.hideSideUserMenu());
     }
   };
 
   return (
     <div
       className={`${classes["overlay"]} ${
-        isShowSideMenu || isShowSideUserMenu
-          ? `${classes["show"]}`
-          : `${classes["hide"]}`
+        isShowSideMenu ? `${classes["show"]}` : `${classes["hide"]}`
       }`}
       onClick={hideSideMenu}
     ></div>
@@ -115,23 +112,6 @@ function SideBar({ isShowSideMenu }) {
                 Products
               </NavLink>
             </div>
-
-            {/* -------------------------------JSX: COL ITEM--------------------------------------------- */}
-            <div className={classes["sideBar__menu-item"]}>
-              <IoNewspaperOutline
-                className={`${classes.icon} ${classes["icon-blogs"]}`}
-              />
-              <NavLink
-                to="/blogs"
-                className={({ isActive }) =>
-                  isActive
-                    ? `${classes.link} ${classes.active}`
-                    : `${classes.link}`
-                }
-              >
-                Blogs
-              </NavLink>
-            </div>
           </Col>
         </Row>
 
@@ -190,6 +170,23 @@ function SideBar({ isShowSideMenu }) {
                 FAQs
               </NavLink>
             </div>
+
+            {/* -------------------------------JSX: COL ITEM--------------------------------------------- */}
+            <div className={classes["sideBar__menu-item"]}>
+              <IoNewspaperOutline
+                className={`${classes.icon} ${classes["icon-blogs"]}`}
+              />
+              <NavLink
+                to="/blogs"
+                className={({ isActive }) =>
+                  isActive
+                    ? `${classes.link} ${classes.active}`
+                    : `${classes.link}`
+                }
+              >
+                Blogs
+              </NavLink>
+            </div>
           </Col>
         </Row>
 
@@ -203,9 +200,13 @@ function SideBar({ isShowSideMenu }) {
               <AiOutlineUser
                 className={`${classes.icon} ${classes["icon-user"]}`}
               />
-              <p className={classes.link} onClick={() => showSideMenuUser()}>
-                User
-              </p>
+              <NavLink
+                to="/login"
+                className={classes.link}
+                onClick={() => showSideMenuUser()}
+              >
+                Login / Register
+              </NavLink>
             </div>
           </Col>
         </Row>
@@ -216,17 +217,11 @@ function SideBar({ isShowSideMenu }) {
 
 export default function SideMenu() {
   const { isShow: isShowSideMenu } = useSelector((state) => state.sideMenu);
-  const { isShow: isShowSideUserMenu } = useSelector(
-    (state) => state.sideUserMenu
-  );
 
   return (
     <>
       {createPortal(
-        <Overlay
-          isShowSideMenu={isShowSideMenu}
-          isShowSideUserMenu={isShowSideUserMenu}
-        />,
+        <Overlay isShowSideMenu={isShowSideMenu} />,
         document.getElementById("overlay-sideMenu")
       )}
       <SideBar isShowSideMenu={isShowSideMenu} />

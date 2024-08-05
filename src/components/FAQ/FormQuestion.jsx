@@ -11,10 +11,10 @@ import { Row, Col } from "antd";
 function FormQuestion() {
   // Create validateSchema by Yup
   const FormQuestionSchema = Yup.object().shape({
-    name: Yup.string().required("Field name is required!"),
+    name: Yup.string().required("Field Name is required!"),
     content: Yup.string()
       .min(5, "Must be 5 characters or more")
-      .required("Field content is required!"),
+      .required("Field Content is required!"),
   });
 
   // Create + use Hooks

@@ -12,7 +12,6 @@ import ScrollTop from "./UI/ScrollTop";
 // ------------------- Layout --------------------
 import RootLayout from "./layout/RootLayout";
 import SideMenu from "./layout/SideMenu";
-import SideUserMenu from "./layout/SideUserMenu";
 
 // ------------------- Pages --------------------
 import Home from "./pages/Home";
@@ -67,7 +66,6 @@ function App() {
       <BrowserRouter>
         <ScrollTop />
         <SideMenu />
-        <SideUserMenu />
 
         {/* -----------------------------------------ROUTER------------------------------------ */}
         <Routes>

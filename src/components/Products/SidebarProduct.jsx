@@ -128,10 +128,11 @@ export default function SidebarProduct() {
   useEffect(() => {
     if (stateProducts && stateProducts.searchedProducts.length > 0) {
       // Update data product after search key
-      if (pathSearch.includes("=")) {
+      if (pathSearch.includes("?category=")) {
         const valueCategorySearch = pathSearch
           .split("=")[1]
           .replace(/%20/g, " ");
+
         setCategoryFilter((prevState) => ({
           ...prevState,
           title: valueCategorySearch,
@@ -247,6 +248,7 @@ export default function SidebarProduct() {
       setProductsFromSearch([]);
     }
 
+    console.log(">>>>>>>>>>>> Option Filter:", optionsFilterObj);
     // Starting filter by options + Get urlQuery follow filter
     const modifiedURL = funcCheckOptionsFilter(pathSearch, optionsFilterObj);
     const modifiedProducts = funcFilterProducts(

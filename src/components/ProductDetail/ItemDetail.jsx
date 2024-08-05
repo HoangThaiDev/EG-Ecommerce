@@ -1,18 +1,27 @@
 // Import Modules
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Import File CSS
 import classes from "./css/itemDetail.module.css";
-import "./css/ant-design/rateItemDetail.css";
+import "./css/ant-design/rateReviewItem.css";
 
 // Import Components
 import { Row, Col, Rate } from "antd";
+import SlideImages from "../../UI/SlideImages";
 
 // Import Icons
 import { IoMdArrowDropright } from "react-icons/io";
 import { IoMdArrowDropleft } from "react-icons/io";
 
 function ItemDetail({ productDetail }) {
+  // Settings Slider Images
+  const settings = {
+    swipe: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    swipe: true,
+  };
+
   // Create + use Hooks
   const [imageActive, setImageActive] = useState(
     productDetail.image_detail.banner
@@ -22,6 +31,13 @@ function ItemDetail({ productDetail }) {
   );
 
   const [countQuantity, setCountQuantity] = useState(1);
+
+  // Side Effect
+  useEffect(() => {
+    // Update Image when client choose another product
+    setImageActive(productDetail.image_detail.banner);
+    setImagesProduct(productDetail.image_detail.images);
+  }, [productDetail]);
 
   // Create + use event Handlers
   const changeImageActivelHandler = (value, index) => {
@@ -68,6 +84,11 @@ function ItemDetail({ productDetail }) {
                   />
                 ))}
               </div>
+              <SlideImages
+                settings={settings}
+                images={imagesProduct}
+                className="slider-images-product"
+              />
             </div>
           </Col>
           <Col className={classes["item-detail-col"]}>
