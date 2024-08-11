@@ -16,7 +16,6 @@ import { IoMdArrowDropleft } from "react-icons/io";
 function ItemDetail({ productDetail }) {
   // Settings Slider Images
   const settings = {
-    swipe: false,
     slidesToShow: 1,
     slidesToScroll: 1,
     swipe: true,
@@ -128,7 +127,7 @@ function ItemDetail({ productDetail }) {
                         (productDetail.price * productDetail.percent_discount) /
                           100
                       : productDetail.price}
-                    <span>({productDetail.unit})</span>
+                    <span>- {productDetail.unit}</span>
                   </p>
                 </div>
               </div>

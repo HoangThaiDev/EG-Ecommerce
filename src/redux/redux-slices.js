@@ -4,6 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 // Create initialStates
 const initialSideMenu = { isShow: false };
 const initialSideUserMenu = { isShow: false };
+const initialModalCart = { isShow: false };
 
 // Create Slide
 const sideMenuSlide = createSlice({
@@ -32,4 +33,18 @@ const sideUserMenuSlide = createSlice({
   },
 });
 
-export { sideMenuSlide, sideUserMenuSlide };
+const modalCartSlide = createSlice({
+  initialState: initialModalCart,
+  name: "modal-cart",
+  reducers: {
+    hide(state) {
+      return { ...state, isShow: false };
+    },
+    show(state, action) {
+      const product = action.payload.item;
+      return { ...state, isShow: true };
+    },
+  },
+});
+
+export { sideMenuSlide, sideUserMenuSlide, modalCartSlide };

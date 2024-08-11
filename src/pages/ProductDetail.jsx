@@ -40,6 +40,7 @@ function ProductDetail() {
         linkBack="Home"
         linkCurrent="Product Details"
       />
+
       {isLoading && <MainSection productDetail={productDetail} />}
     </>
   );

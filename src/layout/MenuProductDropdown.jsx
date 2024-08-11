@@ -9,7 +9,11 @@ import classes from "./css/menuProductDd.module.css";
 // Import Components
 import { Row, Col } from "antd";
 
-export default function MenuProductDropdown({ productSearch, valueName }) {
+export default function MenuProductDropdown({
+  productSearch,
+  valueName,
+  isLoading,
+}) {
   // Create + use Hooks
   const [productSlice, setProductSlice] = useState([]);
   const navigate = useNavigate();
@@ -37,6 +41,7 @@ export default function MenuProductDropdown({ productSearch, valueName }) {
       replace: true,
     });
   };
+
   const showProductsHandler = async () => {
     try {
       const response = await axiosInstance(
@@ -69,34 +74,37 @@ export default function MenuProductDropdown({ productSearch, valueName }) {
     <div className={classes["menu-dropdown"]}>
       <div className={classes["menu-dropdown-container"]}>
         <Row className={classes["menu-dropdown-row"]}>
-          {modifiedProducts.map((p, i) => (
-            <Col className={classes["menu-dropdown-col"]} key={p._id}>
-              <div
-                className={classes["menu-dropdown-card"]}
-                onClick={() => viewProductDetail(p._id, p.name)}
-              >
-                <img src={p.image_detail.banner} alt={p.image_detail.banner} />
-                <div className={classes["card-info"]}>
-                  <h4 className={classes["card-info-name"]}>
-                    <span>{i + 1}.</span> {p.name}
-                  </h4>
-                  <div className={classes["card-info-price"]}>
-                    <p className={classes["price-current"]}>
-                      ${p.price_discount}
-                    </p>
+          {!isLoading &&
+            modifiedProducts.map((p, i) => (
+              <Col className={classes["menu-dropdown-col"]} key={p._id}>
+                <div
+                  className={classes["menu-dropdown-card"]}
+                  onClick={() => viewProductDetail(p._id, p.name)}
+                >
+                  <img
+                    src={p.image_detail.banner}
+                    alt={p.image_detail.banner}
+                  />
+                  <div className={classes["card-info"]}>
+                    <h4 className={classes["card-info-name"]}>
+                      <span>{i + 1}.</span> {p.name}
+                    </h4>
+                    <div className={classes["card-info-price"]}>
+                      <p className={classes["price-current"]}>
+                        ${p.price_discount}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Col>
-          ))}
+              </Col>
+            ))}
+          {isLoading && (
+            <p className={classes["noti-loading-products"]}>Loading...</p>
+          )}
         </Row>
         <div className={classes["menu-dropdown-footer"]}>
           <button
-            className={
-              modifiedProducts.length > 0
-                ? `${classes["btn-show"]} ${classes["btn-show-active"]}`
-                : `${classes["btn-show"]}`
-            }
+            className={classes["btn-show"]}
             type="button"
             onClick={showProductsHandler}
           >

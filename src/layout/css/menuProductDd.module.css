@@ -78,6 +78,7 @@
 /* CSS: Footer */
 .menu-dropdown-footer {
     font-family: "Roboto", sans-serif;
+    margin-top: 20px;
 }
 
 .menu-dropdown-footer .btn-show {
@@ -108,6 +109,10 @@
 /* CSS: Active */
 .card-info-name>span {
     display: none;
+}
+
+.noti-loading-products {
+    font: 500 .9rem/1.2rem "Roboto", sans-serif;
 }
 
 /* CSS: Effect */

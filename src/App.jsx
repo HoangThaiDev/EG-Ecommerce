@@ -26,6 +26,7 @@ import Register from "./pages/Register";
 import SettingAccount from "./pages/SettingAccount";
 import Introduce from "./components/SettingAccount/Introduce";
 import Profile from "./components/SettingAccount/Profile";
+import Cart from "./pages/Cart";
 
 function App() {
   // Create + use Hooks
@@ -78,6 +79,7 @@ function App() {
             <Route path="register" element={<Register />} />
             <Route path="products" element={<Products />} />
             <Route path="product/:productName" element={<ProductDetail />} />
+            <Route path="cart" element={<Cart />} />
 
             <Route path="setting-account" element={<SettingAccount />}>
               <Route index element={<Introduce />} />

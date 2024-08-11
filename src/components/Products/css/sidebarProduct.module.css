@@ -172,6 +172,8 @@
         transition: 1s all ease;
         height: 100vh;
         overflow: scroll;
+        background-color: #fff;
+        z-index: 4;
     }
 
     .icon-show-menu-sidebar {

@@ -248,7 +248,6 @@ export default function SidebarProduct() {
       setProductsFromSearch([]);
     }
 
-    console.log(">>>>>>>>>>>> Option Filter:", optionsFilterObj);
     // Starting filter by options + Get urlQuery follow filter
     const modifiedURL = funcCheckOptionsFilter(pathSearch, optionsFilterObj);
     const modifiedProducts = funcFilterProducts(

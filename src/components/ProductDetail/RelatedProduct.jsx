@@ -40,6 +40,8 @@ export default function RelatedProduct({ category, productId }) {
           rows: 1,
           slidesToScroll: 4,
           speed: 700,
+          autoplay: true,
+          autoplaySpeed: 8000,
         },
       },
       {
@@ -50,6 +52,8 @@ export default function RelatedProduct({ category, productId }) {
           rows: 1,
           slidesToScroll: 3,
           speed: 700,
+          autoplay: true,
+          autoplaySpeed: 8000,
         },
       },
       {
@@ -60,7 +64,7 @@ export default function RelatedProduct({ category, productId }) {
           rows: 1,
           slidesToScroll: 2,
           speed: 1000,
-          autoplay: false,
+          autoplay: true,
           autoplaySpeed: 8000,
         },
       },
@@ -68,9 +72,9 @@ export default function RelatedProduct({ category, productId }) {
         breakpoint: 575,
         settings: {
           swipe: true,
-          slidesToShow: 2,
+          slidesToShow: 1,
           rows: 1,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
           speed: 1000,
           autoplay: true,
           autoplaySpeed: 8000,

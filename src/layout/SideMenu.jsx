@@ -1,5 +1,5 @@
 // Import Modules
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createPortal } from "react-dom";
 import reduxActions from "../redux/redux-actions";
@@ -222,11 +222,9 @@ export default function SideMenu() {
     <>
       {createPortal(
         <Overlay isShowSideMenu={isShowSideMenu} />,
-        document.getElementById("overlay-sideMenu")
+        document.getElementById("overlay")
       )}
       <SideBar isShowSideMenu={isShowSideMenu} />
     </>
   );
 }
-
-export { Overlay };

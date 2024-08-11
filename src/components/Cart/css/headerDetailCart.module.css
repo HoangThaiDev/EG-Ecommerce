@@ -1,0 +1,69 @@
+.bg-title {
+    flex: 1;
+    height: 60px;
+    line-height: 60px;
+}
+
+.bg-title.selected {
+    flex: .5;
+}
+
+.bg-title.image {
+    flex: 1;
+}
+
+.bg-title.name {
+    flex: 2;
+}
+
+.bg-title.quantity {
+    flex: 0.7;
+}
+
+.bg-title.unite-price {
+    flex: 1;
+}
+
+.bg-title.discount-price {
+    flex: 1;
+}
+
+.bg-title.subtotal {
+    flex: 1.3;
+}
+
+.bg-title.action {
+    flex: .7
+}
+
+.bg-title:nth-child(1) .input-select-items {
+    position: relative;
+    width: 15px;
+    height: 15px;
+    top: 2px;
+}
+
+.bg-title>h4 {
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    font-size: .9rem;
+    letter-spacing: .6px;
+    color: #fff;
+}
+
+/* CSS: Responsives */
+@media screen and (max-width:575px) {
+    .bg-title {
+        display: none;
+    }
+
+    .bg-title:first-child {
+        display: block;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width:765px) {}
+
+@media screen and (min-width:766px) and (max-width:991px) {}
+
+@media screen and (min-width:992px) and (max-width:1199px) {}

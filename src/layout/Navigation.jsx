@@ -17,19 +17,21 @@ import { LuUser2 } from "react-icons/lu";
 import { IoMenuOutline } from "react-icons/io5";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { FiPhoneCall } from "react-icons/fi";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useTransition } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 import { IoMdCloseCircle } from "react-icons/io";
 
 export default function Navigation() {
   // Get API From Server
   const { products } = useContext(APIContext);
+
   // Create + use Hooks
-  const [isScrollActive, setIsScrollActive] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const state = useLocation();
+  const [isLoading, startTransaction] = useTransition();
 
+  const [isScrollActive, setIsScrollActive] = useState(false);
   const [isShowMenuDropdown, setIsShowMenuDropdown] = useState(false);
   const [productSearch, setProductSearch] = useState([]);
   const [valueName, setValueName] = useState(
@@ -79,8 +81,10 @@ export default function Navigation() {
     } else {
       setIsShowMenuDropdown(false);
     }
-    setProductSearch(filterProducts);
-    setValueName(valueSearch);
+    startTransaction(() => {
+      setProductSearch(filterProducts);
+      setValueName(valueSearch);
+    });
   };
 
   const clearValueIpnutSearchHandler = () => {
@@ -95,8 +99,8 @@ export default function Navigation() {
     dispatch(reduxActions.sideMenu.toggleSideMenu());
   };
 
-  const nextPageHandler = () => {
-    navigate("/login");
+  const nextPageHandler = (linkPage) => {
+    navigate(`/${linkPage}`);
   };
 
   const searchProductsHandler = (event) => {
@@ -190,6 +194,7 @@ export default function Navigation() {
               <MenuProductDropdown
                 productSearch={productSearch}
                 valueName={valueName}
+                isLoading={isLoading}
               />
             )}
           </Col>
@@ -200,7 +205,7 @@ export default function Navigation() {
               <div className={classes["menu__icon"]}>
                 <LuUser2
                   className={`${classes.icon} ${classes["icon-user"]}`}
-                  onClick={nextPageHandler}
+                  onClick={() => nextPageHandler("login")}
                 />
               </div>
               <div className={classes["menu__icon"]}>
@@ -209,7 +214,10 @@ export default function Navigation() {
                   onClick={showSideMenu}
                 />
               </div>
-              <div className={classes["menu__icon"]}>
+              <div
+                className={classes["menu__icon"]}
+                onClick={() => nextPageHandler("cart")}
+              >
                 <AiOutlineShoppingCart
                   className={`${classes.icon} ${classes["icon-cart"]}`}
                 />
