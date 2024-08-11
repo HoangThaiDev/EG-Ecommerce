@@ -1,5 +1,7 @@
 // Import Modules
 import React from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 // Import File CSS
 import classes from "./css/form.module.css";
@@ -12,6 +14,26 @@ import { FaGoogle } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 
 function Form() {
+  // Create Schema Validate Yup
+  const FormLoginSchema = Yup.object().shape({
+    email: Yup.string()
+      .required("Email is required!")
+      .matches(/^[A-Z0-9]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, "Invalid Email!"),
+    password: Yup.string().required("Password is required"),
+  });
+
+  // Create + use Hooks
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: FormLoginSchema,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
+
   return (
     <div className={classes["main-login"]}>
       <div className={classes["main-login-container"]}>
@@ -32,22 +54,48 @@ function Form() {
         <form className={classes["main-login-form"]}>
           <h2>Login Your Account</h2>
           <div className={classes["form-input"]}>
-            <label htmlFor="email">Email*</label>
+            <label htmlFor="email">
+              Email <span>*</span>
+            </label>
             <input
-              className={classes["form-input-email"]}
+              className={
+                formik.touched.email && formik.errors.email
+                  ? `${classes["input-email"]} ${classes["input-email-error"]}`
+                  : classes["input-email"]
+              }
               type="email"
               id="email"
               placeholder="Your Email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             />
+            {formik.touched.email && (
+              <p className={classes["message-error"]}>{formik.errors.email}</p>
+            )}
           </div>
           <div className={classes["form-input"]}>
-            <label htmlFor="password">Password*</label>
+            <label htmlFor="password">
+              Password <span>*</span>
+            </label>
             <input
-              className={classes["form-input-password"]}
+              className={
+                formik.touched.password && formik.errors.password
+                  ? `${classes["input-password"]} ${classes["input-password-error"]}`
+                  : classes["input-password"]
+              }
               type="password"
-              id="current-password"
+              id="password"
               placeholder="abcdef*******"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             />
+            {formik.touched.password && (
+              <p className={classes["message-error"]}>
+                {formik.errors.password}
+              </p>
+            )}
           </div>
           <div className={classes["form-input-footer"]}>
             <div className={classes["form-input-check-remember"]}>

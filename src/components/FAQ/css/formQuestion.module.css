@@ -8,7 +8,6 @@
     width: 100%;
 }
 
-
 /* CSS: Introduce Header */
 .introduce__header {
     font-family: "Playfair Display", serif;
@@ -90,19 +89,25 @@
     margin-bottom: 10px;
 }
 
-.form-input .form-input-name {
+.form-input>label>span {
+    color: rgba(224, 73, 4, .8);
+    font-weight: 700;
+    margin-left: 2px;
+}
+
+.form-input .input-name {
     width: 100%;
     box-sizing: border-box;
     padding: 10px 15px;
     border: 1px solid rgba(188, 186, 186, .7)
 }
 
-.form-input .form-input-name::placeholder {
+.form-input .input-name::placeholder {
     color: gray;
     font-size: .8rem;
 }
 
-.form-input .form-input-text {
+.form-input .input-desc {
     margin-top: 10px;
     box-sizing: border-box;
     width: 100%;
@@ -110,6 +115,11 @@
     padding: 15px;
     border: 1px solid rgba(188, 186, 186, .7);
     resize: none;
+}
+
+.form-input .input-name-error,
+.form-input .input-desc-error {
+    border: 1px solid rgb(232, 61, 61);
 }
 
 .form-input .error-message-input {
@@ -123,6 +133,7 @@
     margin-top: 20px;
     cursor: pointer;
     font-family: "Roboto", sans-serif;
+    font-size: .9rem;
     color: #fff;
     background-color: rgb(38, 70, 83);
     border: 2px solid transparent;

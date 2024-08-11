@@ -2,19 +2,22 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import Swal from "sweetalert2";
+
 // Import File CSS
 import classes from "./css/formQuestion.module.css";
+import "../../UI/css/popup-message.css";
 
 // Import Component
 import { Row, Col } from "antd";
 
 function FormQuestion() {
-  // Create validateSchema by Yup
+  // Create validateSchema Yup
   const FormQuestionSchema = Yup.object().shape({
-    name: Yup.string().required("Field Name is required!"),
+    name: Yup.string().required("Name is required!"),
     content: Yup.string()
       .min(5, "Must be 5 characters or more")
-      .required("Field Content is required!"),
+      .required("Content is required!"),
   });
 
   // Create + use Hooks
@@ -26,6 +29,18 @@ function FormQuestion() {
     validationSchema: FormQuestionSchema,
     onSubmit: (values) => {
       console.log(values);
+      Swal.fire({
+        customClass: {
+          container: "popup-message-contact",
+        },
+        title: "Thank you!",
+        html: `
+        <p>We will response your message earliest.</p>
+        <p>We happy when serviced to you!</p>
+        `,
+        icon: "success",
+        confirmButtonText: "Close",
+      });
     },
   });
 
@@ -61,9 +76,15 @@ function FormQuestion() {
             onSubmit={formik.handleSubmit}
           >
             <div className={classes["form-input"]}>
-              <label htmlFor="name">Your Name *</label>
+              <label htmlFor="name">
+                Your Name <span>*</span>
+              </label>
               <input
-                className={classes["form-input-name"]}
+                className={
+                  formik.touched.name && formik.errors.name
+                    ? `${classes["input-name"]} ${classes["input-name-error"]}`
+                    : classes["input-name"]
+                }
                 type="text"
                 id="name"
                 name="name"
@@ -80,7 +101,11 @@ function FormQuestion() {
             </div>
             <div className={classes["form-input"]}>
               <textarea
-                className={classes["form-input-text"]}
+                className={
+                  formik.touched.content && formik.errors.content
+                    ? `${classes["input-desc"]} ${classes["input-desc-error"]}`
+                    : classes["input-desc"]
+                }
                 placeholder="Type your question"
                 name="content"
                 value={formik.values.content}

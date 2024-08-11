@@ -1,0 +1,49 @@
+.form-input {
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 0;
+    margin-bottom: 20px;
+}
+
+.form-input>label {
+    width: 100%;
+    color: rgba(38, 70, 83, .9);
+    font-size: .9rem;
+    padding-left: 15px;
+    font-weight: 600;
+}
+
+.form-input>label>span {
+    color: rgba(224, 73, 4, .8);
+    font-weight: 700;
+    margin-left: 2px;
+}
+
+.form-input>input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px 15px;
+    font-size: .8rem;
+    border: 2px solid rgba(128, 128, 128, 0.4)
+}
+
+.form-input .input-firstName-error,
+.form-input .input-lastName-error,
+.form-input .input-password-error,
+.form-input .input-confirmPassword-error,
+.form-input .input-email-error {
+    border: 2px solid rgba(224, 73, 4, .8);
+}
+
+.form-input .message-error {
+    color: rgba(224, 73, 4);
+    font-size: .8rem;
+    letter-spacing: .6px;
+}
+
+.form-input>input::placeholder {
+    font-family: "Roboto", sans-serif;
+    color: gray;
+    font-size: .8rem;
+}

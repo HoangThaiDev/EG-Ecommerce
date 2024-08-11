@@ -61,10 +61,12 @@
 }
 
 .form-input-message>textarea {
+    font-family: "Roboto", sans-serif;
     box-sizing: border-box;
     width: inherit;
     height: 150px;
-    padding: 20px;
+    padding: 12px 20px 12px 15px;
+    border: 2px solid rgb(213, 213, 213);
 }
 
 .form-input>label {
@@ -74,16 +76,30 @@
     font-size: .9rem;
 }
 
+.form-input>label>span {
+    color: rgba(224, 73, 4, .8);
+    font-weight: 700;
+    margin-left: 2px;
+}
+
+.form-input .message-error {
+    color: rgba(224, 73, 4);
+    font-size: .8rem;
+    margin: 8px 0 0 0;
+    letter-spacing: .6px;
+}
+
 .form-input>input {
     box-sizing: border-box;
     width: 100%;
-    padding: 12px 20px;
+    padding: 12px 20px 12px 15px;
     border-radius: 3px;
     border: 2px solid rgb(213, 213, 213);
     font-size: .8rem;
 }
 
-.form-input>input::placeholder {
+.form-input>input::placeholder,
+.form-input>textarea::placeholder {
     font-family: "Roboto", sans-serif;
     color: gray;
     font-size: .8rem;
@@ -100,6 +116,14 @@
     border-radius: 5px;
     background-color: rgb(38, 70, 83);
     transition: .5s all ease;
+}
+
+
+/* CSS: Active */
+.form-input .input-name-error,
+.form-input .input-email-error,
+.form-input .input-desc-error {
+    border: 2px solid rgba(224, 73, 4, .8);
 }
 
 /* CSS: Effect */
