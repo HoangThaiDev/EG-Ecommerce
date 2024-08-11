@@ -28,7 +28,7 @@ function Overlay({ isShowSideMenu }) {
   // Create + use Event handlers
   const hideSideMenu = (event) => {
     if (event.target.classList.value) {
-      dispatch(reduxActions.sideMenu.hideSideMenu());
+      dispatch(reduxActions.sideMenu.hide());
     }
   };
 
@@ -50,18 +50,13 @@ function SideBar({ isShowSideMenu }) {
   // Side Effect
   useEffect(() => {
     if (state.pathname !== "") {
-      dispatch(reduxActions.sideMenu.hideSideMenu());
-      dispatch(reduxActions.sideUserMenu.hideSideUserMenu());
+      dispatch(reduxActions.sideMenu.hide());
     }
   }, [state]);
 
   // Create + use Event handlers
   const hideSideMenu = () => {
-    dispatch(reduxActions.sideMenu.toggleSideMenu());
-  };
-
-  const showSideMenuUser = () => {
-    dispatch(reduxActions.sideUserMenu.toggleSideUserMenu());
+    dispatch(reduxActions.sideMenu.toggle());
   };
 
   return (
@@ -200,11 +195,7 @@ function SideBar({ isShowSideMenu }) {
               <AiOutlineUser
                 className={`${classes.icon} ${classes["icon-user"]}`}
               />
-              <NavLink
-                to="/login"
-                className={classes.link}
-                onClick={() => showSideMenuUser()}
-              >
+              <NavLink to="/login" className={classes.link}>
                 Login / Register
               </NavLink>
             </div>

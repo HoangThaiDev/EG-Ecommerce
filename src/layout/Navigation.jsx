@@ -1,9 +1,9 @@
 // Import Modules
-import { useDispatch } from "react-redux";
-import reduxActions from "../redux/redux-actions";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
-import axiosInstance from "../axios/customAxios";
 import { APIContext } from "../storeContext/APIContext";
+import reduxActions from "../redux/redux-actions";
+import axiosInstance from "../axios/customAxios";
 
 // Import File CSS
 import classes from "./css/navigation.module.css";
@@ -29,10 +29,13 @@ export default function Navigation() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const state = useLocation();
+  const { isShow: isMenuDropDownShow } = useSelector(
+    (state) => state.menuDropdown
+  );
+
   const [isLoading, startTransaction] = useTransition();
 
   const [isScrollActive, setIsScrollActive] = useState(false);
-  const [isShowMenuDropdown, setIsShowMenuDropdown] = useState(false);
   const [productSearch, setProductSearch] = useState([]);
   const [valueName, setValueName] = useState(
     JSON.parse(sessionStorage.getItem("search-product"))
@@ -42,7 +45,8 @@ export default function Navigation() {
 
   // Side Effect
   useEffect(() => {
-    setIsShowMenuDropdown(false);
+    // When change page then hide MenuDropdown
+    dispatch(reduxActions.menuDropdown.hide());
   }, [state]);
 
   useEffect(() => {
@@ -77,9 +81,9 @@ export default function Navigation() {
       )
     );
     if (valueSearch.length > 0) {
-      setIsShowMenuDropdown(true);
+      dispatch(reduxActions.menuDropdown.show());
     } else {
-      setIsShowMenuDropdown(false);
+      dispatch(reduxActions.menuDropdown.hide());
     }
     startTransaction(() => {
       setProductSearch(filterProducts);
@@ -91,12 +95,13 @@ export default function Navigation() {
     setIsShowMenuDropdown(false);
     setValueName("");
   };
+
   const goHomeHandler = () => {
     navigate("/");
   };
 
   const showSideMenu = () => {
-    dispatch(reduxActions.sideMenu.toggleSideMenu());
+    dispatch(reduxActions.sideMenu.toggle());
   };
 
   const nextPageHandler = (linkPage) => {
@@ -190,7 +195,7 @@ export default function Navigation() {
             </form>
 
             {/* -------------------------JSX: Menu Product Dropdown------------------------------- */}
-            {isShowMenuDropdown && (
+            {isMenuDropDownShow && (
               <MenuProductDropdown
                 productSearch={productSearch}
                 valueName={valueName}
@@ -221,7 +226,7 @@ export default function Navigation() {
                 <AiOutlineShoppingCart
                   className={`${classes.icon} ${classes["icon-cart"]}`}
                 />
-                <span>10</span>
+                <span className={classes["quantity-item-cart"]}>10</span>
               </div>
             </div>
           </Col>

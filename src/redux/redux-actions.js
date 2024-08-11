@@ -1,13 +1,13 @@
 // Import Slice
 import {
   sideMenuSlide,
-  sideUserMenuSlide,
+  menuDropdownSlide,
   modalCartSlide,
 } from "./redux-slices";
 
 const reduxActions = {
   sideMenu: sideMenuSlide.actions,
-  sideUserMenu: sideUserMenuSlide.actions,
+  menuDropdown: menuDropdownSlide.actions,
   modalCart: modalCartSlide.actions,
 };
 

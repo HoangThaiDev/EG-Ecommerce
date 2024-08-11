@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 // Create initialStates
 const initialSideMenu = { isShow: false };
-const initialSideUserMenu = { isShow: false };
+const initialMenuDropdown = { isShow: false };
 const initialModalCart = { isShow: false };
 
 // Create Slide
@@ -11,23 +11,23 @@ const sideMenuSlide = createSlice({
   name: "sideMenu",
   initialState: initialSideMenu,
   reducers: {
-    toggleSideMenu(state) {
+    toggle(state) {
       return { ...state, isShow: !state.isShow };
     },
-    hideSideMenu(state) {
+    hide(state) {
       return { ...state, isShow: false };
     },
   },
 });
 
-const sideUserMenuSlide = createSlice({
-  name: "sideMenu",
-  initialState: initialSideUserMenu,
+const menuDropdownSlide = createSlice({
+  name: "menu-dropdown",
+  initialState: initialMenuDropdown,
   reducers: {
-    toggleSideUserMenu(state) {
-      return { ...state, isShow: !state.isShow };
+    show(state) {
+      return { ...state, isShow: true };
     },
-    hideSideUserMenu(state) {
+    hide(state) {
       return { ...state, isShow: false };
     },
   },
@@ -47,4 +47,4 @@ const modalCartSlide = createSlice({
   },
 });
 
-export { sideMenuSlide, sideUserMenuSlide, modalCartSlide };
+export { sideMenuSlide, menuDropdownSlide, modalCartSlide };

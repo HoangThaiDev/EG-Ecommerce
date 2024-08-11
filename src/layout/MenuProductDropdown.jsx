@@ -1,7 +1,9 @@
 // Import Modules
-import React, { useEffect, useState, useMemo } from "react";
-import axiosInstance from "../axios/customAxios";
+import React, { useEffect, useState, useMemo, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import axiosInstance from "../axios/customAxios";
+import reduxActions from "../redux/redux-actions";
 
 // Import File CSS
 import classes from "./css/menuProductDd.module.css";
@@ -16,12 +18,49 @@ export default function MenuProductDropdown({
 }) {
   // Create + use Hooks
   const [productSlice, setProductSlice] = useState([]);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const navigate = useNavigate();
+  const menuDropDownRef = useRef();
+  const dispatch = useDispatch();
 
-  // Updating when client search value
+  // Side Effect
   useEffect(() => {
+    // Updating when client search value
     setProductSlice(productSearch.slice(0, 9));
   }, [productSearch]);
+
+  useEffect(() => {
+    // function get position of cursor
+    const handleMouseMove = (event) => {
+      setMousePosition({
+        x: event.clientX,
+        y: event.clientY,
+      });
+    };
+
+    // Get position of menu-dropdown element
+    const element = menuDropDownRef.current;
+    if (element) {
+      const rect = element.getBoundingClientRect();
+
+      // compare between cursor and element
+      if (
+        mousePosition.x > 0 &&
+        (mousePosition.x > rect.right ||
+          mousePosition.x < rect.left ||
+          mousePosition.y > rect.bottom ||
+          mousePosition.y < rect.top)
+      ) {
+        dispatch(reduxActions.menuDropdown.hide());
+      }
+    }
+
+    window.addEventListener("click", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("click", handleMouseMove);
+    };
+  }, [mousePosition]);
 
   const modifiedProducts = useMemo(() => {
     return productSlice.filter((product) => {
@@ -71,7 +110,7 @@ export default function MenuProductDropdown({
   };
 
   return (
-    <div className={classes["menu-dropdown"]}>
+    <div className={classes["menu-dropdown"]} ref={menuDropDownRef}>
       <div className={classes["menu-dropdown-container"]}>
         <Row className={classes["menu-dropdown-row"]}>
           {!isLoading &&
