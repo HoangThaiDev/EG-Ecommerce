@@ -20,24 +20,6 @@ function SectionDetailCart({
   // Create + use Hooks
   const navigate = useNavigate();
 
-  const updateItem = useMemo(() => {
-    //name, price, price_discount
-
-    item.price_discount = (
-      item.price -
-      (item.price * item.percent_discount) / 100
-    ).toFixed(2);
-
-    // Modified price value
-    let priceString = item.price.toString();
-    if (priceString.length === 1) {
-      item.price = priceString + ".00";
-    }
-
-    return item;
-  }, []);
-  console.log(updateItem);
-
   // Create + use event handlers
   const deleteItemHandler = (item) => {
     console.log(item);
