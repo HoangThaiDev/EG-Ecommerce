@@ -48,15 +48,22 @@ function ItemDetail({ productDetail }) {
     setImagesProduct(cloneImagesProduct);
   };
 
-  const changeCountQuantityHandler = (option) => {
+  const changeCountQuantityHandler = (e, option) => {
     if (option === "i") {
-      setCountQuantity((prevState) => prevState + 1);
+      setCountQuantity((prevState) => Number(prevState) + 1);
       return false;
     }
 
     if (option === "d" && countQuantity > 1) {
-      setCountQuantity((prevState) => prevState - 1);
+      setCountQuantity((prevState) => Number(prevState) - 1);
       return false;
+    }
+    if (option === "input") {
+      if (e.target.value.length === 0) {
+        setCountQuantity(e.target.value + 1);
+      } else {
+        setCountQuantity(e.target.value);
+      }
     }
   };
 
@@ -123,9 +130,12 @@ function ItemDetail({ productDetail }) {
                   <p className={classes["price-current"]}>
                     Price: $
                     {productDetail.percent_discount !== 0
-                      ? productDetail.price -
-                        (productDetail.price * productDetail.percent_discount) /
-                          100
+                      ? (
+                          productDetail.price -
+                          (productDetail.price *
+                            productDetail.percent_discount) /
+                            100
+                        ).toFixed(2)
                       : productDetail.price}
                     <span>- {productDetail.unit}</span>
                   </p>
@@ -142,12 +152,17 @@ function ItemDetail({ productDetail }) {
                   <div className={classes["flex-number"]}>
                     <IoMdArrowDropleft
                       className={classes["btn-decrease-quantity"]}
-                      onClick={() => changeCountQuantityHandler("d")}
+                      onClick={(e) => changeCountQuantityHandler(e, "d")}
                     />
-                    <span>{countQuantity}</span>
+                    <input
+                      type="number"
+                      className={classes["input-quantity"]}
+                      value={countQuantity}
+                      onChange={(e) => changeCountQuantityHandler(e, "input")}
+                    />
                     <IoMdArrowDropright
                       className={classes["btn-increase-quantity"]}
-                      onClick={() => changeCountQuantityHandler("i")}
+                      onClick={(e) => changeCountQuantityHandler(e, "i")}
                     />
                   </div>
                 </div>

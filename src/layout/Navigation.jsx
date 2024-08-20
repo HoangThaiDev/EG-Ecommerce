@@ -92,7 +92,7 @@ export default function Navigation() {
   };
 
   const clearValueIpnutSearchHandler = () => {
-    setIsShowMenuDropdown(false);
+    dispatch(reduxActions.menuDropdown.hide());
     setValueName("");
   };
 

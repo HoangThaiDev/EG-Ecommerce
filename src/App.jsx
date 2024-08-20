@@ -33,7 +33,7 @@ function App() {
   const btnScrollRef = useRef(null);
 
   useEffect(() => {
-    const btnScrollHandler = async () => {
+    const btnScrollHandler = () => {
       if (window.scrollY > 250) {
         btnScrollRef.current.classList.add("scroll");
       } else {

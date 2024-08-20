@@ -17,9 +17,8 @@
 .slider-categories .slide-item {
     position: relative;
     border: 2px solid rgba(220, 217, 217, 0.3);
-    width: 150px !important;
     padding: 30px 10px;
-    margin: 0 25px;
+    margin: 0 15px;
     top: 30px;
     transition: 1s all ease;
 }
@@ -41,7 +40,8 @@
 .slider-categories .slick-arrow {
     border: 2px solid rgb(224, 196, 157);
     border-radius: 100%;
-    padding: 8px;
+    height: 40px;
+    width: 40px;
     transition: 0.3s all ease;
 }
 
@@ -55,14 +55,13 @@
 
 .slider-categories .slick-next::before {
     content: '\21FE';
-    top: -5px;
+    top: 4px;
 }
 
 .slider-categories .slick-prev::before {
     content: '\21FD';
-    top: -5px;
+    top: 4px;
 }
-
 
 /* CSS: Active */
 

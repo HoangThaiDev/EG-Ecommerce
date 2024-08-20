@@ -1,39 +1,11 @@
-.bg-title {
-    flex: 1;
+.list-title-container {
+    width: 100%;
     height: 60px;
-    line-height: 60px;
-}
-
-.bg-title.selected {
-    flex: .5;
-}
-
-.bg-title.image {
-    flex: 1;
-}
-
-.bg-title.name {
-    flex: 2;
-}
-
-.bg-title.quantity {
-    flex: 0.7;
-}
-
-.bg-title.unite-price {
-    flex: 1;
-}
-
-.bg-title.discount-price {
-    flex: 1;
-}
-
-.bg-title.subtotal {
-    flex: 1.3;
-}
-
-.bg-title.action {
-    flex: .7
+    display: grid;
+    grid-template-columns: 70px 1fr 150px 150px 100px;
+    align-items: center;
+    box-shadow: 2px 5px 10px 2px rgba(203, 211, 215, 0.4);
+    background-color: rgb(55, 100, 122);
 }
 
 .bg-title:nth-child(1) .input-select-items {
@@ -53,17 +25,97 @@
 
 /* CSS: Responsives */
 @media screen and (max-width:575px) {
+    .list-title-container {
+        position: relative;
+        width: 100%;
+        grid-template-columns: 40px 1fr 70px;
+    }
+
     .bg-title {
         display: none;
     }
 
-    .bg-title:first-child {
+    .bg-title.selected {
+        display: block;
+    }
+
+    .bg-title.name {
+        display: block;
+    }
+
+    .bg-title.action {
         display: block;
     }
 }
 
-@media screen and (min-width:576px) and (max-width:765px) {}
+@media screen and (min-width:576px) and (max-width:765px) {
+    .list-title-container {
+        position: relative;
+        width: 100%;
+        grid-template-columns: 60px 1fr 90px;
+    }
 
-@media screen and (min-width:766px) and (max-width:991px) {}
+    .bg-title {
+        display: none;
+    }
 
-@media screen and (min-width:992px) and (max-width:1199px) {}
+    .bg-title.selected {
+        display: block;
+    }
+
+    .bg-title.name {
+        display: block;
+    }
+
+    .bg-title.action {
+        display: block;
+    }
+}
+
+@media screen and (min-width:766px) and (max-width:991px) {
+    .list-title-container {
+        position: relative;
+        width: 100%;
+        grid-template-columns: 80px 1fr 100px;
+    }
+
+    .bg-title {
+        display: none;
+    }
+
+    .bg-title.selected {
+        display: block;
+    }
+
+    .bg-title.name {
+        display: block;
+    }
+
+    .bg-title.action {
+        display: block;
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+    .list-title-container {
+        position: relative;
+        width: 100%;
+        grid-template-columns: 80px 1fr 100px;
+    }
+
+    .bg-title {
+        display: none;
+    }
+
+    .bg-title.selected {
+        display: block;
+    }
+
+    .bg-title.name {
+        display: block;
+    }
+
+    .bg-title.action {
+        display: block;
+    }
+}

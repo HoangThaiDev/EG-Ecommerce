@@ -6,7 +6,7 @@ import classes from "./css/headerDetailCart.module.css";
 
 function HeaderDetailCart({ onSaveSelectAllItems, isSelectedItems }) {
   return (
-    <>
+    <div className={classes["list-title-container"]}>
       <div className={`${classes["bg-title"]} ${classes["selected"]}`}>
         <input
           type="checkbox"
@@ -15,17 +15,8 @@ function HeaderDetailCart({ onSaveSelectAllItems, isSelectedItems }) {
           onChange={onSaveSelectAllItems}
         />
       </div>
-      <div className={`${classes["bg-title"]} ${classes["image"]}`}>
-        <h4 className={classes["title-image"]}>Image</h4>
-      </div>
       <div className={`${classes["bg-title"]} ${classes["name"]}`}>
         <h4 className={classes["title-product"]}>Product Name</h4>
-      </div>
-      <div className={`${classes["bg-title"]} ${classes["unite-price"]}`}>
-        <h4 className={classes["title-unite-price"]}>Unite Price</h4>
-      </div>
-      <div className={`${classes["bg-title"]} ${classes["discount-price"]}`}>
-        <h4 className={classes["title-discount-price"]}>Discount Price</h4>
       </div>
       <div className={`${classes["bg-title"]} ${classes["quantity"]}`}>
         <h4 className={classes["title-quantity"]}>Quantity</h4>
@@ -36,7 +27,7 @@ function HeaderDetailCart({ onSaveSelectAllItems, isSelectedItems }) {
       <div className={`${classes["bg-title"]} ${classes["action"]}`}>
         <h4 className={classes["title-action"]}>Action</h4>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -12,11 +12,8 @@
 /* CSS: Detail Cart Col Title */
 .col-title {
     width: 100%;
-    display: grid;
-    grid-template-columns: 70px 140px 280px 140px 140px 100px 180px 90px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    background-color: rgb(55, 100, 122);
 }
 
 /* CSS: Detail Cart Col Item Content */
@@ -28,6 +25,19 @@
 .col-item-content:last-child {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+}
+
+/* CSS: Cast */
+.cast {
+    background-color: red;
+    width: 100%;
+    height: 50px;
+    position: relative;
+}
+
+.cast.sticky {
+    position: sticky;
+    bottom: 0;
 }
 
 /* CSS: Icons */
@@ -43,11 +53,11 @@
     left: 0;
     z-index: -1;
     opacity: 0;
-    transition: .5s all ease;
+    transition: .8s all ease-in-out;
 }
 
 /* CSS: Active */
-.icon-action-delete.active {
+.col-title.active .icon-action-delete {
     background-color: rgb(213, 72, 29);
     z-index: 1;
     opacity: 1;
@@ -55,7 +65,7 @@
     left: -45px;
 }
 
-.icon-action-view.active {
+.col-title.active .icon-action-view {
     background-color: rgb(34, 94, 167);
     z-index: 1;
     opacity: 1;
@@ -68,13 +78,200 @@
 @media screen and (max-width:575px) {
     .detail-cart-container {
         width: 90%;
-        background-color: red;
+    }
+
+    .col-title {
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .col-title .icon-action-delete,
+    .col-title .icon-action-view {
+        position: absolute;
+        border-radius: 0;
+        z-index: 1;
+        opacity: 1;
+        height: 60px;
+        padding: 0 20px;
+        font-size: 1.3rem;
+    }
+
+    .col-title .icon-action-delete {
+        background-color: rgb(213, 72, 29);
+        left: auto;
+        right: -100px;
+    }
+
+    .col-title .icon-action-view {
+        background-color: rgb(34, 94, 167);
+        left: auto;
+        right: -100px;
+        transition-delay: .3s;
+    }
+
+    /* CSS: Active */
+    .col-title.active .icon-action-delete {
+        top: 0;
+        left: auto;
+        right: 64px;
+        transition-delay: .5s;
+    }
+
+    .col-title.active .icon-action-view {
+        top: 0;
+        left: auto;
+        right: 0;
     }
 
 }
 
-@media screen and (min-width:576px) and (max-width:765px) {}
+@media screen and (min-width:576px) and (max-width:765px) {
+    .detail-cart-container {
+        width: 90%;
+    }
 
-@media screen and (min-width:766px) and (max-width:991px) {}
+    .col-title {
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+    }
 
-@media screen and (min-width:992px) and (max-width:1199px) {}
+    .col-title .icon-action-delete,
+    .col-title .icon-action-view {
+        position: absolute;
+        border-radius: 0;
+        z-index: 1;
+        opacity: 1;
+        height: 60px;
+        padding: 0 20px;
+        font-size: 1.3rem;
+    }
+
+    .col-title .icon-action-delete {
+        background-color: rgb(213, 72, 29);
+        left: auto;
+        right: -100px;
+    }
+
+    .col-title .icon-action-view {
+        background-color: rgb(34, 94, 167);
+        left: auto;
+        right: -100px;
+        transition-delay: .3s;
+    }
+
+    /* CSS: Active */
+    .col-title.active .icon-action-delete {
+        top: 0;
+        left: auto;
+        right: 60px;
+        transition-delay: .5s;
+    }
+
+    .col-title.active .icon-action-view {
+        top: 0;
+        left: auto;
+        right: 0;
+    }
+}
+
+@media screen and (min-width:766px) and (max-width:991px) {
+    .detail-cart-container {
+        width: 90%;
+    }
+
+    .col-title {
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .col-title .icon-action-delete,
+    .col-title .icon-action-view {
+        position: absolute;
+        border-radius: 0;
+        z-index: 1;
+        opacity: 1;
+        height: 60px;
+        padding: 0 20px;
+        font-size: 1.3rem;
+    }
+
+    .col-title .icon-action-delete {
+        background-color: rgb(213, 72, 29);
+        left: auto;
+        right: -100px;
+    }
+
+    .col-title .icon-action-view {
+        background-color: rgb(34, 94, 167);
+        left: auto;
+        right: -100px;
+        transition-delay: .3s;
+    }
+
+    /* CSS: Active */
+    .col-title.active .icon-action-delete {
+        top: 0;
+        left: auto;
+        right: 64px;
+        transition-delay: .5s;
+    }
+
+    .col-title.active .icon-action-view {
+        top: 0;
+        left: auto;
+        right: 0;
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+    .detail-cart-container {
+        width: 90%;
+    }
+
+    .col-title {
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .col-title .icon-action-delete,
+    .col-title .icon-action-view {
+        position: absolute;
+        border-radius: 0;
+        z-index: 1;
+        opacity: 1;
+        height: 60px;
+        padding: 0 20px;
+        font-size: 1.3rem;
+    }
+
+    .col-title .icon-action-delete {
+        background-color: rgb(213, 72, 29);
+        left: auto;
+        right: -100px;
+    }
+
+    .col-title .icon-action-view {
+        background-color: rgb(34, 94, 167);
+        left: auto;
+        right: -100px;
+        transition-delay: .3s;
+    }
+
+    /* CSS: Active */
+    .col-title.active .icon-action-delete {
+        top: 0;
+        left: auto;
+        right: 64px;
+        transition-delay: .5s;
+    }
+
+    .col-title.active .icon-action-view {
+        top: 0;
+        left: auto;
+        right: 0;
+    }
+}

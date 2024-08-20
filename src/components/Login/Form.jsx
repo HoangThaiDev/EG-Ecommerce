@@ -51,7 +51,10 @@ function Form() {
           </Link>
         </div>
 
-        <form className={classes["main-login-form"]}>
+        <form
+          className={classes["main-login-form"]}
+          onSubmit={formik.handleSubmit}
+        >
           <h2>Login Your Account</h2>
           <div className={classes["form-input"]}>
             <label htmlFor="email">

@@ -62,16 +62,6 @@ export default function MenuProductDropdown({
     };
   }, [mousePosition]);
 
-  const modifiedProducts = useMemo(() => {
-    return productSlice.filter((product) => {
-      product.price_discount = (
-        product.price -
-        (product.price * product.percent_discount) / 100
-      ).toFixed(2);
-      return product;
-    });
-  }, [productSlice]);
-
   // Create + use event handlers
   const viewProductDetail = (product_id, product_name) => {
     const modifiedProductName = product_name.split(" ").join("-");
@@ -114,7 +104,7 @@ export default function MenuProductDropdown({
       <div className={classes["menu-dropdown-container"]}>
         <Row className={classes["menu-dropdown-row"]}>
           {!isLoading &&
-            modifiedProducts.map((p, i) => (
+            productSlice.map((p, i) => (
               <Col className={classes["menu-dropdown-col"]} key={p._id}>
                 <div
                   className={classes["menu-dropdown-card"]}
@@ -125,12 +115,10 @@ export default function MenuProductDropdown({
                     alt={p.image_detail.banner}
                   />
                   <div className={classes["card-info"]}>
-                    <h4 className={classes["card-info-name"]}>
-                      <span>{i + 1}.</span> {p.name}
-                    </h4>
+                    <h4 className={classes["card-info-name"]}>{p.name}</h4>
                     <div className={classes["card-info-price"]}>
                       <p className={classes["price-current"]}>
-                        ${p.price_discount}
+                        ${p.price_discount ? p.price_discount : p.price}
                       </p>
                     </div>
                   </div>

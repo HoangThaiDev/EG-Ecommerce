@@ -126,8 +126,10 @@
 }
 
 .nav__col__contact>p:nth-child(2) {
-    color: gray;
+    color: rgba(128, 128, 128, .7);
+    font-weight: 600;
     font-size: 0.8rem;
+    letter-spacing: .6px;
 }
 
 .nav__col__contact>p:nth-child(3) {
@@ -159,8 +161,6 @@
     font-size: .5rem;
     display: grid;
     place-content: center;
-    height: 10px;
-    width: 10px;
     border-radius: 100%;
     padding: 3px;
     top: -4px;

@@ -84,15 +84,7 @@ export default function BestSellerProducts({ products }) {
 
   // Create + use Hooks
   const filteredBestSellerProducts = useMemo(() => {
-    return products.filter((product) => {
-      if (product.best_seller) {
-        product.price_discount = (
-          product.price -
-          (product.price * product.percent_discount) / 100
-        ).toFixed(2);
-        return product;
-      }
-    });
+    return products.filter((product) => product.best_seller);
   }, []);
 
   // Create + use event handlers

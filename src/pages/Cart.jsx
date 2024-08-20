@@ -13,8 +13,8 @@ export default function Cart() {
   return (
     <>
       <Header title="Cart" linkBack="Home" linkCurrent="Cart" />
-      {isShowModalCart && <ModalCart />}
-      <DetailCart />
+      {/* {isShowModalCart && <ModalCart />}
+      <DetailCart /> */}
     </>
   );
 }

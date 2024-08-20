@@ -1,7 +1,5 @@
 // Import Modules
-import React, { memo } from "react";
-import reduxActions from "../../redux/redux-actions";
-import { useDispatch } from "react-redux";
+import React, { memo, useMemo } from "react";
 
 // Import File CSS
 import classes from "./css/sectionDetailCart.module.css";
@@ -10,25 +8,37 @@ import classes from "./css/sectionDetailCart.module.css";
 import { FaMinus } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
 import { IoCloseSharp } from "react-icons/io5";
-import { BsInfoLg } from "react-icons/bs";
 import { GrSearchAdvanced } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
 
 function SectionDetailCart({
   item,
-  onSaveUpdateQuantityItem,
-  onSaveChangeQuantity,
-  onSaveSelectItem,
+  onUpdateQuantityItem,
+  onChangeQuantity,
+  onSelectItem,
 }) {
   // Create + use Hooks
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // Create + use event handlers
-  const viewDetailItemHandler = (item) => {
-    dispatch(reduxActions.modalCart.show({ item }));
-  };
+  const updateItem = useMemo(() => {
+    //name, price, price_discount
 
+    item.price_discount = (
+      item.price -
+      (item.price * item.percent_discount) / 100
+    ).toFixed(2);
+
+    // Modified price value
+    let priceString = item.price.toString();
+    if (priceString.length === 1) {
+      item.price = priceString + ".00";
+    }
+
+    return item;
+  }, []);
+  console.log(updateItem);
+
+  // Create + use event handlers
   const deleteItemHandler = (item) => {
     console.log(item);
   };
@@ -52,49 +62,47 @@ function SectionDetailCart({
           type="checkbox"
           className={classes["input-select-items"]}
           checked={item.checked || false}
-          onChange={(e) => onSaveSelectItem(e, item.id)}
+          onChange={(e) => onSelectItem(e, item.id)}
         />
       </div>
-      <div className={`${classes["bg-content"]} ${classes["image"]}`}>
+      <div className={`${classes["bg-content"]} ${classes["product"]}`}>
         <img
           src={item.image}
           alt={item.image}
           loading="lazy"
-          onClick={() => viewDetailProductHandler(item.id, item.name)}
+          onClick={() => viewDetailProductHandler(item)}
         />
-      </div>
-      <div className={`${classes["bg-content"]} ${classes["name"]}`}>
-        <p
-          className={classes["product"]}
-          onClick={() => viewDetailProductHandler(item.id, item.name)}
-        >
-          {item.name}
-        </p>
-      </div>
-      <div className={`${classes["bg-content"]} ${classes["unite-price"]}`}>
-        <p className={classes["unite-price"]}>${item.price}.00</p>
-      </div>
-      <div className={`${classes["bg-content"]} ${classes["discount-price"]}`}>
-        {item.percent_discount > 0 && (
-          <p className={classes["discount-price"]}>${item.discount_price}.00</p>
-        )}
+        <div className={classes["product-detail"]}>
+          <p
+            className={classes["product-detail-name"]}
+            onClick={() => viewDetailProductHandler(item.id, item.name)}
+          >
+            {item.name}
+          </p>
+          <p className={classes["product-detail-price"]}>${item.price}</p>
+          {item.percent_discount > 0 && (
+            <p className={classes["product-detail-discount-price"]}>
+              ${item.discount_price}.00
+            </p>
+          )}
+        </div>
       </div>
       <div className={`${classes["bg-content"]} ${classes["quantity"]}`}>
         <div className={classes["flex-bg-quantity"]}>
           <div className={classes["buttons-update-quantity"]}>
             <FaMinus
-              className={`${classes["icon"]} ${classes["icon-increase"]}`}
-              onClick={() => onSaveUpdateQuantityItem(item.id, "decrease")}
+              className={`${classes["icon"]} ${classes["icon-decrease"]}`}
+              onClick={() => onUpdateQuantityItem(item.id, "decrease")}
             />
             <input
               className={classes["input-quantity"]}
               type="number"
               value={item.quantity}
-              onChange={(e) => onSaveChangeQuantity(e, item.id)}
+              onChange={(e) => onChangeQuantity(e, item.id)}
             />
             <FaPlus
-              className={`${classes["icon"]} ${classes["icon-decrease"]}`}
-              onClick={() => onSaveUpdateQuantityItem(item.id, "increase")}
+              className={`${classes["icon"]} ${classes["icon-increase"]}`}
+              onClick={() => onUpdateQuantityItem(item.id, "increase")}
             />
           </div>
         </div>
@@ -107,26 +115,10 @@ function SectionDetailCart({
           className={`${classes["icon"]} ${classes["icon-action-delete"]}`}
           onClick={() => deleteItemHandler(item)}
         />
-      </div>
-      <div
-        className={
-          item.checked
-            ? `${classes["list-actions"]} ${classes["active"]}`
-            : classes["list-actions"]
-        }
-      >
-        <div className={classes["item-action"]}>
-          <BsInfoLg
-            className={`${classes["icon"]} ${classes["icon-action-view"]}`}
-            onClick={() => viewDetailItemHandler(item)}
-          />
-        </div>
-        <div className={classes["item-action"]}>
-          <GrSearchAdvanced
-            className={`${classes["icon"]} ${classes["icon-action-search-category"]}`}
-            onClick={() => searchItemsSameTypeHandler(item)}
-          />
-        </div>
+        <GrSearchAdvanced
+          className={`${classes["icon"]} ${classes["icon-action-find"]}`}
+          onClick={() => searchItemsSameTypeHandler(item)}
+        />
       </div>
     </div>
   );

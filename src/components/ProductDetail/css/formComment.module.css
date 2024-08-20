@@ -65,18 +65,17 @@
     overflow-y: auto;
 }
 
-.form-input>input::placeholder {
+.form-input>input::placeholder,
+.form-input>textarea::placeholder {
     font: 500 .8rem/1rem "Roboto", sans-serif;
-    color: rgb(86, 86, 86);
+    color: rgb(180, 178, 178);
 }
-
 
 .form-input>label {
     font: 600 .8rem/1rem "Roboto", sans-serif;
     color: rgb(53, 52, 52, .9);
     letter-spacing: .6px;
 }
-
 
 .form-input .btn-post {
     cursor: pointer;
@@ -93,10 +92,25 @@
     transition: .5s all ease;
 }
 
+/* CSS: Active */
+.form-input .input-name-error,
+.form-input .input-email-error,
+.form-input .input-quality-error,
+.form-input .input-true-desc-error,
+.form-input .input-message-error {
+    border: 1px solid rgba(224, 73, 4, .8);
+}
+
+.form-input .message-error {
+    color: rgba(224, 73, 4);
+    font-size: .8rem;
+}
+
 /* CSS: Effect */
 .form-input>input:focus,
 .form-input>textarea:focus {
-    outline: 1px solid rgba(29, 51, 75, 0.9);
+    border: 1px solid rgba(29, 51, 75, 0.9);
+    outline: none;
 }
 
 .form-input .btn-post:hover {

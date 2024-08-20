@@ -59,7 +59,10 @@ function Form() {
           </Link>
         </div>
 
-        <form className={classes["main-register-form"]}>
+        <form
+          className={classes["main-register-form"]}
+          onSubmit={formik.handleSubmit}
+        >
           <h2>Register Your Account</h2>
           <Input
             formik={formik}

@@ -13,11 +13,13 @@ import { Rate } from "antd";
 export default function FormComment() {
   // Create + use validate Schema (Yup)
   const formCommentSchema = Yup.object().shape({
-    name: Yup.string().required("Field Name is required!"),
-    email: Yup.string().required(),
-    qualityProduct: Yup.string().required(),
-    trueToDesc: Yup.string().required(),
-    message: Yup.string().required(),
+    name: Yup.string().required("Name is required!"),
+    email: Yup.string()
+      .required("Email is required!")
+      .matches(/^[A-Z0-9]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, "Invalid Email!"),
+    quality: Yup.string().required("Quality Product is required!"),
+    trueToDesc: Yup.string().required("True to desc is required!"),
+    message: Yup.string().required("Message is required!"),
   });
 
   // Create + use Hooks
@@ -25,7 +27,7 @@ export default function FormComment() {
     initialValues: {
       name: "",
       email: "",
-      qualityProduct: "",
+      quality: "",
       trueToDesc: "",
       message: "",
     },
@@ -35,6 +37,7 @@ export default function FormComment() {
       console.log(values);
     },
   });
+  console.log(formik.errors, formik.touched);
 
   // Create + use event handlers
   const chooseRateProductHandler = (e) => {
@@ -46,34 +49,111 @@ export default function FormComment() {
       <p className={classes["main-content"]}>
         Your email address will not be published. Required fields are marked *
       </p>
-      <form className={classes["main-form"]}>
+      <form className={classes["main-form"]} onSubmit={formik.handleSubmit}>
         <div className={classes["form-input"]}>
           <label htmlFor="name">Your Name *</label>
-          <input type="text" id="name" placeholder="Your Name" />
+          <input
+            className={
+              formik.touched.name && formik.errors.name
+                ? `${classes["input-name"]} ${classes["input-name-error"]}`
+                : classes["input-name"]
+            }
+            type="text"
+            id="name"
+            placeholder="Your Name"
+            value={formik.values.name}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          {formik.touched.name && (
+            <p className={classes["message-error"]}>{formik.errors.name}</p>
+          )}
         </div>
         <div className={classes["form-input"]}>
           <label htmlFor="email">Your Email *</label>
-          <input type="email" id="email" placeholder="Your Email" />
+          <input
+            className={
+              formik.touched.email && formik.errors.email
+                ? `${classes["input-email"]} ${classes["input-email-error"]}`
+                : classes["input-email"]
+            }
+            type="email"
+            id="email"
+            placeholder="Your Email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          {formik.touched.email && (
+            <p className={classes["message-error"]}>{formik.errors.email}</p>
+          )}
         </div>
         <div className={classes["form-input"]}>
           <label htmlFor="quality">Quality Product *</label>
-          <input type="text" id="quality" placeholder="Quality Product" />
+          <input
+            className={
+              formik.touched.quality && formik.errors.quality
+                ? `${classes["input-quality"]} ${classes["input-quality-error"]}`
+                : classes["input-quality"]
+            }
+            type="text"
+            id="quality"
+            placeholder="Quality Product"
+            value={formik.values.quality}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          {formik.touched.quality && (
+            <p className={classes["message-error"]}>{formik.errors.quality}</p>
+          )}
         </div>
         <div className={classes["form-input"]}>
-          <label htmlFor="email">True to description *</label>
-          <input type="email" id="email" placeholder="True to description" />
+          <label htmlFor="trueToDesc">True to description *</label>
+          <input
+            className={
+              formik.touched.trueToDesc && formik.errors.trueToDesc
+                ? `${classes["input-true-desc"]} ${classes["input-true-desc-error"]}`
+                : classes["input-true-desc"]
+            }
+            type="text"
+            id="trueToDesc"
+            placeholder="True to description"
+            value={formik.values.trueToDesc}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          {formik.touched.trueToDesc && (
+            <p className={classes["message-error"]}>
+              {formik.errors.trueToDesc}
+            </p>
+          )}
         </div>
         <div className={classes["form-input"]}>
           <textarea
-            type="email"
-            id="email"
+            className={
+              formik.touched.message && formik.errors.message
+                ? `${classes["input-message"]} ${classes["input-message-error"]}`
+                : classes["input-message"]
+            }
+            type="text"
+            id="message"
             placeholder="Your message"
+            value={formik.values.message}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           ></textarea>
+          {formik.touched.message && (
+            <p className={classes["message-error"]}>{formik.errors.message}</p>
+          )}
         </div>
         <div className={classes["form-input"]}>
-          <label htmlFor="email">Your Rating</label>
-          <Rate onChange={chooseRateProductHandler} className="rate-product" />
-          <button type="button" className={classes["btn-post"]}>
+          <label htmlFor="rating">Your Rating</label>
+          <Rate
+            onChange={chooseRateProductHandler}
+            className="rate-product"
+            value={5}
+          />
+          <button type="submit" className={classes["btn-post"]}>
             Post Comment
           </button>
         </div>

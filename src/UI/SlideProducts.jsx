@@ -1,5 +1,5 @@
 // Import Modules
-import React, { useMemo } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 // Import File CSS
@@ -24,15 +24,6 @@ function CustomSlide(props) {
   // Create + use props
   const { product, isPageProductDetail, ...otherProps } = props;
 
-  // Add + calculate Price Discount (percent-discount > 0)
-  const modifiedProduct = useMemo(() => {
-    product.price_discount = (
-      product.price -
-      (product.price * product.percent_discount) / 100
-    ).toFixed(2);
-    return product;
-  }, [product]);
-
   // Create + use event handlers
   const viewProductDetailHandler = (product_name, product_id) => {
     // Check page current is a page product detail
@@ -55,52 +46,39 @@ function CustomSlide(props) {
   return (
     <div {...otherProps} className="slide-item">
       <div className="card">
-        {modifiedProduct.percent_discount > 0 && (
+        {product.percent_discount > 0 && (
           <span className="card__percent-discount">
-            -{modifiedProduct.percent_discount}% Off
+            -{product.percent_discount}% Off
           </span>
         )}
         <IoSearchSharp
           className="card-icon-search"
-          onClick={() =>
-            viewProductDetailHandler(modifiedProduct.name, modifiedProduct._id)
-          }
+          onClick={() => viewProductDetailHandler(product.name, product._id)}
         />
         <img
-          src={modifiedProduct.image_detail.banner}
-          alt={modifiedProduct.image_detail.banner}
-          onClick={() =>
-            viewProductDetailHandler(modifiedProduct.name, modifiedProduct._id)
-          }
+          src={product.image_detail.banner}
+          alt={product.image_detail.banner}
+          onClick={() => viewProductDetailHandler(product.name, product._id)}
         />
         <div className="card-detail">
           <h3
             className="card-detail-name"
-            onClick={() =>
-              viewProductDetailHandler(
-                modifiedProduct.name,
-                modifiedProduct._id
-              )
-            }
+            onClick={() => viewProductDetailHandler(product.name, product._id)}
           >
-            {modifiedProduct.name}
+            {product.name}
           </h3>
           <div className="card-detail-price">
-            {modifiedProduct.percent_discount > 0 && (
+            {product.price_discount ? (
               <>
-                <p className="card-detail-price-origin-old">
-                  ${modifiedProduct.price}/ {modifiedProduct.unit}
-                </p>
+                <p className="card-detail-price-origin-old">${product.price}</p>
 
                 <p className="card-detail-price-discount">
-                  ${modifiedProduct.price_discount}/ {modifiedProduct.unit}
+                  ${product.price_discount}/ {product.unit}
                 </p>
               </>
-            )}
-
-            {modifiedProduct.percent_discount === 0 && (
+            ) : (
               <p className="card-detail-price-origin">
-                ${modifiedProduct.price}/ {modifiedProduct.unit}
+                ${product.price}/ {product.unit}
               </p>
             )}
           </div>
@@ -109,13 +87,13 @@ function CustomSlide(props) {
               className="card__rates"
               allowHalf
               disabled
-              defaultValue={modifiedProduct.rating}
+              defaultValue={product.rating}
             />
           </div>
           <button
             className="card-detail-btn-add"
             type="button"
-            onClick={() => addToCartHandler(modifiedProduct._id)}
+            onClick={() => addToCartHandler(product._id)}
           >
             Add To Cart
             <HiOutlinePlusSm className="card-detail-icon-btn" />
