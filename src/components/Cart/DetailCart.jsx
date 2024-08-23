@@ -14,35 +14,40 @@ import SectionDetailCart from "./SectionDetailCart";
 // Import Icons
 import { BsInfoLg } from "react-icons/bs";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { RiCoupon3Line } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 
 const DUMMY_CART = [
   {
     id: "1",
     name: "Duck breast",
-    price: 6,
+    price: "6.00",
+    unit: "Kg",
     percent_discount: 20,
     quantity: 1,
-    total_price: 6,
+    total_price: "6.00",
     image:
       "https://res.cloudinary.com/dqrughrs2/image/upload/v1718901079/duck-breast-raw-meat-poultry-barbecue-grill-portion_88242-8715_b50omz.avif",
   },
   {
     id: "2",
     name: "Yogi Tea Stress Relief",
-    price: 2,
+    price: "2.00",
+    unit: "Bag",
     percent_discount: 0,
     quantity: 2,
-    total_price: 4,
+    total_price: "4.00",
     image:
       "https://res.cloudinary.com/dqrughrs2/image/upload/v1719159149/716wiPOTyJL._SL1500__i3at6z.jpg",
   },
   {
     id: "3",
     name: "Cottagse Cheese",
-    price: 10.66,
+    price: "10.66",
+    unit: "Can 500g",
     percent_discount: 0,
     quantity: 1,
-    total_price: 10.66,
+    total_price: "10.66",
     image:
       "https://res.cloudinary.com/dqrughrs2/image/upload/v1718892380/63336882-794f-4c90-9592-7c621c0511cb.de6e73546c563606b4376bbe22888c6f_anvlnt.webp",
   },
@@ -52,30 +57,34 @@ export default function DetailCart() {
   // Create + use Hooks
   const payMentSumaryRef = useRef();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [cart, setCart] = useState(DUMMY_CART);
   const [isSelectedItems, setIsSelectedItems] = useState(false);
   const [isShowActions, setIsShowActions] = useState(false);
 
   // Side Effect DOM
-  // useEffect(() => {
-  //   const showPaymentSummary = () => {
-  //     // 500px
-  //     if (window.scrollY >= 200) {
-  //       payMentSumaryRef.current.classList.add(classes.sticky);
-  //     } else {
-  //       payMentSumaryRef.current.classList.remove(classes.sticky);
-  //     }
-  //   };
+  useEffect(() => {
+    const showPaymentSummary = () => {
+      // 500px
+      if (window.scrollY >= 200) {
+        payMentSumaryRef.current.classList.add(classes.sticky);
+      } else {
+        payMentSumaryRef.current.classList.remove(classes.sticky);
+      }
+    };
 
-  //   window.addEventListener("scroll", showPaymentSummary);
+    window.addEventListener("scroll", showPaymentSummary);
 
-  //   // Clean up event
-  //   return () => {
-  //     window.removeEventListener("scroll", showPaymentSummary);
-  //   };
-  // }, []);
+    // Clean up event
+    return () => {
+      window.removeEventListener("scroll", showPaymentSummary);
+    };
+  }, []);
 
   // Create + use event handlers
+  const checkoutHandler = () => {
+    navigate("/checkout");
+  };
   const findItemIndex = (itemId) => {
     const cloneCart = [...cart];
     const itemIndex = cloneCart.findIndex((item) => item.id === itemId);
@@ -215,7 +224,51 @@ export default function DetailCart() {
             </Col>
           ))}
         </Row>
-        {/* <div className={classes["cast"]} ref={payMentSumaryRef}></div> */}
+
+        <div className={classes["cart-payment"]} ref={payMentSumaryRef}>
+          <div className={classes["cart-payment-container"]}>
+            <div className={classes["coupon-code-main"]}>
+              <RiCoupon3Line className={classes["icon-coupon"]} />
+              <p>Coupon Code</p>
+              <form className={classes["form-coupon"]}>
+                <input
+                  className={classes["input-coupon"]}
+                  type="text"
+                  placeholder="Coupon Code"
+                />
+                <button className={classes["btn-add-coupon"]} type="submit">
+                  Apply Code
+                </button>
+              </form>
+            </div>
+            <div className={classes["cart-payment-section"]}>
+              <div className={classes["cart-payment-section-action"]}>
+                <input type="checkbox" className={classes["input-selects"]} />
+                <button className={classes["btn-select-items"]}>
+                  Select All <span>(0)</span>
+                </button>
+                <button className={classes["btn-delete-cart"]} type="button">
+                  Delete
+                </button>
+              </div>
+              <div className={classes["cart-payment-section-info"]}>
+                <div className={classes["total-price"]}>
+                  <p className={classes["total-price-title"]}>
+                    Total Price <span>(0 Item):</span>
+                  </p>
+                  <p className={classes["total-price-content"]}>$120.29</p>
+                </div>
+                <button
+                  className={classes["btn-checkout"]}
+                  type="button"
+                  onClick={checkoutHandler}
+                >
+                  Proceed To Checkout
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

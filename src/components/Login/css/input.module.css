@@ -2,7 +2,7 @@
     font-family: "Roboto", sans-serif;
     display: flex;
     flex-wrap: wrap;
-    gap: 8px 0;
+    gap: 5px 0;
     margin-bottom: 20px;
 }
 
@@ -29,10 +29,7 @@
     transition: .3s all ease-in-out;
 }
 
-.form-input .input-firstName-error,
-.form-input .input-lastName-error,
 .form-input .input-password-error,
-.form-input .input-confirmPassword-error,
 .form-input .input-email-error {
     border: 2px solid rgba(224, 73, 4, .8);
 }
@@ -40,6 +37,7 @@
 .form-input .message-error {
     color: rgba(224, 73, 4);
     font-size: .8rem;
+    margin: 5px 0 0 0;
     letter-spacing: .6px;
 }
 
@@ -52,31 +50,4 @@
 .form-input>input:focus {
     outline: none;
     border: 2px solid rgba(38, 70, 83, .9);
-}
-
-/* CSS: Responsive */
-
-@media screen and (max-width:575px) {
-    .form-input>label {
-        font-size: .8rem;
-    }
-
-}
-
-@media screen and (min-width:576px) and (max-width:765px) {
-    .form-input>label {
-        font-size: .8rem;
-    }
-}
-
-@media screen and (min-width:766px) and (max-width:991px) {
-    .form-input>label {
-        font-size: .8rem;
-    }
-}
-
-@media screen and (min-width:992px) and (max-width:1199px) {
-    .form-input>label {
-        font-size: .8rem;
-    }
 }

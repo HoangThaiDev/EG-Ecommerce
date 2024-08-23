@@ -9,10 +9,35 @@
 }
 
 .bg-title:nth-child(1) .input-select-items {
+    appearance: none;
+    cursor: pointer;
     position: relative;
+    top: 2px;
     width: 15px;
     height: 15px;
-    top: 2px;
+    background-color: #fff;
+}
+
+.bg-title:nth-child(1) .input-select-items:checked {
+    background-color: #fff;
+}
+
+.bg-title:nth-child(1) .input-select-items::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 4px;
+    width: 7px;
+    height: 12px;
+    border: solid rgb(55, 100, 122);
+    border-width: 0 3.5px 3.5px 0;
+    transform: rotate(45deg);
+    display: none;
+    border-radius: 3px;
+}
+
+.bg-title:nth-child(1) .input-select-items:checked::before {
+    display: block;
 }
 
 .bg-title>h4 {
@@ -43,9 +68,6 @@
         display: block;
     }
 
-    .bg-title.action {
-        display: block;
-    }
 }
 
 @media screen and (min-width:576px) and (max-width:765px) {
@@ -67,55 +89,14 @@
         display: block;
     }
 
-    .bg-title.action {
-        display: block;
-    }
 }
 
 @media screen and (min-width:766px) and (max-width:991px) {
     .list-title-container {
         position: relative;
         width: 100%;
-        grid-template-columns: 80px 1fr 100px;
-    }
-
-    .bg-title {
-        display: none;
-    }
-
-    .bg-title.selected {
-        display: block;
-    }
-
-    .bg-title.name {
-        display: block;
-    }
-
-    .bg-title.action {
-        display: block;
+        grid-template-columns: 70px 1fr 140px 140px 70px;
     }
 }
 
-@media screen and (min-width:992px) and (max-width:1199px) {
-    .list-title-container {
-        position: relative;
-        width: 100%;
-        grid-template-columns: 80px 1fr 100px;
-    }
-
-    .bg-title {
-        display: none;
-    }
-
-    .bg-title.selected {
-        display: block;
-    }
-
-    .bg-title.name {
-        display: block;
-    }
-
-    .bg-title.action {
-        display: block;
-    }
-}
+@media screen and (min-width:992px) and (max-width:1199px) {}

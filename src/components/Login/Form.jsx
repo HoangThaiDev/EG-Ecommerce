@@ -8,6 +8,7 @@ import classes from "./css/form.module.css";
 
 // Import Components
 import { Link } from "react-router-dom";
+import Input from "./Input";
 
 // Import Icons
 import { FaGoogle } from "react-icons/fa";
@@ -56,50 +57,27 @@ function Form() {
           onSubmit={formik.handleSubmit}
         >
           <h2>Login Your Account</h2>
-          <div className={classes["form-input"]}>
-            <label htmlFor="email">
-              Email <span>*</span>
-            </label>
-            <input
-              className={
-                formik.touched.email && formik.errors.email
-                  ? `${classes["input-email"]} ${classes["input-email-error"]}`
-                  : classes["input-email"]
-              }
-              type="email"
-              id="email"
-              placeholder="Your Email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            {formik.touched.email && (
-              <p className={classes["message-error"]}>{formik.errors.email}</p>
-            )}
-          </div>
-          <div className={classes["form-input"]}>
-            <label htmlFor="password">
-              Password <span>*</span>
-            </label>
-            <input
-              className={
-                formik.touched.password && formik.errors.password
-                  ? `${classes["input-password"]} ${classes["input-password-error"]}`
-                  : classes["input-password"]
-              }
-              type="password"
-              id="password"
-              placeholder="abcdef*******"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            {formik.touched.password && (
-              <p className={classes["message-error"]}>
-                {formik.errors.password}
-              </p>
-            )}
-          </div>
+          <Input
+            formik={formik}
+            valueFormik="email"
+            label="Email"
+            id="email"
+            className="input-email"
+            classNameError="input-email-error"
+            placeholder="Your Email"
+            type="email"
+          />
+          <Input
+            formik={formik}
+            valueFormik="password"
+            label="Password"
+            id="password"
+            className="input-password"
+            classNameError="input-password-error"
+            placeholder="Your Password"
+            type="password"
+          />
+
           <div className={classes["form-input-footer"]}>
             <div className={classes["form-input-check-remember"]}>
               <input

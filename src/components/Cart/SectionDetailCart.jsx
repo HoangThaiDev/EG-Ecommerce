@@ -61,12 +61,16 @@ function SectionDetailCart({
           >
             {item.name}
           </p>
-          <p className={classes["product-detail-price"]}>${item.price}</p>
-          {item.percent_discount > 0 && (
-            <p className={classes["product-detail-discount-price"]}>
-              ${item.discount_price}.00
-            </p>
-          )}
+          <p
+            className={classes["product-detail-unit"]}
+            onClick={() => viewDetailProductHandler(item.id, item.name)}
+          >
+            Unit: <span>{item.unit}</span>
+          </p>
+          <p className={classes["product-detail-price"]}>
+            <span className={classes["price-current"]}>${item.price}</span>
+            <span className={classes["price-old"]}>${item.price}</span>
+          </p>
         </div>
       </div>
       <div className={`${classes["bg-content"]} ${classes["quantity"]}`}>

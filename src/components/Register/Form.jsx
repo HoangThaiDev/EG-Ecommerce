@@ -22,10 +22,10 @@ function Form() {
     email: Yup.string()
       .required("Email is required!")
       .matches(/^[A-Z0-9]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, "Invalid Email!"),
-    password: Yup.string().required("Password is required"),
+    password: Yup.string().required("Password is required!"),
     confirmPassword: Yup.string()
-      .required()
-      .oneOf([Yup.ref("password")], "Passwords must match"),
+      .required("Confirm Password is required!")
+      .oneOf([Yup.ref("password")], "Passwords must match!"),
   });
 
   // Create + use Hooks

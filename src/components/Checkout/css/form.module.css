@@ -1,0 +1,130 @@
+.form-checkout {
+    width: 550px;
+}
+
+.form-checkout>h3 {
+    font: 500 1.8rem/1.3rem "Playfair Display", serif;
+    margin-bottom: 50px;
+    color: rgb(45, 45, 45);
+}
+
+.form-checkout-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px 0;
+}
+
+.form-input {
+    width: 47%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form-input:nth-child(3) {
+    /* position: relative; */
+    width: 100%;
+}
+
+.form-input>label {
+    width: 100%;
+    font: 500 1rem/1.3rem "Roboto", sans-serif;
+    color: rgb(73, 72, 72);
+    letter-spacing: .6px;
+    margin-bottom: 5px;
+}
+
+.form-input>label>span {
+    color: rgb(230, 23, 23);
+    font: 700 1rem/1.3rem "Roboto", sans-serif;
+}
+
+.form-input>input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    border: 1px solid rgb(211, 211, 211);
+    padding: 0 20px;
+    transition: .5s all ease-in-out;
+}
+
+.form-input:nth-child(3) .flex-selects-country {
+    position: relative;
+    width: 100%;
+    height: 50px;
+}
+
+.form-input:nth-child(3) .flex-selects-country>input {
+    cursor: pointer;
+    box-sizing: border-box;
+    height: inherit;
+    width: inherit;
+    padding: 0 20px;
+    border: 1px solid rgb(211, 211, 211);
+    transition: .5s all ease-in-out;
+}
+
+.form-input:nth-child(3) .flex-selects-country .icon-dropdown-selects {
+    cursor: pointer;
+    position: absolute;
+    font-size: 1.5rem;
+    color: rgb(186, 87, 10);
+    top: 15px;
+    right: 5px;
+    transform: rotate(-90deg);
+    transition: .3s all ease-in-out;
+}
+
+.menu-dropdown-cities {
+    position: absolute;
+    top: 50px;
+    z-index: 2;
+    background-color: #fff;
+    width: 100%;
+    border: 1px solid rgb(211, 211, 211);
+    border-top: none;
+    opacity: 1;
+    transition: .5s all ease-in-out
+}
+
+.menu-dropdown-cities .form-search {
+    padding: 10px 10px 5px;
+}
+
+.menu-dropdown-cities .form-search>input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+}
+
+.menu-dropdown-cities .list-cities {
+    width: 100%;
+    height: 200px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-dropdown-cities .list-cities .city-name {
+    cursor: pointer;
+    font: 500 .9rem/1.3rem "Roboto", sans-serif;
+    color: rgb(75, 75, 75);
+    padding: 8px 10px;
+}
+
+/* CSS: Active */
+.form-input:nth-child(3) .flex-selects-country .icon-dropdown-selects.active {
+    transform: rotate(0);
+}
+
+/* CSS: Effect */
+.form-input>input:focus,
+.form-input:nth-child(3) .flex-selects-country>input:focus {
+    outline: none;
+    border-color: brown;
+}
+
+.menu-dropdown-cities .list-cities .city-name:hover {
+    background-color: rgba(188, 188, 188, .2);
+}
