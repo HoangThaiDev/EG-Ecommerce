@@ -1,5 +1,6 @@
 // Import Modules
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import dbVietNameProvincesCities from "../../../public/data/vietnam-provinces-cities.json";
 
 // Import File CSS
 import classes from "./css/form.module.css";
@@ -8,145 +9,419 @@ import classes from "./css/form.module.css";
 import { IoMdArrowDropdown } from "react-icons/io";
 
 export default function Form() {
-  const vietnamProvincesAndCities = [
-    { id: 1, name: "An Giang" },
-    { id: 2, name: "Bà Rịa - Vũng Tàu" },
-    { id: 3, name: "Bắc Giang" },
-    { id: 4, name: "Bắc Kạn" },
-    { id: 5, name: "Bạc Liêu" },
-    { id: 6, name: "Bắc Ninh" },
-    { id: 7, name: "Bến Tre" },
-    { id: 8, name: "Bình Định" },
-    { id: 9, name: "Bình Dương" },
-    { id: 10, name: "Bình Phước" },
-    { id: 11, name: "Bình Thuận" },
-    { id: 12, name: "Cà Mau" },
-    { id: 13, name: "Cao Bằng" },
-    { id: 14, name: "Đắk Lắk" },
-    { id: 15, name: "Đắk Nông" },
-    { id: 16, name: "Điện Biên" },
-    { id: 17, name: "Đồng Nai" },
-    { id: 18, name: "Đồng Tháp" },
-    { id: 19, name: "Gia Lai" },
-    { id: 20, name: "Hà Giang" },
-    { id: 21, name: "Hà Nam" },
-    { id: 22, name: "Hà Tĩnh" },
-    { id: 23, name: "Hải Dương" },
-    { id: 24, name: "Hậu Giang" },
-    { id: 25, name: "Hòa Bình" },
-    { id: 26, name: "Hưng Yên" },
-    { id: 27, name: "Khánh Hòa" },
-    { id: 28, name: "Kiên Giang" },
-    { id: 29, name: "Kon Tum" },
-    { id: 30, name: "Lai Châu" },
-    { id: 31, name: "Lâm Đồng" },
-    { id: 32, name: "Lạng Sơn" },
-    { id: 33, name: "Lào Cai" },
-    { id: 34, name: "Long An" },
-    { id: 35, name: "Nam Định" },
-    { id: 36, name: "Nghệ An" },
-    { id: 37, name: "Ninh Bình" },
-    { id: 38, name: "Ninh Thuận" },
-    { id: 39, name: "Phú Thọ" },
-    { id: 40, name: "Quảng Bình" },
-    { id: 41, name: "Quảng Nam" },
-    { id: 42, name: "Quảng Ngãi" },
-    { id: 43, name: "Quảng Ninh" },
-    { id: 44, name: "Quảng Trị" },
-    { id: 45, name: "Sóc Trăng" },
-    { id: 46, name: "Sơn La" },
-    { id: 47, name: "Tây Ninh" },
-    { id: 48, name: "Thái Bình" },
-    { id: 49, name: "Thái Nguyên" },
-    { id: 50, name: "Thanh Hóa" },
-    { id: 51, name: "Thừa Thiên Huế" },
-    { id: 52, name: "Tiền Giang" },
-    { id: 53, name: "Trà Vinh" },
-    { id: 54, name: "Tuyên Quang" },
-    { id: 55, name: "Vĩnh Long" },
-    { id: 56, name: "Vĩnh Phúc" },
-    { id: 57, name: "Yên Bái" },
-    { id: 58, name: "Phú Yên" },
-    { id: 59, name: "Cần Thơ" },
-    { id: 60, name: "Đà Nẵng" },
-    { id: 61, name: "Hải Phòng" },
-    { id: 62, name: "Hà Nội" },
-    { id: 63, name: "TP Hồ Chí Minh" },
-  ];
-
   // Create + use Hooks
-  const [isShowMenuCities, setIsShowMenuCities] = useState(false);
+  const [isShowMenuOptions, setIsShowMenuOptions] = useState({
+    province: false,
+    district: false,
+    commune: false,
+  });
+  const [valueSearchForm, setValueSearchForm] = useState({
+    province: "",
+    district: "",
+    commune: "",
+  });
+  const [valueSelectOptions, setValueSelectOptions] = useState({
+    province: { id: "00", name: "" },
+    district: { id: "00", name: "" },
+    commune: { id: "00", name: "" },
+  });
+  const [cities, setCities] = useState(dbVietNameProvincesCities.province);
+  const [districts, setDistricts] = useState({
+    clone: [],
+    active: [],
+  });
+  const [communes, setCommunes] = useState({
+    clone: [],
+    active: [],
+  });
 
   // Create + use handlers
-  const selectCityHandler = (e) => {
-    console.log(e.target.value);
+  const searchValueOptionHandler = (e, fieldName) => {
+    const valueSearch = e.target.value;
+
+    if (fieldName === "province") {
+      const filterCities = dbVietNameProvincesCities.province.filter((city) =>
+        city.name
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase()
+          .includes(
+            valueSearch
+              .toLowerCase()
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "")
+          )
+      );
+      setCities(filterCities);
+    }
+
+    if (fieldName === "district") {
+      const filterDistricts = districts.clone.filter((district) =>
+        district.name
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase()
+          .includes(
+            valueSearch
+              .toLowerCase()
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "")
+          )
+      );
+      setDistricts((prevState) => ({ ...prevState, active: filterDistricts }));
+    }
+
+    if (fieldName === "commune") {
+      const filterCommunes = communes.clone.filter((commune) =>
+        commune.name
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase()
+          .includes(
+            valueSearch
+              .toLowerCase()
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "")
+          )
+      );
+      setCommunes((prevState) => ({ ...prevState, active: filterCommunes }));
+    }
+
+    // Update State
+    setValueSearchForm((prevState) => ({
+      ...prevState,
+      [fieldName]: valueSearch,
+    }));
   };
 
-  const showMenuCityDropdownHandler = () => {
-    setIsShowMenuCities(!isShowMenuCities);
+  const selectValueOptionHandler = (item, option) => {
+    switch (option) {
+      case "province":
+        if (item.idProvince !== "00" && option === "province") {
+          setValueSelectOptions((prevState) => ({
+            ...prevState,
+            [option]: { id: item.idProvince, name: item.name },
+          }));
+          setIsShowMenuOptions((prevState) => ({
+            ...prevState,
+            [option]: !prevState[option],
+          }));
+
+          const filterDistrictsByCity =
+            dbVietNameProvincesCities.district.filter(
+              (district) => district.idProvince === item.idProvince
+            );
+          setDistricts({
+            clone: filterDistrictsByCity,
+            active: filterDistrictsByCity,
+          });
+          return false;
+        } else {
+          setValueSelectOptions((prevState) => ({
+            ...prevState,
+            [option]: { id: "00", name: "" },
+            district: { id: "00", name: "" },
+            commune: { id: "00", name: "" },
+          }));
+          setIsShowMenuOptions({
+            province: false,
+            district: false,
+            commune: false,
+          });
+          setDistricts({
+            clone: [],
+            active: [],
+          });
+          setCommunes({
+            clone: [],
+            active: [],
+          });
+        }
+        break;
+      case "district":
+        setValueSelectOptions((prevState) => ({
+          ...prevState,
+          [option]: { id: item.idDistrict, name: item.name },
+        }));
+        setIsShowMenuOptions((prevState) => ({
+          ...prevState,
+          [option]: !prevState[option],
+        }));
+        const filterWardsByDistrict = dbVietNameProvincesCities.commune.filter(
+          (commune) => commune.idDistrict === item.idDistrict
+        );
+
+        setCommunes({
+          clone: filterWardsByDistrict,
+          active: filterWardsByDistrict,
+        });
+
+        break;
+      case "commune":
+        setValueSelectOptions((prevState) => ({
+          ...prevState,
+          [option]: { id: item.idDistrict, name: item.name },
+        }));
+        setIsShowMenuOptions((prevState) => ({
+          ...prevState,
+          [option]: !prevState[option],
+        }));
+        break;
+      default:
+        console.log(">>> No Choice Option");
+        break;
+    }
+  };
+
+  const showMenuCityDropdownHandler = (name) => {
+    setIsShowMenuOptions((prevState) => ({
+      ...prevState,
+      [name]: !prevState[name],
+    }));
   };
 
   return (
     <div className={classes["form-checkout"]}>
-      <h3>Billing details</h3>
+      <h3>Billing Details</h3>
       <form className={classes["form-checkout-container"]}>
-        <div className={classes["form-input"]}>
+        <div
+          className={`${classes["form-input"]} ${classes["form-input-firstName"]}`}
+        >
           <label htmlFor="firstName">
             First name <span>*</span>
           </label>
-          <input type="text" id="firstName" />
+          <input type="text" id="firstName" placeholder="Your first name" />
         </div>
-        <div className={classes["form-input"]}>
+        <div
+          className={`${classes["form-input"]} ${classes["form-input-lastName"]}`}
+        >
           <label htmlFor="lastName">
             Last name <span>*</span>
           </label>
-          <input type="text" id="lastName" />
+          <input type="text" id="lastName" placeholder="Your last name" />
         </div>
-        <div className={classes["form-input"]}>
-          <label htmlFor="country">
-            Country / Region <span>*</span>
+        <div
+          className={`${classes["form-input"]} ${classes["form-input-city"]}`}
+        >
+          <label htmlFor="city">
+            City <span>*</span>
           </label>
-          <div className={classes["flex-selects-country"]}>
+          <div
+            className={classes["flex-selects-city"]}
+            onClick={() => showMenuCityDropdownHandler("province")}
+          >
             <input
               type="text"
-              id="country"
-              value=""
-              onClick={showMenuCityDropdownHandler}
+              value={valueSelectOptions.province.name}
+              readOnly
             />
             <IoMdArrowDropdown
               className={
-                isShowMenuCities
+                isShowMenuOptions.province
                   ? `${classes["icon-dropdown-selects"]} ${classes["active"]}`
                   : classes["icon-dropdown-selects"]
               }
-              onClick={showMenuCityDropdownHandler}
             />
-
-            <div
-              className={
-                isShowMenuCities
-                  ? `${classes["menu-dropdown-cities"]} ${classes["active"]}`
-                  : classes["menu-dropdown-cities"]
-              }
-            >
-              <div className={classes["form-search"]}>
-                <input type="text" placeholder="Search your city" />
-              </div>
-              <div className={classes["list-cities"]}>
-                {vietnamProvincesAndCities.map((item) => (
-                  <p className={classes["city-name"]} key={item.id}>
+          </div>
+          <div
+            className={
+              isShowMenuOptions.province
+                ? `${classes["menu-dropdown-cities"]} ${classes["active"]}`
+                : classes["menu-dropdown-cities"]
+            }
+          >
+            <div className={classes["form-search"]}>
+              <input
+                type="text"
+                value={valueSearchForm.province}
+                onChange={(e) => searchValueOptionHandler(e, "province")}
+              />
+            </div>
+            <div className={classes["list-cities"]}>
+              {cities.length > 0 &&
+                cities.map((item) => (
+                  <option
+                    className={classes["city-name"]}
+                    key={item.idProvince}
+                    onClick={() => selectValueOptionHandler(item, "province")}
+                  >
                     {item.name}
-                  </p>
+                  </option>
                 ))}
-              </div>
+              {cities.length === 0 && (
+                <p className={classes["message-no-found-city"]}>
+                  No matches found
+                </p>
+              )}
             </div>
           </div>
         </div>
-        <div className={classes["form-input"]}>
-          <label htmlFor="firstName">
-            First name <span>*</span>
+        <div
+          className={
+            districts.active.length > 0
+              ? `${classes["form-input"]} ${classes["form-input-district"]} ${classes["active"]}`
+              : `${classes["form-input"]} ${classes["form-input-district"]} `
+          }
+        >
+          <label htmlFor="district">
+            District <span>*</span>
           </label>
-          <input type="text" id="firstName" />
+          <div
+            className={classes["flex-selects-district"]}
+            onClick={
+              districts.active.length > 0
+                ? () => showMenuCityDropdownHandler("district")
+                : undefined
+            }
+          >
+            <input
+              type="text"
+              value={valueSelectOptions.district.name}
+              disabled={districts.active.length > 0 ? false : true}
+              readOnly
+            />
+            <IoMdArrowDropdown
+              className={
+                isShowMenuOptions.district
+                  ? `${classes["icon-dropdown-selects"]} ${classes["active"]}`
+                  : classes["icon-dropdown-selects"]
+              }
+            />
+          </div>
+          <div
+            className={
+              isShowMenuOptions.district
+                ? `${classes["menu-dropdown-districts"]} ${classes["active"]}`
+                : classes["menu-dropdown-districts"]
+            }
+          >
+            <div className={classes["form-search"]}>
+              <input
+                type="text"
+                value={valueSearchForm.district}
+                onChange={(e) => searchValueOptionHandler(e, "district")}
+              />
+            </div>
+            <div className={classes["list-districts"]}>
+              {districts.active.length > 0 &&
+                districts.active.map((item) => (
+                  <option
+                    className={classes["district-name"]}
+                    key={item.idDistrict}
+                    onClick={() => selectValueOptionHandler(item, "district")}
+                  >
+                    {item.name}
+                  </option>
+                ))}
+              {districts.active.length === 0 && (
+                <p className={classes["message-no-found-district"]}>
+                  No matches found
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+        <div
+          className={
+            communes.active.length > 0
+              ? `${classes["form-input"]} ${classes["form-input-ward"]} ${classes["active"]}`
+              : `${classes["form-input"]} ${classes["form-input-ward"]} `
+          }
+        >
+          <label htmlFor="ward">
+            Ward <span>*</span>
+          </label>
+          <div
+            className={classes["flex-selects-ward"]}
+            onClick={
+              communes.active.length > 0
+                ? () => showMenuCityDropdownHandler("commune")
+                : undefined
+            }
+          >
+            <input
+              type="text"
+              value={valueSelectOptions.commune.name}
+              disabled={communes.active.length > 0 ? false : true}
+              readOnly
+            />
+            <IoMdArrowDropdown
+              className={
+                isShowMenuOptions.commune
+                  ? `${classes["icon-dropdown-selects"]} ${classes["active"]}`
+                  : classes["icon-dropdown-selects"]
+              }
+            />
+          </div>
+          <div
+            className={
+              isShowMenuOptions.commune
+                ? `${classes["menu-dropdown-wards"]} ${classes["active"]}`
+                : classes["menu-dropdown-wards"]
+            }
+          >
+            <div className={classes["form-search"]}>
+              <input
+                type="text"
+                value={valueSearchForm.commune}
+                onChange={(e) => searchValueOptionHandler(e, "commune")}
+              />
+            </div>
+            <div className={classes["list-wards"]}>
+              {communes.active.length > 0 &&
+                communes.active.map((item) => (
+                  <option
+                    className={classes["ward-name"]}
+                    key={item.idCommune}
+                    onClick={() => selectValueOptionHandler(item, "commune")}
+                  >
+                    {item.name}
+                  </option>
+                ))}
+              {communes.active.length === 0 && (
+                <p className={classes["message-no-found-ward"]}>
+                  No matches found
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+        <div
+          className={`${classes["form-input"]} ${classes["form-input-address"]}`}
+        >
+          <label htmlFor="address">
+            Street address <span>*</span>
+          </label>
+          <input
+            type="text"
+            id="address"
+            placeholder="House number and street name"
+          />
+        </div>
+        <div
+          className={`${classes["form-input"]} ${classes["form-input-phone"]}`}
+        >
+          <label htmlFor="phone">
+            Phone <span>*</span>
+          </label>
+          <input type="text" id="phone" placeholder="Your Phone" />
+        </div>
+        <div
+          className={`${classes["form-input"]} ${classes["form-input-email"]}`}
+        >
+          <label htmlFor="phone">
+            Email <span>*</span>
+          </label>
+          <input type="email" id="email" placeholder="Your Email " />
+        </div>
+        <div
+          className={`${classes["form-input"]} ${classes["form-input-order"]}`}
+        >
+          <textarea
+            type="text"
+            id="order"
+            placeholder="Order Notes (Optional)"
+          ></textarea>
         </div>
       </form>
     </div>

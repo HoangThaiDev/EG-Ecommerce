@@ -64,7 +64,7 @@ function Form() {
           onSubmit={formik.handleSubmit}
         >
           <h2>Register Your Account</h2>
-          <Input
+          <Input.InputFirstName
             formik={formik}
             valueFormik="firstName"
             label="First Name"
@@ -74,7 +74,7 @@ function Form() {
             placeholder="Your First Name"
             type="text"
           />
-          <Input
+          <Input.InputLastName
             formik={formik}
             valueFormik="lastName"
             label="Last Name"
@@ -84,7 +84,7 @@ function Form() {
             placeholder="Your Last Name"
             type="text"
           />
-          <Input
+          <Input.InputEmail
             formik={formik}
             valueFormik="email"
             label="Email"
@@ -94,7 +94,7 @@ function Form() {
             placeholder="Your Email"
             type="email"
           />
-          <Input
+          <Input.InputPassword
             formik={formik}
             valueFormik="password"
             label="Password"
@@ -104,7 +104,7 @@ function Form() {
             placeholder="abcdef*******"
             type="password"
           />
-          <Input
+          <Input.InputConfirmPassword
             formik={formik}
             valueFormik="confirmPassword"
             label="Confirm Password"

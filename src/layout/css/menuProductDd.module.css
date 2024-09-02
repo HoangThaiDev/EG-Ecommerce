@@ -1,6 +1,7 @@
 .menu-dropdown {
     position: absolute;
     width: 83.1%;
+    max-height: 450px;
 }
 
 /* CSS: Container */
@@ -62,7 +63,6 @@
     font-size: .9rem;
     line-height: 1.2rem;
     margin-bottom: 10px;
-
 }
 
 .card-info-price {

@@ -126,10 +126,9 @@
 }
 
 .nav__col__contact>p:nth-child(2) {
-    color: rgba(128, 128, 128, .7);
-    font-weight: 600;
+    color: rgba(80, 80, 80, 1);
     font-size: 0.8rem;
-    letter-spacing: .6px;
+    letter-spacing: .5px;
 }
 
 .nav__col__contact>p:nth-child(3) {
@@ -146,7 +145,7 @@
 
 /* CSS: Active */
 .navigation-active {
-    box-shadow: 0 2px 10px 1px rgba(37, 37, 37, .4), 0 4px 10px 1px rgba(80, 79, 79, 0.4);
+    box-shadow: 0 2px 10px 1px rgba(206, 205, 205, 0.4), 0 4px 10px 1px rgba(80, 79, 79, 0.4);
 }
 
 .nav__col__logo-mobile,

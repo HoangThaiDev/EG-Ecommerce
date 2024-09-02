@@ -5,6 +5,7 @@
     font-weight: 600;
     font-size: 1.8rem;
     margin-bottom: 30px;
+    letter-spacing: .6px;
 }
 
 .collapse-faq-container .ant-collapse {

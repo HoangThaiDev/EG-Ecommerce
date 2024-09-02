@@ -8,7 +8,6 @@
 .products__container {
     width: 1140px;
     margin: 0 auto;
-
 }
 
 /* CSS: Products Header */
@@ -54,7 +53,7 @@
     position: absolute;
     top: 0%;
     right: 15%;
-    box-shadow: 0 0 200px 150px #FFE9E9;
+    box-shadow: 5px 0 150px 150px #f8dddd;
     z-index: -1;
 }
 

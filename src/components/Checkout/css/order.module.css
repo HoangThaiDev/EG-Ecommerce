@@ -1,3 +1,390 @@
 .order {
+    position: sticky;
+    top: 120px;
     width: 500px;
+    box-shadow: 0 0 50px 3px rgba(220, 219, 219, .4);
 }
+
+/* CSS: Order Container */
+.order-container {
+    padding: 30px 30px 50px;
+}
+
+.order-container>h3 {
+    font: 600 1.7rem/1.3rem "Playfair Display", serif;
+    margin-bottom: 50px;
+    color: rgba(35, 53, 68, .9);
+    letter-spacing: .6px;
+}
+
+/* CSS: Order Col Header */
+.order-col-header {
+    font: 600 .9rem/1.3rem "Playfair Display", serif;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    color: rgb(72, 71, 71);
+    letter-spacing: .6px;
+    border-bottom: .5px solid rgba(161, 160, 160, .4);
+    padding-bottom: 20px;
+}
+
+.order-col-header>p:nth-child(1) {
+    width: 65%;
+}
+
+.order-col-header>p:nth-child(2) {
+    width: 35%;
+    text-align: right;
+}
+
+/* CSS: Order Col Content */
+.order-col-content {
+    width: 100%;
+    margin: 30px 0;
+}
+
+.order-list {
+    display: flex;
+    gap: 20px 0;
+    flex-direction: column;
+}
+
+.order-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-item-detail {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 15px;
+    width: 65%;
+}
+
+.order-item-detail .item-image {
+    position: relative;
+    width: 70px;
+    height: 70px;
+}
+
+.order-item-detail .item-image>img {
+    width: 100%;
+    height: inherit;
+    padding: 5px;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 0 0 1px 1px rgba(167, 167, 167, .4);
+}
+
+.order-item-detail .item-image .quantity {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: rgba(152, 150, 150, 1);
+    border-radius: 100%;
+    border: 2px solid #fff;
+    width: 22px;
+    height: 22px;
+    text-align: center;
+    font: 600 .6rem "Roboto", sans-serif;
+    line-height: 22px;
+    color: #fff;
+}
+
+.order-item-detail .item-info {
+    width: 70%;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px 0;
+}
+
+.order-item-detail .item-info .item-info-name {
+    font: 600 1rem/1.2rem "Roboto", sans-serif;
+    color: rgba(37, 45, 57, .9);
+    letter-spacing: .4px;
+}
+
+.order-item-detail .item-info .item-info-unit {
+    font: 500 .9rem/1.2rem "Roboto", sans-serif;
+    color: rgba(65, 65, 65, .9);
+    letter-spacing: .4px;
+}
+
+.order-item-price {
+    width: 35%;
+    text-align: right;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.order-item-price>p {
+    font: 500 1rem/1.2rem "Roboto", sans-serif;
+    color: rgba(65, 65, 65, .9);
+}
+
+/* CSS: Order Col Header */
+.order-col-footer {
+    font: 600 .9rem/1.3rem "Roboto", sans-serif;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    color: rgb(72, 71, 71);
+    letter-spacing: .6px;
+    border-top: .5px solid rgba(161, 160, 160, .4);
+    padding-top: 20px;
+}
+
+.order-col-footer>p:nth-child(1) {
+    width: 65%;
+}
+
+.order-col-footer>p:nth-child(2) {
+    font-size: 1.1rem;
+    width: 35%;
+    text-align: right;
+}
+
+/* CSS: Active */
+.order-list.scroll {
+    background-color: transparent;
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
+.order-list.scroll::-webkit-scrollbar {
+    width: 5px;
+}
+
+.order-list.scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(44, 59, 74, .8);
+    border-radius: 10px;
+}
+
+.order-list.scroll::-webkit-scrollbar-track {
+    background-color: #fff;
+}
+
+.order-list.scroll .order-item-price {
+    padding-right: 5px;
+}
+
+.order-header-menu {
+    display: none;
+}
+
+/* CSS: Responsives */
+@media screen and (max-width:575px) {
+    .order {
+        position: relative;
+        width: 100%;
+        top: 0;
+        box-shadow: 0 0 50px 3px rgba(220, 219, 219, .4);
+    }
+
+    .order-container {
+        padding: 30px;
+    }
+
+    .order-container>h3 {
+        font-size: 1.5rem;
+    }
+
+    .order-row {
+        width: 100%;
+        display: none;
+    }
+
+    .order-row.active {
+        display: block;
+    }
+
+    .order-header-menu {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        padding-bottom: 20px;
+    }
+
+    .order-header-menu .order-content {
+        cursor: pointer;
+        width: 65%;
+        font: 600 1rem/1.3rem "Roboto", sans-serif;
+        letter-spacing: .6px;
+        display: flex;
+        align-items: center;
+        gap: 0 5px;
+    }
+
+    .order-header-menu .order-content .icon-order {
+        cursor: pointer;
+        transition: .5s all ease;
+    }
+
+    .order-header-menu .order-content .icon-order-show {
+        transform: rotate(90deg);
+    }
+
+    .order-header-menu .order-total-price {
+        width: 35%;
+        text-align: right;
+        font: 600 1.1rem/1.3rem "Roboto", sans-serif;
+        color: rgba(35, 53, 68, .9);
+    }
+
+    .order-col-header {
+        padding: 20px 0;
+        border-top: .5px solid rgba(161, 160, 160, .4);
+    }
+
+    .order-item-detail {
+        flex-wrap: nowrap;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width:765px) {
+    .order {
+        position: relative;
+        width: 100%;
+        top: 0;
+        box-shadow: 0 0 50px 3px rgba(220, 219, 219, .4);
+    }
+
+    .order-container {
+        padding: 25px;
+    }
+
+    .order-container>h3 {
+        font-size: 1.5rem;
+    }
+
+    .order-row {
+        width: 100%;
+        display: none;
+    }
+
+    .order-row.active {
+        display: block;
+    }
+
+    .order-header-menu {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        padding-bottom: 20px;
+    }
+
+    .order-header-menu .order-content {
+        cursor: pointer;
+        width: 65%;
+        font: 600 1rem/1.3rem "Roboto", sans-serif;
+        letter-spacing: .6px;
+        display: flex;
+        align-items: center;
+        gap: 0 5px;
+    }
+
+    .order-header-menu .order-content .icon-order {
+        cursor: pointer;
+        transition: .5s all ease;
+    }
+
+    .order-header-menu .order-content .icon-order-show {
+        transform: rotate(90deg);
+    }
+
+    .order-header-menu .order-total-price {
+        width: 35%;
+        text-align: right;
+        font: 600 1.1rem/1.3rem "Roboto", sans-serif;
+        color: rgba(35, 53, 68, .9);
+    }
+
+    .order-col-header {
+        padding: 20px 0;
+        border-top: .5px solid rgba(161, 160, 160, .4);
+    }
+
+    .order-item-detail {
+        flex-wrap: nowrap;
+    }
+}
+
+@media screen and (min-width:766px) and (max-width:991px) {
+    .order {
+        position: relative;
+        width: 100%;
+        top: 0;
+        box-shadow: 0 0 50px 3px rgba(220, 219, 219, .4);
+    }
+
+    .order-container {
+        padding: 25px;
+    }
+
+    .order-container>h3 {
+        font-size: 1.5rem;
+    }
+
+    .order-row {
+        width: 100%;
+        display: none;
+    }
+
+    .order-row.active {
+        display: block;
+    }
+
+    .order-header-menu {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        padding-bottom: 20px;
+    }
+
+    .order-header-menu .order-content {
+        cursor: pointer;
+        width: 65%;
+        font: 600 1rem/1.3rem "Roboto", sans-serif;
+        letter-spacing: .6px;
+        display: flex;
+        align-items: center;
+        gap: 0 5px;
+    }
+
+    .order-header-menu .order-content .icon-order {
+        cursor: pointer;
+        transition: .5s all ease;
+    }
+
+    .order-header-menu .order-content .icon-order-show {
+        transform: rotate(90deg);
+    }
+
+    .order-header-menu .order-total-price {
+        width: 35%;
+        text-align: right;
+        font: 600 1.1rem/1.3rem "Roboto", sans-serif;
+        color: rgba(35, 53, 68, .9);
+    }
+
+    .order-col-header {
+        padding: 20px 0;
+        border-top: .5px solid rgba(161, 160, 160, .4);
+    }
+
+    .order-item-detail {
+        flex-wrap: nowrap;
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1199px) {}

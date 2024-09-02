@@ -20,7 +20,7 @@
 .main-login-header .main-login-header-link {
     text-decoration: none;
     font-size: 1.2rem;
-    width: 140px;
+    width: 170px;
     font-weight: 600;
     padding: 15px;
     text-align: center;
@@ -52,6 +52,7 @@
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 30px;
+    letter-spacing: .6px;
 }
 
 .form-input-footer {
@@ -123,6 +124,7 @@
     padding: 15px 0;
     font-size: .9rem;
     border-radius: 5px;
+    letter-spacing: .6px;
 }
 
 .form-signin-social {
@@ -153,7 +155,6 @@
     color: #fff;
     width: 170px;
     padding: 12px;
-    border-radius: 4px;
 }
 
 .form-signin-social .form-signin-btn>a:nth-child(1) {

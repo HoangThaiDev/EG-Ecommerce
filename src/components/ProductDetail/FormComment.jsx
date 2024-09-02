@@ -19,7 +19,6 @@ export default function FormComment() {
       .matches(/^[A-Z0-9]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, "Invalid Email!"),
     quality: Yup.string().required("Quality Product is required!"),
     trueToDesc: Yup.string().required("True to desc is required!"),
-    message: Yup.string().required("Message is required!"),
   });
 
   // Create + use Hooks
@@ -29,7 +28,6 @@ export default function FormComment() {
       email: "",
       quality: "",
       trueToDesc: "",
-      message: "",
     },
 
     validationSchema: formCommentSchema,
@@ -51,7 +49,9 @@ export default function FormComment() {
       </p>
       <form className={classes["main-form"]} onSubmit={formik.handleSubmit}>
         <div className={classes["form-input"]}>
-          <label htmlFor="name">Your Name *</label>
+          <label htmlFor="name">
+            Your Name <span>*</span>
+          </label>
           <input
             className={
               formik.touched.name && formik.errors.name
@@ -70,7 +70,9 @@ export default function FormComment() {
           )}
         </div>
         <div className={classes["form-input"]}>
-          <label htmlFor="email">Your Email *</label>
+          <label htmlFor="email">
+            Your Email <span>*</span>
+          </label>
           <input
             className={
               formik.touched.email && formik.errors.email
@@ -89,7 +91,9 @@ export default function FormComment() {
           )}
         </div>
         <div className={classes["form-input"]}>
-          <label htmlFor="quality">Quality Product *</label>
+          <label htmlFor="quality">
+            Quality Product <span>*</span>
+          </label>
           <input
             className={
               formik.touched.quality && formik.errors.quality
@@ -108,7 +112,9 @@ export default function FormComment() {
           )}
         </div>
         <div className={classes["form-input"]}>
-          <label htmlFor="trueToDesc">True to description *</label>
+          <label htmlFor="trueToDesc">
+            True to description <span>*</span>
+          </label>
           <input
             className={
               formik.touched.trueToDesc && formik.errors.trueToDesc
@@ -130,21 +136,13 @@ export default function FormComment() {
         </div>
         <div className={classes["form-input"]}>
           <textarea
-            className={
-              formik.touched.message && formik.errors.message
-                ? `${classes["input-message"]} ${classes["input-message-error"]}`
-                : classes["input-message"]
-            }
+            className={classes["input-message"]}
             type="text"
             id="message"
             placeholder="Your message"
             value={formik.values.message}
             onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
           ></textarea>
-          {formik.touched.message && (
-            <p className={classes["message-error"]}>{formik.errors.message}</p>
-          )}
         </div>
         <div className={classes["form-input"]}>
           <label htmlFor="rating">Your Rating</label>

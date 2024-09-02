@@ -126,11 +126,20 @@
 .promotional__col:nth-child(3) .card__content .card__link {
     display: inline-block;
     border: 2px solid #fff;
+    font-weight: 500;
     border-radius: 25px;
     color: #fff;
     padding: 6px 15px;
     font-size: .8rem;
     margin-top: 20px;
+    transition: .5s all ease;
+}
+
+/* CSS: Effect  */
+.promotional__col:nth-child(1) .card__content .card__link:hover,
+.promotional__col:nth-child(2) .card__content .card__link:hover,
+.promotional__col:nth-child(3) .card__content .card__link:hover {
+    border-radius: 0;
 }
 
 /* CSS: Responsives */

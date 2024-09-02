@@ -1,4 +1,5 @@
 .form-input {
+    position: relative;
     font-family: "Roboto", sans-serif;
     display: flex;
     flex-wrap: wrap;
@@ -23,7 +24,7 @@
 .form-input>input {
     box-sizing: border-box;
     width: 100%;
-    padding: 12px 15px;
+    padding: 12px 40px 12px 15px;
     font-size: .8rem;
     border: 2px solid rgba(128, 128, 128, 0.4);
     transition: .3s all ease-in-out;
@@ -47,7 +48,46 @@
     font-size: .8rem;
 }
 
+/* CSS: Icons */
+.icon-hide-password,
+.icon-show-password {
+    cursor: pointer;
+    position: absolute;
+    font: 600 1rem/1rem "Roboto", sans-serif;
+    color: rgb(28, 45, 52);
+    top: 32px;
+    right: 12px;
+}
+
+/* CSS: Effect */
 .form-input>input:focus {
     outline: none;
     border: 2px solid rgba(38, 70, 83, .9);
+}
+
+/* CSS: Responsive */
+
+@media screen and (max-width:575px) {
+    .form-input>label {
+        font-size: .8rem;
+    }
+
+}
+
+@media screen and (min-width:576px) and (max-width:765px) {
+    .form-input>label {
+        font-size: .8rem;
+    }
+}
+
+@media screen and (min-width:766px) and (max-width:991px) {
+    .form-input>label {
+        font-size: .8rem;
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+    .form-input>label {
+        font-size: .8rem;
+    }
 }

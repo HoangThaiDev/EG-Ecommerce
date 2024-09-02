@@ -35,9 +35,15 @@
     color: rgb(54, 53, 53);
 }
 
+.form-input>label>span {
+    color: rgba(224, 73, 4, .8);
+    font-weight: 700;
+    margin-left: 2px;
+}
+
 .form-input>input {
     box-sizing: border-box;
-    font: 500 .9rem/1rem "Roboto", sans-serif;
+    font: 500 .8rem/1rem "Roboto", sans-serif;
     color: rgb(54, 53, 53);
     padding: 12px 15px;
     border-radius: 3px;
@@ -54,7 +60,7 @@
 
 .form-input>textarea {
     box-sizing: border-box;
-    font: 500 .9rem/1rem "Roboto", sans-serif;
+    font: 500 .8rem/1rem "Roboto", sans-serif;
     color: rgb(54, 53, 53);
     padding: 15px;
     border-radius: 3px;
@@ -83,7 +89,7 @@
     width: 150px;
     height: 40px;
     font: 500 .8rem/1rem "Roboto", sans-serif;
-    background-color: #F86822;
+    background-color: #f8692288;
     letter-spacing: .6px;
     color: #fff;
     border: 1px solid transparent;
@@ -115,6 +121,7 @@
 
 .form-input .btn-post:hover {
     border-radius: 0;
+    background-color: #f86922;
 }
 
 /* CSS: Responsives */

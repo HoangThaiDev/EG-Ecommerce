@@ -1,6 +1,7 @@
 // Import Modules
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useContext, useEffect, useState, useTransition } from "react";
 import { APIContext } from "../storeContext/APIContext";
 import reduxActions from "../redux/redux-actions";
 import axiosInstance from "../axios/customAxios";
@@ -17,7 +18,6 @@ import { LuUser2 } from "react-icons/lu";
 import { IoMenuOutline } from "react-icons/io5";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { FiPhoneCall } from "react-icons/fi";
-import { useContext, useEffect, useState, useTransition } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 import { IoMdCloseCircle } from "react-icons/io";
 

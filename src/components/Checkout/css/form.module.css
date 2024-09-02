@@ -1,34 +1,61 @@
 .form-checkout {
-    width: 550px;
+    width: 600px;
+    box-shadow: 0 0 50px 3px rgba(220, 219, 219, .4);
+    padding: 30px;
 }
 
 .form-checkout>h3 {
-    font: 500 1.8rem/1.3rem "Playfair Display", serif;
+    font: 600 1.7rem/1.3rem "Playfair Display", serif;
     margin-bottom: 50px;
-    color: rgb(45, 45, 45);
+    color: rgba(35, 53, 68, .9);
+    letter-spacing: .6px;
 }
 
 .form-checkout-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 20px 0;
 }
 
 .form-input {
-    width: 47%;
+    position: relative;
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 30px;
 }
 
-.form-input:nth-child(3) {
-    /* position: relative; */
+/* CSS: Form Input Field */
+.form-input-firstName,
+.form-input-lastName,
+.form-input-phone,
+.form-input-email {
+    width: 47%;
+}
+
+.form-input-district,
+.form-input-ward {
+    width: 47%;
+}
+
+.form-input-address,
+.form-input-city,
+.form-input-order {
     width: 100%;
+}
+
+.form-input-order>textarea {
+    border: 1px solid rgb(211, 211, 211);
+    width: 100%;
+    height: 150px;
+    max-height: 200px;
+    resize: none;
+    padding: 10px 30px 0 20px;
+    transition: .5s all ease-in-out;
 }
 
 .form-input>label {
     width: 100%;
-    font: 500 1rem/1.3rem "Roboto", sans-serif;
+    font: 500 .9rem/1.3rem "Roboto", sans-serif;
     color: rgb(73, 72, 72);
     letter-spacing: .6px;
     margin-bottom: 5px;
@@ -40,31 +67,53 @@
 }
 
 .form-input>input {
+    position: relative;
     box-sizing: border-box;
     width: 100%;
     height: 50px;
     border: 1px solid rgb(211, 211, 211);
-    padding: 0 20px;
+    padding: 0 30px 0 20px;
     transition: .5s all ease-in-out;
 }
 
-.form-input:nth-child(3) .flex-selects-country {
+.form-input>input::placeholder,
+.form-input-order>textarea::placeholder {
+    font: 500 .8rem/1.3rem "Roboto", sans-serif;
+    color: rgb(163, 163, 163);
+    letter-spacing: .6px;
+}
+
+.form-input-city .flex-selects-city,
+.form-input-district .flex-selects-district,
+.form-input-ward .flex-selects-ward {
     position: relative;
     width: 100%;
     height: 50px;
 }
 
-.form-input:nth-child(3) .flex-selects-country>input {
-    cursor: pointer;
+.form-input-district .flex-selects-district>input,
+.form-input-ward .flex-selects-ward>input {
+    cursor: not-allowed;
+    background-color: rgba(199, 199, 199, .4);
+}
+
+.form-input-city .flex-selects-city>input,
+.form-input-district .flex-selects-district>input,
+.form-input-ward .flex-selects-ward>input {
     box-sizing: border-box;
+    display: block;
+    width: 100%;
     height: inherit;
-    width: inherit;
-    padding: 0 20px;
+    font: 500 .9rem/1rem "Roboto", sans-serif;
+    color: rgb(73, 72, 72);
+    padding: 0 30px 0 20px;
     border: 1px solid rgb(211, 211, 211);
     transition: .5s all ease-in-out;
 }
 
-.form-input:nth-child(3) .flex-selects-country .icon-dropdown-selects {
+.form-input-city .flex-selects-city .icon-dropdown-selects,
+.form-input-district .flex-selects-district .icon-dropdown-selects,
+.form-input-ward .flex-selects-ward .icon-dropdown-selects {
     cursor: pointer;
     position: absolute;
     font-size: 1.5rem;
@@ -75,56 +124,173 @@
     transition: .3s all ease-in-out;
 }
 
-.menu-dropdown-cities {
+.form-input-city .flex-selects-city>input,
+.form-input-district.active .flex-selects-district>input,
+.form-input-ward.active .flex-selects-ward>input {
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.menu-dropdown-cities,
+.menu-dropdown-districts,
+.menu-dropdown-wards {
     position: absolute;
-    top: 50px;
+    top: 77px;
+    left: 0;
     z-index: 2;
     background-color: #fff;
     width: 100%;
     border: 1px solid rgb(211, 211, 211);
     border-top: none;
-    opacity: 1;
+    opacity: 0;
+    visibility: hidden;
     transition: .5s all ease-in-out
 }
 
-.menu-dropdown-cities .form-search {
+.menu-dropdown-cities.active,
+.menu-dropdown-districts.active,
+.menu-dropdown-wards.active {
+    opacity: 1;
+    visibility: initial;
+}
+
+.menu-dropdown-cities .form-search,
+.menu-dropdown-districts .form-search,
+.menu-dropdown-wards .form-search {
     padding: 10px 10px 5px;
 }
 
-.menu-dropdown-cities .form-search>input {
+.menu-dropdown-cities .form-search>input,
+.menu-dropdown-districts .form-search>input,
+.menu-dropdown-wards .form-search>input {
     box-sizing: border-box;
     width: 100%;
     height: 40px;
     padding: 10px;
 }
 
-.menu-dropdown-cities .list-cities {
+.menu-dropdown-cities .form-search>input::placeholder,
+.menu-dropdown-districts .form-search>input::placeholder,
+.menu-dropdown-wards .form-search>input::placeholder {
+    font: 500 .8rem/1.3rem "Roboto", sans-serif;
+    color: rgb(119, 119, 119);
+}
+
+.menu-dropdown-cities .list-cities,
+.menu-dropdown-districts .list-districts,
+.menu-dropdown-wards .list-wards {
+    background-color: rgba(234, 231, 231, 0.2);
     width: 100%;
-    height: 200px;
+    max-height: 200px;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
 }
 
-.menu-dropdown-cities .list-cities .city-name {
+.menu-dropdown-cities .list-cities .city-name,
+.menu-dropdown-districts .list-districts .district-name,
+.menu-dropdown-wards .list-wards .ward-name {
     cursor: pointer;
     font: 500 .9rem/1.3rem "Roboto", sans-serif;
     color: rgb(75, 75, 75);
     padding: 8px 10px;
 }
 
+.menu-dropdown-cities .list-cities .message-no-found-city,
+.menu-dropdown-districts .list-districts .message-no-found-district,
+.menu-dropdown-wards .list-wards .message-no-found-ward {
+    font: 500 .9rem/1.3rem "Roboto", sans-serif;
+    padding: 12px 10px;
+}
+
 /* CSS: Active */
-.form-input:nth-child(3) .flex-selects-country .icon-dropdown-selects.active {
+.form-input-city.active .flex-selects-city,
+.form-input-district.active .flex-selects-district,
+.form-input-ward.active .flex-selects-ward {
+    background-color: #fff;
+}
+
+.form-input-city .flex-selects-city .icon-dropdown-selects.active,
+.form-input-district .flex-selects-district .icon-dropdown-selects.active,
+.form-input-ward .flex-selects-ward .icon-dropdown-selects.active {
     transform: rotate(0);
 }
 
 /* CSS: Effect */
 .form-input>input:focus,
-.form-input:nth-child(3) .flex-selects-country>input:focus {
+.form-input-city .flex-selects-city>input:focus,
+.form-input-district .flex-selects-district>input:focus,
+.form-input-ward .flex-selects-ward>input:focus,
+.form-input-order>textarea:focus {
     outline: none;
-    border-color: brown;
+    border-color: rgba(35, 53, 68, .9);
 }
 
-.menu-dropdown-cities .list-cities .city-name:hover {
+.menu-dropdown-cities .list-cities .city-name:hover,
+.menu-dropdown-districts .list-districts .district-name:hover,
+.menu-dropdown-wards .list-wards .ward-name:hover {
     background-color: rgba(188, 188, 188, .2);
+}
+
+.menu-dropdown-cities .form-search>input:focus,
+.menu-dropdown-districts .form-search>input:focus,
+.menu-dropdown-wards .form-search>input:focus {
+    outline: none;
+}
+
+/* CSS: Responsives */
+@media screen and (max-width:575px) {
+    .form-checkout {
+        width: 100%;
+    }
+
+    .form-checkout>h3 {
+        font-size: 1.5rem;
+    }
+
+    .form-input>input {
+        padding: 0 10px;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width:765px) {
+    .form-checkout {
+        width: 100%;
+    }
+
+    .form-checkout>h3 {
+        font-size: 1.5rem;
+    }
+
+    .form-input>input {
+        padding: 0 10px;
+    }
+}
+
+@media screen and (min-width:766px) and (max-width:991px) {
+    .form-checkout {
+        width: 100%;
+    }
+
+    .form-checkout>h3 {
+        font-size: 1.5rem;
+    }
+
+    .form-input>input {
+        padding: 0 10px;
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+    .form-checkout {
+        width: 500px;
+    }
+
+    .form-checkout>h3 {
+        font-size: 1.5rem;
+    }
+
+    .form-input>input {
+        padding: 0 10px;
+    }
 }

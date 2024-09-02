@@ -5,9 +5,87 @@
 
 .main-checkout-container {
     width: 1140px;
-    margin: 0 auto;
+    margin: 5% auto;
 }
 
 .main-checkout-row {
     justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/* CSS: Responsives */
+@media screen and (max-width:575px) {
+    .main-checkout-container {
+        width: 100%;
+        margin: 5% auto;
+    }
+
+    .main-checkout-row {
+        gap: 30px 0;
+    }
+
+    .main-checkout-col-form {
+        order: 2;
+        width: 100%;
+    }
+
+    .main-checkout-col-order {
+        order: 1;
+        width: 100%;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width:765px) {
+    .main-checkout-container {
+        width: 80%;
+        margin: 5% auto;
+    }
+
+    .main-checkout-row {
+        gap: 30px 0;
+    }
+
+    .main-checkout-col-form {
+        order: 2;
+        width: 100%;
+    }
+
+    .main-checkout-col-order {
+        order: 1;
+        width: 100%;
+    }
+}
+
+@media screen and (min-width:766px) and (max-width:991px) {
+    .main-checkout-container {
+        width: 80%;
+        margin: 5% auto;
+    }
+
+    .main-checkout-row {
+        gap: 30px 0;
+    }
+
+    .main-checkout-col-form {
+        order: 2;
+        width: 100%;
+    }
+
+    .main-checkout-col-order {
+        order: 1;
+        width: 100%;
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+    .main-checkout-container {
+        width: 100%;
+        margin: 5% auto;
+    }
+
+    .main-checkout-row {
+        gap: 30px 10px;
+        justify-content: center;
+    }
+
 }

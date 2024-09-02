@@ -1,10 +1,14 @@
 // Import Modules
-import React from "react";
+import React, { useState } from "react";
 
 // Import File CSS
 import classes from "./css/input.module.css";
 
-export default function Input({
+// Import Icons
+import { FaRegEye } from "react-icons/fa";
+import { FaRegEyeSlash } from "react-icons/fa";
+
+function InputEmail({
   formik,
   label,
   valueFormik,
@@ -33,8 +37,79 @@ export default function Input({
         onBlur={formik.handleBlur}
       />
       {formik.touched[valueFormik] && (
-        <p className={classes["message-error"]}>{formik.errors.email}</p>
+        <p className={classes["message-error"]}>{formik.errors[valueFormik]}</p>
       )}
     </div>
   );
 }
+
+function InputPassword({
+  formik,
+  label,
+  valueFormik,
+  id,
+  className,
+  classNameError,
+  placeholder,
+  type,
+}) {
+  // Create + use Hooks
+  const [isShowPassword, setIsShowPassword] = useState(false);
+
+  // Create + use event handlers
+  const showPasswordHandler = () => {
+    setIsShowPassword(!isShowPassword);
+  };
+
+  const ElementIconHidePassword =
+    formik.values[valueFormik].length > 0 ? (
+      <FaRegEyeSlash
+        className={classes["icon-hide-password"]}
+        onClick={showPasswordHandler}
+      />
+    ) : (
+      ""
+    );
+
+  const ElementIconShowPassword =
+    formik.values[valueFormik].length > 0 ? (
+      <FaRegEye
+        className={classes["icon-show-password"]}
+        onClick={showPasswordHandler}
+      />
+    ) : (
+      ""
+    );
+
+  return (
+    <div className={classes["form-input"]}>
+      <label htmlFor={id}>
+        {label} <span>*</span>
+      </label>
+      <input
+        className={
+          formik.touched[valueFormik] && formik.errors[valueFormik]
+            ? `${classes[className]} ${classes[classNameError]}`
+            : classes[className]
+        }
+        type={isShowPassword ? "text" : type}
+        id={id}
+        placeholder={placeholder}
+        value={formik.values[valueFormik]}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+      />
+      {isShowPassword ? ElementIconShowPassword : ElementIconHidePassword}
+      {formik.touched[valueFormik] && (
+        <p className={classes["message-error"]}>{formik.errors[valueFormik]}</p>
+      )}
+    </div>
+  );
+}
+
+const Input = {
+  InputEmail,
+  InputPassword,
+};
+
+export default Input;

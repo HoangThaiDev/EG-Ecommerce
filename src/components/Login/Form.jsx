@@ -57,7 +57,7 @@ function Form() {
           onSubmit={formik.handleSubmit}
         >
           <h2>Login Your Account</h2>
-          <Input
+          <Input.InputEmail
             formik={formik}
             valueFormik="email"
             label="Email"
@@ -67,7 +67,7 @@ function Form() {
             placeholder="Your Email"
             type="email"
           />
-          <Input
+          <Input.InputPassword
             formik={formik}
             valueFormik="password"
             label="Password"

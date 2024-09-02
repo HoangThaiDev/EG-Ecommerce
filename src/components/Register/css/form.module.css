@@ -19,7 +19,7 @@
 .main-register-header .main-register-header-link {
     text-decoration: none;
     font-size: 1.2rem;
-    width: 140px;
+    width: 170px;
     font-weight: 600;
     padding: 15px;
     text-align: center;
@@ -51,6 +51,7 @@
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 30px;
+    letter-spacing: .6px;
 }
 
 .form-input-footer {
@@ -126,6 +127,7 @@
     border: 0;
     padding: 15px 0;
     font-size: .9rem;
+    letter-spacing: .6px;
     border-radius: 5px;
 }
 

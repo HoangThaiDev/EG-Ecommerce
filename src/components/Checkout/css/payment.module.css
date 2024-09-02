@@ -1,0 +1,225 @@
+.payment {
+    width: 600px;
+    box-shadow: 0 0 50px 3px rgba(220, 219, 219, .4);
+    margin-top: 40px;
+    transition: 1s all ease;
+}
+
+/* CSS: Payment Container */
+.payment-container {
+    padding: 30px;
+}
+
+.payment-container>h3 {
+    font: 600 1.7rem/1.3rem "Playfair Display", serif;
+    margin-bottom: 50px;
+    color: rgba(35, 53, 68, .9);
+    letter-spacing: .6px;
+}
+
+/* CSS: Payment List */
+.payment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px 0;
+}
+
+/* CSS: Payment Item */
+.payment-item {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 20px;
+}
+
+.payment-item>input {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    appearance: none;
+    border: 2px solid rgb(31, 44, 52);
+    border-radius: 100%;
+}
+
+.payment-item>input:checked {
+    background-color: #fff;
+    border-radius: 100%;
+    border: 2px solid rgb(31, 44, 52);
+}
+
+.payment-item>input::before {
+    position: absolute;
+    content: '';
+    background-color: rgb(31, 44, 52);
+    border-radius: 100%;
+    top: 2px;
+    left: 2px;
+    width: 7px;
+    height: 7px;
+    display: none;
+}
+
+.payment-item>input:checked::before {
+    display: block;
+}
+
+.payment-item .item-info {
+    width: 90%;
+    position: relative;
+    top: 2px;
+    font: 600 .9rem/1rem "Roboto", sans-serif;
+    color: rgba(46, 46, 46, .9);
+    letter-spacing: .6px;
+}
+
+/* CSS: Item Payment Box */
+.item-payment-box {
+    overflow: hidden;
+    transition: .3s all ease-in-out;
+}
+
+.item-payment-box .item-info-desc {
+    display: none;
+    font: 500 .8rem/1.3rem "Roboto", sans-serif;
+    color: rgb(139, 139, 139);
+}
+
+.payment-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.btn-order {
+    width: 50%;
+    cursor: pointer;
+    margin-top: 30px;
+    font: 500 .9rem/1rem "Roboto", sans-serif;
+    background-color: rgb(41, 41, 41);
+    border: 1px solid transparent;
+    color: #fff;
+    padding: 10px 0;
+    height: 50px;
+    letter-spacing: .6px;
+    transition: .5s all ease;
+}
+
+.btn-back {
+    width: 50%;
+    cursor: pointer;
+    margin-top: 30px;
+    font: 600 .9rem/1rem "Roboto", sans-serif;
+    border: 1px solid transparent;
+    color: rgb(41, 41, 41);
+    padding: 10px 0;
+    height: 50px;
+    letter-spacing: .6px;
+    border-left: 4px solid transparent;
+    transition: .5s all ease;
+}
+
+.btn-back .icon-arrow-back {
+    opacity: 0;
+    position: relative;
+    top: 2px;
+    left: 0;
+    transition: .5s all ease;
+}
+
+/* CSS: Active */
+.item-payment-box.active {
+    padding-top: 20px;
+    overflow: hidden;
+    position: relative;
+    animation: showDecsPayment .5s ease-in-out 1 forwards;
+}
+
+.item-payment-box.active .item-info-desc {
+    display: block;
+}
+
+/* CSS: Effect */
+.btn-order:hover {
+    background-color: rgb(187, 171, 151);
+}
+
+.btn-back:hover {
+    background-color: transparent;
+    border-left: 4px solid rgb(41, 41, 41);
+}
+
+.btn-back:hover .icon-arrow-back {
+    opacity: 1;
+    left: -5px;
+}
+
+@keyframes showDecsPayment {
+    0% {
+        height: 0;
+    }
+
+    100% {
+        height: 100%;
+    }
+}
+
+/* CSS: Responsives */
+@media screen and (max-width:575px) {
+    .payment {
+        width: 100%;
+    }
+
+    .payment-container>h3 {
+        font-size: 1.5rem;
+    }
+
+    .btn-back,
+    .btn-order {
+        font-size: .8rem;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width:765px) {
+    .payment {
+        width: 100%;
+    }
+
+    .payment-container>h3 {
+        font-size: 1.5rem;
+    }
+
+    .btn-back,
+    .btn-order {
+        font-size: .8rem;
+    }
+}
+
+@media screen and (min-width:766px) and (max-width:991px) {
+    .payment {
+        width: 100%;
+    }
+
+    .payment-container>h3 {
+        font-size: 1.5rem;
+    }
+
+    .btn-back,
+    .btn-order {
+        font-size: .8rem;
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+    .payment {
+        width: 500px;
+    }
+
+    .payment-container>h3 {
+        font-size: 1.5rem;
+    }
+
+    .btn-back,
+    .btn-order {
+        font-size: .8rem;
+    }
+}

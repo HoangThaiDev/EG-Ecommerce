@@ -11,11 +11,11 @@ import "../../UI/css/popup-message.css";
 function FormContact() {
   // Create Schema Validate Yup
   const FormMessageSchema = Yup.object().shape({
-    name: Yup.string().required("Field Name is required!"),
+    name: Yup.string().required("Name is required!"),
     email: Yup.string()
-      .required("Field Email is required!")
+      .required("Email is required!")
       .matches(/^[A-Z0-9]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, "Invalid Email!"),
-    desc: Yup.string().required("Field Content is required!"),
+    desc: Yup.string().required("Content is required!"),
   });
 
   // Create + use Hooks

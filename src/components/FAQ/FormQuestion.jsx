@@ -51,9 +51,9 @@ function FormQuestion() {
           <div className={classes["introduce__header"]}>
             <h3>CUSTOMER SERVICE</h3>
             <p>
-              "We are committed to bringing you the best online shopping
+              " We are committed to bringing you the best online shopping
               experience with our staff always ready to support and answer all
-              your questions.
+              your questions. "
             </p>
           </div>
         </Col>
@@ -95,7 +95,7 @@ function FormQuestion() {
               />
               {formik.errors.name && formik.touched.name && (
                 <p className={classes["error-message-input"]}>
-                  Error: {formik.errors.name}
+                  {formik.errors.name}
                 </p>
               )}
             </div>
@@ -114,7 +114,7 @@ function FormQuestion() {
               ></textarea>
               {formik.errors.content && formik.touched.content && (
                 <p className={classes["error-message-input"]}>
-                  Error: {formik.errors.content}
+                  {formik.errors.content}
                 </p>
               )}
             </div>

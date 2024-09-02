@@ -17,10 +17,10 @@ export default function MainCheckout() {
         <Row className={classes["main-checkout-row"]}>
           <Col className={classes["main-checkout-col-form"]}>
             <Form />
+            <Payment />
           </Col>
           <Col className={classes["main-checkout-col-order"]}>
             <Order />
-            <Payment />
           </Col>
         </Row>
       </div>
