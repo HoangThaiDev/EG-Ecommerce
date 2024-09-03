@@ -8,7 +8,7 @@ import classes from "./css/input.module.css";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 
-function InputFirstName({
+function FirstName({
   formik,
   label,
   valueFormik,
@@ -44,7 +44,7 @@ function InputFirstName({
   );
 }
 
-function InputLastName({
+function LastName({
   formik,
   label,
   valueFormik,
@@ -80,7 +80,7 @@ function InputLastName({
   );
 }
 
-function InputEmail({
+function Email({
   formik,
   label,
   valueFormik,
@@ -116,7 +116,7 @@ function InputEmail({
   );
 }
 
-function InputPassword({
+function Password({
   formik,
   label,
   valueFormik,
@@ -180,7 +180,7 @@ function InputPassword({
   );
 }
 
-function InputConfirmPassword({
+function ConfirmPassword({
   formik,
   label,
   valueFormik,
@@ -245,11 +245,11 @@ function InputConfirmPassword({
 }
 
 const Input = {
-  InputFirstName,
-  InputLastName,
-  InputEmail,
-  InputPassword,
-  InputConfirmPassword,
+  FirstName,
+  LastName,
+  Email,
+  Password,
+  ConfirmPassword,
 };
 
 export default Input;

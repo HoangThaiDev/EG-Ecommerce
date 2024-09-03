@@ -7,7 +7,7 @@ export default function ScrollTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    if (!pathname.includes("setting-user")) {
+    if (!pathname.includes("/setting-account/")) {
       window.scrollTo(0, 0);
     }
   }, [pathname]);

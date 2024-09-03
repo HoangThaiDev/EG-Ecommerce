@@ -8,7 +8,7 @@ import classes from "./css/input.module.css";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 
-function InputEmail({
+function Email({
   formik,
   label,
   valueFormik,
@@ -43,7 +43,7 @@ function InputEmail({
   );
 }
 
-function InputPassword({
+function Password({
   formik,
   label,
   valueFormik,
@@ -108,8 +108,8 @@ function InputPassword({
 }
 
 const Input = {
-  InputEmail,
-  InputPassword,
+  Email,
+  Password,
 };
 
 export default Input;

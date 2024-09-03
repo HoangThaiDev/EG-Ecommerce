@@ -8,7 +8,6 @@ import classes from "./css/mainCheckout.module.css";
 import { Row, Col } from "antd";
 import Form from "./Form";
 import Order from "./Order";
-import Payment from "./Payment";
 
 export default function MainCheckout() {
   return (
@@ -17,7 +16,6 @@ export default function MainCheckout() {
         <Row className={classes["main-checkout-row"]}>
           <Col className={classes["main-checkout-col-form"]}>
             <Form />
-            <Payment />
           </Col>
           <Col className={classes["main-checkout-col-order"]}>
             <Order />

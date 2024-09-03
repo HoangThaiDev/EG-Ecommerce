@@ -6,6 +6,8 @@ import { useRef, useEffect } from "react";
 import "./App.css";
 
 // Import Components
+import Order from "./components/SettingAccount/Order";
+
 // ------------------- UI --------------------
 import ScrollTop from "./UI/ScrollTop";
 
@@ -86,6 +88,7 @@ function App() {
             <Route path="setting-account" element={<SettingAccount />}>
               <Route index element={<Introduce />} />
               <Route path="profile" element={<Profile />} />
+              <Route path="order" element={<Order />} />
             </Route>
             <Route path="*" element={<Error />} />
           </Route>

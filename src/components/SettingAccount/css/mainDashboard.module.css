@@ -1,0 +1,86 @@
+.main-dashboard {
+    width: 100%;
+}
+
+/* CSS: Main Dashboard Container */
+
+.main-dashboard-container {
+    width: 950px;
+    margin: 5% auto;
+}
+
+/* CSS: Main Dashboard Row */
+.main-dashboard-row {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.main-dashboard-menu {
+    width: 25%;
+}
+
+.main-dashboard-section {
+    width: 70%;
+}
+
+/* CSS: Responsives */
+
+@media screen and (max-width:575px) {
+    .main-dashboard-container {
+        width: 90%;
+        margin: 15% auto;
+    }
+
+    .main-dashboard-row {
+        gap: 50px 0;
+    }
+
+    .main-dashboard-menu {
+        width: 100%;
+    }
+
+    .main-dashboard-section {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width:765px) {
+    .main-dashboard-container {
+        width: 90%;
+        margin: 15% auto;
+    }
+
+    .main-dashboard-row {
+        gap: 50px 0;
+    }
+
+    .main-dashboard-menu {
+        width: 100%;
+    }
+
+    .main-dashboard-section {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width:766px) and (max-width:991px) {
+    .main-dashboard-container {
+        width: 80%;
+        margin: 15% auto;
+    }
+
+    .main-dashboard-row {
+        gap: 50px 0;
+    }
+
+    .main-dashboard-menu {
+        width: 100%;
+    }
+
+    .main-dashboard-section {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1199px) {}

@@ -1,12 +1,13 @@
 // Import Modules
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import dbVietNameProvincesCities from "../../../public/data/vietnam-provinces-cities.json";
 
 // Import File CSS
 import classes from "./css/form.module.css";
 
-// Import Icons
-import { IoMdArrowDropdown } from "react-icons/io";
+// Import Components
+import Input from "./Input";
+import Payment from "./Payment";
 
 export default function Form() {
   // Create + use Hooks
@@ -180,249 +181,56 @@ export default function Form() {
     }));
   };
 
+  const submitHandler = () => {
+    console.log("submit");
+  };
+
   return (
     <div className={classes["form-checkout"]}>
-      <h3>Billing Details</h3>
-      <form className={classes["form-checkout-container"]}>
-        <div
-          className={`${classes["form-input"]} ${classes["form-input-firstName"]}`}
-        >
-          <label htmlFor="firstName">
-            First name <span>*</span>
-          </label>
-          <input type="text" id="firstName" placeholder="Your first name" />
-        </div>
-        <div
-          className={`${classes["form-input"]} ${classes["form-input-lastName"]}`}
-        >
-          <label htmlFor="lastName">
-            Last name <span>*</span>
-          </label>
-          <input type="text" id="lastName" placeholder="Your last name" />
-        </div>
-        <div
-          className={`${classes["form-input"]} ${classes["form-input-city"]}`}
-        >
-          <label htmlFor="city">
-            City <span>*</span>
-          </label>
-          <div
-            className={classes["flex-selects-city"]}
-            onClick={() => showMenuCityDropdownHandler("province")}
-          >
-            <input
-              type="text"
-              value={valueSelectOptions.province.name}
-              readOnly
-            />
-            <IoMdArrowDropdown
-              className={
-                isShowMenuOptions.province
-                  ? `${classes["icon-dropdown-selects"]} ${classes["active"]}`
-                  : classes["icon-dropdown-selects"]
-              }
-            />
-          </div>
-          <div
-            className={
-              isShowMenuOptions.province
-                ? `${classes["menu-dropdown-cities"]} ${classes["active"]}`
-                : classes["menu-dropdown-cities"]
-            }
-          >
-            <div className={classes["form-search"]}>
-              <input
-                type="text"
-                value={valueSearchForm.province}
-                onChange={(e) => searchValueOptionHandler(e, "province")}
-              />
-            </div>
-            <div className={classes["list-cities"]}>
-              {cities.length > 0 &&
-                cities.map((item) => (
-                  <option
-                    className={classes["city-name"]}
-                    key={item.idProvince}
-                    onClick={() => selectValueOptionHandler(item, "province")}
-                  >
-                    {item.name}
-                  </option>
-                ))}
-              {cities.length === 0 && (
-                <p className={classes["message-no-found-city"]}>
-                  No matches found
-                </p>
-              )}
-            </div>
-          </div>
-        </div>
-        <div
-          className={
-            districts.active.length > 0
-              ? `${classes["form-input"]} ${classes["form-input-district"]} ${classes["active"]}`
-              : `${classes["form-input"]} ${classes["form-input-district"]} `
-          }
-        >
-          <label htmlFor="district">
-            District <span>*</span>
-          </label>
-          <div
-            className={classes["flex-selects-district"]}
-            onClick={
-              districts.active.length > 0
-                ? () => showMenuCityDropdownHandler("district")
-                : undefined
-            }
-          >
-            <input
-              type="text"
-              value={valueSelectOptions.district.name}
-              disabled={districts.active.length > 0 ? false : true}
-              readOnly
-            />
-            <IoMdArrowDropdown
-              className={
-                isShowMenuOptions.district
-                  ? `${classes["icon-dropdown-selects"]} ${classes["active"]}`
-                  : classes["icon-dropdown-selects"]
-              }
-            />
-          </div>
-          <div
-            className={
-              isShowMenuOptions.district
-                ? `${classes["menu-dropdown-districts"]} ${classes["active"]}`
-                : classes["menu-dropdown-districts"]
-            }
-          >
-            <div className={classes["form-search"]}>
-              <input
-                type="text"
-                value={valueSearchForm.district}
-                onChange={(e) => searchValueOptionHandler(e, "district")}
-              />
-            </div>
-            <div className={classes["list-districts"]}>
-              {districts.active.length > 0 &&
-                districts.active.map((item) => (
-                  <option
-                    className={classes["district-name"]}
-                    key={item.idDistrict}
-                    onClick={() => selectValueOptionHandler(item, "district")}
-                  >
-                    {item.name}
-                  </option>
-                ))}
-              {districts.active.length === 0 && (
-                <p className={classes["message-no-found-district"]}>
-                  No matches found
-                </p>
-              )}
-            </div>
-          </div>
-        </div>
-        <div
-          className={
-            communes.active.length > 0
-              ? `${classes["form-input"]} ${classes["form-input-ward"]} ${classes["active"]}`
-              : `${classes["form-input"]} ${classes["form-input-ward"]} `
-          }
-        >
-          <label htmlFor="ward">
-            Ward <span>*</span>
-          </label>
-          <div
-            className={classes["flex-selects-ward"]}
-            onClick={
-              communes.active.length > 0
-                ? () => showMenuCityDropdownHandler("commune")
-                : undefined
-            }
-          >
-            <input
-              type="text"
-              value={valueSelectOptions.commune.name}
-              disabled={communes.active.length > 0 ? false : true}
-              readOnly
-            />
-            <IoMdArrowDropdown
-              className={
-                isShowMenuOptions.commune
-                  ? `${classes["icon-dropdown-selects"]} ${classes["active"]}`
-                  : classes["icon-dropdown-selects"]
-              }
-            />
-          </div>
-          <div
-            className={
-              isShowMenuOptions.commune
-                ? `${classes["menu-dropdown-wards"]} ${classes["active"]}`
-                : classes["menu-dropdown-wards"]
-            }
-          >
-            <div className={classes["form-search"]}>
-              <input
-                type="text"
-                value={valueSearchForm.commune}
-                onChange={(e) => searchValueOptionHandler(e, "commune")}
-              />
-            </div>
-            <div className={classes["list-wards"]}>
-              {communes.active.length > 0 &&
-                communes.active.map((item) => (
-                  <option
-                    className={classes["ward-name"]}
-                    key={item.idCommune}
-                    onClick={() => selectValueOptionHandler(item, "commune")}
-                  >
-                    {item.name}
-                  </option>
-                ))}
-              {communes.active.length === 0 && (
-                <p className={classes["message-no-found-ward"]}>
-                  No matches found
-                </p>
-              )}
-            </div>
-          </div>
-        </div>
-        <div
-          className={`${classes["form-input"]} ${classes["form-input-address"]}`}
-        >
-          <label htmlFor="address">
-            Street address <span>*</span>
-          </label>
-          <input
-            type="text"
-            id="address"
-            placeholder="House number and street name"
+      <form
+        className={classes["form-checkout-container"]}
+        onSubmit={submitHandler}
+      >
+        <div className={classes["form-section"]}>
+          <h3>Billing Details</h3>
+          <Input.FirstName classes={classes} />
+          <Input.LastName classes={classes} />
+          <Input.City
+            classes={classes}
+            onShowMenuCityDropdown={showMenuCityDropdownHandler}
+            onSearchValueCity={searchValueOptionHandler}
+            onSelectValueCity={selectValueOptionHandler}
+            valueSelectProvince={valueSelectOptions.province.name}
+            valueSearchProvince={valueSearchForm.province}
+            isShowMenuProvince={isShowMenuOptions.province}
+            cities={cities}
           />
+          <Input.District
+            classes={classes}
+            onShowMenuDistrictDropdown={showMenuCityDropdownHandler}
+            onSearchValueDistrict={searchValueOptionHandler}
+            onSelectValueDistrict={selectValueOptionHandler}
+            valueSelectDistrict={valueSelectOptions.district.name}
+            valueSearchDistrict={valueSearchForm.district}
+            isShowMenuDistrict={isShowMenuOptions.district}
+            districts={districts}
+          />
+          <Input.Commune
+            classes={classes}
+            onShowMenuCommuneDropdown={showMenuCityDropdownHandler}
+            onSearchValueCommune={searchValueOptionHandler}
+            onSelectValueCommune={selectValueOptionHandler}
+            valueSelectCommune={valueSelectOptions.commune.name}
+            valueSearchCommune={valueSearchForm.commune}
+            isShowMenuCommune={isShowMenuOptions.commune}
+            communes={communes}
+          />
+          <Input.Address classes={classes} />
+          <Input.Phone classes={classes} />
+          <Input.Email classes={classes} />
+          <Input.OrderNote classes={classes} />
         </div>
-        <div
-          className={`${classes["form-input"]} ${classes["form-input-phone"]}`}
-        >
-          <label htmlFor="phone">
-            Phone <span>*</span>
-          </label>
-          <input type="text" id="phone" placeholder="Your Phone" />
-        </div>
-        <div
-          className={`${classes["form-input"]} ${classes["form-input-email"]}`}
-        >
-          <label htmlFor="phone">
-            Email <span>*</span>
-          </label>
-          <input type="email" id="email" placeholder="Your Email " />
-        </div>
-        <div
-          className={`${classes["form-input"]} ${classes["form-input-order"]}`}
-        >
-          <textarea
-            type="text"
-            id="order"
-            placeholder="Order Notes (Optional)"
-          ></textarea>
-        </div>
+        <Payment />
       </form>
     </div>
   );

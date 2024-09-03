@@ -108,7 +108,7 @@ export default function Payment() {
               <IoIosArrowBack className={classes["icon-arrow-back"]} /> BACK TO
               CART
             </button>
-            <button type="button" className={classes["btn-order"]}>
+            <button type="submit" className={classes["btn-order"]}>
               PLACE ORDER
             </button>
           </div>

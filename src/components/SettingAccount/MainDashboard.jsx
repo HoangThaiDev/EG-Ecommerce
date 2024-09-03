@@ -12,12 +12,16 @@ import { Outlet } from "react-router-dom";
 function MainDashboard() {
   return (
     <div className={classes["main-dashboard"]}>
-      <Row>
-        <Col>
-          <MenuSidebar />
-        </Col>
-        <Col>{/* <Outlet /> */}</Col>
-      </Row>
+      <div className={classes["main-dashboard-container"]}>
+        <Row className={classes["main-dashboard-row"]}>
+          <Col className={classes["main-dashboard-menu"]}>
+            <MenuSidebar />
+          </Col>
+          <Col className={classes["main-dashboard-section"]}>
+            <Outlet />
+          </Col>
+        </Row>
+      </div>
     </div>
   );
 }

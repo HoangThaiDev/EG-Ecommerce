@@ -1,0 +1,112 @@
+.menu-sidebar,
+.menu-sidebar-container {
+    width: 100%;
+}
+
+.menu-sidebar-row {
+    gap: 20px 0;
+}
+
+.menu-sidebar-col {
+    width: 100%;
+}
+
+.item-action {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0 10px;
+    box-shadow: 0 4px 8px 1px rgba(213, 213, 213, 0.6);
+    height: 50px;
+    border-radius: 5px;
+    transition: .5s all ease;
+}
+
+.item-action .item-action-title {
+    font: 600 1rem/1.2rem "Bodoni Moda", serif;
+    letter-spacing: .6px;
+    color: rgb(39, 52, 60, .9);
+}
+
+.item-action .icon {
+    color: rgb(39, 52, 60);
+    position: relative;
+    left: 0;
+    transition: .3s all ease-in-out;
+}
+
+/* CSS: Active */
+.item-action.active {
+    background-color: rgb(248, 104, 34);
+}
+
+.item-action.active .item-action-title,
+.item-action.active .icon {
+    color: rgba(255, 255, 255, .9);
+}
+
+/* CSS: Effect */
+.item-action:hover {
+    background-color: rgb(55, 100, 122);
+}
+
+.item-action:hover .item-action-title,
+.item-action:hover .icon {
+    color: #fff;
+    left: -10px;
+}
+
+/* CSS: Responsives */
+
+@media screen and (max-width:575px) {
+
+    .menu-sidebar-row {
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .menu-sidebar-col {
+        width: 200px;
+    }
+
+    .item-action .item-action-title {
+        font: 600 .9rem/1.2rem "Bodoni Moda", serif;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width:765px) {
+    .menu-sidebar-row {
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .menu-sidebar-col {
+        width: 220px;
+    }
+
+    .item-action .item-action-title {
+        font: 600 .9rem/1.2rem "Bodoni Moda", serif;
+    }
+}
+
+@media screen and (min-width:766px) and (max-width:991px) {
+    .menu-sidebar-row {
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .menu-sidebar-col {
+        width: 220px;
+    }
+
+    .item-action .item-action-title {
+        font: 600 .9rem/1.2rem "Bodoni Moda", serif;
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+    .item-action .item-action-title {
+        font: 600 .9rem/1.2rem "Bodoni Moda", serif;
+    }
+}

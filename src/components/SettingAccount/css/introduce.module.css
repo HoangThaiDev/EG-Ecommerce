@@ -1,0 +1,76 @@
+.introduce {
+    width: 100%;
+}
+
+.introduce-container {
+    box-shadow: 4px 4px 15px 1px rgba(200, 199, 199, .3);
+    text-align: center;
+    padding: 40px 30px;
+}
+
+.introduce-container>h4 {
+    font: 600 1.1rem/1.4rem "Roboto", sans-serif;
+    color: rgb(41, 55, 61);
+    letter-spacing: .6px;
+}
+
+.introduce-row {
+    margin-top: 30px;
+    justify-content: center;
+    gap: 0 25px;
+}
+
+.introduce-col {
+    border: 1px solid rgba(186, 186, 186, .4);
+    border-radius: 3px;
+    width: 120px;
+    height: 120px;
+}
+
+.item-status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: inherit;
+    padding: 20px;
+}
+
+.item-status>h2 {
+    font: 600 2.5rem/2.5rem "Roboto", sans-serif;
+    color: rgb(148, 147, 147);
+    letter-spacing: 2px;
+}
+
+.item-status>p {
+    font: 600 1rem/1.5rem "Roboto", sans-serif;
+    color: rgb(97, 96, 96);
+    letter-spacing: .6px;
+}
+
+/* CSS: Responsives */
+
+@media screen and (max-width:575px) {
+    .introduce-container {
+        box-shadow: 0 4px 15px 1px rgba(200, 199, 199, .6);
+    }
+
+    .introduce-row {
+        gap: 20px;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width:765px) {
+    .introduce-container {
+        box-shadow: 0 4px 15px 1px rgba(200, 199, 199, .6);
+        padding: 40px 10px;
+    }
+
+    .introduce-row {
+        gap: 20px;
+    }
+}
+
+@media screen and (min-width:766px) and (max-width:991px) {}
+
+@media screen and (min-width:992px) and (max-width:1199px) {}

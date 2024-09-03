@@ -1,20 +1,14 @@
-.form-checkout {
+.form-checkout,
+.form-checkout-container {
     width: 600px;
-    box-shadow: 0 0 50px 3px rgba(220, 219, 219, .4);
-    padding: 30px;
 }
 
-.form-checkout>h3 {
+.form-section>h3 {
     font: 600 1.7rem/1.3rem "Playfair Display", serif;
     margin-bottom: 50px;
     color: rgba(35, 53, 68, .9);
     letter-spacing: .6px;
-}
-
-.form-checkout-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    width: 100%;
 }
 
 .form-input {
@@ -22,6 +16,15 @@
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 30px;
+}
+
+.form-section {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    box-shadow: 0 0 50px 3px rgba(220, 219, 219, .4);
+    padding: 30px;
 }
 
 /* CSS: Form Input Field */
@@ -67,6 +70,7 @@
 }
 
 .form-input>input {
+    font: 500 .9rem/1.3rem "Roboto", sans-serif;
     position: relative;
     box-sizing: border-box;
     width: 100%;
@@ -240,11 +244,13 @@
 
 /* CSS: Responsives */
 @media screen and (max-width:575px) {
-    .form-checkout {
+
+    .form-checkout,
+    .form-checkout-container {
         width: 100%;
     }
 
-    .form-checkout>h3 {
+    .form-section>h3 {
         font-size: 1.5rem;
     }
 
@@ -254,11 +260,13 @@
 }
 
 @media screen and (min-width:576px) and (max-width:765px) {
-    .form-checkout {
+
+    .form-checkout,
+    .form-checkout-container {
         width: 100%;
     }
 
-    .form-checkout>h3 {
+    .form-section>h3 {
         font-size: 1.5rem;
     }
 
@@ -268,11 +276,13 @@
 }
 
 @media screen and (min-width:766px) and (max-width:991px) {
-    .form-checkout {
+
+    .form-checkout,
+    .form-checkout-container {
         width: 100%;
     }
 
-    .form-checkout>h3 {
+    .form-section>h3 {
         font-size: 1.5rem;
     }
 
@@ -282,11 +292,13 @@
 }
 
 @media screen and (min-width:992px) and (max-width:1199px) {
-    .form-checkout {
+
+    .form-checkout,
+    .form-checkout-container {
         width: 500px;
     }
 
-    .form-checkout>h3 {
+    .form-section>h3 {
         font-size: 1.5rem;
     }
 
