@@ -1,6 +1,8 @@
 // Import Modules
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import reduxActions from "../../redux/redux-actions";
 
 // Import Components
 import { Row, Col } from "antd";
@@ -61,6 +63,7 @@ function Menu() {
   // Create + use Hooks
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isActiveMenuAction, setIsActiveMenuAction] = useState({
     dashboard: true,
     profile: false,
@@ -116,6 +119,8 @@ function Menu() {
     }
 
     if (item.value === "logout") {
+      localStorage.removeItem("user");
+      dispatch(reduxActions.user.restart());
       navigate("../");
     }
   };

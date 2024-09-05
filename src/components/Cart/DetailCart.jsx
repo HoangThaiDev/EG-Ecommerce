@@ -1,7 +1,5 @@
 // Import Modules
 import React, { useState, useCallback, useEffect, useRef } from "react";
-import reduxActions from "../../redux/redux-actions";
-import { useDispatch } from "react-redux";
 
 // Import File CSS
 import classes from "./css/detailCart.module.css";
@@ -12,8 +10,6 @@ import HeaderDetailCart from "./HeaderDetailCart";
 import SectionDetailCart from "./SectionDetailCart";
 
 // Import Icons
-import { BsInfoLg } from "react-icons/bs";
-import { RiDeleteBin5Line } from "react-icons/ri";
 import { RiCoupon3Line } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 
@@ -56,7 +52,6 @@ const DUMMY_CART = [
 export default function DetailCart() {
   // Create + use Hooks
   const payMentSumaryRef = useRef();
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [cart, setCart] = useState(DUMMY_CART);
   const [isSelectedItems, setIsSelectedItems] = useState(false);
@@ -66,7 +61,7 @@ export default function DetailCart() {
   useEffect(() => {
     const showPaymentSummary = () => {
       // 500px
-      if (window.scrollY >= 200) {
+      if (window.scrollY >= 800) {
         payMentSumaryRef.current.classList.add(classes.sticky);
       } else {
         payMentSumaryRef.current.classList.remove(classes.sticky);
@@ -83,7 +78,7 @@ export default function DetailCart() {
 
   // Create + use event handlers
   const checkoutHandler = () => {
-    navigate("/checkout");
+    navigate("/checkout", { replace: true });
   };
   const findItemIndex = (itemId) => {
     const cloneCart = [...cart];
@@ -186,11 +181,6 @@ export default function DetailCart() {
     [cart]
   );
 
-  const viewCartDetailHandler = () => {
-    const filteredCart = cart.filter((item) => item.checked);
-    dispatch(reduxActions.modalCart.show(filteredCart));
-  };
-
   return (
     <div className={classes["detail-cart"]}>
       <div className={classes["detail-cart-container"]}>
@@ -205,11 +195,6 @@ export default function DetailCart() {
             <HeaderDetailCart
               onSaveSelectAllItems={selectAllItemsHandler}
               isSelectedItems={isSelectedItems}
-            />
-            <RiDeleteBin5Line className={classes["icon-action-delete"]} />
-            <BsInfoLg
-              className={classes["icon-action-view"]}
-              onClick={viewCartDetailHandler}
             />
           </Col>
 

@@ -1,7 +1,11 @@
 // Import Modules
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../axios/customAxios";
+import reduxActions from "../../redux/redux-actions";
+import { useDispatch } from "react-redux";
 
 // Import File CSS
 import classes from "./css/form.module.css";
@@ -13,6 +17,7 @@ import Input from "./Input";
 // Import Icons
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
+import { IoCloseCircleOutline } from "react-icons/io5";
 
 function Form() {
   // Create Schema Validate Yup
@@ -30,10 +35,46 @@ function Form() {
       password: "",
     },
     validationSchema: FormLoginSchema,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      const user = await fetchUser(values);
+
+      // Test
+      const userCurrent = {
+        isLogin: true,
+      };
+      localStorage.setItem("user", JSON.stringify(userCurrent));
+      dispatch(reduxActions.user.save({ isLogin: userCurrent.isLogin }));
+      //////////////////////////
+      navigate("../");
+      setMessageError({
+        isShow: false,
+        content: "",
+      });
     },
   });
+  const [messageError, setMessageError] = useState({
+    isShow: false,
+    content: "",
+  });
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  // Create + use event handlers
+  const fetchUser = async (values) => {
+    try {
+      const response = await axiosInstance.post("/user/login", {
+        valuesForm: values,
+      });
+      return response.data;
+    } catch (error) {
+      if (error.response.status !== 200) {
+        setMessageError({
+          isShow: true,
+          content: error.response.data.message,
+        });
+      }
+    }
+  };
 
   return (
     <div className={classes["main-login"]}>
@@ -57,6 +98,13 @@ function Form() {
           onSubmit={formik.handleSubmit}
         >
           <h2>Login Your Account</h2>
+          {messageError.isShow && (
+            <div className={classes["box-message"]}>
+              <IoCloseCircleOutline className={classes["icon-error"]} />
+              <p className={classes["message-error"]}>{messageError.content}</p>
+            </div>
+          )}
+
           <Input.Email
             formik={formik}
             valueFormik="email"

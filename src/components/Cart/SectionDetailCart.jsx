@@ -30,11 +30,11 @@ function SectionDetailCart({
   };
 
   const viewDetailProductHandler = (product_id, product_name) => {
-    // const modifiedProductName = product_name.split(" ").join("-");
-    // navigate(`../product/${modifiedProductName}`, {
-    //   state: { productId: product_id },
-    //   replace: true,
-    // });
+    const modifiedProductName = product_name.split(" ").join("-");
+    navigate(`../product/${modifiedProductName}`, {
+      state: { productId: product_id },
+      replace: true,
+    });
   };
 
   return (
@@ -52,19 +52,11 @@ function SectionDetailCart({
           src={item.image}
           alt={item.image}
           loading="lazy"
-          onClick={() => viewDetailProductHandler(item)}
+          onClick={() => viewDetailProductHandler(item.id, item.name)}
         />
         <div className={classes["product-detail"]}>
-          <p
-            className={classes["product-detail-name"]}
-            onClick={() => viewDetailProductHandler(item.id, item.name)}
-          >
-            {item.name}
-          </p>
-          <p
-            className={classes["product-detail-unit"]}
-            onClick={() => viewDetailProductHandler(item.id, item.name)}
-          >
+          <p className={classes["product-detail-name"]}>{item.name}</p>
+          <p className={classes["product-detail-unit"]}>
             Unit: <span>{item.unit}</span>
           </p>
           <p className={classes["product-detail-price"]}>

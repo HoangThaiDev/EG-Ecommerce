@@ -161,7 +161,9 @@
     display: grid;
     place-content: center;
     border-radius: 100%;
-    padding: 3px;
+    padding: 4px;
+    width: 15px;
+    height: 15px;
     top: -4px;
     right: -8px;
 }

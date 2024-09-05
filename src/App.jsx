@@ -1,6 +1,8 @@
 // Import Modules
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useRef, useEffect } from "react";
+import reduxActions from "./redux/redux-actions";
+import { useDispatch } from "react-redux";
 
 // Import Files CSS
 import "./App.css";
@@ -14,6 +16,7 @@ import ScrollTop from "./UI/ScrollTop";
 // ------------------- Layout --------------------
 import RootLayout from "./layout/RootLayout";
 import SideMenu from "./layout/SideMenu";
+import SideCart from "./layout/SideCart";
 
 // ------------------- Pages --------------------
 import Home from "./pages/Home";
@@ -34,7 +37,9 @@ import Checkout from "./pages/Checkout";
 function App() {
   // Create + use Hooks
   const btnScrollRef = useRef(null);
+  const dispatch = useDispatch();
 
+  // Sides Effect
   useEffect(() => {
     const btnScrollHandler = () => {
       if (window.scrollY > 250) {
@@ -50,6 +55,17 @@ function App() {
     return () => {
       document.removeEventListener("scroll", btnScrollHandler);
     };
+  }, []);
+
+  useEffect(() => {
+    const fetchUser = () => {
+      const userState = JSON.parse(localStorage.getItem("user"));
+
+      if (userState) {
+        dispatch(reduxActions.user.save({ isLogin: userState.isLogin }));
+      }
+    };
+    fetchUser();
   }, []);
 
   // Create + use event Handlers
@@ -70,6 +86,7 @@ function App() {
       <BrowserRouter>
         <ScrollTop />
         <SideMenu />
+        <SideCart />
 
         {/* -----------------------------------------ROUTER------------------------------------ */}
         <Routes>

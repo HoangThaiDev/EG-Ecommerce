@@ -27,6 +27,8 @@ export default function Navigation() {
 
   // Create + use Hooks
   const dispatch = useDispatch();
+  const stateUserCurrent = useSelector((state) => state.user);
+
   const navigate = useNavigate();
   const state = useLocation();
   const { isShow: isMenuDropDownShow } = useSelector(
@@ -67,6 +69,10 @@ export default function Navigation() {
   }, []);
 
   // Create + use Event handlers
+  const showSideCartHandler = () => {
+    dispatch(reduxActions.sideCart.toggle());
+  };
+
   const changeValueNameHandler = (e) => {
     let valueSearch = e.target.value;
     // Filter data products by value search
@@ -210,7 +216,11 @@ export default function Navigation() {
               <div className={classes["menu__icon"]}>
                 <LuUser2
                   className={`${classes.icon} ${classes["icon-user"]}`}
-                  onClick={() => nextPageHandler("login")}
+                  onClick={
+                    stateUserCurrent.isLogin
+                      ? () => nextPageHandler("setting-account")
+                      : () => nextPageHandler("login")
+                  }
                 />
               </div>
               <div className={classes["menu__icon"]}>
@@ -221,12 +231,14 @@ export default function Navigation() {
               </div>
               <div
                 className={classes["menu__icon"]}
-                onClick={() => nextPageHandler("cart")}
+                onClick={() => showSideCartHandler()}
               >
                 <AiOutlineShoppingCart
                   className={`${classes.icon} ${classes["icon-cart"]}`}
                 />
-                <span className={classes["quantity-item-cart"]}>10</span>
+                <span className={classes["quantity-item-cart"]}>
+                  {stateUserCurrent.cart.length}
+                </span>
               </div>
             </div>
           </Col>

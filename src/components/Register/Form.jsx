@@ -1,7 +1,10 @@
 // Import Modules
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import axiosInstance from "../../axios/customAxios";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 // Import File CSS
 import classes from "./css/form.module.css";
@@ -22,7 +25,9 @@ function Form() {
     email: Yup.string()
       .required("Email is required!")
       .matches(/^[A-Z0-9]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, "Invalid Email!"),
-    password: Yup.string().required("Password is required!"),
+    password: Yup.string()
+      .min(4, "Password must be 4 characters or more ")
+      .required("Password is required!"),
     confirmPassword: Yup.string()
       .required("Confirm Password is required!")
       .oneOf([Yup.ref("password")], "Passwords must match!"),
@@ -38,10 +43,54 @@ function Form() {
       confirmPassword: "",
     },
     validationSchema: FormLoginSchema,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      if (!isTermsAccepted) {
+        alert('You need accept "Terms & Policy"');
+        return false;
+      }
+
+      const result = await fetchUser(values);
+      if (result) {
+        Swal.fire({
+          customClass: {
+            container: "popup-message-contact",
+          },
+          title: "Register Success!",
+          html: `
+          <p class='title'>Welcome to EG SHOP, have a nice day!</p>       
+          `,
+          icon: "success",
+          confirmButtonText: "Close",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            navigate("../login", { replace: true });
+          }
+        });
+      }
     },
   });
+
+  const [isTermsAccepted, setIsTermAccepted] = useState(false);
+  const navigate = useNavigate();
+
+  // Create + use event handlers
+  const checkTermsAcceptedHandler = (e) => {
+    setIsTermAccepted(e.target.checked);
+  };
+
+  const fetchUser = async (values) => {
+    try {
+      const response = await axiosInstance.post("/user/register", {
+        valuesForm: values,
+      });
+      return true;
+    } catch (error) {
+      if (error.response.status !== 201) {
+        alert(error.response.data.message);
+      }
+    }
+  };
+
   return (
     <div className={classes["main-register"]}>
       <div className={classes["main-register-container"]}>
@@ -64,7 +113,7 @@ function Form() {
           onSubmit={formik.handleSubmit}
         >
           <h2>Register Your Account</h2>
-          <Input.InputFirstName
+          <Input.FirstName
             formik={formik}
             valueFormik="firstName"
             label="First Name"
@@ -74,7 +123,7 @@ function Form() {
             placeholder="Your First Name"
             type="text"
           />
-          <Input.InputLastName
+          <Input.LastName
             formik={formik}
             valueFormik="lastName"
             label="Last Name"
@@ -84,7 +133,7 @@ function Form() {
             placeholder="Your Last Name"
             type="text"
           />
-          <Input.InputEmail
+          <Input.Email
             formik={formik}
             valueFormik="email"
             label="Email"
@@ -94,7 +143,7 @@ function Form() {
             placeholder="Your Email"
             type="email"
           />
-          <Input.InputPassword
+          <Input.Password
             formik={formik}
             valueFormik="password"
             label="Password"
@@ -104,7 +153,7 @@ function Form() {
             placeholder="abcdef*******"
             type="password"
           />
-          <Input.InputConfirmPassword
+          <Input.ConfirmPassword
             formik={formik}
             valueFormik="confirmPassword"
             label="Confirm Password"
@@ -121,6 +170,7 @@ function Form() {
                 className={classes["form-input-checkbox"]}
                 type="checkbox"
                 id="remember"
+                onChange={checkTermsAcceptedHandler}
               />
               <label htmlFor="remember">
                 I agree to the <span>Terms & Policy</span>

@@ -2,13 +2,15 @@
 import {
   sideMenuSlide,
   menuDropdownSlide,
-  modalCartSlide,
+  sideCartSlide,
+  userSlide,
 } from "./redux-slices";
 
 const reduxActions = {
   sideMenu: sideMenuSlide.actions,
   menuDropdown: menuDropdownSlide.actions,
-  modalCart: modalCartSlide.actions,
+  sideCart: sideCartSlide.actions,
+  user: userSlide.actions,
 };
 
 export default reduxActions;

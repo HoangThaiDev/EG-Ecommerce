@@ -3,10 +3,41 @@ import { createSlice } from "@reduxjs/toolkit";
 
 // Create initialStates
 const initialSideMenu = { isShow: false };
+const initialSideCart = { isShow: false };
 const initialMenuDropdown = { isShow: false };
-const initialModalCart = { isShow: false };
+const initialUser = {
+  isLogin: false,
+  cart: [],
+};
 
 // Create Slide
+const userSlide = createSlice({
+  name: "user",
+  initialState: initialUser,
+  reducers: {
+    save(state, data) {
+      const { isLogin } = data.payload;
+      return { ...state, isLogin: isLogin };
+    },
+    restart(state) {
+      return { ...state, isLogin: false, cart: [] };
+    },
+  },
+});
+
+const sideCartSlide = createSlice({
+  name: "sideCart",
+  initialState: initialSideCart,
+  reducers: {
+    toggle(state) {
+      return { ...state, isShow: !state.isShow };
+    },
+    hide(state) {
+      return { ...state, isShow: false };
+    },
+  },
+});
+
 const sideMenuSlide = createSlice({
   name: "sideMenu",
   initialState: initialSideMenu,
@@ -33,18 +64,4 @@ const menuDropdownSlide = createSlice({
   },
 });
 
-const modalCartSlide = createSlice({
-  initialState: initialModalCart,
-  name: "modal-cart",
-  reducers: {
-    hide(state) {
-      return { ...state, isShow: false };
-    },
-    show(state, action) {
-      const product = action.payload.item;
-      return { ...state, isShow: true };
-    },
-  },
-});
-
-export { sideMenuSlide, menuDropdownSlide, modalCartSlide };
+export { sideMenuSlide, menuDropdownSlide, sideCartSlide, userSlide };

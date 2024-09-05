@@ -19,7 +19,6 @@ import { IoNewspaperOutline } from "react-icons/io5";
 import { MdOutlineGroups } from "react-icons/md";
 import { IoMdHelpCircleOutline } from "react-icons/io";
 import { FiPhoneCall } from "react-icons/fi";
-import { AiOutlineUser } from "react-icons/ai";
 
 function Overlay({ isShowSideMenu }) {
   // Create + use Hooks
@@ -45,14 +44,14 @@ function Overlay({ isShowSideMenu }) {
 function SideBar({ isShowSideMenu }) {
   // Create + use Hooks
   const dispatch = useDispatch();
-  const state = useLocation();
+  const locationPath = useLocation();
 
   // Side Effect
   useEffect(() => {
-    if (state.pathname !== "") {
+    if (locationPath.pathname !== "") {
       dispatch(reduxActions.sideMenu.hide());
     }
-  }, [state]);
+  }, [locationPath]);
 
   // Create + use Event handlers
   const hideSideMenu = () => {
@@ -61,23 +60,23 @@ function SideBar({ isShowSideMenu }) {
 
   return (
     <div
-      className={`${classes["sideBar"]} ${
+      className={`${classes["sidebar"]} ${
         isShowSideMenu ? `${classes["show"]}` : `${classes["hide"]}`
       }`}
     >
-      <div className={classes["sideBar__container"]}>
-        <div className={classes["sideBar__header"]}>
+      <div className={classes["sidebar__container"]}>
+        <div className={classes["sidebar__header"]}>
           <h2>EG SHOP</h2>
           <IoMdClose className={classes["icon-close"]} onClick={hideSideMenu} />
         </div>
 
         {/* -------------------------------JSX: ROW--------------------------------------------- */}
         <Row
-          className={`${classes["sideBar__row"]} ${classes["sideBar__menu-list"]}`}
+          className={`${classes["sidebar__row"]} ${classes["sidebar__menu-list"]}`}
         >
-          <Col className={classes["sideBar__col"]}>
+          <Col className={classes["sidebar__col"]}>
             {/* -------------------------------JSX: COL ITEM--------------------------------------------- */}
-            <div className={classes["sideBar__menu-item"]}>
+            <div className={classes["sidebar__menu-item"]}>
               <BiHome className={`${classes.icon} ${classes["icon-home"]}`} />
               <NavLink
                 to="/"
@@ -92,7 +91,7 @@ function SideBar({ isShowSideMenu }) {
             </div>
 
             {/* -------------------------------JSX: COL ITEM--------------------------------------------- */}
-            <div className={classes["sideBar__menu-item"]}>
+            <div className={classes["sidebar__menu-item"]}>
               <AiOutlineShoppingCart
                 className={`${classes.icon} ${classes["icon-products"]}`}
               />
@@ -112,11 +111,11 @@ function SideBar({ isShowSideMenu }) {
 
         {/* -------------------------------JSX: ROW--------------------------------------------- */}
         <Row
-          className={`${classes["sideBar__row"]} ${classes["sideBar__menu-list"]}`}
+          className={`${classes["sidebar__row"]} ${classes["sidebar__menu-list"]}`}
         >
-          <Col className={classes["sideBar__col"]}>
+          <Col className={classes["sidebar__col"]}>
             {/* -------------------------------JSX: COL ITEM--------------------------------------------- */}
-            <div className={classes["sideBar__menu-item"]}>
+            <div className={classes["sidebar__menu-item"]}>
               <MdOutlineGroups
                 className={`${classes.icon} ${classes["icon-about"]}`}
               />
@@ -133,7 +132,7 @@ function SideBar({ isShowSideMenu }) {
             </div>
 
             {/* -------------------------------JSX: COL ITEM--------------------------------------------- */}
-            <div className={classes["sideBar__menu-item"]}>
+            <div className={classes["sidebar__menu-item"]}>
               <FiPhoneCall
                 className={`${classes.icon} ${classes["icon-contact"]}`}
               />
@@ -150,7 +149,7 @@ function SideBar({ isShowSideMenu }) {
             </div>
 
             {/* -------------------------------JSX: COL ITEM--------------------------------------------- */}
-            <div className={classes["sideBar__menu-item"]}>
+            <div className={classes["sidebar__menu-item"]}>
               <IoMdHelpCircleOutline
                 className={`${classes.icon} ${classes["icon-faq"]}`}
               />
@@ -167,7 +166,7 @@ function SideBar({ isShowSideMenu }) {
             </div>
 
             {/* -------------------------------JSX: COL ITEM--------------------------------------------- */}
-            <div className={classes["sideBar__menu-item"]}>
+            <div className={classes["sidebar__menu-item"]}>
               <IoNewspaperOutline
                 className={`${classes.icon} ${classes["icon-blogs"]}`}
               />
@@ -186,12 +185,11 @@ function SideBar({ isShowSideMenu }) {
         </Row>
 
         {/* -------------------------------JSX: ROW--------------------------------------------- */}
-        <Row
-          className={`${classes["sideBar__row"]} ${classes["sideBar__menu-list"]}`}
+        {/* <Row
+          className={`${classes["sidebar__row"]} ${classes["sidebar__menu-list"]}`}
         >
-          <Col className={classes["sideBar__col"]}>
-            {/* -------------------------------JSX: COL ITEM--------------------------------------------- */}
-            <div className={classes["sideBar__menu-item"]}>
+          <Col className={classes["sidebar__col"]}>
+            <div className={classes["sidebar__menu-item"]}>
               <AiOutlineUser
                 className={`${classes.icon} ${classes["icon-user"]}`}
               />
@@ -200,7 +198,7 @@ function SideBar({ isShowSideMenu }) {
               </NavLink>
             </div>
           </Col>
-        </Row>
+        </Row> */}
       </div>
     </div>
   );

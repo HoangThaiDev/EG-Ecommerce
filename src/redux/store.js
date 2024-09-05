@@ -5,7 +5,8 @@ import { configureStore } from "@reduxjs/toolkit";
 import {
   sideMenuSlide,
   menuDropdownSlide,
-  modalCartSlide,
+  sideCartSlide,
+  userSlide,
 } from "./redux-slices";
 
 // Create store
@@ -13,7 +14,8 @@ const store = configureStore({
   reducer: {
     sideMenu: sideMenuSlide.reducer,
     menuDropdown: menuDropdownSlide.reducer,
-    modalCart: modalCartSlide.reducer,
+    sideCart: sideCartSlide.reducer,
+    user: userSlide.reducer,
   },
 });
 
