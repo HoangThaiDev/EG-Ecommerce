@@ -25,6 +25,7 @@
 /* CSS: sidebar Container */
 .sidebar-container {
     font-family: "Roboto", sans-serif;
+    position: relative;
 }
 
 /* CSS: sidebar Header */
@@ -181,8 +182,12 @@
 
 /* CSS: sidebar Footer */
 .sidebar-footer {
+    width: 100%;
+    background-color: #fff;
     box-shadow: 0 -3px 10px 1px rgba(208, 208, 209, 0.4);
     padding: 30px 20px;
+    position: sticky;
+    bottom: 0;
 }
 
 .sidebar-footer-section {
@@ -310,4 +315,11 @@
 
 .item-info-actions .icon-action-delete:hover {
     color: rgb(213, 47, 72);
+}
+
+/* CSS: Responsives */
+@media screen and (max-width:575px) {
+    .sidebar {
+        width: 320px;
+    }
 }

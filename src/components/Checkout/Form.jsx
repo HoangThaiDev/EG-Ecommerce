@@ -1,6 +1,6 @@
 // Import Modules
 import React, { useState } from "react";
-import dbVietNameProvincesCities from "../../../public/data/vietnam-provinces-cities.json";
+import dbVietNameProvincesCities from "../../../src/data/vietnam-provinces-cities.json";
 
 // Import File CSS
 import classes from "./css/form.module.css";
