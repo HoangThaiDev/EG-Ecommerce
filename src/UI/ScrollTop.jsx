@@ -4,13 +4,13 @@ import { useLocation } from "react-router-dom";
 
 export default function ScrollTop() {
   // Create + use Hooks
-  const { pathname } = useLocation();
+  const location = useLocation();
 
   useEffect(() => {
-    if (!pathname.includes("/setting-account/")) {
+    if (!location.pathname.includes("/setting-account/")) {
       window.scrollTo(0, 0);
     }
-  }, [pathname]);
+  }, [location]);
 
   return null;
 }

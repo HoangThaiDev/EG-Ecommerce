@@ -4,7 +4,7 @@ import React from "react";
 // Import Icons
 import { IoMdArrowDropdown } from "react-icons/io";
 
-function FirstName({ classes }) {
+function FirstName({ classes, formik }) {
   return (
     <div
       className={`${classes["form-input"]} ${classes["form-input-firstName"]}`}
@@ -12,12 +12,28 @@ function FirstName({ classes }) {
       <label htmlFor="firstName">
         First name <span>*</span>
       </label>
-      <input type="text" id="firstName" placeholder="Your first name" />
+      <input
+        className={
+          formik.touched.firstname && formik.errors.firstname
+            ? `${classes["input-firstName"]} ${classes["input-error"]}`
+            : classes["input-firstName"]
+        }
+        type="text"
+        name="firstname"
+        id="firstName"
+        placeholder="Your first name"
+        value={formik.values.firstname}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+      />
+      {formik.touched.firstname && (
+        <p className={classes["message-error"]}>{formik.errors.firstname}</p>
+      )}
     </div>
   );
 }
 
-function LastName({ classes }) {
+function LastName({ classes, formik }) {
   return (
     <div
       className={`${classes["form-input"]} ${classes["form-input-lastName"]}`}
@@ -25,13 +41,30 @@ function LastName({ classes }) {
       <label htmlFor="lastName">
         Last name <span>*</span>
       </label>
-      <input type="text" id="lastName" placeholder="Your last name" />
+      <input
+        className={
+          formik.touched.lastname && formik.errors.lastname
+            ? `${classes["input-lastName"]} ${classes["input-error"]}`
+            : classes["input-lastName"]
+        }
+        type="text"
+        name="lastname"
+        id="lastName"
+        placeholder="Your last name"
+        value={formik.values.lastname}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+      />
+      {formik.touched.lastname && (
+        <p className={classes["message-error"]}>{formik.errors.lastname}</p>
+      )}
     </div>
   );
 }
 
 function City({
   classes,
+  isShowErrorProvince,
   onShowMenuCityDropdown,
   onSearchValueCity,
   onSelectValueCity,
@@ -49,7 +82,16 @@ function City({
         className={classes["flex-selects-city"]}
         onClick={() => onShowMenuCityDropdown("province")}
       >
-        <input type="text" value={valueSelectProvince} readOnly />
+        <input
+          className={
+            isShowErrorProvince
+              ? `${classes["input-city"]} ${classes["input-error"]}`
+              : classes["input-city"]
+          }
+          type="text"
+          value={valueSelectProvince}
+          readOnly
+        />
         <IoMdArrowDropdown
           className={
             isShowMenuProvince
@@ -57,6 +99,9 @@ function City({
               : classes["icon-dropdown-selects"]
           }
         />
+        {isShowErrorProvince && (
+          <p className={classes["message-error"]}>City is required!</p>
+        )}
       </div>
       <div
         className={
@@ -94,6 +139,7 @@ function City({
 
 function District({
   classes,
+  isShowErrorDistrict,
   onShowMenuDistrictDropdown,
   onSearchValueDistrict,
   onSelectValueDistrict,
@@ -122,6 +168,11 @@ function District({
         }
       >
         <input
+          className={
+            isShowErrorDistrict
+              ? `${classes["input-district"]} ${classes["input-error"]}`
+              : classes["input-district"]
+          }
           type="text"
           value={valueSelectDistrict}
           disabled={districts.active.length > 0 ? false : true}
@@ -134,6 +185,9 @@ function District({
               : classes["icon-dropdown-selects"]
           }
         />
+        {isShowErrorDistrict && (
+          <p className={classes["message-error"]}>District is required!</p>
+        )}
       </div>
       <div
         className={
@@ -173,6 +227,7 @@ function District({
 
 function Commune({
   classes,
+  isShowErrorCommune,
   onShowMenuCommuneDropdown,
   onSearchValueCommune,
   onSelectValueCommune,
@@ -201,6 +256,11 @@ function Commune({
         }
       >
         <input
+          className={
+            isShowErrorCommune
+              ? `${classes["input-commune"]} ${classes["input-error"]}`
+              : classes["input-commune"]
+          }
           type="text"
           value={valueSelectCommune}
           disabled={communes.active.length > 0 ? false : true}
@@ -213,6 +273,9 @@ function Commune({
               : classes["icon-dropdown-selects"]
           }
         />
+        {isShowErrorCommune && (
+          <p className={classes["message-error"]}>Commune is required!</p>
+        )}
       </div>
       <div
         className={
@@ -248,7 +311,7 @@ function Commune({
   );
 }
 
-function Address({ classes }) {
+function Address({ classes, formik }) {
   return (
     <div
       className={`${classes["form-input"]} ${classes["form-input-address"]}`}
@@ -257,32 +320,76 @@ function Address({ classes }) {
         Street address <span>*</span>
       </label>
       <input
+        className={
+          formik.touched.address && formik.errors.address
+            ? `${classes["input-address"]} ${classes["input-error"]}`
+            : classes["input-address"]
+        }
         type="text"
+        name="address"
         id="address"
         placeholder="House number and street name"
+        value={formik.values.address}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
       />
+      {formik.touched.address && (
+        <p className={classes["message-error"]}>{formik.errors.address}</p>
+      )}
     </div>
   );
 }
 
-function Phone({ classes }) {
+function Phone({ classes, formik }) {
   return (
     <div className={`${classes["form-input"]} ${classes["form-input-phone"]}`}>
       <label htmlFor="phone">
         Phone <span>*</span>
       </label>
-      <input type="text" id="phone" placeholder="Your Phone" />
+      <input
+        className={
+          formik.touched.phone && formik.errors.phone
+            ? `${classes["input-phone"]} ${classes["input-error"]}`
+            : classes["input-phone"]
+        }
+        type="text"
+        id="phone"
+        name="phone"
+        placeholder="Your Phone"
+        value={formik.values.phone}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+      />
+      {formik.touched.phone && (
+        <p className={classes["message-error"]}>{formik.errors.phone}</p>
+      )}
     </div>
   );
 }
 
-function Email({ classes }) {
+function Email({ classes, formik }) {
   return (
     <div className={`${classes["form-input"]} ${classes["form-input-email"]}`}>
       <label htmlFor="phone">
         Email <span>*</span>
       </label>
-      <input type="email" id="email" placeholder="Your Email" />
+      <input
+        className={
+          formik.touched.email && formik.errors.email
+            ? `${classes["input-email"]} ${classes["input-error"]}`
+            : classes["input-email"]
+        }
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Your Email"
+        value={formik.values.email}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+      />
+      {formik.touched.email && (
+        <p className={classes["message-error"]}>{formik.errors.email}</p>
+      )}
     </div>
   );
 }

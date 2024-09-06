@@ -49,23 +49,29 @@ function ItemDetail({ productDetail }) {
   };
 
   const changeCountQuantityHandler = (e, option) => {
-    if (option === "i") {
-      setCountQuantity((prevState) => Number(prevState) + 1);
-      return false;
-    }
-
-    if (option === "d" && countQuantity > 1) {
-      setCountQuantity((prevState) => Number(prevState) - 1);
-      return false;
-    }
-    if (option === "input") {
-      if (e.target.value.length === 0) {
-        setCountQuantity(e.target.value + 1);
-      } else {
-        setCountQuantity(e.target.value);
-      }
+    const quantityProduct = e.target.value;
+    switch (option) {
+      case "i":
+        if (countQuantity < 20) {
+          setCountQuantity((prevState) => Number(prevState) + 1);
+        } else {
+          alert("Max quantity of product is 20!");
+        }
+        break;
+      case "d":
+        if (countQuantity > 1) {
+          setCountQuantity((prevState) => Number(prevState) - 1);
+        }
+        break;
+      case "input":
+        setCountQuantity(quantityProduct);
+        break;
+      default:
+        alert("Error! Please check again choose quantity! ");
+        break;
     }
   };
+  console.log(countQuantity);
 
   return (
     <div className={classes["item-detail"]}>

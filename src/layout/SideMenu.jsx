@@ -9,7 +9,7 @@ import classes from "./css/sideMenu.module.css";
 
 // Import Components
 import { Row, Col } from "antd";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 // Import Icons
 import { IoMdClose } from "react-icons/io";
@@ -19,6 +19,7 @@ import { IoNewspaperOutline } from "react-icons/io5";
 import { MdOutlineGroups } from "react-icons/md";
 import { IoMdHelpCircleOutline } from "react-icons/io";
 import { FiPhoneCall } from "react-icons/fi";
+import { AiOutlineUser } from "react-icons/ai";
 
 function Overlay({ isShowSideMenu }) {
   // Create + use Hooks
@@ -44,7 +45,9 @@ function Overlay({ isShowSideMenu }) {
 function SideBar({ isShowSideMenu }) {
   // Create + use Hooks
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const locationPath = useLocation();
+  const stateUser = useSelector((state) => state.user);
 
   // Side Effect
   useEffect(() => {
@@ -56,6 +59,12 @@ function SideBar({ isShowSideMenu }) {
   // Create + use Event handlers
   const hideSideMenu = () => {
     dispatch(reduxActions.sideMenu.toggle());
+  };
+
+  const logoutAccount = () => {
+    localStorage.removeItem("user");
+    dispatch(reduxActions.user.restart());
+    navigate("../");
   };
 
   return (
@@ -185,7 +194,7 @@ function SideBar({ isShowSideMenu }) {
         </Row>
 
         {/* -------------------------------JSX: ROW--------------------------------------------- */}
-        {/* <Row
+        <Row
           className={`${classes["sidebar__row"]} ${classes["sidebar__menu-list"]}`}
         >
           <Col className={classes["sidebar__col"]}>
@@ -193,12 +202,18 @@ function SideBar({ isShowSideMenu }) {
               <AiOutlineUser
                 className={`${classes.icon} ${classes["icon-user"]}`}
               />
-              <NavLink to="/login" className={classes.link}>
-                Login / Register
-              </NavLink>
+              {stateUser.isLogin ? (
+                <a className={classes.link} onClick={logoutAccount}>
+                  Logout
+                </a>
+              ) : (
+                <NavLink to="/login" className={classes.link}>
+                  Login / Register
+                </NavLink>
+              )}
             </div>
           </Col>
-        </Row> */}
+        </Row>
       </div>
     </div>
   );

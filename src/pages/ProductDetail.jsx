@@ -33,6 +33,15 @@ function ProductDetail() {
     }
   }, [state]);
 
+  useEffect(() => {
+    // Khi productDetail đã được load thì mới scroll
+    if (isLoading) {
+      const timeoutId = setTimeout(() => {
+        window.scrollTo({ top: 400, left: 0, behavior: "smooth" });
+      }, 0);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [isLoading]);
   return (
     <>
       <Header

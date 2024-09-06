@@ -141,7 +141,9 @@
     border: none;
     padding: 5px 15px;
     border-radius: 3px;
+    transition: .3s all ease;
 }
+
 
 .cart-payment-section-info {
     width: 60%;
@@ -175,12 +177,20 @@
     color: #fff;
     border: 1px solid rgb(248, 104, 34);
     padding: 10px 25px;
+    transition: .3s all ease;
 }
 
 
 /* CSS: Active */
 .form-coupon .input-coupon:focus {
     outline: none;
+}
+
+
+/* CSS: Effect */
+.cart-payment-section-action .btn-delete-cart:hover,
+.cart-payment-section-info .btn-checkout:hover {
+    opacity: .8;
 }
 
 /* CSS: Responsives */

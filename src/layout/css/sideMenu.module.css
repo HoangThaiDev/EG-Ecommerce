@@ -24,7 +24,7 @@
     height: 100vh;
     width: 300px;
     padding: 20px;
-    transition: 1s all ease;
+    transition: .8s all ease;
 }
 
 .sidebar__container {

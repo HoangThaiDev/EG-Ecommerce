@@ -54,13 +54,13 @@ export default function DetailCart() {
   const payMentSumaryRef = useRef();
   const navigate = useNavigate();
   const [cart, setCart] = useState(DUMMY_CART);
+  const [itemsSelect, setItemsSelect] = useState([]);
   const [isSelectedItems, setIsSelectedItems] = useState(false);
   const [isShowActions, setIsShowActions] = useState(false);
 
   // Side Effect DOM
   useEffect(() => {
     const showPaymentSummary = () => {
-      // 500px
       if (window.scrollY >= 800) {
         payMentSumaryRef.current.classList.add(classes.sticky);
       } else {
@@ -78,8 +78,14 @@ export default function DetailCart() {
 
   // Create + use event handlers
   const checkoutHandler = () => {
+    if (itemsSelect.length === 0) {
+      alert("No product selected!");
+      return false;
+    }
+
     navigate("/checkout", { replace: true });
   };
+
   const findItemIndex = (itemId) => {
     const cloneCart = [...cart];
     const itemIndex = cloneCart.findIndex((item) => item.id === itemId);
@@ -110,6 +116,10 @@ export default function DetailCart() {
       setIsShowActions(false);
     }
 
+    // Update state Cart + Items Select
+    const filterItemsSelect = modifiedCloneCart.filter((item) => item.checked);
+
+    setItemsSelect(filterItemsSelect);
     setCart(modifiedCloneCart);
   }, []);
 
@@ -137,7 +147,10 @@ export default function DetailCart() {
       setIsSelectedItems(false);
     }
 
-    // Update Quantity Product
+    // Update State Cart + Items Select
+    const filterItemsSelect = cloneCart.filter((item) => item.checked);
+
+    setItemsSelect(filterItemsSelect);
     setCart(cloneCart);
   }, []);
 
@@ -228,9 +241,14 @@ export default function DetailCart() {
             </div>
             <div className={classes["cart-payment-section"]}>
               <div className={classes["cart-payment-section-action"]}>
-                <input type="checkbox" className={classes["input-selects"]} />
+                <input
+                  type="checkbox"
+                  className={classes["input-selects"]}
+                  onChange={selectAllItemsHandler}
+                  checked={isSelectedItems ? true : false}
+                />
                 <button className={classes["btn-select-items"]}>
-                  Select All <span>(0)</span>
+                  Select All <span>({itemsSelect.length})</span>
                 </button>
                 <button className={classes["btn-delete-cart"]} type="button">
                   Delete
@@ -239,7 +257,7 @@ export default function DetailCart() {
               <div className={classes["cart-payment-section-info"]}>
                 <div className={classes["total-price"]}>
                   <p className={classes["total-price-title"]}>
-                    Total Price <span>(0 Item):</span>
+                    Total Price <span>({itemsSelect.length} Item):</span>
                   </p>
                   <p className={classes["total-price-content"]}>$120.29</p>
                 </div>

@@ -121,6 +121,7 @@ function SideBar({ isShowSideCart }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const locationPath = useLocation();
+  const stateUser = useSelector((state) => state.user);
 
   // Side Effect
   useEffect(() => {
@@ -130,6 +131,10 @@ function SideBar({ isShowSideCart }) {
   }, [locationPath]);
 
   // Create + use Event handlers
+  const loginHandler = () => {
+    navigate("login", { replace: true });
+  };
+
   const goToPageCartHandler = () => {
     navigate("cart", { replace: true });
   };
@@ -154,87 +159,109 @@ function SideBar({ isShowSideCart }) {
           <IoClose className={classes["icon-close"]} onClick={hideSideCart} />
         </div>
 
-        <div className={classes["sidebar-section"]}>
-          {/* JSX: Item Cart */}
-          <div className={classes["sidebar-cart"]}>
-            {DUMMY_CART.map((item) => (
-              <div className={classes["cart-item"]} key={item.id}>
-                <img src={item.image} alt={item.image} />
-                <div className={classes["item-info"]}>
-                  <p className={classes["item-info-name"]}>{item.name}</p>
-                  <p className={classes["item-info-unit"]}>{item.unit}</p>
-                  <p className={classes["item-info-price"]}>${item.price}</p>
-                  <div className={classes["item-info-quantity"]}>
-                    <FaMinus
-                      className={`${classes["icon-quantity"]} ${classes["icon-decrease-quantity"]}`}
-                    />
-                    <input
-                      type="number"
-                      className={classes["input-quantity"]}
-                      value={1}
-                    />
-                    <FaPlus
-                      className={`${classes["icon-quantity"]} ${classes["icon-increase-quantity"]}`}
-                    />
+        {!stateUser.isLogin && (
+          <div className={classes["box-message"]}>
+            <p className={classes["message-guest"]}>
+              You need to Login Account use <span>ADD TO CART</span>
+            </p>
+
+            <button
+              type="button"
+              className={classes["btn-login"]}
+              onClick={loginHandler}
+            >
+              Login
+            </button>
+          </div>
+        )}
+
+        {stateUser.isLogin && (
+          <>
+            <div className={classes["sidebar-section"]}>
+              {/* JSX: Item Cart */}
+              <div className={classes["sidebar-cart"]}>
+                {DUMMY_CART.map((item) => (
+                  <div className={classes["cart-item"]} key={item.id}>
+                    <img src={item.image} alt={item.image} />
+                    <div className={classes["item-info"]}>
+                      <p className={classes["item-info-name"]}>{item.name}</p>
+                      <p className={classes["item-info-unit"]}>{item.unit}</p>
+                      <p className={classes["item-info-price"]}>
+                        ${item.price}
+                      </p>
+                      <div className={classes["item-info-quantity"]}>
+                        <FaMinus
+                          className={`${classes["icon-quantity"]} ${classes["icon-decrease-quantity"]}`}
+                        />
+                        <input
+                          type="number"
+                          className={classes["input-quantity"]}
+                          placeholder="1"
+                        />
+                        <FaPlus
+                          className={`${classes["icon-quantity"]} ${classes["icon-increase-quantity"]}`}
+                        />
+                      </div>
+                      <div className={classes["item-info-actions"]}>
+                        <FiInfo
+                          className={`${classes["icon-action"]} ${classes["icon-action-detail"]}`}
+                        />
+                        <BsTrash
+                          className={`${classes["icon-action"]} ${classes["icon-action-delete"]}`}
+                        />
+                      </div>
+                    </div>
                   </div>
-                  <div className={classes["item-info-actions"]}>
-                    <FiInfo
-                      className={`${classes["icon-action"]} ${classes["icon-action-detail"]}`}
-                    />
-                    <BsTrash
-                      className={`${classes["icon-action"]} ${classes["icon-action-delete"]}`}
-                    />
+                ))}
+              </div>
+
+              {/* JSX: Item Options */}
+              <div className={classes["sidebar-options"]}>
+                {DUMMY_ITEM_OPTION.map((item) => (
+                  <div className={classes["item-option"]} key={item.id}>
+                    {item.icon}
                   </div>
+                ))}
+              </div>
+              {/* JSX: Cart Actions */}
+            </div>
+            <div className={classes["sidebar-footer"]}>
+              <div className={classes["sidebar-footer-section"]}>
+                <p className={classes["section-title"]}>Subtotal:</p>
+                <p className={classes["section-price"]}>$200.55</p>
+              </div>
+              <div className={classes["sidebar-footer-rules"]}>
+                <p>Taxes and shipping calculated at checkout</p>
+                <div className={classes["rules-form"]}>
+                  <input
+                    className={classes["form-input-checkbox"]}
+                    type="checkbox"
+                    id="check"
+                  />
+                  <label htmlFor="check">
+                    I agree with the terms and conditions.
+                  </label>
                 </div>
               </div>
-            ))}
-          </div>
-
-          {/* JSX: Item Options */}
-          <div className={classes["sidebar-options"]}>
-            {DUMMY_ITEM_OPTION.map((item) => (
-              <div className={classes["item-option"]} key={item.id}>
-                {item.icon}
+              <div className={classes["sidebar-footer-actions"]}>
+                <button
+                  type="button"
+                  className={classes["btn-view-cart"]}
+                  onClick={goToPageCartHandler}
+                >
+                  VIEW CART
+                </button>
+                <button
+                  type="button"
+                  className={classes["btn-check-out"]}
+                  onClick={goToPageCheckoutHandler}
+                >
+                  CHECK OUT
+                </button>
               </div>
-            ))}
-          </div>
-          {/* JSX: Cart Actions */}
-        </div>
-        <div className={classes["sidebar-footer"]}>
-          <div className={classes["sidebar-footer-section"]}>
-            <p className={classes["section-title"]}>Subtotal:</p>
-            <p className={classes["section-price"]}>$200.55</p>
-          </div>
-          <div className={classes["sidebar-footer-rules"]}>
-            <p>Taxes and shipping calculated at checkout</p>
-            <div className={classes["rules-form"]}>
-              <input
-                className={classes["form-input-checkbox"]}
-                type="checkbox"
-                id="check"
-              />
-              <label htmlFor="check">
-                I agree with the terms and conditions.
-              </label>
             </div>
-          </div>
-          <div className={classes["sidebar-footer-actions"]}>
-            <button
-              type="button"
-              className={classes["btn-view-cart"]}
-              onClick={goToPageCartHandler}
-            >
-              VIEW CART
-            </button>
-            <button
-              type="button"
-              className={classes["btn-check-out"]}
-              onClick={goToPageCheckoutHandler}
-            >
-              CHECK OUT
-            </button>
-          </div>
-        </div>
+          </>
+        )}
       </div>
     </div>
   );
