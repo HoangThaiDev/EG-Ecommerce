@@ -27,6 +27,7 @@ export default function Navigation() {
 
   // Create + use Hooks
   const dispatch = useDispatch();
+
   const stateUserCurrent = useSelector((state) => state.user);
 
   const navigate = useNavigate();
@@ -91,6 +92,7 @@ export default function Navigation() {
     } else {
       dispatch(reduxActions.menuDropdown.hide());
     }
+
     startTransaction(() => {
       setProductSearch(filterProducts);
       setValueName(valueSearch);

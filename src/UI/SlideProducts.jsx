@@ -40,6 +40,10 @@ function CustomSlide(props) {
   };
 
   const addToCartHandler = (productId) => {
+    let isLogin = false;
+    if (!isLogin) {
+      navigate("../login", { replace: true });
+    }
     console.log("add to cart:", productId);
   };
 

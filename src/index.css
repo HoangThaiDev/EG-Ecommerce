@@ -146,3 +146,17 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+/* Thanh cuộn tổng thể */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(54, 91, 108);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(211, 211, 211, .4);
+}

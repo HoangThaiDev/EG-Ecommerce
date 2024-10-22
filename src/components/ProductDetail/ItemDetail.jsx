@@ -1,5 +1,7 @@
 // Import Modules
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../axios/customAxios";
 
 // Import File CSS
 import classes from "./css/itemDetail.module.css";
@@ -22,6 +24,7 @@ function ItemDetail({ productDetail }) {
   };
 
   // Create + use Hooks
+  const navigate = useNavigate();
   const [imageActive, setImageActive] = useState(
     productDetail.image_detail.banner
   );
@@ -71,7 +74,31 @@ function ItemDetail({ productDetail }) {
         break;
     }
   };
-  console.log(countQuantity);
+
+  const addToCartHandler = (productId) => {
+    let isLogin = true;
+    if (!isLogin) {
+      navigate("../login", { replace: true });
+    }
+    console.log("add to cart:", productId);
+  };
+
+  const buyProductHandler = async (productId) => {
+    // Check quantity of product is valid
+    if (+countQuantity > 20) {
+      alert("Max quantity of product is 20!. Please choose again!");
+      return false;
+    }
+
+    try {
+      const response = await axiosInstance.post("/products/buy", {
+        productId: productId,
+      });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className={classes["item-detail"]}>
@@ -175,19 +202,20 @@ function ItemDetail({ productDetail }) {
                 <button
                   type="button"
                   className={classes["info-quantity-btn-buy"]}
+                  onClick={() => buyProductHandler(productDetail._id)}
                 >
                   Buy Now
                 </button>
                 <button
                   type="button"
                   className={classes["info-quantity-btn-add"]}
+                  onClick={() => addToCartHandler(productDetail._id)}
                 >
                   Add To Cart
                 </button>
               </div>
 
               <div className={classes["info-specs"]}>
-                {/* MFG,Category,Expiry Date,product-specs */}
                 <p
                   className={`${classes["info-specs-item"]} ${classes["info-specs-category"]}`}
                 >

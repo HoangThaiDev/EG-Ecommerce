@@ -5,6 +5,11 @@ import { API_ROOT } from "../utils/constant";
 // Create + use Instance Axios
 const axiosInstance = axios.create({
   baseURL: API_ROOT,
+  proxy: 1,
+  withCredentials: true,
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 // Add a request interceptor
@@ -25,6 +30,7 @@ axiosInstance.interceptors.response.use(
   function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
+
     return response;
   },
   function (error) {

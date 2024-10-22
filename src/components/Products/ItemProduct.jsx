@@ -34,8 +34,13 @@ export default function ItemProduct({ product }) {
   };
 
   const addToCartHandler = (productId) => {
+    let isLogin = false;
+    if (!isLogin) {
+      navigate("../login", { replace: true });
+    }
     console.log("add to cart:", productId);
   };
+
   return (
     <div className={classes["section__card"]}>
       {modifiedProduct.percent_discount > 0 && (

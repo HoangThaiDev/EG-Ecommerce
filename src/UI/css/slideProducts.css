@@ -98,14 +98,14 @@
 
 .slider-related-products .slick-prev::before {
     content: '\21FD';
-    top: 3px;
-    left: 5px;
+    top: 4px;
+    left: 4px;
 }
 
 .slider-related-products .slick-next::before {
     content: '\21FE';
-    top: 3px;
-    left: 5px;
+    top: 4px;
+    left: 4px;
 }
 
 /* CSS: Products Card */
