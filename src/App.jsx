@@ -33,8 +33,8 @@ import Introduce from "./components/SettingAccount/Introduce";
 import Profile from "./components/SettingAccount/Profile";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
-import axios from "axios";
-import { API_ROOT } from "./utils/constant";
+import axiosInstance from "./axios/customAxios";
+
 function App() {
   // Create + use Hooks
   const btnScrollRef = useRef(null);
@@ -72,13 +72,7 @@ function App() {
   useEffect(() => {
     const fetchCategory = async () => {
       try {
-        const res = await axios.get(`${API_ROOT}/categories`, {
-          withCredentials: true,
-          proxy: 1,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const res = await axiosInstance.get("/categories");
         console.log(res.data);
       } catch (err) {
         console.log(err);
