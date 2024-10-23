@@ -33,39 +33,59 @@ import Introduce from "./components/SettingAccount/Introduce";
 import Profile from "./components/SettingAccount/Profile";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
-
+import axios from "axios";
+import { API_ROOT } from "./utils/constant";
 function App() {
   // Create + use Hooks
   const btnScrollRef = useRef(null);
   const dispatch = useDispatch();
 
   // Sides Effect
+  // useEffect(() => {
+  //   const btnScrollHandler = () => {
+  //     if (window.scrollY > 250) {
+  //       btnScrollRef.current.classList.add("scroll");
+  //     } else {
+  //       btnScrollRef.current.classList.remove("scroll");
+  //     }
+  //   };
+
+  //   document.addEventListener("scroll", btnScrollHandler);
+
+  //   // Clean up function
+  //   return () => {
+  //     document.removeEventListener("scroll", btnScrollHandler);
+  //   };
+  // }, []);
+
+  // useEffect(() => {
+  //   const fetchUser = () => {
+  //     const userState = JSON.parse(localStorage.getItem("user"));
+
+  //     if (userState) {
+  //       dispatch(reduxActions.user.save({ isLogin: userState.isLogin }));
+  //     }
+  //   };
+  //   fetchUser();
+  // }, []);
+
   useEffect(() => {
-    const btnScrollHandler = () => {
-      if (window.scrollY > 250) {
-        btnScrollRef.current.classList.add("scroll");
-      } else {
-        btnScrollRef.current.classList.remove("scroll");
+    const fetchCategory = async () => {
+      try {
+        const res = await axios.get(`${API_ROOT}/categories`, {
+          withCredentials: true,
+          proxy: 1,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        console.log(res.data);
+      } catch (err) {
+        console.log(err);
       }
     };
 
-    document.addEventListener("scroll", btnScrollHandler);
-
-    // Clean up function
-    return () => {
-      document.removeEventListener("scroll", btnScrollHandler);
-    };
-  }, []);
-
-  useEffect(() => {
-    const fetchUser = () => {
-      const userState = JSON.parse(localStorage.getItem("user"));
-
-      if (userState) {
-        dispatch(reduxActions.user.save({ isLogin: userState.isLogin }));
-      }
-    };
-    fetchUser();
+    fetchCategory();
   }, []);
 
   // Create + use event Handlers
@@ -75,20 +95,21 @@ function App() {
 
   return (
     <div className="App">
-      <button
+      <h1>Hello Client</h1>
+      {/* <button
         type="button"
         className="btn-home"
         ref={btnScrollRef}
         onClick={() => goHomeHandler()}
       >
         <span>&#171;</span>
-      </button>
-      <BrowserRouter>
+      </button> */}
+      {/* <BrowserRouter>
         <ScrollTop />
         <SideMenu />
         <SideCart />
 
-        {/* -----------------------------------------ROUTER------------------------------------ */}
+        
         <Routes>
           <Route path="/" element={<RootLayout />}>
             <Route index element={<Home />} />
@@ -110,7 +131,7 @@ function App() {
             <Route path="*" element={<Error />} />
           </Route>
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
     </div>
   );
 }
