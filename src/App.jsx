@@ -75,7 +75,6 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Hello Client</h1>
       <button
         type="button"
         className="btn-home"
