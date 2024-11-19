@@ -7,7 +7,9 @@ import "./css/slideImages.css";
 import Slider from "react-slick";
 
 function CustomSlide(props) {
+  // Create + use props
   const { image, totalImage, index, ...otherProps } = props;
+
   return (
     <div {...otherProps} className="slide-image-item">
       <img src={image} alt={image} loading="lazy" />

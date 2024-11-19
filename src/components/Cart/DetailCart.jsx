@@ -53,12 +53,15 @@ export default function DetailCart() {
   // Create + use Hooks
   const payMentSumaryRef = useRef();
   const navigate = useNavigate();
+
+  // Create + use States
   const [cart, setCart] = useState(DUMMY_CART);
   const [itemsSelect, setItemsSelect] = useState([]);
   const [isSelectedItems, setIsSelectedItems] = useState(false);
   const [isShowActions, setIsShowActions] = useState(false);
 
-  // Side Effect DOM
+  // Create + use side Effects
+  // ----------------- Side Effect: DOM CSS when scroll down of CartPayment
   useEffect(() => {
     const showPaymentSummary = () => {
       if (window.scrollY >= 800) {
@@ -76,8 +79,8 @@ export default function DetailCart() {
     };
   }, []);
 
-  // Create + use event handlers
-  const checkoutHandler = () => {
+  // Create + use event handles
+  const checkoutHandle = () => {
     if (itemsSelect.length === 0) {
       alert("No product selected!");
       return false;
@@ -93,7 +96,7 @@ export default function DetailCart() {
     return { cloneCart, itemIndex, product };
   };
 
-  const selectAllItemsHandler = useCallback((e) => {
+  const selectAllItemsHandle = useCallback((e) => {
     const cloneCart = [...cart];
     const isSelectAllItem = e.target.checked;
     let modifiedCloneCart = [];
@@ -123,7 +126,7 @@ export default function DetailCart() {
     setCart(modifiedCloneCart);
   }, []);
 
-  const selectItemHandler = useCallback((e, itemId) => {
+  const selectItemHandle = useCallback((e, itemId) => {
     const isChecked = e.target.checked;
     const { cloneCart, itemIndex, product } = findItemIndex(itemId);
     product.checked = isChecked;
@@ -154,7 +157,7 @@ export default function DetailCart() {
     setCart(cloneCart);
   }, []);
 
-  const updateQuantityItemHandler = useCallback((itemId, action) => {
+  const updateQuantityItemHandle = useCallback((itemId, action) => {
     const { cloneCart, itemIndex, product } = findItemIndex(itemId);
 
     switch (action) {
@@ -177,7 +180,7 @@ export default function DetailCart() {
     setCart(cloneCart);
   }, []);
 
-  const changeQuantityHandler = useCallback(
+  const changeQuantityHandle = useCallback(
     (e, itemId) => {
       const inputQuantity = e.target.value;
       const { cloneCart, itemIndex, product } = findItemIndex(itemId);
@@ -206,7 +209,7 @@ export default function DetailCart() {
             }
           >
             <HeaderDetailCart
-              onSaveSelectAllItems={selectAllItemsHandler}
+              onSaveSelectAllItems={selectAllItemsHandle}
               isSelectedItems={isSelectedItems}
             />
           </Col>
@@ -215,9 +218,9 @@ export default function DetailCart() {
             <Col className={classes["col-item-content"]} key={item.id}>
               <SectionDetailCart
                 item={item}
-                onUpdateQuantityItem={updateQuantityItemHandler}
-                onChangeQuantity={changeQuantityHandler}
-                onSelectItem={selectItemHandler}
+                onUpdateQuantityItem={updateQuantityItemHandle}
+                onChangeQuantity={changeQuantityHandle}
+                onSelectItem={selectItemHandle}
               />
             </Col>
           ))}
@@ -244,7 +247,7 @@ export default function DetailCart() {
                 <input
                   type="checkbox"
                   className={classes["input-selects"]}
-                  onChange={selectAllItemsHandler}
+                  onChange={selectAllItemsHandle}
                   checked={isSelectedItems ? true : false}
                 />
                 <button className={classes["btn-select-items"]}>
@@ -264,7 +267,7 @@ export default function DetailCart() {
                 <button
                   className={classes["btn-checkout"]}
                   type="button"
-                  onClick={checkoutHandler}
+                  onClick={checkoutHandle}
                 >
                   Proceed To Checkout
                 </button>

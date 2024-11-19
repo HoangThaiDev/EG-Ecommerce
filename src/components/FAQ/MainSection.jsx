@@ -13,7 +13,7 @@ import ItemCollapses from "./ItemCollapses";
 import { IoIosArrowDown } from "react-icons/io";
 
 function MainSection() {
-  // Create + array Item of collapse
+  // Create + array DUMMY_DATA_CONSTANTS
   const DUMMY_GENERAL_FAQS = [
     {
       key: "1",
@@ -81,6 +81,7 @@ function MainSection() {
     },
   ];
 
+  // Create + use Logics
   const itemsCollapseGeneralFAQ = DUMMY_GENERAL_FAQS.map((item) => {
     return {
       key: item.key,
@@ -112,6 +113,7 @@ function MainSection() {
       ),
     };
   });
+
   return (
     <div className={classes["main-section"]}>
       <div className={classes["main-section-container"]}>

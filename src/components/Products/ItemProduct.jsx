@@ -13,7 +13,10 @@ import { HiOutlinePlusSm } from "react-icons/hi";
 import { IoSearchSharp } from "react-icons/io5";
 
 export default function ItemProduct({ product }) {
-  // Add + calculate Price Discount (percent-discount > 0)
+  // Create + use Hooks
+  const navigate = useNavigate();
+
+  // Create + use Logics
   const modifiedProduct = useMemo(() => {
     product.price_discount = (
       product.price -
@@ -22,18 +25,15 @@ export default function ItemProduct({ product }) {
     return product;
   }, []);
 
-  // Create + use Hooks
-  const navigate = useNavigate();
-
-  // Create + use event handlers
-  const viewProductDetailHandler = (product_name, product_id) => {
+  // Create + use event handles
+  const viewProductDetailHandle = (product_name, product_id) => {
     const modifiedProductName = product_name.split(" ").join("-");
     navigate(`../product/${modifiedProductName}`, {
       state: { productId: product_id },
     });
   };
 
-  const addToCartHandler = (productId) => {
+  const addToCartHandle = (productId) => {
     let isLogin = false;
     if (!isLogin) {
       navigate("../login", { replace: true });
@@ -51,21 +51,21 @@ export default function ItemProduct({ product }) {
       <IoSearchSharp
         className={classes["card-icon-search"]}
         onClick={() =>
-          viewProductDetailHandler(modifiedProduct.name, modifiedProduct._id)
+          viewProductDetailHandle(modifiedProduct.name, modifiedProduct._id)
         }
       />
       <img
         src={modifiedProduct.image_detail.banner}
         alt={modifiedProduct.image_detail.banner}
         onClick={() =>
-          viewProductDetailHandler(modifiedProduct.name, modifiedProduct._id)
+          viewProductDetailHandle(modifiedProduct.name, modifiedProduct._id)
         }
       />
       <div className={classes["card-detail"]}>
         <h3
           className={classes["card-detail-name"]}
           onClick={() =>
-            viewProductDetailHandler(modifiedProduct.name, modifiedProduct._id)
+            viewProductDetailHandle(modifiedProduct.name, modifiedProduct._id)
           }
         >
           {modifiedProduct.name}
@@ -100,7 +100,7 @@ export default function ItemProduct({ product }) {
         <button
           className={classes["card-detail-btn-add"]}
           type="button"
-          onClick={() => addToCartHandler(modifiedProduct._id)}
+          onClick={() => addToCartHandle(modifiedProduct._id)}
         >
           Add To Cart
           <HiOutlinePlusSm className={classes["card-detail-icon-btn"]} />

@@ -39,7 +39,8 @@ function App() {
   const btnScrollRef = useRef(null);
   const dispatch = useDispatch();
 
-  // Sides Effect
+  // Create + use Side Effects
+  // ------------------- Side Effect: DOM event when client scroll browser ---------------------
   useEffect(() => {
     const btnScrollHandler = () => {
       if (window.scrollY > 250) {
@@ -57,6 +58,7 @@ function App() {
     };
   }, []);
 
+  // ------------------- Side Effect: Fetch API get user when reload page ---------------------
   useEffect(() => {
     const fetchUser = () => {
       const userState = JSON.parse(localStorage.getItem("user"));
@@ -68,19 +70,18 @@ function App() {
     fetchUser();
   }, []);
 
-  // Create + use event Handlers
-  const goHomeHandler = () => {
+  // Create + use event handles
+  const goHomeHandle = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
 
   return (
     <div className="App">
-      <h1>Hello Client</h1>
       <button
         type="button"
         className="btn-home"
         ref={btnScrollRef}
-        onClick={() => goHomeHandler()}
+        onClick={() => goHomeHandle()}
       >
         <span>&#171;</span>
       </button>

@@ -11,7 +11,7 @@ import "./css/ant-design/rateReviewItem.css";
 import { Rate } from "antd";
 
 export default function FormComment() {
-  // Create + use validate Schema (Yup)
+  // Create + use Schema validate Yup
   const formCommentSchema = Yup.object().shape({
     name: Yup.string().required("Name is required!"),
     email: Yup.string()
@@ -35,10 +35,9 @@ export default function FormComment() {
       console.log(values);
     },
   });
-  console.log(formik.errors, formik.touched);
 
-  // Create + use event handlers
-  const chooseRateProductHandler = (e) => {
+  // Create + use event handles
+  const chooseRateProductHandle = (e) => {
     console.log(e);
   };
   return (
@@ -147,7 +146,7 @@ export default function FormComment() {
         <div className={classes["form-input"]}>
           <label htmlFor="rating">Your Rating</label>
           <Rate
-            onChange={chooseRateProductHandler}
+            onChange={chooseRateProductHandle}
             className="rate-product"
             value={5}
           />

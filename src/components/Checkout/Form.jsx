@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-// Import Data
+// Import Data JSON
 import dbVietNameProvincesCities from "../../../src/data/vietnam-provinces-cities.json";
 
 // Import File CSS
@@ -14,7 +14,7 @@ import Input from "./Input";
 import Payment from "./Payment";
 
 export default function Form() {
-  // Create validate Yup
+  // Create + use Schema validate Yup
   const formInfoSchema = Yup.object().shape({
     firstname: Yup.string().required("FirstName is required!"),
     lastname: Yup.string().required("LastName is required!"),
@@ -46,7 +46,7 @@ export default function Form() {
     },
   });
 
-  // Create + use Hooks
+  // Create + use States
   const [isShowMenuOptions, setIsShowMenuOptions] = useState({
     province: false,
     district: false,
@@ -83,7 +83,7 @@ export default function Form() {
     active: [],
   });
 
-  // Create + use handlers
+  // Create + use handles
   const checkValidateCity = (values) => {
     let result = true;
     if (values.province.length === 0) {
@@ -110,7 +110,7 @@ export default function Form() {
     return result;
   };
 
-  const searchValueOptionHandler = (e, fieldName) => {
+  const searchValueOptionHandle = (e, fieldName) => {
     const valueSearch = e.target.value;
 
     if (fieldName === "province") {
@@ -168,7 +168,7 @@ export default function Form() {
     }));
   };
 
-  const selectValueOptionHandler = (item, option) => {
+  const selectValueOptionHandle = (item, option) => {
     switch (option) {
       case "province":
         if (item.idProvince !== "00" && option === "province") {
@@ -247,7 +247,7 @@ export default function Form() {
     }
   };
 
-  const showMenuCityDropdownHandler = (name) => {
+  const showMenuCityDropdownHandle = (name) => {
     setIsShowMenuOptions((prevState) => ({
       ...prevState,
       [name]: !prevState[name],
@@ -267,9 +267,9 @@ export default function Form() {
           <Input.City
             classes={classes}
             isShowErrorProvince={isShowErrorOptionSelect.province}
-            onShowMenuCityDropdown={showMenuCityDropdownHandler}
-            onSearchValueCity={searchValueOptionHandler}
-            onSelectValueCity={selectValueOptionHandler}
+            onShowMenuCityDropdown={showMenuCityDropdownHandle}
+            onSearchValueCity={searchValueOptionHandle}
+            onSelectValueCity={selectValueOptionHandle}
             valueSelectProvince={valueSelectOptions.province.name}
             valueSearchProvince={valueSearchForm.province}
             isShowMenuProvince={isShowMenuOptions.province}
@@ -278,9 +278,9 @@ export default function Form() {
           <Input.District
             classes={classes}
             isShowErrorDistrict={isShowErrorOptionSelect.district}
-            onShowMenuDistrictDropdown={showMenuCityDropdownHandler}
-            onSearchValueDistrict={searchValueOptionHandler}
-            onSelectValueDistrict={selectValueOptionHandler}
+            onShowMenuDistrictDropdown={showMenuCityDropdownHandle}
+            onSearchValueDistrict={searchValueOptionHandle}
+            onSelectValueDistrict={selectValueOptionHandle}
             valueSelectDistrict={valueSelectOptions.district.name}
             valueSearchDistrict={valueSearchForm.district}
             isShowMenuDistrict={isShowMenuOptions.district}
@@ -289,9 +289,9 @@ export default function Form() {
           <Input.Commune
             classes={classes}
             isShowErrorCommune={isShowErrorOptionSelect.commune}
-            onShowMenuCommuneDropdown={showMenuCityDropdownHandler}
-            onSearchValueCommune={searchValueOptionHandler}
-            onSelectValueCommune={selectValueOptionHandler}
+            onShowMenuCommuneDropdown={showMenuCityDropdownHandle}
+            onSearchValueCommune={searchValueOptionHandle}
+            onSelectValueCommune={selectValueOptionHandle}
             valueSelectCommune={valueSelectOptions.commune.name}
             valueSearchCommune={valueSearchForm.commune}
             isShowMenuCommune={isShowMenuOptions.commune}

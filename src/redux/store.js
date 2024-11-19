@@ -1,7 +1,7 @@
 // Import Modules
 import { configureStore } from "@reduxjs/toolkit";
 
-// Import Slice
+// Import Slices
 import {
   sideMenuSlide,
   menuDropdownSlide,
@@ -9,7 +9,7 @@ import {
   userSlide,
 } from "./redux-slices";
 
-// Create store
+// Create + use store
 const store = configureStore({
   reducer: {
     sideMenu: sideMenuSlide.reducer,

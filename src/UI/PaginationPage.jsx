@@ -13,15 +13,16 @@ export default function PaginationPage({
   onSaveNextPageProduct,
   className,
 }) {
-  // Create + use Hooks
+  // Create + use States
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Update current page to 1 whenever products change
+  // Create + use side Effects
+  // ------------ Side EffectL Update current page to 1 when ever products change
   useEffect(() => {
     setCurrentPage(1);
   }, [products]);
 
-  // Create + use event handlers
+  // Create + use event handles
   const onShowSizeChange = (pageCurrent, pageSize) => {
     const startIndexPage = (pageCurrent - 1) * pageSize;
     const endIndexPage = pageSize * pageCurrent;

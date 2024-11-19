@@ -10,15 +10,21 @@ import { Tag } from "antd";
 
 export default function SelectTags({ stateProducts, onSaveValueTags }) {
   // Create + use Hooks
-  const [selectedTags, setSelectedTags] = useState([]);
   const { products } = useContext(APIContext);
+
+  // Create + use States
+  const [selectedTags, setSelectedTags] = useState([]);
+
+  // Create + use Logics
   const tagsData = [
     ...new Set(products.flatMap((product) => product.tags)),
   ].filter((tag) => tag !== "Can");
 
+  // Create + use side Effects
+  // --------------- Side Effect:  Reset selected value on page refresh --------------------
   useEffect(() => {
     if (stateProducts && stateProducts.searchedProducts.length > 0) {
-      setSelectedTags([]); // Reset selected value on page refresh
+      setSelectedTags([]);
     }
   }, [stateProducts]);
 

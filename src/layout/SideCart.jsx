@@ -24,7 +24,7 @@ function Overlay({ isShowSideCart }) {
   // Create + use Hooks
   const dispatch = useDispatch();
 
-  // Create + use Event handlers
+  // Create + use Event handles
   const hideSideCart = (event) => {
     if (event.target.classList.value) {
       dispatch(reduxActions.sideCart.hide());
@@ -78,6 +78,7 @@ function SideBar({ isShowSideCart }) {
     },
   ];
 
+  // Create + use DUMMY_DATA_CONSTANTS
   const DUMMY_ITEM_OPTION = [
     {
       id: "1",
@@ -121,25 +122,27 @@ function SideBar({ isShowSideCart }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const locationPath = useLocation();
+
+  // Create + use States
   const stateUser = useSelector((state) => state.user);
 
-  // Side Effect
+  // Create + use side Effects
   useEffect(() => {
     if (locationPath.pathname !== "") {
       dispatch(reduxActions.sideCart.hide());
     }
   }, [locationPath]);
 
-  // Create + use Event handlers
-  const loginHandler = () => {
+  // Create + use Event handles
+  const loginHandle = () => {
     navigate("login", { replace: true });
   };
 
-  const goToPageCartHandler = () => {
+  const goToCartHandle = () => {
     navigate("cart", { replace: true });
   };
 
-  const goToPageCheckoutHandler = () => {
+  const goToCheckoutHandle = () => {
     navigate("checkout", { replace: true });
   };
 
@@ -168,7 +171,7 @@ function SideBar({ isShowSideCart }) {
             <button
               type="button"
               className={classes["btn-login"]}
-              onClick={loginHandler}
+              onClick={loginHandle}
             >
               Login
             </button>
@@ -247,14 +250,14 @@ function SideBar({ isShowSideCart }) {
                 <button
                   type="button"
                   className={classes["btn-view-cart"]}
-                  onClick={goToPageCartHandler}
+                  onClick={goToCartHandle}
                 >
                   VIEW CART
                 </button>
                 <button
                   type="button"
                   className={classes["btn-check-out"]}
-                  onClick={goToPageCheckoutHandler}
+                  onClick={goToCheckoutHandle}
                 >
                   CHECK OUT
                 </button>
@@ -268,7 +271,7 @@ function SideBar({ isShowSideCart }) {
 }
 
 export default function SideCart() {
-  // Create + use Hooks
+  // Create + use States
   const { isShow: isShowSideCart } = useSelector((state) => state.sideCart);
 
   return (

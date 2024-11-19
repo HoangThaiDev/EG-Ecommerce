@@ -49,8 +49,12 @@ export default function Order() {
 
   // Create + use Hooks
   const orderListRef = useRef();
+
+  // Create + use States
   const [isShowOrderDropdown, setIsShowOrderDropdown] = useState(false);
 
+  // Create + use side Effects
+  // ------------- Side Effect: DOM CSS event scroll down
   useEffect(() => {
     if (orderListRef.current.offsetHeight > 500) {
       orderListRef.current.classList.add(classes["scroll"]);
@@ -59,8 +63,8 @@ export default function Order() {
     }
   }, [DUMMY_CART]);
 
-  // Create + use event handlers
-  const showOrderDropdownHandler = () => {
+  // Create + use event handles
+  const showOrderDropdownHandle = () => {
     setIsShowOrderDropdown(!isShowOrderDropdown);
   };
 
@@ -72,7 +76,7 @@ export default function Order() {
         <div className={classes["order-header-menu"]}>
           <div
             className={classes["order-content"]}
-            onClick={showOrderDropdownHandler}
+            onClick={showOrderDropdownHandle}
           >
             <p>Cart (3 Item)</p>
             <IoIosArrowForward

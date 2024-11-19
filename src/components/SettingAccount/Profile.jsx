@@ -13,10 +13,11 @@ import { MdOutlinePhotoCamera } from "react-icons/md";
 import Input from "./Input";
 
 function Profile() {
+  // Create + use Default values
   const avatarDefault =
     "https://antimatter.vn/wp-content/uploads/2022/11/anh-avatar-trang-tron.jpg";
 
-  // Create + use validate Formik + Yup
+  // Create + use validate Yup
   const FormUpdateSchema = Yup.object().shape({
     firstName: Yup.string().required("FirstName is required!"),
     lastName: Yup.string().required("LastName is required!"),
@@ -34,6 +35,7 @@ function Profile() {
       .oneOf([Yup.ref("password")], "Passwords must match!"),
   });
 
+  // Create + use Hooks
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -50,12 +52,12 @@ function Profile() {
     },
   });
 
-  // Create + use Hooks
+  // Create + use States
   const [imageAvatar, setImageAvatar] = useState(avatarDefault);
   const [isShowActionAvatar, setIsShowActionAvatar] = useState(false);
 
-  // Create + use event handlers
-  const changeAvatarHandler = (e) => {
+  // Create + use event handles
+  const changeAvatarHandle = (e) => {
     const fileImage = e.target.files[0];
 
     if (fileImage) {
@@ -84,7 +86,7 @@ function Profile() {
                 type="file"
                 id="file-image"
                 accept="image/*"
-                onChange={changeAvatarHandler}
+                onChange={changeAvatarHandle}
               />
             </div>
           </div>

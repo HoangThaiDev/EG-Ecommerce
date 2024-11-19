@@ -14,12 +14,13 @@ import { GiReceiveMoney } from "react-icons/gi";
 import { RiSecurePaymentLine } from "react-icons/ri";
 
 export default function Promotional() {
-  //  Create + use DUMMY_PATH_NAME
+  //  Create + use DUMMY_DATA_CONSTANTS
   const DUMMY_PATH_NAME = ["/", "/faqs", "/about-us", "/products"];
 
   // Create + use Hooks
   const { pathname } = useLocation();
 
+  // Create + use Logics
   const isCheckPathNameValid = DUMMY_PATH_NAME.includes(pathname);
 
   return (

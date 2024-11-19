@@ -2,6 +2,7 @@
 import React, { useContext, useState } from "react";
 import axiosInstance from "../axios/customAxios";
 import { useNavigate } from "react-router-dom";
+import { APIContext } from "../storeContext/APIContext";
 
 // Import File CSS
 import "./css/slideCategories.css";
@@ -10,7 +11,6 @@ import "slick-carousel/slick/slick-theme.css";
 
 // Import Components
 import Slider from "react-slick";
-import { APIContext } from "../storeContext/APIContext";
 
 // Custom Slide
 function CustomSlide(props) {
@@ -21,7 +21,7 @@ function CustomSlide(props) {
   const { title, categoryId, path, activePath, isActive, ...otherProps } =
     props;
 
-  // Create + use event handlers
+  // Create + use event handles
   const getTitleCategory = () => {
     fetchProductByCategory();
   };
@@ -66,8 +66,10 @@ function SamplePrevArrow(props) {
 
 export default function SlideCategories() {
   // Create + use Hooks
-  const [centerIndex, setCenterIndex] = useState(0);
   const { categories } = useContext(APIContext);
+
+  // Create + use States
+  const [centerIndex, setCenterIndex] = useState(0);
 
   // Create + use setting of slider
   const settings = {

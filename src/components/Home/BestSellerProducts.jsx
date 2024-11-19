@@ -87,7 +87,7 @@ export default function BestSellerProducts({ products }) {
     return products.filter((product) => product.best_seller);
   }, []);
 
-  // Create + use event handlers
+  // Create + use event handles
   const viewBestSellerProducts = () => {}; // Chua co y tuong
 
   return (

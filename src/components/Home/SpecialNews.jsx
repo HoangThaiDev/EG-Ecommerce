@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 // Import Icons
 import { AiOutlineUser } from "react-icons/ai";
 
-// Create DUMMY_NEWS
+// Create DUMMY_DATA_CONSANTS
 const DUMMY_SPECIAL_NEWS = [
   {
     id: "a12f345",
@@ -49,13 +49,14 @@ const DUMMY_SPECIAL_NEWS = [
 ];
 
 export default function SpecialNews() {
-  // Create + use Hooks
+  // Create + use States
   const [specialNewActive, setSpecialNewActive] = useState(
     DUMMY_SPECIAL_NEWS[0]
   );
   const [sliceNews, setSliceNews] = useState(DUMMY_SPECIAL_NEWS.slice(1, 3));
-  // Create + use event Handlers
-  const viewSpecialNewsActiveHandler = (itemChosen) => {
+
+  // Create + use event Handles
+  const viewSpecialNewsActiveHandle = (itemChosen) => {
     // Update special new active
     setSpecialNewActive(itemChosen);
 
@@ -66,6 +67,7 @@ export default function SpecialNews() {
     filteredSliceNews.push(specialNewActive);
     setSliceNews(filteredSliceNews);
   };
+
   return (
     <div className={classes.news}>
       <div className={classes["news__container"]}>
@@ -107,7 +109,7 @@ export default function SpecialNews() {
                 <div className={classes["card__content"]}>
                   <h3 className={classes["content__title"]}>{item.title}</h3>
                   <p className={classes["content__desc"]}>
-                    <span onClick={() => viewSpecialNewsActiveHandler(item)}>
+                    <span onClick={() => viewSpecialNewsActiveHandle(item)}>
                       Click here
                     </span>
                     to view detail new.

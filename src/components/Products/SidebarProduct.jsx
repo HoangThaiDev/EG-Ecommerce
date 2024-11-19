@@ -30,7 +30,7 @@ import { CgMenuRight } from "react-icons/cg";
 import { IoMdClose } from "react-icons/io";
 
 export default function SidebarProduct() {
-  // Create + use arrays
+  // Create + use DUMMY_DATA_CONSTANTS
   const optionsFilter = [
     {
       value: "sort=name-a-z",
@@ -104,16 +104,16 @@ export default function SidebarProduct() {
   const categoryValueSearch = searchParams.get("category");
   const navigate = useNavigate();
 
-  // -------------------------------------------------------------
-
   const { categories, products: productsAPI } = useContext(APIContext); // Get data products from server
+
+  // Create + use States
   const [productsFromSearch, setProductsFromSearch] = useState([]); // Get data products from input search
 
-  // Create Data by useState Hook
+  // ---------------- States: Create Data  ------------------
   const [products, setProducts] = useState(productsAPI);
   const [sliceProduct, setSliceProduct] = useState(products.slice(0, 12));
 
-  // Create Options by useState Hook
+  // ---------------- States: Create Options ------------------------
   const [optionFilter, setOptionFilter] = useState(undefined);
   const [rateFilter, setRateFilter] = useState(undefined);
   const [categoryFilter, setCategoryFilter] = useState({
@@ -124,7 +124,8 @@ export default function SidebarProduct() {
   const [tags, setTags] = useState([]);
   const [isShowSideBarMenu, setIsShowSideBarMenu] = useState(false);
 
-  // Update New products after search value
+  // Create + use side Effects
+  // ----------------- Side Effect: Update New products after search value -----------------------
   useEffect(() => {
     if (stateProducts && stateProducts.searchedProducts.length > 0) {
       // Update data product after search key
@@ -144,82 +145,7 @@ export default function SidebarProduct() {
     }
   }, [stateProducts]);
 
-  //  Create + use event handlers
-  const clearOptionsFilterHandler = () => {
-    window.history.replaceState(null, null, "/products");
-    sessionStorage.removeItem("search-product");
-    window.location.reload();
-  };
-
-  const showSideBarMenuHandler = () => {
-    setIsShowSideBarMenu(!isShowSideBarMenu);
-  };
-
-  const getValueNextPageHanlder = (value) => {
-    setSliceProduct(value);
-    window.scrollTo({
-      top: 450,
-      left: 0,
-      behavior: "smooth",
-    });
-  };
-
-  const getValueTagsHandler = (valueTags) => {
-    setTags(valueTags);
-    filterProductsByOptions(
-      optionFilter,
-      rateFilter,
-      categoryFilter.title,
-      rangePrice,
-      valueTags
-    );
-  };
-
-  const getValueRangePriceHandler = (valuePrice) => {
-    setRangePrice(valuePrice);
-    filterProductsByOptions(
-      optionFilter,
-      rateFilter,
-      categoryFilter.title,
-      valuePrice,
-      tags
-    );
-  };
-
-  const getValueCategoryHandler = (_id, title) => {
-    const newCategory = { _id, title };
-    setCategoryFilter(newCategory);
-    filterProductsByOptions(
-      optionFilter,
-      rateFilter,
-      newCategory.title,
-      rangePrice,
-      tags
-    );
-  };
-
-  const getValueRateFilterHandler = (valueRate) => {
-    setRateFilter(valueRate);
-    filterProductsByOptions(
-      optionFilter,
-      valueRate,
-      categoryFilter.title,
-      rangePrice,
-      tags
-    );
-  };
-
-  const getValueOptionFilterHandler = (valueOption) => {
-    setOptionFilter(valueOption);
-    filterProductsByOptions(
-      valueOption,
-      rateFilter,
-      categoryFilter.title,
-      rangePrice,
-      tags
-    );
-  };
-
+  // Create + use Logics
   const filterProductsByOptions = (
     valueOption,
     valueRate,
@@ -261,7 +187,83 @@ export default function SidebarProduct() {
     setSliceProduct(modifiedProducts.slice(0, 12));
   };
 
-  const addToCartHandler = (productId) => {
+  //  Create + use event handles
+  const clearOptionsFilterHandle = () => {
+    window.history.replaceState(null, null, "/products");
+    sessionStorage.removeItem("search-product");
+    window.location.reload();
+  };
+
+  const showSideBarMenuHandle = () => {
+    setIsShowSideBarMenu(!isShowSideBarMenu);
+  };
+
+  const getValueNextPageHandle = (value) => {
+    setSliceProduct(value);
+    window.scrollTo({
+      top: 450,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const getValueTagsHandle = (valueTags) => {
+    setTags(valueTags);
+    filterProductsByOptions(
+      optionFilter,
+      rateFilter,
+      categoryFilter.title,
+      rangePrice,
+      valueTags
+    );
+  };
+
+  const getValueRangePriceHandle = (valuePrice) => {
+    setRangePrice(valuePrice);
+    filterProductsByOptions(
+      optionFilter,
+      rateFilter,
+      categoryFilter.title,
+      valuePrice,
+      tags
+    );
+  };
+
+  const getValueCategoryHandle = (_id, title) => {
+    const newCategory = { _id, title };
+    setCategoryFilter(newCategory);
+    filterProductsByOptions(
+      optionFilter,
+      rateFilter,
+      newCategory.title,
+      rangePrice,
+      tags
+    );
+  };
+
+  const getValueRateFilterHandle = (valueRate) => {
+    setRateFilter(valueRate);
+    filterProductsByOptions(
+      optionFilter,
+      valueRate,
+      categoryFilter.title,
+      rangePrice,
+      tags
+    );
+  };
+
+  const getValueOptionFilterHandle = (valueOption) => {
+    setOptionFilter(valueOption);
+    filterProductsByOptions(
+      valueOption,
+      rateFilter,
+      categoryFilter.title,
+      rangePrice,
+      tags
+    );
+  };
+
+  const addToCartHandle = (productId) => {
     console.log(productId);
   };
 
@@ -305,7 +307,7 @@ export default function SidebarProduct() {
                       <button
                         type="button"
                         className={classes["section__btn-clear-options"]}
-                        onClick={clearOptionsFilterHandler}
+                        onClick={clearOptionsFilterHandle}
                       >
                         Clear <span>X</span>
                       </button>
@@ -329,7 +331,7 @@ export default function SidebarProduct() {
               {/* JSX: SideBar */}
               <CgMenuRight
                 className={classes["icon-show-menu-sidebar"]}
-                onClick={showSideBarMenuHandler}
+                onClick={showSideBarMenuHandle}
               />
               <Col
                 className={
@@ -340,7 +342,7 @@ export default function SidebarProduct() {
               >
                 <IoMdClose
                   className={classes["icon-hide-menu-sidebar"]}
-                  onClick={showSideBarMenuHandler}
+                  onClick={showSideBarMenuHandle}
                 />
                 <div className={classes["header__form"]}>
                   <SelectOptions
@@ -349,7 +351,7 @@ export default function SidebarProduct() {
                     popupClassName="form__popup-filter-options"
                     placeholder="Filter"
                     options={optionsFilter}
-                    onSaveValueOption={getValueOptionFilterHandler}
+                    onSaveValueOption={getValueOptionFilterHandle}
                   />
 
                   <SelectOptions
@@ -358,7 +360,7 @@ export default function SidebarProduct() {
                     popupClassName="form__popup-filter-rating"
                     placeholder="Popularity"
                     options={optionsRating}
-                    onSaveValueOption={getValueRateFilterHandler}
+                    onSaveValueOption={getValueRateFilterHandle}
                   />
 
                   <CollapseCategory
@@ -366,15 +368,15 @@ export default function SidebarProduct() {
                     className="collapse-category"
                     products={products}
                     categories={categories}
-                    onSaveValueCategory={getValueCategoryHandler}
+                    onSaveValueCategory={getValueCategoryHandle}
                   />
                   <SliderPrice
                     stateProducts={stateProducts}
-                    onSaveValueRangePrice={getValueRangePriceHandler}
+                    onSaveValueRangePrice={getValueRangePriceHandle}
                   />
                   <SelectTags
                     stateProducts={stateProducts}
-                    onSaveValueTags={getValueTagsHandler}
+                    onSaveValueTags={getValueTagsHandle}
                   />
                 </div>
               </Col>
@@ -385,7 +387,7 @@ export default function SidebarProduct() {
               className="products__pagination"
               pageSize={12}
               products={products}
-              onSaveNextPageProduct={getValueNextPageHanlder}
+              onSaveNextPageProduct={getValueNextPageHandle}
             />
           </div>
         </div>

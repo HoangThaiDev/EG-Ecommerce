@@ -20,7 +20,7 @@ import { FaFacebookF } from "react-icons/fa";
 import { IoCloseCircleOutline } from "react-icons/io5";
 
 function Form() {
-  // Create Schema Validate Yup
+  // Create + use Schema Validate Yup
   const FormLoginSchema = Yup.object().shape({
     email: Yup.string()
       .required("Email is required!")
@@ -52,14 +52,16 @@ function Form() {
       });
     },
   });
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  // Create + use States
   const [messageError, setMessageError] = useState({
     isShow: false,
     content: "",
   });
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
 
-  // Create + use event handlers
+  // Create + use event handles
   const fetchUser = async (values) => {
     try {
       const response = await axiosInstance.post("/user/login", {

@@ -25,6 +25,8 @@ function ItemDetail({ productDetail }) {
 
   // Create + use Hooks
   const navigate = useNavigate();
+
+  // Create + use States
   const [imageActive, setImageActive] = useState(
     productDetail.image_detail.banner
   );
@@ -34,15 +36,15 @@ function ItemDetail({ productDetail }) {
 
   const [countQuantity, setCountQuantity] = useState(1);
 
-  // Side Effect
+  // Create + use side Effects
+  // ----------------- Side effect: // Update Image when client choose another product
   useEffect(() => {
-    // Update Image when client choose another product
     setImageActive(productDetail.image_detail.banner);
     setImagesProduct(productDetail.image_detail.images);
   }, [productDetail]);
 
-  // Create + use event Handlers
-  const changeImageActivelHandler = (value, index) => {
+  // Create + use event Handles
+  const changeImageActivelHandle = (value, index) => {
     const cloneImagesProduct = [...imagesProduct];
     cloneImagesProduct[index] = imageActive;
 
@@ -51,7 +53,7 @@ function ItemDetail({ productDetail }) {
     setImagesProduct(cloneImagesProduct);
   };
 
-  const changeCountQuantityHandler = (e, option) => {
+  const changeCountQuantityHandle = (e, option) => {
     const quantityProduct = e.target.value;
     switch (option) {
       case "i":
@@ -75,7 +77,7 @@ function ItemDetail({ productDetail }) {
     }
   };
 
-  const addToCartHandler = (productId) => {
+  const addToCartHandle = (productId) => {
     let isLogin = true;
     if (!isLogin) {
       navigate("../login", { replace: true });
@@ -119,7 +121,7 @@ function ItemDetail({ productDetail }) {
                     src={value}
                     loading="lazy"
                     alt={value}
-                    onClick={() => changeImageActivelHandler(value, index)}
+                    onClick={() => changeImageActivelHandle(value, index)}
                   />
                 ))}
               </div>
@@ -185,17 +187,17 @@ function ItemDetail({ productDetail }) {
                   <div className={classes["flex-number"]}>
                     <IoMdArrowDropleft
                       className={classes["btn-decrease-quantity"]}
-                      onClick={(e) => changeCountQuantityHandler(e, "d")}
+                      onClick={(e) => changeCountQuantityHandle(e, "d")}
                     />
                     <input
                       type="number"
                       className={classes["input-quantity"]}
                       value={countQuantity}
-                      onChange={(e) => changeCountQuantityHandler(e, "input")}
+                      onChange={(e) => changeCountQuantityHandle(e, "input")}
                     />
                     <IoMdArrowDropright
                       className={classes["btn-increase-quantity"]}
-                      onClick={(e) => changeCountQuantityHandler(e, "i")}
+                      onClick={(e) => changeCountQuantityHandle(e, "i")}
                     />
                   </div>
                 </div>
@@ -209,7 +211,7 @@ function ItemDetail({ productDetail }) {
                 <button
                   type="button"
                   className={classes["info-quantity-btn-add"]}
-                  onClick={() => addToCartHandler(productDetail._id)}
+                  onClick={() => addToCartHandle(productDetail._id)}
                 >
                   Add To Cart
                 </button>

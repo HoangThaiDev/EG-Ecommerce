@@ -17,6 +17,7 @@ import { IoBagCheckOutline } from "react-icons/io5";
 import { AiOutlineLogout } from "react-icons/ai";
 
 function Menu() {
+  // Create + use DUMMY_DATA_CONSTANTS
   const DUMMY_MENU_ACTIONS = [
     {
       id: "1",
@@ -64,6 +65,8 @@ function Menu() {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  // Create + use States
   const [isActiveMenuAction, setIsActiveMenuAction] = useState({
     dashboard: true,
     profile: false,
@@ -71,6 +74,8 @@ function Menu() {
     setting: false,
   });
 
+  // Create + use side Effect
+  // --------------- Side Effect: Check client choose Item of Menu
   useEffect(() => {
     switch (location.pathname) {
       case "/setting-account/profile":
@@ -108,8 +113,8 @@ function Menu() {
     }
   }, [location]);
 
-  // Create + use event handlers
-  const changeActionMenuHandler = (item) => {
+  // Create + use event handles
+  const changeActionMenuHandle = (item) => {
     if (item.value !== "logout" && item.value !== "dashboard") {
       navigate(item.value);
     }
@@ -137,7 +142,7 @@ function Menu() {
                     ? `${classes["item-action"]} ${classes["active"]}`
                     : classes["item-action"]
                 }
-                onClick={() => changeActionMenuHandler(item)}
+                onClick={() => changeActionMenuHandle(item)}
               >
                 {item.icon}
                 <p className={classes["item-action-title"]}>{item.title}</p>

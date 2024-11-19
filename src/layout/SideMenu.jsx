@@ -25,7 +25,7 @@ function Overlay({ isShowSideMenu }) {
   // Create + use Hooks
   const dispatch = useDispatch();
 
-  // Create + use Event handlers
+  // Create + use Event handles
   const hideSideMenu = (event) => {
     if (event.target.classList.value) {
       dispatch(reduxActions.sideMenu.hide());
@@ -47,16 +47,19 @@ function SideBar({ isShowSideMenu }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const locationPath = useLocation();
+
+  // Create + use States
   const stateUser = useSelector((state) => state.user);
 
-  // Side Effect
+  // Create + use side Effects
+  // ------------- Side Effect: SidteMenu will hide when change page -------------
   useEffect(() => {
     if (locationPath.pathname !== "") {
       dispatch(reduxActions.sideMenu.hide());
     }
   }, [locationPath]);
 
-  // Create + use Event handlers
+  // Create + use Event handles
   const hideSideMenu = () => {
     dispatch(reduxActions.sideMenu.toggle());
   };
@@ -220,6 +223,7 @@ function SideBar({ isShowSideMenu }) {
 }
 
 export default function SideMenu() {
+  // Create + use States
   const { isShow: isShowSideMenu } = useSelector((state) => state.sideMenu);
 
   return (

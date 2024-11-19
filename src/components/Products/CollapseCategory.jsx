@@ -16,12 +16,15 @@ export default function CollapseCategory({
   categoryValueSearch,
 }) {
   // Create + use Hooks
+  const { search: pathSearch } = useLocation();
+
+  // Create + use States
   const [categoryActive, setCategoryActive] = useState({
     title: "",
   });
-  const { search: pathSearch } = useLocation();
 
-  // Side Effect: Update CategoryActive
+  // Create + use side Effects
+  // -------------- Side Effect: Update Category Active ---------------------
   useEffect(() => {
     if (pathSearch.length > 0) {
       const valueCategorySearch = pathSearch.split("=")[1].replace(/%20/g, " ");
@@ -29,7 +32,7 @@ export default function CollapseCategory({
     }
   }, []);
 
-  // Create + use item of Collapse
+  // Create + use Logics
   const modifiedCategories = categories.map((category) => {
     return {
       _id: category._id,
@@ -54,7 +57,7 @@ export default function CollapseCategory({
                   ? "category-item active"
                   : "category-item"
               }
-              onClick={() => getValueCategoryHandler(item._id, item.title)}
+              onClick={() => getValueCategoryHandle(item._id, item.title)}
             >
               <span
                 className={
@@ -84,10 +87,9 @@ export default function CollapseCategory({
     },
   ];
 
-  // Create + use event handlers
-  const getValueCategoryHandler = (_id, title) => {
-    // Check category chosen by client
-
+  // Create + use event handles
+  const getValueCategoryHandle = (_id, title) => {
+    // Check category choose by client
     if (title !== categoryActive.title) {
       setCategoryActive({ title: title });
       onSaveValueCategory(_id, title);

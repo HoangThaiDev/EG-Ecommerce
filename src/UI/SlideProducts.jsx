@@ -16,30 +16,24 @@ import { Rate } from "antd";
 import { HiOutlinePlusSm } from "react-icons/hi";
 import { IoSearchSharp } from "react-icons/io5";
 
-// Custom Slide
+// Custom + use Slide
 function CustomSlide(props) {
   // Create + use Hooks
   const navigate = useNavigate();
 
   // Create + use props
-  const { product, isPageProductDetail, ...otherProps } = props;
+  const { product, ...otherProps } = props;
 
-  // Create + use event handlers
-  const viewProductDetailHandler = (product_name, product_id) => {
+  // Create + use event handles
+  const viewProductDetailHandle = (product_name, product_id) => {
     // Check page current is a page product detail
     const modifiedProductName = product_name.split(" ").join("-");
-    if (isPageProductDetail) {
-      navigate(`../product/${modifiedProductName}`, {
-        state: { productId: product_id },
-      });
-    } else {
-      navigate(`./product/${modifiedProductName}`, {
-        state: { productId: product_id },
-      });
-    }
+    navigate(`../product/${modifiedProductName}`, {
+      state: { productId: product_id },
+    });
   };
 
-  const addToCartHandler = (productId) => {
+  const addToCartHandle = (productId) => {
     let isLogin = false;
     if (!isLogin) {
       navigate("../login", { replace: true });
@@ -57,17 +51,17 @@ function CustomSlide(props) {
         )}
         <IoSearchSharp
           className="card-icon-search"
-          onClick={() => viewProductDetailHandler(product.name, product._id)}
+          onClick={() => viewProductDetailHandle(product.name, product._id)}
         />
         <img
           src={product.image_detail.banner}
           alt={product.image_detail.banner}
-          onClick={() => viewProductDetailHandler(product.name, product._id)}
+          onClick={() => viewProductDetailHandle(product.name, product._id)}
         />
         <div className="card-detail">
           <h3
             className="card-detail-name"
-            onClick={() => viewProductDetailHandler(product.name, product._id)}
+            onClick={() => viewProductDetailHandle(product.name, product._id)}
           >
             {product.name}
           </h3>
@@ -97,7 +91,7 @@ function CustomSlide(props) {
           <button
             className="card-detail-btn-add"
             type="button"
-            onClick={() => addToCartHandler(product._id)}
+            onClick={() => addToCartHandle(product._id)}
           >
             Add To Cart
             <HiOutlinePlusSm className="card-detail-icon-btn" />
@@ -108,21 +102,12 @@ function CustomSlide(props) {
   );
 }
 
-export default function SlideProducts({
-  className,
-  products,
-  settings,
-  pageProductDetail,
-}) {
+export default function SlideProducts({ className, products, settings }) {
   return (
     <Slider {...settings} className={className}>
       {products.map((product) => (
         <div key={product._id} className="slider-product-container">
-          <CustomSlide
-            product={product}
-            key={products.id}
-            isPageProductDetail={pageProductDetail}
-          />
+          <CustomSlide product={product} key={products.id} />
         </div>
       ))}
     </Slider>

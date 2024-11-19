@@ -17,7 +17,7 @@ import { FaRegComment } from "react-icons/fa";
 import { FaComment } from "react-icons/fa6";
 import { IoMdSend } from "react-icons/io";
 
-// Fake Data
+// Create + use DUMMY_DATA_CONSTANTS
 const DUMMY_LIST_REVIEWS = [
   {
     id: "abc1",
@@ -100,12 +100,12 @@ const DUMMY_LIST_REVIEWS = [
 ];
 
 export default function ReviewDetail() {
-  // Create + use Hooks
+  // Create + use States
   const [reviews, setReviews] = useState(DUMMY_LIST_REVIEWS);
   const [isShowFormComment, setIsShowFormComment] = useState(false);
 
-  // Create + use event handlers
-  const activeEmotionHandler = (icon_name, itemId) => {
+  // Create + use event handles
+  const activeEmotionHandle = (icon_name, itemId) => {
     const cloneReviews = [...reviews];
     const findIndexItem = cloneReviews.findIndex(
       (review) => review.id === itemId
@@ -135,7 +135,7 @@ export default function ReviewDetail() {
     cloneReviews[findIndexItem] = itemReviews;
     setReviews(cloneReviews);
   };
-  console.log(reviews[0].desc);
+
   return (
     <div className={classes["review-detail"]}>
       <Row className={classes["review-detail-row"]}>
@@ -187,36 +187,36 @@ export default function ReviewDetail() {
                     {item.desc.like.isActive ? (
                       <AiFillLike
                         className={`${classes["emotion-icon"]} ${classes["emotion-icon-like-active"]}`}
-                        onClick={() => activeEmotionHandler("like", item.id)}
+                        onClick={() => activeEmotionHandle("like", item.id)}
                       />
                     ) : (
                       <AiOutlineLike
                         className={`${classes["emotion-icon"]} ${classes["emotion-icon-like"]}`}
-                        onClick={() => activeEmotionHandler("like", item.id)}
+                        onClick={() => activeEmotionHandle("like", item.id)}
                       />
                     )}
 
                     {item.desc.heart.isActive ? (
                       <FaHeart
                         className={`${classes["emotion-icon"]} ${classes["emotion-icon-heart-active"]}`}
-                        onClick={() => activeEmotionHandler("heart", item.id)}
+                        onClick={() => activeEmotionHandle("heart", item.id)}
                       />
                     ) : (
                       <FaRegHeart
                         className={`${classes["emotion-icon"]} ${classes["emotion-icon-heart"]}`}
-                        onClick={() => activeEmotionHandler("heart", item.id)}
+                        onClick={() => activeEmotionHandle("heart", item.id)}
                       />
                     )}
 
                     {item.desc.comment.isActive ? (
                       <FaComment
                         className={`${classes["emotion-icon"]} ${classes["emotion-icon-comment-active"]}`}
-                        onClick={() => activeEmotionHandler("comment", item.id)}
+                        onClick={() => activeEmotionHandle("comment", item.id)}
                       />
                     ) : (
                       <FaRegComment
                         className={`${classes["emotion-icon"]} ${classes["emotion-icon-comment"]}`}
-                        onClick={() => activeEmotionHandler("comment", item.id)}
+                        onClick={() => activeEmotionHandle("comment", item.id)}
                       />
                     )}
                   </div>

@@ -10,7 +10,7 @@ const initialUser = {
   cart: [],
 };
 
-// Create Slide
+// Create + use Slide
 const userSlide = createSlice({
   name: "user",
   initialState: initialUser,

@@ -86,6 +86,7 @@ export default function RelatedProduct({ category, productId }) {
   // Create + use Hooks
   const { products } = useContext(APIContext);
 
+  // Create + use Logics
   const productsByCategory = products.filter(
     (product) =>
       product.categoryId.title === category && product._id !== productId
@@ -101,7 +102,6 @@ export default function RelatedProduct({ category, productId }) {
             className="slider-products slider-related-products"
             products={productsByCategory}
             settings={settings}
-            pageProductDetail={true}
           />
         </div>
       </div>

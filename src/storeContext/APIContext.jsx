@@ -1,23 +1,25 @@
 // Import Modules
-import axiosInstance from "../axios/customAxios";
+import APIServer from "../API/customAPI";
 
 // Import Hooks
 import React, { createContext, useEffect, useState } from "react";
 
-// Create Context (Hook)
+// Create Constants
 const APIContext = createContext();
 
 export default function Provider({ children }) {
-  // Create + use Hooks
+  // Create + use States
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Create + use Side Effects
+  // --------------- Side Effects: Fetch API get value of Categories & Products ----------------------
   useEffect(() => {
-    const fetchCategories = async () => {
+    const fetchShop = async () => {
       try {
-        const resOfCategory = await axiosInstance("/categories");
-        const resOfProduct = await axiosInstance("/products");
+        const resOfCategory = await APIServer.category.getCategories();
+        const resOfProduct = await APIServer.shop.getProducts();
 
         if (resOfCategory.status === 200 && resOfProduct.status === 200) {
           setCategories(resOfCategory.data);
@@ -29,7 +31,7 @@ export default function Provider({ children }) {
         console.log(error);
       }
     };
-    fetchCategories();
+    fetchShop();
   }, []);
 
   return (

@@ -17,18 +17,21 @@ export default function MenuProductDropdown({
   isLoading,
 }) {
   // Create + use Hooks
-  const [productSlice, setProductSlice] = useState([]);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const navigate = useNavigate();
   const menuDropDownRef = useRef();
   const dispatch = useDispatch();
 
-  // Side Effect
+  // Create + use States
+  const [productSlice, setProductSlice] = useState([]);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  // Create + use side Effects
+  // ----------------- Side effect: Just get 9 items after search in all products --------------------
   useEffect(() => {
-    // Updating when client search value
     setProductSlice(productSearch.slice(0, 9));
   }, [productSearch]);
 
+  // ----------------- Side effect: Hide Menu Product Dropdown when cursor click outside --------------------
   useEffect(() => {
     // function get position of cursor
     const handleMouseMove = (event) => {
@@ -62,7 +65,7 @@ export default function MenuProductDropdown({
     };
   }, [mousePosition]);
 
-  // Create + use event handlers
+  // Create + use event handles
   const viewProductDetail = (product_id, product_name) => {
     const modifiedProductName = product_name.split(" ").join("-");
     navigate(`./product/${modifiedProductName}`, {
@@ -71,11 +74,12 @@ export default function MenuProductDropdown({
     });
   };
 
-  const showProductsHandler = async () => {
+  const showProductsHandle = async () => {
     try {
       const response = await axiosInstance(
         `/products/search?name=${valueName}`
       );
+
       if (valueName.length === 0) {
         navigate(`/products`, {
           state: { searchedProducts: response.data },
@@ -133,7 +137,7 @@ export default function MenuProductDropdown({
           <button
             className={classes["btn-show"]}
             type="button"
-            onClick={showProductsHandler}
+            onClick={showProductsHandle}
           >
             SEE ALL ' {valueName} '
           </button>

@@ -18,7 +18,7 @@ import { FaFacebookF } from "react-icons/fa";
 import Input from "./Input";
 
 function Form() {
-  // Create Schema Validate Yup
+  // Create + use Schema Validate Yup
   const FormLoginSchema = Yup.object().shape({
     firstName: Yup.string().required("FirstName is required!"),
     lastName: Yup.string().required("LastName is required!"),
@@ -70,11 +70,13 @@ function Form() {
     },
   });
 
-  const [isTermsAccepted, setIsTermAccepted] = useState(false);
   const navigate = useNavigate();
 
-  // Create + use event handlers
-  const checkTermsAcceptedHandler = (e) => {
+  // Create + use States
+  const [isTermsAccepted, setIsTermAccepted] = useState(false);
+
+  // Create + use event handles
+  const checkTermsAcceptedHandle = (e) => {
     setIsTermAccepted(e.target.checked);
   };
 
@@ -170,7 +172,7 @@ function Form() {
                 className={classes["form-input-checkbox"]}
                 type="checkbox"
                 id="remember"
-                onChange={checkTermsAcceptedHandler}
+                onChange={checkTermsAcceptedHandle}
               />
               <label htmlFor="remember">
                 I agree to the <span>Terms & Policy</span>

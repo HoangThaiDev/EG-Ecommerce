@@ -22,22 +22,18 @@ import { IoSearchSharp } from "react-icons/io5";
 import { IoMdCloseCircle } from "react-icons/io";
 
 export default function Navigation() {
-  // Get API From Server
-  const { products } = useContext(APIContext);
-
   // Create + use Hooks
+  const { products } = useContext(APIContext);
   const dispatch = useDispatch();
-
-  const stateUserCurrent = useSelector((state) => state.user);
-
   const navigate = useNavigate();
   const state = useLocation();
+  const [isLoading, startTransaction] = useTransition();
+
+  // Create + use States
+  const stateUserCurrent = useSelector((state) => state.user);
   const { isShow: isMenuDropDownShow } = useSelector(
     (state) => state.menuDropdown
   );
-
-  const [isLoading, startTransaction] = useTransition();
-
   const [isScrollActive, setIsScrollActive] = useState(false);
   const [productSearch, setProductSearch] = useState([]);
   const [valueName, setValueName] = useState(
@@ -46,12 +42,13 @@ export default function Navigation() {
       : ""
   );
 
-  // Side Effect
+  // Create + use side Effects
+  // ------------- Side effect: When change page then hide MenuDropdown ----------------
   useEffect(() => {
-    // When change page then hide MenuDropdown
     dispatch(reduxActions.menuDropdown.hide());
   }, [state]);
 
+  // ------------- Side effect: When scroll down then set mark CSS Navigation ----------------
   useEffect(() => {
     const scrollHandler = () => {
       if (window.scrollY > 400) {
@@ -69,12 +66,12 @@ export default function Navigation() {
     };
   }, []);
 
-  // Create + use Event handlers
-  const showSideCartHandler = () => {
+  // Create + use Event handles
+  const showSideCartHandle = () => {
     dispatch(reduxActions.sideCart.toggle());
   };
 
-  const changeValueNameHandler = (e) => {
+  const changeValueNameHandle = (e) => {
     let valueSearch = e.target.value;
     // Filter data products by value search
     const filterProducts = products.filter((p) =>
@@ -99,7 +96,7 @@ export default function Navigation() {
     });
   };
 
-  const clearValueIpnutSearchHandler = () => {
+  const clearValueIpnutSearchHandle = () => {
     dispatch(reduxActions.menuDropdown.hide());
     setValueName("");
   };
@@ -116,7 +113,7 @@ export default function Navigation() {
     navigate(`/${linkPage}`);
   };
 
-  const searchProductsHandler = (event) => {
+  const searchProductsHandle = (event) => {
     event.preventDefault();
     fetchProduct(valueName);
   };
@@ -178,23 +175,23 @@ export default function Navigation() {
           <Col className={classes["navigation__col"]} xl={14}>
             <form
               className={classes["nav__col__form-search"]}
-              onSubmit={searchProductsHandler}
+              onSubmit={searchProductsHandle}
             >
               <input
                 type="text"
                 placeholder="Search Product"
                 className={classes["form__input"]}
-                onChange={changeValueNameHandler}
+                onChange={changeValueNameHandle}
                 value={valueName}
               />
               <IoSearchSharp
                 className={classes["form__icon-search"]}
-                onClick={searchProductsHandler}
+                onClick={searchProductsHandle}
               />
               {valueName.length > 0 && (
                 <IoMdCloseCircle
                   className={classes["form__icon-clear"]}
-                  onClick={clearValueIpnutSearchHandler}
+                  onClick={clearValueIpnutSearchHandle}
                 />
               )}
               <button className={classes["form__btn"]} type="submit">
@@ -233,7 +230,7 @@ export default function Navigation() {
               </div>
               <div
                 className={classes["menu__icon"]}
-                onClick={() => showSideCartHandler()}
+                onClick={() => showSideCartHandle()}
               >
                 <AiOutlineShoppingCart
                   className={`${classes.icon} ${classes["icon-cart"]}`}

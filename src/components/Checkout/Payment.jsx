@@ -8,6 +8,7 @@ import classes from "./css/payment.module.css";
 import { IoIosArrowBack } from "react-icons/io";
 
 export default function Payment() {
+  // Create + use DUMMY_DATA_CONSTANTS
   const DUMMY_PAYMENT_OPTIONS = [
     {
       id: "1",
@@ -29,15 +30,15 @@ export default function Payment() {
     },
   ];
 
-  // Create + use Hooks
+  // Create + use States
   const [isShowDescOption, setIsShowDescOption] = useState({
     direct_bank_transfer: true,
     check_payments: false,
     cash_on_delivery: false,
   });
 
-  // Create + use event handler
-  const selectOptionHandler = (e, itemTitle) => {
+  // Create + use event handles
+  const selectOptionHandle = (e, itemTitle) => {
     switch (itemTitle) {
       case "Direct bank transfer":
         setIsShowDescOption((prevState) => ({
@@ -86,7 +87,7 @@ export default function Payment() {
                 name="option"
                 value={item.title}
                 checked={isShowDescOption[item.value]}
-                onChange={(e) => selectOptionHandler(e, item.title)}
+                onChange={(e) => selectOptionHandle(e, item.title)}
               />
               <div className={classes["item-info"]}>
                 <p className={classes["item-info-title"]}>{item.title}</p>

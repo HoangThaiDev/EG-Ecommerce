@@ -13,15 +13,15 @@ import FormComment from "./FormComment";
 import RelatedProduct from "./RelatedProduct";
 
 export default function MainSection({ productDetail }) {
-  // Create + use Hooks
+  // Create + use States
   const [optionActive, setOptionActive] = useState({
     desc: true,
     review: false,
     evalute: false,
   });
 
-  //   Create + use event Handlers
-  const chooseOptionHandler = (value) => {
+  //   Create + use event Handles
+  const chooseOptionHandle = (value) => {
     switch (value) {
       case "desc":
         setOptionActive({ desc: true, review: false, evalute: false });
@@ -52,7 +52,7 @@ export default function MainSection({ productDetail }) {
                   ? `${classes["section-product-option-desc"]} ${classes["section-product-option-desc-active"]}`
                   : classes["section-product-option-desc"]
               }
-              onClick={() => chooseOptionHandler("desc")}
+              onClick={() => chooseOptionHandle("desc")}
             >
               Descriptions
             </button>
@@ -63,7 +63,7 @@ export default function MainSection({ productDetail }) {
                   ? `${classes["section-product-option-reviews"]} ${classes["section-product-option-reviews-active"]}`
                   : classes["section-product-option-reviews"]
               }
-              onClick={() => chooseOptionHandler("review")}
+              onClick={() => chooseOptionHandle("review")}
             >
               Our Review
             </button>
@@ -74,7 +74,7 @@ export default function MainSection({ productDetail }) {
                   ? `${classes["section-product-option-evalute"]} ${classes["section-product-option-evalute-active"]}`
                   : classes["section-product-option-evalute"]
               }
-              onClick={() => chooseOptionHandler("evalute")}
+              onClick={() => chooseOptionHandle("evalute")}
             >
               Evalute Product
             </button>

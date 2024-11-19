@@ -8,59 +8,59 @@ import { Link } from "react-router-dom";
 // Import File CSS
 import classes from "./css/benefitList.module.css";
 
-// Create DUMMY DATA
-const DUMMY_BENEFITS = [
-  {
-    id: "a123",
-    logo: "https://res.cloudinary.com/dqrughrs2/image/upload/v1719839865/harvest_qv05q4.png",
-    title: "100% Organic",
-    desc: "Purely natural, eco-friendly, and chemical-free products.",
-  },
-  {
-    id: "b111",
-    logo: "https://res.cloudinary.com/dqrughrs2/image/upload/v1719842088/truck_d4hyxi.png",
-    title: "Free Delivery",
-    desc: "Enjoy free delivery on all orders with no minimum purchase.",
-  },
-  {
-    id: "c222",
-    logo: "https://res.cloudinary.com/dqrughrs2/image/upload/v1719840815/satisfaction_ijgokj.png",
-    title: "100% Satisfaction",
-    desc: "100% Satisfaction: Guaranteed happiness and fulfillment.",
-  },
-  {
-    id: "d456",
-    logo: "https://res.cloudinary.com/dqrughrs2/image/upload/v1719840814/discount_crzpno.png",
-    title: "Great Daily Deal",
-    desc: "Unbeatable discounts on top products daily!",
-  },
-  {
-    id: "e231",
-    logo: "https://res.cloudinary.com/dqrughrs2/image/upload/v1719839865/biodegradable_p0ftoa.png",
-    title: "Wide Assortment",
-    desc: "Diverse product range catering to various customer preferences.",
-  },
-  {
-    id: "f557",
-    logo: "https://res.cloudinary.com/dqrughrs2/image/upload/v1719839865/cabbage_mapwu8.png",
-    title: "Premiun Quality",
-    desc: "Experience the epitome of refinement and luxury",
-  },
-  {
-    id: "g751",
-    logo: "https://res.cloudinary.com/dqrughrs2/image/upload/v1719839922/pumpkin_ctmxcm.png",
-    title: "Always Fresh",
-    desc: "Always Fresh offers fresh, organic products daily.",
-  },
-  {
-    id: "h789",
-    logo: "https://res.cloudinary.com/dqrughrs2/image/upload/v1719839865/harvest_qv05q4.png",
-    title: "Best Quality",
-    desc: "Discover top-notch products for unbeatable quality and performance.",
-  },
-];
-
 export default function BenefitList() {
+  // Create + use DUMMY_DATA_CONSTANTS
+  const DUMMY_BENEFITS = [
+    {
+      id: "a123",
+      logo: "https://res.cloudinary.com/dqrughrs2/image/upload/v1719839865/harvest_qv05q4.png",
+      title: "100% Organic",
+      desc: "Purely natural, eco-friendly, and chemical-free products.",
+    },
+    {
+      id: "b111",
+      logo: "https://res.cloudinary.com/dqrughrs2/image/upload/v1719842088/truck_d4hyxi.png",
+      title: "Free Delivery",
+      desc: "Enjoy free delivery on all orders with no minimum purchase.",
+    },
+    {
+      id: "c222",
+      logo: "https://res.cloudinary.com/dqrughrs2/image/upload/v1719840815/satisfaction_ijgokj.png",
+      title: "100% Satisfaction",
+      desc: "100% Satisfaction: Guaranteed happiness and fulfillment.",
+    },
+    {
+      id: "d456",
+      logo: "https://res.cloudinary.com/dqrughrs2/image/upload/v1719840814/discount_crzpno.png",
+      title: "Great Daily Deal",
+      desc: "Unbeatable discounts on top products daily!",
+    },
+    {
+      id: "e231",
+      logo: "https://res.cloudinary.com/dqrughrs2/image/upload/v1719839865/biodegradable_p0ftoa.png",
+      title: "Wide Assortment",
+      desc: "Diverse product range catering to various customer preferences.",
+    },
+    {
+      id: "f557",
+      logo: "https://res.cloudinary.com/dqrughrs2/image/upload/v1719839865/cabbage_mapwu8.png",
+      title: "Premiun Quality",
+      desc: "Experience the epitome of refinement and luxury",
+    },
+    {
+      id: "g751",
+      logo: "https://res.cloudinary.com/dqrughrs2/image/upload/v1719839922/pumpkin_ctmxcm.png",
+      title: "Always Fresh",
+      desc: "Always Fresh offers fresh, organic products daily.",
+    },
+    {
+      id: "h789",
+      logo: "https://res.cloudinary.com/dqrughrs2/image/upload/v1719839865/harvest_qv05q4.png",
+      title: "Best Quality",
+      desc: "Discover top-notch products for unbeatable quality and performance.",
+    },
+  ];
+
   return (
     <div className={classes.benefitList}>
       <div className={classes["benefit__container"]}>

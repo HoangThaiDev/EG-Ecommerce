@@ -1,5 +1,5 @@
 // Import Modules
-import React, { memo, useMemo } from "react";
+import React, { memo } from "react";
 
 // Import File CSS
 import classes from "./css/sectionDetailCart.module.css";
@@ -20,16 +20,16 @@ function SectionDetailCart({
   // Create + use Hooks
   const navigate = useNavigate();
 
-  // Create + use event handlers
-  const deleteItemHandler = (item) => {
+  // Create + use event handles
+  const deleteItemHandle = (item) => {
     console.log(item);
   };
 
-  const searchItemsSameTypeHandler = (item) => {
+  const searchItemsSameTypeHandle = (item) => {
     console.log(item);
   };
 
-  const viewDetailProductHandler = (product_id, product_name) => {
+  const viewDetailProductHandle = (product_id, product_name) => {
     const modifiedProductName = product_name.split(" ").join("-");
     navigate(`../product/${modifiedProductName}`, {
       state: { productId: product_id },
@@ -52,7 +52,7 @@ function SectionDetailCart({
           src={item.image}
           alt={item.image}
           loading="lazy"
-          onClick={() => viewDetailProductHandler(item.id, item.name)}
+          onClick={() => viewDetailProductHandle(item.id, item.name)}
         />
         <div className={classes["product-detail"]}>
           <p className={classes["product-detail-name"]}>{item.name}</p>
@@ -91,11 +91,11 @@ function SectionDetailCart({
       <div className={`${classes["bg-content"]} ${classes["action"]}`}>
         <IoCloseSharp
           className={`${classes["icon"]} ${classes["icon-action-delete"]}`}
-          onClick={() => deleteItemHandler(item)}
+          onClick={() => deleteItemHandle(item)}
         />
         <GrSearchAdvanced
           className={`${classes["icon"]} ${classes["icon-action-find"]}`}
-          onClick={() => searchItemsSameTypeHandler(item)}
+          onClick={() => searchItemsSameTypeHandle(item)}
         />
       </div>
     </div>

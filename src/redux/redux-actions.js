@@ -1,4 +1,4 @@
-// Import Slice
+// Import Slices
 import {
   sideMenuSlide,
   menuDropdownSlide,
@@ -6,6 +6,7 @@ import {
   userSlide,
 } from "./redux-slices";
 
+// Create + use actions
 const reduxActions = {
   sideMenu: sideMenuSlide.actions,
   menuDropdown: menuDropdownSlide.actions,

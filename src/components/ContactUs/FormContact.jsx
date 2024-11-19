@@ -9,7 +9,7 @@ import classes from "./css/formContact.module.css";
 import "../../UI/css/popup-message.css";
 
 function FormContact() {
-  // Create Schema Validate Yup
+  // Create + use Schema Validate Yup
   const FormMessageSchema = Yup.object().shape({
     name: Yup.string().required("Name is required!"),
     email: Yup.string()

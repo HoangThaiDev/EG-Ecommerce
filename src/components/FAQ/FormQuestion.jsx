@@ -12,7 +12,7 @@ import "../../UI/css/popup-message.css";
 import { Row, Col } from "antd";
 
 function FormQuestion() {
-  // Create validateSchema Yup
+  // Create + use Schema validate Yup
   const FormQuestionSchema = Yup.object().shape({
     name: Yup.string().required("Name is required!"),
     content: Yup.string()

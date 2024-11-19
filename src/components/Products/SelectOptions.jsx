@@ -15,16 +15,18 @@ export default function SelectOptions({
   onSaveValueOption,
   stateProducts,
 }) {
-  // Create + use Hooks
+  // Create + use States
   const [selectedValue, setSelectedValue] = useState(null);
 
+  // Create + use side Effects
+  // ---------------- Side Effect:  Reset selected value on page refresh --------------------
   useEffect(() => {
     if (stateProducts && stateProducts.searchedProducts.length > 0) {
-      setSelectedValue(null); // Reset selected value on page refresh
+      setSelectedValue(null);
     }
   }, [stateProducts]);
 
-  // Create + use event handlers
+  // Create + use event handles
   const onChange = (valueSelect) => {
     setSelectedValue(valueSelect);
     onSaveValueOption(valueSelect);

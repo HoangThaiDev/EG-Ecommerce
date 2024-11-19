@@ -20,17 +20,19 @@ import { FaGoogle } from "react-icons/fa";
 export default function Footer() {
   // Create + use Hooks
   const emailInput = useRef();
+
+  // Create + use States
   const [isShowTooltip, setIsShowTooltip] = useState(false);
   const [textTooltip, setTextTooltip] = useState("");
 
-  // Create + use event handlers
-  const changeEmailHandler = () => {
+  // Create + use event handles
+  const changeEmailHandle = () => {
     if (emailInput.current.value.length > 0) {
       setIsShowTooltip(false);
     }
   };
 
-  const submitFormHandler = (e) => {
+  const submitFormHandle = (e) => {
     e.preventDefault();
     const valueEmail = emailInput.current.value;
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -107,14 +109,14 @@ export default function Footer() {
               </p>
               <form
                 className={classes["section__form"]}
-                onSubmit={submitFormHandler}
+                onSubmit={submitFormHandle}
               >
                 <input
                   type="text"
                   placeholder="Your Email"
                   className={classes["form__input-email"]}
                   ref={emailInput}
-                  onChange={changeEmailHandler}
+                  onChange={changeEmailHandle}
                 />
                 <button type="submit" className={classes["form__btn"]}>
                   Send

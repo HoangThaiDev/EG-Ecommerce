@@ -8,24 +8,26 @@ import "./css/sliderPrice.css";
 import { Slider } from "antd";
 
 export default function SliderPrice({ onSaveValueRangePrice, stateProducts }) {
-  // Create + use Hooks
+  // Create + use States
   const [rangePrice, setRangePrice] = useState({
     min: 0,
     max: 200,
   });
 
+  // Create + use side Effects
+  // --------------- Side Effect:  Reset selected value on page refresh --------------------
   useEffect(() => {
     if (stateProducts && stateProducts.searchedProducts.length > 0) {
       setRangePrice({ min: 0, max: 200 }); // Reset selected value on page refresh
     }
   }, [stateProducts]);
 
-  // Create + use event Handlers
-  const onChangeHandler = (value) => {
+  // Create + use event Handles
+  const onChangeHandle = (value) => {
     setRangePrice({ min: value[0], max: value[1] });
   };
 
-  const filterProductByPriceHandler = (event) => {
+  const filterProductByPriceHandle = (event) => {
     event.preventDefault();
     onSaveValueRangePrice(rangePrice);
   };
@@ -40,11 +42,11 @@ export default function SliderPrice({ onSaveValueRangePrice, stateProducts }) {
           range
           value={[rangePrice.min, rangePrice.max]}
           defaultValue={[rangePrice.min, rangePrice.max]}
-          onChange={onChangeHandler}
+          onChange={onChangeHandle}
         />
         <form
           className="slider__footer-form"
-          onSubmit={filterProductByPriceHandler}
+          onSubmit={filterProductByPriceHandle}
         >
           <button type="submit" className="form-btn-filter">
             Filter
