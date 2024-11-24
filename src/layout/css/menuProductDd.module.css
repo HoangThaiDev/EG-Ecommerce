@@ -1,6 +1,6 @@
 .menu-dropdown {
     position: absolute;
-    width: 83.1%;
+    width: 80.1%;
     max-height: 450px;
 }
 
@@ -116,9 +116,26 @@
     font: 500 .9rem/1.2rem "Roboto", sans-serif;
 }
 
+/* Thanh cuộn tổng thể */
+.menu-dropdown ::-webkit-scrollbar {
+    width: 4px;
+}
+
+.menu-dropdown ::-webkit-scrollbar-thumb {
+    background-color: rgba(158, 157, 157, 0.4);
+}
+
+.menu-dropdown ::-webkit-scrollbar-track {
+    background-color: rgba(211, 211, 211, .4);
+}
+
 /* CSS: Effect */
 .menu-dropdown-col:hover {
     box-shadow: 0 0 10px 2px rgba(27, 86, 105, 0.4);
+}
+
+.menu-dropdown-footer>button:hover::before {
+    width: 100%;
 }
 
 /* CSS: Animation */
@@ -132,10 +149,6 @@
     }
 }
 
-/* CSS: Effect */
-.menu-dropdown-footer>button:hover::before {
-    width: 100%;
-}
 
 /* CSS: Responsives */
 @media screen and (max-width:575px) {
@@ -145,11 +158,11 @@
     }
 
     .menu-dropdown-container {
-        height: 200px;
+        max-height: 200px;
         overflow-y: scroll;
         border-radius: 0;
         border: 0;
-        padding: 20px 0;
+        padding: 10px 0;
         box-shadow: 0 3px 10px 2px rgba(208, 208, 213, .7);
     }
 
@@ -164,19 +177,17 @@
     }
 
     .menu-dropdown-card {
-        padding: 5px 0;
+        padding: 5px 10px;
         gap: 0;
     }
 
-    .card-info-name {
-        margin: 0;
-        padding-left: 10px;
-        font-size: 1rem;
+    .card-info {
+        margin-left: 15px;
     }
 
-    .menu-dropdown-card>img,
-    .card-info-price {
-        display: none;
+    .card-info-name {
+        margin: 0 0 10px 0;
+        font-size: 1rem;
     }
 
     .menu-dropdown-footer {
@@ -191,8 +202,8 @@
     }
 
     .menu-dropdown-container {
-        height: 200px;
-        padding: 20px 10px;
+        max-height: 200px;
+        padding: 15px 20px;
         overflow-y: scroll;
         border-radius: 0;
         border: 0;
@@ -200,34 +211,36 @@
     }
 
     .menu-dropdown-row {
+        flex-direction: column;
         justify-content: center;
         align-items: flex-start;
     }
 
     .menu-dropdown-col {
-        width: 30%;
-        height: 170px;
+        width: 100%;
+    }
+
+    .menu-dropdown-card>img {
+        width: 100px;
+        object-fit: cover;
     }
 
     .menu-dropdown-card {
-        padding: 10px;
-        flex-direction: column;
+        width: 100%;
+        padding: 10px 15px;
         align-items: center;
         gap: 10px 0;
     }
 
+    .card-info {
+        margin-left: 20px;
+    }
+
     .card-info-name {
-        text-align: center;
-        margin-bottom: 5px;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
     }
 
-    .card-info-price {
-        justify-content: center;
-    }
-
-    .menu-dropdown-footer {
-        text-align: center;
-    }
 }
 
 @media screen and (min-width:768px) and (max-width:991px) {
@@ -237,7 +250,7 @@
     }
 
     .menu-dropdown-container {
-        height: 200px;
+        max-height: 200px;
         padding: 20px;
         overflow-y: scroll;
         border-radius: 0;
@@ -256,10 +269,16 @@
     }
 
     .menu-dropdown-card {
+        height: auto;
         padding: 10px;
         flex-direction: column;
         align-items: center;
         gap: 10px 0;
+    }
+
+    .menu-dropdown-card>img {
+        width: 100px;
+        height: 100px;
     }
 
     .card-info-name {
@@ -272,7 +291,7 @@
     }
 
     .menu-dropdown-footer {
-        text-align: center;
+        padding-left: 10px;
     }
 }
 
@@ -283,7 +302,7 @@
     }
 
     .menu-dropdown-container {
-        height: 200px;
+        max-height: 200px;
         padding: 20px;
         overflow-y: scroll;
         border-radius: 0;
@@ -292,20 +311,26 @@
     }
 
     .menu-dropdown-row {
-        justify-content: center;
+        justify-content: space-between;
         align-items: flex-start;
     }
 
     .menu-dropdown-col {
-        width: 20%;
+        width: 22%;
         height: 170px;
     }
 
     .menu-dropdown-card {
+        height: auto;
         padding: 10px;
         flex-direction: column;
         align-items: center;
         gap: 10px 0;
+    }
+
+    .menu-dropdown-card>img {
+        width: 100px;
+        height: 100px;
     }
 
     .card-info-name {
@@ -317,7 +342,5 @@
         justify-content: center;
     }
 
-    .menu-dropdown-footer {
-        text-align: center;
-    }
+
 }

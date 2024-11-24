@@ -1,5 +1,5 @@
 const checkOptionsFilter = (pathSearch, optionFilterObj) => {
-  const { option, rate, category, price, tag } = optionFilterObj;
+  const { option, rate, category, price, tag, page } = optionFilterObj;
   let urlQuery = pathSearch.length > 0 ? pathSearch : "";
   const isCheckURLHasQuery = urlQuery.includes("?");
 
@@ -9,6 +9,7 @@ const checkOptionsFilter = (pathSearch, optionFilterObj) => {
   urlQuery = getURLQueryByCategory(urlQuery, category, isCheckURLHasQuery);
   urlQuery = getURLQueryByPrice(urlQuery, price, isCheckURLHasQuery);
   urlQuery = getURLQueryByTags(urlQuery, tag, isCheckURLHasQuery);
+  urlQuery = getURLQueryByPage(urlQuery, page, isCheckURLHasQuery);
 
   return urlQuery;
 };
@@ -48,7 +49,7 @@ const getURLQueryByRate = (urlQuery, rate, isCheckURLHasQuery) => {
   if (rate) {
     // Check URL already exists query
     if (isCheckURLHasQuery) {
-      //   Check query exist same type or not
+      // Check query exist same type or not
       const optionRegex = /([?&]star)/;
       urlQuery = optionRegex.test(urlQuery)
         ? urlQuery.replace(/star=[^&]*/, rate)
@@ -73,11 +74,10 @@ const getURLQueryByRate = (urlQuery, rate, isCheckURLHasQuery) => {
 
 const getURLQueryByCategory = (urlQuery, name_category, isCheckURLHasQuery) => {
   // Checkoption has value
-  console.log(name_category);
-  if (name_category.length > 0) {
+  if (name_category) {
     // Check URL already exists query
     if (isCheckURLHasQuery) {
-      //   Check query exist same type or not
+      // Check query exist same type or not
       const optionRegex = /([?&]category)/;
       urlQuery = optionRegex.test(urlQuery)
         ? urlQuery.replace(/category=[^&]*/, `category=${name_category}`)
@@ -102,12 +102,12 @@ const getURLQueryByCategory = (urlQuery, name_category, isCheckURLHasQuery) => {
 };
 
 const getURLQueryByPrice = (urlQuery, price, isCheckURLHasQuery) => {
-  // // Checkoption has value
+  // Checkoption has value
   if (price) {
     if (price.min !== price.max) {
       // Check URL already exists query
       if (isCheckURLHasQuery) {
-        //   Check query exist same type or not
+        // Check query exist same type or not
         const optionRegex = /([?&]price)/;
         if (optionRegex.test(urlQuery)) {
           urlQuery = urlQuery.replace(
@@ -162,6 +162,25 @@ const getURLQueryByTags = (urlQuery, tags, isCheckURLHasQuery) => {
       urlQuery = urlQuery.replace(/[?&]tags=[^&]*/, "");
     }
   }
+  return urlQuery;
+};
+
+const getURLQueryByPage = (urlQuery, page, isCheckURLHasQuery) => {
+  if (urlQuery.length > 0) {
+    // Check postion this query is where
+    if (isCheckURLHasQuery) {
+      urlQuery = urlQuery.includes("?page=")
+        ? urlQuery.replace(/page=[^&]*/, `page=${page}`)
+        : urlQuery.includes("&page=")
+        ? urlQuery.replace(/&page=[^&]*/, `&page=${page}`)
+        : urlQuery + "&page=1";
+    } else {
+      urlQuery += `&page=${page}`;
+    }
+  } else {
+    urlQuery += `?page=${page}`;
+  }
+
   return urlQuery;
 };
 

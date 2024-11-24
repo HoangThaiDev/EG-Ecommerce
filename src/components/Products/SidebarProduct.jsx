@@ -10,7 +10,7 @@ import { APIContext } from "../../storeContext/APIContext";
 
 // Import Functions
 import funcCheckOptionsFilter from "../../helper/products/checkOptionsFilter";
-import funcFilterProducts from "../../helper/products/filterProducts";
+import funcSplitPath from "../../helper/products/splitPathQueries";
 
 // Import File CSS
 import classes from "./css/sidebarProduct.module.css";
@@ -20,7 +20,7 @@ import "../Home/css/ant-design/rate.css";
 import { Row, Col } from "antd";
 import SelectOptions from "./SelectOptions";
 import ItemProduct from "./ItemProduct";
-import PaginationPage from "../../UI/PaginationPage";
+import PaginationCustom from "../../UI/PaginationCustom";
 import CollapseCategory from "./CollapseCategory";
 import SliderPrice from "./SliderPrice";
 import SelectTags from "./SelectTags";
@@ -29,7 +29,7 @@ import SelectTags from "./SelectTags";
 import { CgMenuRight } from "react-icons/cg";
 import { IoMdClose } from "react-icons/io";
 
-export default function SidebarProduct() {
+export default function SidebarProduct({ categories, products }) {
   // Create + use DUMMY_DATA_CONSTANTS
   const optionsFilter = [
     {
@@ -98,52 +98,47 @@ export default function SidebarProduct() {
   ];
 
   // Create + use Hooks
-  const { search: pathSearch, state: stateProducts } = useLocation();
+  const { search: pathSearch } = useLocation();
   const [searchParams] = useSearchParams();
-  const nameValueSearch = searchParams.get("name");
-  const categoryValueSearch = searchParams.get("category");
   const navigate = useNavigate();
 
-  const { categories, products: productsAPI } = useContext(APIContext); // Get data products from server
+  const nameValueSearch = pathSearch.replace("?", "").split("=")[1];
+
+  const categoryValueSearch = searchParams.get("category");
 
   // Create + use States
-  const [productsFromSearch, setProductsFromSearch] = useState([]); // Get data products from input search
-
-  // ---------------- States: Create Data  ------------------
-  const [products, setProducts] = useState(productsAPI);
-  const [sliceProduct, setSliceProduct] = useState(products.slice(0, 12));
-
   // ---------------- States: Create Options ------------------------
   const [optionFilter, setOptionFilter] = useState(undefined);
   const [rateFilter, setRateFilter] = useState(undefined);
-  const [categoryFilter, setCategoryFilter] = useState({
-    id: "",
-    title: "",
-  });
+  const [categoryFilter, setCategoryFilter] = useState("");
   const [rangePrice, setRangePrice] = useState(null);
   const [tags, setTags] = useState([]);
   const [isShowSideBarMenu, setIsShowSideBarMenu] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
   // Create + use side Effects
-  // ----------------- Side Effect: Update New products after search value -----------------------
+  // ----------------- Side Effect: Split path to get query and update values current of options  -----------------------
   useEffect(() => {
-    if (stateProducts && stateProducts.searchedProducts.length > 0) {
-      // Update data product after search key
-      if (pathSearch.includes("?category=")) {
-        const valueCategorySearch = pathSearch
-          .split("=")[1]
-          .replace(/%20/g, " ");
+    if (pathSearch.length > 0) {
+      const pathQueries = pathSearch.replace("?", "").split("&");
+      const optionsFilterObj = funcSplitPath(pathQueries);
 
-        setCategoryFilter((prevState) => ({
-          ...prevState,
-          title: valueCategorySearch,
-        }));
+      // Update value states by query url
+      setOptionFilter(optionsFilterObj.option);
+      setRateFilter(optionsFilterObj.rate);
+      setCategoryFilter(optionsFilterObj.category);
+      setTags(optionsFilterObj.tag);
+      setCurrentPage(optionsFilterObj.page);
+
+      // Check client was choosen range price
+      if (optionsFilterObj.price.min !== optionsFilterObj.price.max) {
+        setRangePrice({
+          min: optionsFilterObj.price.min,
+          max: optionsFilterObj.price.max,
+        });
       }
-      setProductsFromSearch(stateProducts.searchedProducts);
-      setProducts(stateProducts.searchedProducts);
-      setSliceProduct(stateProducts.searchedProducts.slice(0, 12));
     }
-  }, [stateProducts]);
+  }, [pathSearch]);
 
   // Create + use Logics
   const filterProductsByOptions = (
@@ -151,7 +146,8 @@ export default function SidebarProduct() {
     valueRate,
     valueCategory,
     valuePrice,
-    valueTags
+    valueTags,
+    valuePage
   ) => {
     // Get value category from url if domain has
     const optionsFilterObj = {
@@ -160,31 +156,13 @@ export default function SidebarProduct() {
       category: valueCategory,
       price: valuePrice,
       tag: valueTags,
+      page: valuePage,
     };
-
-    let productsToFilter =
-      productsFromSearch.length > 0 ? productsFromSearch : productsAPI;
-
-    // When client dont choose category or change category ==> Call data API original
-    if (productsFromSearch.length > 0 && optionsFilterObj.category === "") {
-      productsToFilter = productsAPI;
-      setProductsFromSearch([]);
-    } else {
-      productsToFilter = productsAPI;
-      setProductsFromSearch([]);
-    }
 
     // Starting filter by options + Get urlQuery follow filter
     const modifiedURL = funcCheckOptionsFilter(pathSearch, optionsFilterObj);
-    const modifiedProducts = funcFilterProducts(
-      productsToFilter,
-      optionsFilterObj
-    );
 
-    // Update domain + total products + slice page products
     navigate(modifiedURL);
-    setProducts(modifiedProducts);
-    setSliceProduct(modifiedProducts.slice(0, 12));
   };
 
   //  Create + use event handles
@@ -198,8 +176,17 @@ export default function SidebarProduct() {
     setIsShowSideBarMenu(!isShowSideBarMenu);
   };
 
-  const getValueNextPageHandle = (value) => {
-    setSliceProduct(value);
+  const getValueNextPageHandle = (valuePage) => {
+    setCurrentPage(valuePage);
+    filterProductsByOptions(
+      optionFilter,
+      rateFilter,
+      categoryFilter.title,
+      rangePrice,
+      tags,
+      valuePage
+    );
+
     window.scrollTo({
       top: 450,
       left: 0,
@@ -212,9 +199,10 @@ export default function SidebarProduct() {
     filterProductsByOptions(
       optionFilter,
       rateFilter,
-      categoryFilter.title,
+      categoryFilter,
       rangePrice,
-      valueTags
+      valueTags,
+      currentPage
     );
   };
 
@@ -223,21 +211,22 @@ export default function SidebarProduct() {
     filterProductsByOptions(
       optionFilter,
       rateFilter,
-      categoryFilter.title,
+      categoryFilter,
       valuePrice,
-      tags
+      tags,
+      currentPage
     );
   };
 
-  const getValueCategoryHandle = (_id, title) => {
-    const newCategory = { _id, title };
-    setCategoryFilter(newCategory);
+  const getValueCategoryHandle = (valueCategory) => {
+    setCategoryFilter(valueCategory);
     filterProductsByOptions(
       optionFilter,
       rateFilter,
-      newCategory.title,
+      valueCategory,
       rangePrice,
-      tags
+      tags,
+      currentPage
     );
   };
 
@@ -246,9 +235,10 @@ export default function SidebarProduct() {
     filterProductsByOptions(
       optionFilter,
       valueRate,
-      categoryFilter.title,
+      categoryFilter,
       rangePrice,
-      tags
+      tags,
+      currentPage
     );
   };
 
@@ -257,9 +247,10 @@ export default function SidebarProduct() {
     filterProductsByOptions(
       valueOption,
       rateFilter,
-      categoryFilter.title,
+      categoryFilter,
       rangePrice,
-      tags
+      tags,
+      currentPage
     );
   };
 
@@ -269,7 +260,7 @@ export default function SidebarProduct() {
 
   return (
     <>
-      {stateProducts?.searchedProducts.length === 0 && (
+      {/* {products.total.length === 0 && (
         <div className={classes["main-products-empty"]}>
           <img
             src="https://res.cloudinary.com/dqrughrs2/image/upload/v1720533009/search_kequmx.png"
@@ -282,116 +273,127 @@ export default function SidebarProduct() {
           </h1>
           <Link to="../products">Find products on page Products</Link>
         </div>
-      )}
+      )} */}
 
-      {/* Rendering when go to Products Page || search find products have items */}
-      {(!stateProducts || stateProducts?.searchedProducts.length > 0) && (
-        <div className={classes.sidebarProduct}>
-          <div className={classes["products__container"]}>
-            <Row className={classes["products__row"]}>
-              <Col
-                className={`${classes["products__col"]} ${classes["products__col__section"]}`}
-              >
-                <div className={classes["col__section__header"]}>
-                  <p className={classes["section__note"]}>
-                    Showing 1 - 12 items
-                  </p>
+      <div className={classes.sidebarProduct}>
+        <div className={classes["products__container"]}>
+          <Row className={classes["products__row"]}>
+            <Col
+              className={`${classes["products__col"]} ${classes["products__col__section"]}`}
+            >
+              <div className={classes["col__section__header"]}>
+                <p className={classes["section__note"]}>Showing 1 - 12 items</p>
 
-                  {(pathSearch.length > 0 ||
-                    optionFilter ||
-                    rateFilter ||
-                    categoryFilter.title ||
-                    rangePrice ||
-                    tags.length > 0) && (
-                    <div className={classes["section__options"]}>
-                      <button
-                        type="button"
-                        className={classes["section__btn-clear-options"]}
-                        onClick={clearOptionsFilterHandle}
-                      >
-                        Clear <span>X</span>
-                      </button>
-                    </div>
-                  )}
-                </div>
-
-                {/* JSX: Rendering Products */}
-                <Row className={classes["section__list"]}>
-                  {sliceProduct.map((product) => (
-                    <Col
-                      className={classes["section__col__item"]}
-                      key={product._id}
+                {(pathSearch.length > 0 ||
+                  optionFilter ||
+                  rateFilter ||
+                  categoryFilter.title ||
+                  rangePrice ||
+                  tags.length > 0) && (
+                  <div className={classes["section__options"]}>
+                    <button
+                      type="button"
+                      className={classes["section__btn-clear-options"]}
+                      onClick={clearOptionsFilterHandle}
                     >
-                      <ItemProduct product={product} />
-                    </Col>
-                  ))}
-                </Row>
-              </Col>
+                      Clear <span>X</span>
+                    </button>
+                  </div>
+                )}
+              </div>
 
-              {/* JSX: SideBar */}
-              <CgMenuRight
-                className={classes["icon-show-menu-sidebar"]}
+              {/* JSX: Show message if no found products */}
+              {products.value.length === 0 && pathSearch.length > 0 && (
+                <div className={classes["main-products-empty"]}>
+                  <img
+                    src="https://res.cloudinary.com/dqrughrs2/image/upload/v1720533009/search_kequmx.png"
+                    alt="https://res.cloudinary.com/dqrughrs2/image/upload/v1720533009/search_kequmx.png"
+                    loading="lazy"
+                  />
+                  <h1>No found products in EG Shop with your key search:</h1>
+                  <p>' {pathSearch} '</p>
+                  <Link to="../products">Find products on page Products</Link>
+                </div>
+              )}
+
+              {/* JSX: Rendering Products */}
+              <Row className={classes["section__list"]}>
+                {products.value.map((product) => (
+                  <Col
+                    className={classes["section__col__item"]}
+                    key={product._id}
+                  >
+                    <ItemProduct product={product} />
+                  </Col>
+                ))}
+              </Row>
+            </Col>
+
+            {/* JSX: SideBar */}
+            <CgMenuRight
+              className={classes["icon-show-menu-sidebar"]}
+              onClick={showSideBarMenuHandle}
+            />
+            <Col
+              className={
+                isShowSideBarMenu
+                  ? `${classes["products__col"]} ${classes["products__col__sidebar"]} ${classes["products__col__sidebar-active"]}`
+                  : `${classes["products__col"]} ${classes["products__col__sidebar"]}`
+              }
+            >
+              <IoMdClose
+                className={classes["icon-hide-menu-sidebar"]}
                 onClick={showSideBarMenuHandle}
               />
-              <Col
-                className={
-                  isShowSideBarMenu
-                    ? `${classes["products__col"]} ${classes["products__col__sidebar"]} ${classes["products__col__sidebar-active"]}`
-                    : `${classes["products__col"]} ${classes["products__col__sidebar"]}`
-                }
-              >
-                <IoMdClose
-                  className={classes["icon-hide-menu-sidebar"]}
-                  onClick={showSideBarMenuHandle}
+              <div className={classes["header__form"]}>
+                <SelectOptions
+                  className="form-filter-options"
+                  popupClassName="form__popup-filter-options"
+                  placeholder="Filter"
+                  options={optionsFilter}
+                  optionCurrent={optionFilter || undefined}
+                  onSaveValueOption={getValueOptionFilterHandle}
                 />
-                <div className={classes["header__form"]}>
-                  <SelectOptions
-                    stateProducts={stateProducts}
-                    className="form-filter-options"
-                    popupClassName="form__popup-filter-options"
-                    placeholder="Filter"
-                    options={optionsFilter}
-                    onSaveValueOption={getValueOptionFilterHandle}
-                  />
 
-                  <SelectOptions
-                    stateProducts={stateProducts}
-                    className="form-filter-rating"
-                    popupClassName="form__popup-filter-rating"
-                    placeholder="Popularity"
-                    options={optionsRating}
-                    onSaveValueOption={getValueRateFilterHandle}
-                  />
+                <SelectOptions
+                  className="form-filter-rating"
+                  popupClassName="form__popup-filter-rating"
+                  placeholder="Popularity"
+                  options={optionsRating}
+                  optionCurrent={rateFilter || undefined}
+                  onSaveValueOption={getValueRateFilterHandle}
+                />
 
-                  <CollapseCategory
-                    categoryValueSearch={categoryValueSearch}
-                    className="collapse-category"
-                    products={products}
-                    categories={categories}
-                    onSaveValueCategory={getValueCategoryHandle}
-                  />
-                  <SliderPrice
-                    stateProducts={stateProducts}
-                    onSaveValueRangePrice={getValueRangePriceHandle}
-                  />
-                  <SelectTags
-                    stateProducts={stateProducts}
-                    onSaveValueTags={getValueTagsHandle}
-                  />
-                </div>
-              </Col>
-            </Row>
+                <CollapseCategory
+                  categoryValueSearch={categoryValueSearch}
+                  categoryCurrent={categoryFilter || ""}
+                  className="collapse-category"
+                  products={products.total}
+                  categories={categories}
+                  onSaveValueCategory={getValueCategoryHandle}
+                />
+                <SliderPrice
+                  onSaveValueRangePrice={getValueRangePriceHandle}
+                  rangePriceCurrent={rangePrice || null}
+                />
+                <SelectTags
+                  onSaveValueTags={getValueTagsHandle}
+                  tagsCurrent={tags}
+                />
+              </div>
+            </Col>
+          </Row>
 
-            {/* JSX: Pagination */}
-            <PaginationPage
-              className="products__pagination"
-              pageSize={12}
-              products={products}
-              onSaveNextPageProduct={getValueNextPageHandle}
-            />
-          </div>
+          {/* JSX: Pagination */}
+          <PaginationCustom
+            className="products__pagination"
+            pageSize={12}
+            currentPage={currentPage}
+            total={products.total.length}
+            onSaveNextPageProduct={getValueNextPageHandle}
+          />
         </div>
-      )}
+      </div>
     </>
   );
 }

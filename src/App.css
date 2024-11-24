@@ -30,7 +30,6 @@
 }
 
 /* Effect CSS */
-
 .btn-home:hover {
     background-color: rgb(38, 70, 83);
     border: 1px solid transparent;
@@ -39,8 +38,6 @@
 .btn-home:hover span {
     color: white;
 }
-
-
 
 /* Responsive */
 @media screen and (max-width:575px) {

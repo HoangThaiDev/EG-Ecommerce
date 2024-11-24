@@ -1,6 +1,5 @@
 // Import Modules
 import React, { useContext, useState } from "react";
-import axiosInstance from "../axios/customAxios";
 import { useNavigate } from "react-router-dom";
 import { APIContext } from "../storeContext/APIContext";
 
@@ -22,27 +21,16 @@ function CustomSlide(props) {
     props;
 
   // Create + use event handles
-  const getTitleCategory = () => {
-    fetchProductByCategory();
-  };
-
-  const fetchProductByCategory = async () => {
-    try {
-      const response = await axiosInstance(
-        `/products/search?category=${categoryId}`
-      );
-
-      navigate(`/products?category=${title}`, {
-        state: { searchedProducts: response.data },
-      });
-    } catch (error) {
-      const { message } = error.response.data;
-      console.log(message);
-    }
+  const searchProductsByCategory = () => {
+    navigate(`/products?category=${title}`);
   };
 
   return (
-    <div {...otherProps} className="slide-item" onClick={getTitleCategory}>
+    <div
+      {...otherProps}
+      className="slide-item"
+      onClick={searchProductsByCategory}
+    >
       <img src={isActive ? activePath : path} alt={title} loading="lazy" />
       <p>{title}</p>
     </div>

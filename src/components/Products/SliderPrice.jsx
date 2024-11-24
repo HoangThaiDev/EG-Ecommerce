@@ -7,7 +7,10 @@ import "./css/sliderPrice.css";
 // Import Components
 import { Slider } from "antd";
 
-export default function SliderPrice({ onSaveValueRangePrice, stateProducts }) {
+export default function SliderPrice({
+  onSaveValueRangePrice,
+  rangePriceCurrent,
+}) {
   // Create + use States
   const [rangePrice, setRangePrice] = useState({
     min: 0,
@@ -15,12 +18,21 @@ export default function SliderPrice({ onSaveValueRangePrice, stateProducts }) {
   });
 
   // Create + use side Effects
-  // --------------- Side Effect:  Reset selected value on page refresh --------------------
+  // --------------- Side Effect: Update rangePrice current by query url --------------------
   useEffect(() => {
-    if (stateProducts && stateProducts.searchedProducts.length > 0) {
-      setRangePrice({ min: 0, max: 200 }); // Reset selected value on page refresh
+    if (rangePriceCurrent) {
+      setRangePrice((prevState) => ({
+        ...prevState,
+        min: rangePriceCurrent.min,
+        max: rangePriceCurrent.max,
+      }));
+    } else {
+      setRangePrice({
+        min: 0,
+        max: 200,
+      });
     }
-  }, [stateProducts]);
+  }, [rangePriceCurrent]);
 
   // Create + use event Handles
   const onChangeHandle = (value) => {

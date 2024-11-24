@@ -11,7 +11,7 @@ import SlideCategories from "../../UI/SlideCategories";
 
 export default function ItemCategories() {
   return (
-    <div className={classes.category}>
+    <div className={classes["category"]}>
       <div className={classes["category__container"]}>
         <div className={classes["category__header"]}>
           <h2>What do you looking for ?</h2>

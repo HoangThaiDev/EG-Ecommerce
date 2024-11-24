@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 export default function PromotionalBanners() {
   return (
-    <div className={classes.promotional}>
+    <div className={classes["promotional"]}>
       <div className={classes["promotional__container"]}>
         <Row className={classes["promotional__row"]}>
           <Col className={classes["promotional__col"]}>

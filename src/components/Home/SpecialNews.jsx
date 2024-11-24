@@ -69,7 +69,7 @@ export default function SpecialNews() {
   };
 
   return (
-    <div className={classes.news}>
+    <div className={classes["news"]}>
       <div className={classes["news__container"]}>
         <div className={classes["news__header"]}>
           <h2>Special News</h2>

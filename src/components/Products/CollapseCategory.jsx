@@ -6,7 +6,6 @@ import "./css/collapseCategory.css";
 
 // Import Components
 import { Collapse } from "antd";
-import { useLocation } from "react-router-dom";
 
 export default function CollapseCategory({
   className,
@@ -14,23 +13,20 @@ export default function CollapseCategory({
   categories,
   onSaveValueCategory,
   categoryValueSearch,
+  categoryCurrent,
 }) {
-  // Create + use Hooks
-  const { search: pathSearch } = useLocation();
-
   // Create + use States
-  const [categoryActive, setCategoryActive] = useState({
-    title: "",
-  });
+  const [categoryActive, setCategoryActive] = useState("");
 
   // Create + use side Effects
-  // -------------- Side Effect: Update Category Active ---------------------
+  // -------------- Side Effect: Update Category Active by query url ---------------------
   useEffect(() => {
-    if (pathSearch.length > 0) {
-      const valueCategorySearch = pathSearch.split("=")[1].replace(/%20/g, " ");
-      setCategoryActive({ state: true, title: valueCategorySearch });
+    if (categoryCurrent) {
+      setCategoryActive(categoryCurrent);
+    } else {
+      setCategoryActive("");
     }
-  }, []);
+  }, [categoryCurrent]);
 
   // Create + use Logics
   const modifiedCategories = categories.map((category) => {
@@ -57,7 +53,7 @@ export default function CollapseCategory({
                   ? "category-item active"
                   : "category-item"
               }
-              onClick={() => getValueCategoryHandle(item._id, item.title)}
+              onClick={() => getValueCategoryHandle(item.title)}
             >
               <span
                 className={
@@ -88,13 +84,13 @@ export default function CollapseCategory({
   ];
 
   // Create + use event handles
-  const getValueCategoryHandle = (_id, title) => {
+  const getValueCategoryHandle = (title) => {
     // Check category choose by client
-    if (title !== categoryActive.title) {
-      setCategoryActive({ title: title });
-      onSaveValueCategory(_id, title);
+    if (title !== categoryActive) {
+      setCategoryActive(title);
+      onSaveValueCategory(title);
     } else {
-      setCategoryActive({ title: "" });
+      setCategoryActive("");
       onSaveValueCategory("", "");
     }
   };

@@ -6,14 +6,14 @@ const APIServer = {
     getProducts: () => {
       return axiosInstance.get("/products");
     },
-    searchProducts: () => {
-      return axiosInstance.get("/products/search");
+    getProduct: (productID) => {
+      return axiosInstance.get(`/products/detail/${productID}`);
+    },
+    getProductsByQueries: (queriesValue) => {
+      return axiosInstance.get(`/products/query?${queriesValue}`);
     },
     addToCart: () => {
       return axiosInstance.post("/products/add-to-cart");
-    },
-    getProduct: (productID) => {
-      return axiosInstance.get(`/products/detail/${productID}`);
     },
   },
   user: {

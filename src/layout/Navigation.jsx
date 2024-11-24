@@ -26,7 +26,7 @@ export default function Navigation() {
   const { products } = useContext(APIContext);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const state = useLocation();
+  const location = useLocation();
   const [isLoading, startTransaction] = useTransition();
 
   // Create + use States
@@ -46,7 +46,7 @@ export default function Navigation() {
   // ------------- Side effect: When change page then hide MenuDropdown ----------------
   useEffect(() => {
     dispatch(reduxActions.menuDropdown.hide());
-  }, [state]);
+  }, [location]);
 
   // ------------- Side effect: When scroll down then set mark CSS Navigation ----------------
   useEffect(() => {
@@ -99,6 +99,8 @@ export default function Navigation() {
   const clearValueIpnutSearchHandle = () => {
     dispatch(reduxActions.menuDropdown.hide());
     setValueName("");
+    sessionStorage.removeItem("search-product");
+    // navigate(location.pathname);
   };
 
   const goHomeHandler = () => {
@@ -115,36 +117,13 @@ export default function Navigation() {
 
   const searchProductsHandle = (event) => {
     event.preventDefault();
-    fetchProduct(valueName);
-  };
 
-  const fetchProduct = async (valueName) => {
-    try {
-      const response = await axiosInstance(
-        `/products/search?name=${valueName}`
-      );
-      if (valueName.length === 0) {
-        navigate(`/products`, {
-          state: { searchedProducts: response.data },
-        });
-        sessionStorage.removeItem("search-product"); // cLear value input search when search no name
-      } else {
-        // Remember value input search when search has name
-        sessionStorage.setItem("search-product", JSON.stringify(valueName));
-
-        navigate(`/products?name=${valueName}`, {
-          state: { searchedProducts: response.data },
-        });
-      }
-    } catch (error) {
-      const message = error.response.data;
-      console.log(message);
-      if (message) {
-        navigate(`/products?name=${valueName}`, {
-          state: { searchedProducts: [] },
-        });
-      }
+    if (valueName.length === 0) {
+      sessionStorage.removeItem("search-product");
+      return navigate("/products");
     }
+    sessionStorage.setItem("search-product", JSON.stringify(valueName));
+    navigate(`/products?name=${valueName}`);
   };
 
   return (

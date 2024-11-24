@@ -11,20 +11,22 @@ export default function SelectOptions({
   className,
   popupClassName,
   options,
+  optionCurrent,
   placeholder,
   onSaveValueOption,
-  stateProducts,
 }) {
   // Create + use States
-  const [selectedValue, setSelectedValue] = useState(null);
+  const [selectedValue, setSelectedValue] = useState(optionCurrent);
 
   // Create + use side Effects
-  // ---------------- Side Effect:  Reset selected value on page refresh --------------------
+  // ---------------- Side Effect: Update select options value curent from query url --------------------
   useEffect(() => {
-    if (stateProducts && stateProducts.searchedProducts.length > 0) {
-      setSelectedValue(null);
+    if (optionCurrent) {
+      setSelectedValue(optionCurrent);
+    } else {
+      setSelectedValue(undefined);
     }
-  }, [stateProducts]);
+  }, [optionCurrent]);
 
   // Create + use event handles
   const onChange = (valueSelect) => {

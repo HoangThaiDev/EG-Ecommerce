@@ -10,7 +10,7 @@ import bannerImage from "../../assets/images-banner/banner-home2.jpeg";
 
 export default function Header() {
   return (
-    <div className={classes.header}>
+    <div className={classes["header"]}>
       <div className={classes["header__container"]}>
         <img src={bannerImage} alt={bannerImage} loading="lazy" />
         <div className={classes["header__card"]}>

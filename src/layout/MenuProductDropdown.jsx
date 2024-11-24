@@ -74,33 +74,13 @@ export default function MenuProductDropdown({
     });
   };
 
-  const showProductsHandle = async () => {
-    try {
-      const response = await axiosInstance(
-        `/products/search?name=${valueName}`
-      );
-
-      if (valueName.length === 0) {
-        navigate(`/products`, {
-          state: { searchedProducts: response.data },
-        });
-        sessionStorage.removeItem("search-product"); // cLear value input search when search no name
-      } else {
-        // Remember value input search when search has name
-        sessionStorage.setItem("search-product", JSON.stringify(valueName));
-        navigate(`/products?name=${valueName}`, {
-          state: { searchedProducts: response.data },
-        });
-      }
-    } catch (error) {
-      const message = error.response.data;
-      console.log(message);
-      if (message) {
-        navigate(`/products?name=${valueName}`, {
-          state: { searchedProducts: [] },
-        });
-      }
+  const searchProductsHandle = () => {
+    if (valueName.length === 0) {
+      sessionStorage.removeItem("search-product");
+      return navigate("/products");
     }
+    sessionStorage.setItem("search-product", JSON.stringify(valueName));
+    navigate(`/products?name=${valueName}`);
   };
 
   return (
@@ -137,7 +117,7 @@ export default function MenuProductDropdown({
           <button
             className={classes["btn-show"]}
             type="button"
-            onClick={showProductsHandle}
+            onClick={searchProductsHandle}
           >
             SEE ALL ' {valueName} '
           </button>

@@ -8,7 +8,7 @@ import { APIContext } from "../../storeContext/APIContext";
 // Import Components
 import { Tag } from "antd";
 
-export default function SelectTags({ stateProducts, onSaveValueTags }) {
+export default function SelectTags({ tagsCurrent, onSaveValueTags }) {
   // Create + use Hooks
   const { products } = useContext(APIContext);
 
@@ -21,12 +21,14 @@ export default function SelectTags({ stateProducts, onSaveValueTags }) {
   ].filter((tag) => tag !== "Can");
 
   // Create + use side Effects
-  // --------------- Side Effect:  Reset selected value on page refresh --------------------
+  // --------------- Side Effect: Update select tags by query url --------------------
   useEffect(() => {
-    if (stateProducts && stateProducts.searchedProducts.length > 0) {
+    if (tagsCurrent.length > 0) {
+      setSelectedTags(tagsCurrent);
+    } else {
       setSelectedTags([]);
     }
-  }, [stateProducts]);
+  }, [tagsCurrent]);
 
   // Create + use event handlers
   const handleChange = (tag, checked) => {
