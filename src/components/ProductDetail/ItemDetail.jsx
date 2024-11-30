@@ -1,7 +1,10 @@
 // Import Modules
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../../axios/customAxios";
+import APIServer from "../../API/customAPI";
+import { useDispatch, useSelector } from "react-redux";
+import calculatePrice from "../../helper/products/calculator";
+import reduxActions from "../../redux/redux-actions";
 
 // Import File CSS
 import classes from "./css/itemDetail.module.css";
@@ -25,8 +28,11 @@ function ItemDetail({ productDetail }) {
 
   // Create + use Hooks
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // Create + use States
+  const { isLoggedIn } = useSelector((state) => state.user);
+
   const [imageActive, setImageActive] = useState(
     productDetail.image_detail.banner
   );
@@ -77,28 +83,44 @@ function ItemDetail({ productDetail }) {
     }
   };
 
-  const addToCartHandle = (productId) => {
-    let isLogin = true;
-    if (!isLogin) {
-      navigate("../login", { replace: true });
+  const addToCartHandle = async (product, action) => {
+    // Check client loggedIn to use
+    if (!isLoggedIn) {
+      return alert("You need to login to use function!");
     }
-    console.log("add to cart:", productId);
-  };
 
-  const buyProductHandler = async (productId) => {
-    // Check quantity of product is valid
-    if (+countQuantity > 20) {
-      alert("Max quantity of product is 20!. Please choose again!");
-      return false;
-    }
+    // Calculate price of product
+    const updatePrice = calculatePrice(
+      product.price,
+      product.percent_discount,
+      countQuantity
+    );
+
+    const valueProduct = {
+      _id: product._id,
+      quantity: countQuantity,
+      price: updatePrice,
+    };
 
     try {
-      const response = await axiosInstance.post("/products/buy", {
-        productId: productId,
-      });
-      console.log(response);
+      const res = await APIServer.cart.addToCart(valueProduct);
+
+      if (res.status === 200) {
+        const { cart } = res.data;
+
+        if (action === "add") {
+          alert("Add to cart success!");
+          dispatch(reduxActions.sideCart.toggle());
+        } else {
+          navigate("/cart");
+        }
+        dispatch(reduxActions.user.updateCart(cart));
+      }
     } catch (error) {
-      console.log(error);
+      const { data, status } = error.response;
+      if (status !== 200) {
+        alert(data.message);
+      }
     }
   };
 
@@ -204,14 +226,14 @@ function ItemDetail({ productDetail }) {
                 <button
                   type="button"
                   className={classes["info-quantity-btn-buy"]}
-                  onClick={() => buyProductHandler(productDetail._id)}
+                  onClick={() => addToCartHandle(productDetail, "buy")}
                 >
                   Buy Now
                 </button>
                 <button
                   type="button"
                   className={classes["info-quantity-btn-add"]}
-                  onClick={() => addToCartHandle(productDetail._id)}
+                  onClick={() => addToCartHandle(productDetail, "add")}
                 >
                   Add To Cart
                 </button>

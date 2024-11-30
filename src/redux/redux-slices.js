@@ -6,8 +6,13 @@ const initialSideMenu = { isShow: false };
 const initialSideCart = { isShow: false };
 const initialMenuDropdown = { isShow: false };
 const initialUser = {
-  isLogin: false,
-  cart: [],
+  info_detail: null,
+  isLoggedIn: false,
+  accessToken: "",
+  cart: {
+    items: [],
+    totalPriceCart: "0",
+  },
 };
 
 // Create + use Slide
@@ -16,11 +21,42 @@ const userSlide = createSlice({
   initialState: initialUser,
   reducers: {
     save(state, data) {
-      const { isLogin } = data.payload;
-      return { ...state, isLogin: isLogin };
+      const { accessToken, cart, info_detail, isLoggedIn } = data.payload;
+
+      return {
+        ...state,
+        accessToken: accessToken,
+        info_detail: info_detail,
+        isLoggedIn: isLoggedIn,
+        cart: {
+          items: cart.items,
+          totalPriceCart: cart.totalPriceCart,
+        },
+      };
     },
-    restart(state) {
-      return { ...state, isLogin: false, cart: [] };
+
+    logout(state) {
+      return {
+        ...state,
+        info_detail: null,
+        isLoggedIn: false,
+        accessToken: "",
+        cart: { items: [], totalPriceCart: "0" },
+      };
+    },
+
+    updateAccesstoken(state, data) {
+      const accessToken = data.payload;
+
+      return { ...state, accessToken: accessToken };
+    },
+
+    updateCart(state, data) {
+      const { items, totalPriceCart } = data.payload;
+      return {
+        ...state,
+        cart: { items: items, totalPriceCart: totalPriceCart },
+      };
     },
   },
 });
@@ -32,6 +68,7 @@ const sideCartSlide = createSlice({
     toggle(state) {
       return { ...state, isShow: !state.isShow };
     },
+
     hide(state) {
       return { ...state, isShow: false };
     },
@@ -45,6 +82,7 @@ const sideMenuSlide = createSlice({
     toggle(state) {
       return { ...state, isShow: !state.isShow };
     },
+
     hide(state) {
       return { ...state, isShow: false };
     },
@@ -58,6 +96,7 @@ const menuDropdownSlide = createSlice({
     show(state) {
       return { ...state, isShow: true };
     },
+
     hide(state) {
       return { ...state, isShow: false };
     },

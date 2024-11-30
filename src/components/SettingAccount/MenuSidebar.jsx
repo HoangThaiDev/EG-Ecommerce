@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import APIServer from "../../API/customAPI";
 import reduxActions from "../../redux/redux-actions";
 
 // Import Components
@@ -113,20 +114,33 @@ function Menu() {
     }
   }, [location]);
 
+  // Create + use Logics
+  const fetchLogout = async () => {
+    try {
+      const res = await APIServer.user.logout();
+
+      if (res.status === 200) {
+        dispatch(reduxActions.user.logout());
+        navigate("../");
+      }
+    } catch (error) {
+      const { data } = error.response;
+      console.log(data);
+    }
+  };
+
   // Create + use event handles
-  const changeActionMenuHandle = (item) => {
+  const changeActionMenuHandle = async (item) => {
     if (item.value !== "logout" && item.value !== "dashboard") {
-      navigate(item.value);
+      return navigate(item.value);
     }
 
     if (item.value === "dashboard") {
-      navigate("./");
+      return navigate("./");
     }
 
     if (item.value === "logout") {
-      localStorage.removeItem("user");
-      dispatch(reduxActions.user.restart());
-      navigate("../");
+      return await fetchLogout();
     }
   };
 

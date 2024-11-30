@@ -42,42 +42,6 @@ function Overlay({ isShowSideCart }) {
 }
 
 function SideBar({ isShowSideCart }) {
-  const DUMMY_CART = [
-    {
-      id: "1",
-      name: "Duck breast",
-      price: "6.00",
-      unit: "Kg",
-      percent_discount: 20,
-      quantity: 1,
-      total_price: "6.00",
-      image:
-        "https://res.cloudinary.com/dqrughrs2/image/upload/v1718901079/duck-breast-raw-meat-poultry-barbecue-grill-portion_88242-8715_b50omz.avif",
-    },
-    {
-      id: "2",
-      name: "Yogi Tea Stress Relief",
-      price: "2.00",
-      unit: "Bag",
-      percent_discount: 0,
-      quantity: 2,
-      total_price: "4.00",
-      image:
-        "https://res.cloudinary.com/dqrughrs2/image/upload/v1719159149/716wiPOTyJL._SL1500__i3at6z.jpg",
-    },
-    {
-      id: "3",
-      name: "Cottagse Cheese",
-      price: "10.66",
-      unit: "Can 500g",
-      percent_discount: 0,
-      quantity: 1,
-      total_price: "10.66",
-      image:
-        "https://res.cloudinary.com/dqrughrs2/image/upload/v1718892380/63336882-794f-4c90-9592-7c621c0511cb.de6e73546c563606b4376bbe22888c6f_anvlnt.webp",
-    },
-  ];
-
   // Create + use DUMMY_DATA_CONSTANTS
   const DUMMY_ITEM_OPTION = [
     {
@@ -124,7 +88,8 @@ function SideBar({ isShowSideCart }) {
   const locationPath = useLocation();
 
   // Create + use States
-  const stateUser = useSelector((state) => state.user);
+  const { isLoggedIn, cart } = useSelector((state) => state.user);
+  console.log(cart);
 
   // Create + use side Effects
   useEffect(() => {
@@ -162,7 +127,7 @@ function SideBar({ isShowSideCart }) {
           <IoClose className={classes["icon-close"]} onClick={hideSideCart} />
         </div>
 
-        {!stateUser.isLogin && (
+        {!isLoggedIn && (
           <div className={classes["box-message"]}>
             <p className={classes["message-guest"]}>
               You need to Login Account use <span>ADD TO CART</span>
@@ -178,44 +143,52 @@ function SideBar({ isShowSideCart }) {
           </div>
         )}
 
-        {stateUser.isLogin && (
+        {isLoggedIn && (
           <>
             <div className={classes["sidebar-section"]}>
               {/* JSX: Item Cart */}
               <div className={classes["sidebar-cart"]}>
-                {DUMMY_CART.map((item) => (
-                  <div className={classes["cart-item"]} key={item.id}>
-                    <img src={item.image} alt={item.image} />
-                    <div className={classes["item-info"]}>
-                      <p className={classes["item-info-name"]}>{item.name}</p>
-                      <p className={classes["item-info-unit"]}>{item.unit}</p>
-                      <p className={classes["item-info-price"]}>
-                        ${item.price}
-                      </p>
-                      <div className={classes["item-info-quantity"]}>
-                        <FaMinus
-                          className={`${classes["icon-quantity"]} ${classes["icon-decrease-quantity"]}`}
-                        />
-                        <input
-                          type="number"
-                          className={classes["input-quantity"]}
-                          placeholder="1"
-                        />
-                        <FaPlus
-                          className={`${classes["icon-quantity"]} ${classes["icon-increase-quantity"]}`}
-                        />
-                      </div>
-                      <div className={classes["item-info-actions"]}>
-                        <FiInfo
-                          className={`${classes["icon-action"]} ${classes["icon-action-detail"]}`}
-                        />
-                        <BsTrash
-                          className={`${classes["icon-action"]} ${classes["icon-action-delete"]}`}
-                        />
+                {cart.items.length > 0 &&
+                  cart.items.map((item) => (
+                    <div className={classes["cart-item"]} key={item._id}>
+                      <img
+                        src={item.itemId.image_detail.banner}
+                        alt={item.itemId.image_detail.banner}
+                      />
+                      <div className={classes["item-info"]}>
+                        <p className={classes["item-info-name"]}>
+                          {item.itemId.name}
+                        </p>
+                        <p className={classes["item-info-unit"]}>
+                          {item.itemId.unit}
+                        </p>
+                        <p className={classes["item-info-price"]}>
+                          ${item.itemId.price}
+                        </p>
+                        <div className={classes["item-info-quantity"]}>
+                          <FaMinus
+                            className={`${classes["icon-quantity"]} ${classes["icon-decrease-quantity"]}`}
+                          />
+                          <input
+                            type="number"
+                            className={classes["input-quantity"]}
+                            placeholder={item.quantity_item}
+                          />
+                          <FaPlus
+                            className={`${classes["icon-quantity"]} ${classes["icon-increase-quantity"]}`}
+                          />
+                        </div>
+                        <div className={classes["item-info-actions"]}>
+                          <FiInfo
+                            className={`${classes["icon-action"]} ${classes["icon-action-detail"]}`}
+                          />
+                          <BsTrash
+                            className={`${classes["icon-action"]} ${classes["icon-action-delete"]}`}
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
               </div>
 
               {/* JSX: Item Options */}
@@ -231,7 +204,9 @@ function SideBar({ isShowSideCart }) {
             <div className={classes["sidebar-footer"]}>
               <div className={classes["sidebar-footer-section"]}>
                 <p className={classes["section-title"]}>Subtotal:</p>
-                <p className={classes["section-price"]}>$200.55</p>
+                <p className={classes["section-price"]}>
+                  ${cart.totalPriceCart}
+                </p>
               </div>
               <div className={classes["sidebar-footer-rules"]}>
                 <p>Taxes and shipping calculated at checkout</p>

@@ -12,11 +12,11 @@ import App from "./App.jsx";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <ProviderContext>
-      <ProviderRedux store={store}>
-        <App />
-      </ProviderRedux>
-    </ProviderContext>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <ProviderContext>
+    <ProviderRedux store={store}>
+      <App />
+    </ProviderRedux>
+  </ProviderContext>
+  // </React.StrictMode>
 );

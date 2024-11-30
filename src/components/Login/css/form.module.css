@@ -174,7 +174,7 @@
 .box-message {
     display: flex;
     align-items: center;
-    border: 1px solid #f593a3;
+    border: 2px solid #ef1c3f;
     padding: 10px 20px;
     margin-bottom: 20px;
     gap: 0 20px;
@@ -182,11 +182,12 @@
 
 .box-message .icon-error {
     font-size: 1.2rem;
-    color: red;
+    color: rgb(192, 31, 31);
 }
 
 .box-message .message-error {
     font: 500 .9rem/1.2rem "Roboto", sans-serif;
+    color: rgb(192, 31, 31);
 }
 
 /* CSS: Responsives */

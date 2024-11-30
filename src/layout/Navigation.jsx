@@ -30,10 +30,12 @@ export default function Navigation() {
   const [isLoading, startTransaction] = useTransition();
 
   // Create + use States
-  const stateUserCurrent = useSelector((state) => state.user);
+  const userLoggedIn = useSelector((state) => state.user);
+
   const { isShow: isMenuDropDownShow } = useSelector(
     (state) => state.menuDropdown
   );
+
   const [isScrollActive, setIsScrollActive] = useState(false);
   const [productSearch, setProductSearch] = useState([]);
   const [valueName, setValueName] = useState(
@@ -195,7 +197,7 @@ export default function Navigation() {
                 <LuUser2
                   className={`${classes.icon} ${classes["icon-user"]}`}
                   onClick={
-                    stateUserCurrent.isLogin
+                    userLoggedIn.isLoggedIn
                       ? () => nextPageHandler("setting-account")
                       : () => nextPageHandler("login")
                   }
@@ -214,9 +216,11 @@ export default function Navigation() {
                 <AiOutlineShoppingCart
                   className={`${classes.icon} ${classes["icon-cart"]}`}
                 />
-                <span className={classes["quantity-item-cart"]}>
-                  {stateUserCurrent.cart.length}
-                </span>
+                {userLoggedIn.isLoggedIn && (
+                  <span className={classes["quantity-item-cart"]}>
+                    {userLoggedIn.cart.items.length}
+                  </span>
+                )}
               </div>
             </div>
           </Col>

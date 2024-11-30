@@ -1,6 +1,8 @@
 // Import Modules
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import calculatePrice from "../helper/products/calculator";
 
 // Import File CSS
 import "slick-carousel/slick/slick.css";
@@ -15,11 +17,17 @@ import { Rate } from "antd";
 // Import Icons
 import { HiOutlinePlusSm } from "react-icons/hi";
 import { IoSearchSharp } from "react-icons/io5";
+import APIServer from "../API/customAPI";
+import reduxActions from "../redux/redux-actions";
 
 // Custom + use Slide
 function CustomSlide(props) {
   // Create + use Hooks
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  // Create + use States
+  const { isLoggedIn } = useSelector((state) => state.user);
 
   // Create + use props
   const { product, ...otherProps } = props;
@@ -33,12 +41,39 @@ function CustomSlide(props) {
     });
   };
 
-  const addToCartHandle = (productId) => {
-    let isLogin = false;
-    if (!isLogin) {
-      navigate("../login", { replace: true });
+  const addToCartHandle = async (product) => {
+    // Check client loggedIn to use
+    if (!isLoggedIn) {
+      return alert("You need to login to use 'Add to cart'");
     }
-    console.log("add to cart:", productId);
+
+    // Calculate price of product
+    const updatePrice = calculatePrice(
+      product.price,
+      product.percent_discount,
+      1
+    );
+
+    const valueProduct = {
+      _id: product._id,
+      quantity: 1,
+      price: updatePrice,
+    };
+
+    try {
+      const res = await APIServer.cart.addToCart(valueProduct);
+
+      if (res.status === 200) {
+        const { cart } = res.data;
+        alert("Add to cart success!");
+        dispatch(reduxActions.user.updateCart(cart));
+      }
+    } catch (error) {
+      const { data, status } = error.response;
+      if (status !== 200) {
+        alert(data.message);
+      }
+    }
   };
 
   return (
@@ -91,7 +126,7 @@ function CustomSlide(props) {
           <button
             className="card-detail-btn-add"
             type="button"
-            onClick={() => addToCartHandle(product._id)}
+            onClick={() => addToCartHandle(product)}
           >
             Add To Cart
             <HiOutlinePlusSm className="card-detail-icon-btn" />

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../../axios/customAxios";
+import APIServer from "../../API/customAPI";
 import reduxActions from "../../redux/redux-actions";
 import { useDispatch } from "react-redux";
 
@@ -36,20 +36,15 @@ function Form() {
     },
     validationSchema: FormLoginSchema,
     onSubmit: async (values) => {
-      const user = await fetchUser(values);
+      const result = await fetchLogin(values);
 
-      // Test
-      const userCurrent = {
-        isLogin: true,
-      };
-      localStorage.setItem("user", JSON.stringify(userCurrent));
-      dispatch(reduxActions.user.save({ isLogin: userCurrent.isLogin }));
-      //////////////////////////
-      navigate("../");
-      setMessageError({
-        isShow: false,
-        content: "",
-      });
+      if (result) {
+        navigate("../");
+        setMessageError({
+          isShow: false,
+          content: "",
+        });
+      }
     },
   });
   const navigate = useNavigate();
@@ -62,17 +57,20 @@ function Form() {
   });
 
   // Create + use event handles
-  const fetchUser = async (values) => {
+  const fetchLogin = async (values) => {
     try {
-      const response = await axiosInstance.post("/user/login", {
-        valuesForm: values,
-      });
-      return response.data;
+      const res = await APIServer.user.login(values);
+
+      if (res.status === 200) {
+        dispatch(reduxActions.user.save({ ...res.data }));
+        return true;
+      }
     } catch (error) {
-      if (error.response.status !== 200) {
+      const { data, status } = error.response;
+      if (status !== 200) {
         setMessageError({
           isShow: true,
-          content: error.response.data.message,
+          content: data.message,
         });
       }
     }

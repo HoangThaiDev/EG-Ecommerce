@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import axiosInstance from "../../axios/customAxios";
+import APIServer from "../../API/customAPI";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
@@ -44,12 +44,14 @@ function Form() {
     },
     validationSchema: FormLoginSchema,
     onSubmit: async (values) => {
+      // Check client accept terms & policy of website
       if (!isTermsAccepted) {
         alert('You need accept "Terms & Policy"');
         return false;
       }
 
-      const result = await fetchUser(values);
+      const result = await fetchRegister(values);
+
       if (result) {
         Swal.fire({
           customClass: {
@@ -80,16 +82,16 @@ function Form() {
     setIsTermAccepted(e.target.checked);
   };
 
-  const fetchUser = async (values) => {
+  const fetchRegister = async (values) => {
     try {
-      const response = await axiosInstance.post("/user/register", {
-        valuesForm: values,
-      });
-      return true;
+      const res = await APIServer.user.register(values);
+      if (res.status === 200) return true;
     } catch (error) {
-      if (error.response.status !== 201) {
-        alert(error.response.data.message);
+      const { data, status } = error.response;
+      if (status !== 201) {
+        alert(data.message);
       }
+      return false;
     }
   };
 

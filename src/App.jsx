@@ -2,7 +2,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useRef, useEffect } from "react";
 import reduxActions from "./redux/redux-actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 // Import Files CSS
 import "./App.css";
@@ -33,11 +33,15 @@ import Introduce from "./components/SettingAccount/Introduce";
 import Profile from "./components/SettingAccount/Profile";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
+import APIServer from "./API/customAPI";
 
 function App() {
   // Create + use Hooks
   const btnScrollRef = useRef(null);
   const dispatch = useDispatch();
+
+  // Create + use States
+  const { isLoggedIn } = useSelector((state) => state.user);
 
   // Create + use Side Effects
   // ------------------- Side Effect: DOM event when client scroll browser ---------------------
@@ -60,14 +64,26 @@ function App() {
 
   // ------------------- Side Effect: Fetch API get user when reload page ---------------------
   useEffect(() => {
-    const fetchUser = () => {
-      const userState = JSON.parse(localStorage.getItem("user"));
+    const fetchUser = async () => {
+      try {
+        const res = await APIServer.user.getInfo();
+        if (res.status === 203) return false;
 
-      if (userState) {
-        dispatch(reduxActions.user.save({ isLogin: userState.isLogin }));
+        if (res.status === 200) {
+          return dispatch(reduxActions.user.save({ ...res.data }));
+        }
+        // Update state user in store
+      } catch (error) {
+        const { data, status } = error.response;
+        if (status !== 200) {
+          alert(data.message);
+        }
       }
     };
-    fetchUser();
+
+    if (!isLoggedIn) {
+      fetchUser();
+    }
   }, []);
 
   // Create + use event handles

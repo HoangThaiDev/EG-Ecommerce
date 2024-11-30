@@ -1,6 +1,8 @@
 // Import Modules
 import axios from "axios";
 import { API_ROOT } from "../utils/constant";
+import store from "../redux/store";
+import reduxActions from "../redux/redux-actions";
 
 // Create + use Instance Axios
 const axiosInstance = axios.create({
@@ -15,7 +17,13 @@ const axiosInstance = axios.create({
 // Add a request interceptor
 axiosInstance.interceptors.request.use(
   function (config) {
-    // Do something before request is sent
+    // Get state of user from store redux
+    const { isLoggedIn, accessToken } = store.getState().user;
+
+    // Check user loggedIn then add accessToken in header request
+    if (isLoggedIn) {
+      config.headers["Authorization"] = `Bearer ${accessToken}`;
+    }
 
     return config;
   },
@@ -28,8 +36,14 @@ axiosInstance.interceptors.request.use(
 // Add a response interceptor
 axiosInstance.interceptors.response.use(
   function (response) {
-    // Any status code that lie within the range of 2xx cause this function to trigger
-    // Do something with response data
+    // Get state of user from store redux
+    const { isLoggedIn, accessToken } = store.getState().user;
+
+    // Update accessToken current in store
+    if (isLoggedIn) {
+      const newAccessToken = response.headers["x-access-token"];
+      store.dispatch(reduxActions.user.updateAccesstoken(newAccessToken));
+    }
 
     return response;
   },

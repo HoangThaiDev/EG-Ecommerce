@@ -12,24 +12,29 @@ const APIServer = {
     getProductsByQueries: (queriesValue) => {
       return axiosInstance.get(`/products/query?${queriesValue}`);
     },
-    addToCart: () => {
-      return axiosInstance.post("/products/add-to-cart");
-    },
   },
   user: {
-    login: () => {
-      return axiosInstance.post("/user/login");
+    login: (valuesForm) => {
+      return axiosInstance.post("/user/login", valuesForm);
     },
-    register: () => {
-      return axiosInstance.post("/user/register");
+    register: (valuesForm) => {
+      return axiosInstance.post("/user/register", valuesForm);
     },
     logout: () => {
-      //   return axiosInstance.get("/user");
+      return axiosInstance.get("/user/logout");
+    },
+    getInfo: () => {
+      return axiosInstance.get("/user/");
     },
   },
   category: {
     getCategories: () => {
       return axiosInstance.get("/categories");
+    },
+  },
+  cart: {
+    addToCart: (valueProduct) => {
+      return axiosInstance.post("/cart/add-to-cart", valueProduct);
     },
   },
 };
