@@ -23,10 +23,10 @@ import { IoMdCloseCircle } from "react-icons/io";
 
 export default function Navigation() {
   // Create + use Hooks
-  const { products } = useContext(APIContext);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const { products } = useContext(APIContext);
   const [isLoading, startTransaction] = useTransition();
 
   // Create + use States
@@ -70,7 +70,9 @@ export default function Navigation() {
 
   // Create + use Event handles
   const showSideCartHandle = () => {
-    dispatch(reduxActions.sideCart.toggle());
+    if (location.pathname !== "/cart") {
+      dispatch(reduxActions.sideCart.toggle());
+    }
   };
 
   const changeValueNameHandle = (e) => {

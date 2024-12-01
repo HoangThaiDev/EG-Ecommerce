@@ -13,6 +13,7 @@ const APIServer = {
       return axiosInstance.get(`/products/query?${queriesValue}`);
     },
   },
+
   user: {
     login: (valuesForm) => {
       return axiosInstance.post("/user/login", valuesForm);
@@ -27,14 +28,20 @@ const APIServer = {
       return axiosInstance.get("/user/");
     },
   },
+
   category: {
     getCategories: () => {
       return axiosInstance.get("/categories");
     },
   },
+
   cart: {
     addToCart: (valueProduct) => {
       return axiosInstance.post("/cart/add-to-cart", valueProduct);
+    },
+
+    deleteProduct: (productID) => {
+      return axiosInstance.delete(`/cart/product/${productID}`);
     },
   },
 };

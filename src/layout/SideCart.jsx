@@ -10,14 +10,11 @@ import classes from "./css/sideCart.module.css";
 
 // Import Icons
 import { IoClose } from "react-icons/io5";
-import { FaPlus } from "react-icons/fa6";
-import { FaMinus } from "react-icons/fa6";
-import { BsTrash } from "react-icons/bs";
-import { FiInfo } from "react-icons/fi";
 import { LiaClipboard } from "react-icons/lia";
 import { AiOutlineGift } from "react-icons/ai";
 import { LiaShippingFastSolid } from "react-icons/lia";
 import { LiaTagSolid } from "react-icons/lia";
+import SideCartItem from "./SideCartItem";
 
 // Import Components
 function Overlay({ isShowSideCart }) {
@@ -89,7 +86,6 @@ function SideBar({ isShowSideCart }) {
 
   // Create + use States
   const { isLoggedIn, cart } = useSelector((state) => state.user);
-  console.log(cart);
 
   // Create + use side Effects
   useEffect(() => {
@@ -150,44 +146,7 @@ function SideBar({ isShowSideCart }) {
               <div className={classes["sidebar-cart"]}>
                 {cart.items.length > 0 &&
                   cart.items.map((item) => (
-                    <div className={classes["cart-item"]} key={item._id}>
-                      <img
-                        src={item.itemId.image_detail.banner}
-                        alt={item.itemId.image_detail.banner}
-                      />
-                      <div className={classes["item-info"]}>
-                        <p className={classes["item-info-name"]}>
-                          {item.itemId.name}
-                        </p>
-                        <p className={classes["item-info-unit"]}>
-                          {item.itemId.unit}
-                        </p>
-                        <p className={classes["item-info-price"]}>
-                          ${item.itemId.price}
-                        </p>
-                        <div className={classes["item-info-quantity"]}>
-                          <FaMinus
-                            className={`${classes["icon-quantity"]} ${classes["icon-decrease-quantity"]}`}
-                          />
-                          <input
-                            type="number"
-                            className={classes["input-quantity"]}
-                            placeholder={item.quantity_item}
-                          />
-                          <FaPlus
-                            className={`${classes["icon-quantity"]} ${classes["icon-increase-quantity"]}`}
-                          />
-                        </div>
-                        <div className={classes["item-info-actions"]}>
-                          <FiInfo
-                            className={`${classes["icon-action"]} ${classes["icon-action-detail"]}`}
-                          />
-                          <BsTrash
-                            className={`${classes["icon-action"]} ${classes["icon-action-delete"]}`}
-                          />
-                        </div>
-                      </div>
-                    </div>
+                    <SideCartItem item={item} key={item._id} />
                   ))}
               </div>
 
@@ -201,6 +160,7 @@ function SideBar({ isShowSideCart }) {
               </div>
               {/* JSX: Cart Actions */}
             </div>
+
             <div className={classes["sidebar-footer"]}>
               <div className={classes["sidebar-footer-section"]}>
                 <p className={classes["section-title"]}>Subtotal:</p>

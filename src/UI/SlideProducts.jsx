@@ -57,7 +57,7 @@ function CustomSlide(props) {
     const valueProduct = {
       _id: product._id,
       quantity: 1,
-      price: updatePrice,
+      totalPrice: updatePrice,
     };
 
     try {

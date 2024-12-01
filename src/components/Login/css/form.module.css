@@ -68,7 +68,6 @@
     width: 40%;
     display: flex;
     align-items: center;
-    gap: 0 5px;
 }
 
 .form-input-footer .form-input-check-remember .form-input-checkbox {
@@ -90,6 +89,7 @@
     border: 2px solid #00152C;
     background-color: #fff;
     border-radius: 3px;
+    display: inline-block;
     transition: .8s all ease;
 }
 
@@ -100,7 +100,7 @@
 .form-input-footer .form-input-check-remember>label {
     cursor: pointer;
     font-size: .9rem;
-    margin-left: 10px;
+    margin-left: 20px;
     font-weight: 600;
     color: #00152C;
 }

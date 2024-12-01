@@ -1,5 +1,8 @@
 // Import Modules
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
+
+// Import Func Helpers
+import calculatePrice from "../helper/products/calculator";
 
 // Create initialStates
 const initialSideMenu = { isShow: false };
@@ -56,6 +59,41 @@ const userSlide = createSlice({
       return {
         ...state,
         cart: { items: items, totalPriceCart: totalPriceCart },
+      };
+    },
+
+    changeQuantityProduct(state, data) {
+      const { action, quantityValid, productId } = data.payload;
+      const { items } = current(state.cart); // user method current to get value of state
+      const cloneItems = [...items];
+
+      // Find index item in cart by id
+      const findIndexItem = cloneItems.findIndex(
+        (item) => item.itemId._id === productId
+      );
+
+      const cloneItem = { ...cloneItems[findIndexItem] };
+
+      // Update value of product
+      cloneItem.quantity_item = quantityValid;
+      cloneItem.totalPrice = calculatePrice(
+        cloneItem.itemId.price,
+        cloneItem.itemId.percent_discount,
+        cloneItem.quantity_item
+      );
+
+      cloneItems[findIndexItem] = cloneItem;
+      const newTotalPriceCart = cloneItems.reduce(
+        (acc, cur) => parseFloat(acc) + parseFloat(cur.totalPrice),
+        0
+      );
+
+      return {
+        ...state,
+        cart: {
+          items: cloneItems,
+          totalPriceCart: newTotalPriceCart.toFixed(2),
+        },
       };
     },
   },
