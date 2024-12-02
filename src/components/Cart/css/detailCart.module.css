@@ -9,6 +9,46 @@
     text-align: center;
 }
 
+/* CSS: Empty Cart */
+.empty-cart {
+    width: 100%;
+    margin: 50px 0 30px;
+    text-align: center;
+}
+
+.empty-cart>p {
+    font: 500 1.2rem/1.2rem "Roboto", sans-serif;
+    letter-spacing: .4px;
+    color: rgb(55, 55, 55);
+}
+
+.empty-cart .btn-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 0 30px;
+}
+
+.btn-actions>button {
+    cursor: pointer;
+    font: 500 1rem/1.2rem "Roboto", sans-serif;
+    padding: 10px 20px;
+    border-radius: 0;
+    border: 0;
+    background-color: #fff;
+    transition: .5s all ease;
+}
+
+.btn-actions .btn-go-home {
+    background-color: #dedddd;
+    color: rgb(70, 68, 68);
+}
+
+.btn-actions .btn-go-shop {
+    background-color: #37647A;
+    color: #fff;
+}
+
 /* CSS: Detail Cart Col Title */
 .col-title {
     width: 100%;
@@ -27,171 +67,16 @@
     border-bottom-right-radius: 5px;
 }
 
-/* CSS: Cart Payment */
-.cart-payment {
-    background-color: #fff;
-    box-shadow: 0 5px 20px 2px rgba(218, 218, 218, .7);
-    width: 100%;
-    position: relative;
-    text-align: left;
-    margin-top: 20px;
-}
-
-.cart-payment.sticky {
-    position: sticky;
-    bottom: 0;
-}
-
-.cart-payment-container {
-    padding: 20px 0;
-}
-
-/* CSS: Cast Payment - Coupon*/
-.coupon-code-main {
-    padding: 0 0 20px 30px;
-    display: flex;
-    align-items: center;
-}
-
-.form-coupon {
-    display: flex;
-    align-items: center;
-}
-
-.form-coupon .input-coupon {
-    width: 250px;
-    box-sizing: border-box;
-    border: 1px solid rgb(192, 192, 192);
-    padding: 0 10px;
-    height: 35px;
-    border-radius: 3px 0 0 3px;
-}
-
-.form-coupon .input-coupon::placeholder {
-    font: 500 .8rem/1.1rem "Roboto", sans-serif;
-    color: rgba(163, 162, 162, .9);
-}
-
-.form-coupon .btn-add-coupon {
-    font: 500 .8rem/1.3rem "Roboto", sans-serif;
-    cursor: pointer;
-    height: 35px;
-    padding: 0 20px;
-    background-color: rgb(248, 104, 34);
+/* CSS: Effects */
+.btn-actions .btn-go-home:hover {
+    background-color: #37647A;
     color: #fff;
-    border: 1px solid rgb(248, 104, 34);
-    border-radius: 0 3px 3px 0;
-    letter-spacing: .6px;
 }
 
-.coupon-code-main>p {
-    font: 600 1rem/1.3rem "Roboto", sans-serif;
-    color: rgb(41, 57, 77);
-    letter-spacing: .6px;
-    margin: 0 30px 0 10px;
+.btn-actions .btn-go-shop:hover {
+    background-color: #203a47;
 }
 
-.coupon-code-main .icon-coupon {
-    color: rgb(41, 57, 77);
-    font-size: 1.2rem;
-}
-
-/* CSS: Cast Payment - Payment*/
-.cart-payment-section {
-    padding: 20px 30px 0 30px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid rgb(227, 226, 226);
-}
-
-.cart-payment-section-action {
-    width: 30%;
-    display: flex;
-    align-items: center;
-    gap: 0 20px;
-}
-
-.cart-payment-section-action .input-selects {
-    cursor: pointer;
-    position: relative;
-    width: 15px;
-    height: 15px;
-}
-
-.cart-payment-section-action .input-selects:checked {
-    accent-color: rgb(55, 100, 122);
-    position: relative;
-}
-
-.cart-payment-section-action .btn-select-items {
-    cursor: pointer;
-    font: 500 .9rem/1.3rem "Roboto", sans-serif;
-    color: rgb(27, 35, 44);
-    background-color: #fff;
-    border: none;
-}
-
-.cart-payment-section-action .btn-delete-cart {
-    cursor: pointer;
-    font: 500 .9rem/1.3rem "Roboto", sans-serif;
-    color: #fff;
-    background-color: #db3333;
-    border: none;
-    padding: 5px 15px;
-    border-radius: 3px;
-    transition: .3s all ease;
-}
-
-
-.cart-payment-section-info {
-    width: 60%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 0 30px;
-}
-
-.cart-payment-section-info .total-price {
-    font: 500 1rem/1.3rem "Roboto", sans-serif;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 0 5px;
-    flex: 1;
-}
-
-.total-price .total-price-content {
-    color: rgb(230, 69, 25);
-    font-size: 1.2rem;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-}
-
-.cart-payment-section-info .btn-checkout {
-    cursor: pointer;
-    font: 500 1rem/1.3rem "Roboto", sans-serif;
-    background-color: rgb(248, 104, 34);
-    color: #fff;
-    border: 1px solid rgb(248, 104, 34);
-    padding: 10px 25px;
-    transition: .3s all ease;
-}
-
-
-/* CSS: Active */
-.form-coupon .input-coupon:focus {
-    outline: none;
-}
-
-
-/* CSS: Effect */
-.cart-payment-section-action .btn-delete-cart:hover,
-.cart-payment-section-info .btn-checkout:hover {
-    opacity: .8;
-}
 
 /* CSS: Responsives */
 
@@ -203,65 +88,6 @@
     .col-title {
         display: flex;
         align-items: center;
-    }
-
-    /* CSS: Cart Payment */
-    .coupon-code-main {
-        padding: 0 0 20px;
-        flex-wrap: wrap;
-        gap: 10px 0;
-    }
-
-    .coupon-code-main>p {
-        width: 50%;
-        font-size: .9rem;
-        margin: 0;
-    }
-
-    .coupon-code-main .icon-coupon {
-        width: 14%;
-    }
-
-    .form-coupon {
-        width: 100%;
-        padding: 0 16px;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .form-coupon .input-coupon {
-        width: 100%;
-        border-radius: 3px 3px 0 0;
-    }
-
-    .form-coupon .btn-add-coupon {
-        border-radius: 0 0 3px 3px;
-        width: 100%;
-    }
-
-    .cart-payment-section {
-        padding: 20px 15px 0;
-        gap: 20px 0;
-    }
-
-    .cart-payment-section-action {
-        width: 100%;
-        gap: 0 5px;
-    }
-
-    .cart-payment-section-info {
-        width: 100%;
-        justify-content: flex-start;
-        gap: 15px 0;
-    }
-
-    .cart-payment-section-info .total-price {
-        justify-content: flex-start;
-    }
-
-    .cart-payment-section-info .btn-checkout {
-        width: 100%;
-        font-size: .9rem;
     }
 
     /* CSS: Active */
@@ -289,61 +115,6 @@
         align-items: center;
     }
 
-    /* CSS: Cart Payment */
-    .coupon-code-main {
-        padding: 0 0 20px;
-        flex-wrap: wrap;
-        gap: 10px 0;
-    }
-
-    .coupon-code-main>p {
-        width: 20%;
-        font-size: .9rem;
-        margin: 0;
-    }
-
-    .coupon-code-main .icon-coupon {
-        width: 12%;
-    }
-
-    .form-coupon {
-        width: 68%;
-        padding: 0 16px;
-    }
-
-    .form-coupon .input-coupon {
-        width: 65%;
-    }
-
-    .form-coupon .btn-add-coupon {
-        width: 35%;
-    }
-
-    .cart-payment-section {
-        padding: 20px 15px 0;
-        gap: 20px 0;
-    }
-
-    .cart-payment-section-action {
-        width: 100%;
-        gap: 0 5px;
-    }
-
-    .cart-payment-section-info {
-        width: 100%;
-        justify-content: space-between;
-        gap: 0 20px;
-    }
-
-    .cart-payment-section-info .total-price {
-        justify-content: flex-start;
-    }
-
-    .cart-payment-section-info .btn-checkout {
-        width: 40%;
-        font-size: .9rem;
-    }
-
     /* CSS: Active */
     .col-title.active .icon-action-delete {
         left: auto;
@@ -366,44 +137,6 @@
     .col-title {
         display: flex;
         align-items: center;
-    }
-
-    /* CSS: Cart Payment */
-    .coupon-code-main {
-        padding: 0 0 20px;
-    }
-
-    .coupon-code-main .icon-coupon {
-        width: 10%;
-    }
-
-    .coupon-code-main>p {
-        width: 15%;
-        font-size: .9rem;
-        margin: 0;
-    }
-
-    .cart-payment-section-action {
-        gap: 0 5px;
-    }
-
-    .cart-payment-section {
-        gap: 10px 0;
-    }
-
-    .cart-payment-section-info {
-        width: 100%;
-        justify-content: space-between;
-        gap: 0 20px;
-    }
-
-    .cart-payment-section-info .total-price {
-        justify-content: flex-start;
-    }
-
-    .cart-payment-section-info .btn-checkout {
-        width: 40%;
-        font-size: .9rem;
     }
 
     /* CSS: Active */

@@ -43,6 +43,10 @@ const APIServer = {
     deleteProduct: (productID) => {
       return axiosInstance.delete(`/cart/product/${productID}`);
     },
+
+    deleteProducts: (products) => {
+      return axiosInstance.post("/cart/products", products);
+    },
   },
 };
 

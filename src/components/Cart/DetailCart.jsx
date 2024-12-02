@@ -1,5 +1,8 @@
 // Import Modules
-import React, { useState, useCallback, useEffect, useRef } from "react";
+import React, { useState, useCallback, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import APIServer from "../../API/customAPI";
+import reduxActions from "../../redux/redux-actions";
 
 // Import File CSS
 import classes from "./css/detailCart.module.css";
@@ -10,175 +13,232 @@ import HeaderDetailCart from "./HeaderDetailCart";
 import SectionDetailCart from "./SectionDetailCart";
 
 // Import Icons
-import { RiCoupon3Line } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-
-const DUMMY_CART = [
-  {
-    id: "1",
-    name: "Duck breast",
-    price: "6.00",
-    unit: "Kg",
-    percent_discount: 20,
-    quantity: 1,
-    total_price: "6.00",
-    image:
-      "https://res.cloudinary.com/dqrughrs2/image/upload/v1718901079/duck-breast-raw-meat-poultry-barbecue-grill-portion_88242-8715_b50omz.avif",
-  },
-  {
-    id: "2",
-    name: "Yogi Tea Stress Relief",
-    price: "2.00",
-    unit: "Bag",
-    percent_discount: 0,
-    quantity: 2,
-    total_price: "4.00",
-    image:
-      "https://res.cloudinary.com/dqrughrs2/image/upload/v1719159149/716wiPOTyJL._SL1500__i3at6z.jpg",
-  },
-  {
-    id: "3",
-    name: "Cottagse Cheese",
-    price: "10.66",
-    unit: "Can 500g",
-    percent_discount: 0,
-    quantity: 1,
-    total_price: "10.66",
-    image:
-      "https://res.cloudinary.com/dqrughrs2/image/upload/v1718892380/63336882-794f-4c90-9592-7c621c0511cb.de6e73546c563606b4376bbe22888c6f_anvlnt.webp",
-  },
-];
+import Payment from "./Payment";
 
 export default function DetailCart() {
   // Create + use Hooks
-  const payMentSumaryRef = useRef();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // Create + use States
-  const [cart, setCart] = useState(DUMMY_CART);
-  const [itemsSelect, setItemsSelect] = useState([]);
+  const { cart } = useSelector((state) => state.user);
+
+  const [cartAfterSelected, setCartAfterSelected] = useState({
+    items: [],
+    totalPriceCart: "0",
+  });
+  const [selectItems, setselectItems] = useState([]);
   const [isSelectedItems, setIsSelectedItems] = useState(false);
   const [isShowActions, setIsShowActions] = useState(false);
 
-  // Create + use side Effects
-  // ----------------- Side Effect: DOM CSS when scroll down of CartPayment
+  // ----------------- Side Effect: Update State Cart
   useEffect(() => {
-    const showPaymentSummary = () => {
-      if (window.scrollY >= 800) {
-        payMentSumaryRef.current.classList.add(classes.sticky);
-      } else {
-        payMentSumaryRef.current.classList.remove(classes.sticky);
-      }
-    };
-
-    window.addEventListener("scroll", showPaymentSummary);
-
-    // Clean up event
-    return () => {
-      window.removeEventListener("scroll", showPaymentSummary);
-    };
-  }, []);
+    setCartAfterSelected((prevState) => ({
+      ...prevState,
+      items: cart.items,
+    }));
+  }, [cart]);
 
   // Create + use event handles
+  const deleteSelectItemsHandle = async () => {
+    if (cartAfterSelected.items.length === 0) return false;
+
+    const selectedItemIds = selectItems.map((item) => {
+      return { itemId: item.itemId._id };
+    });
+
+    try {
+      const res = await APIServer.cart.deleteProducts(selectedItemIds);
+      if (res.status === 200) {
+        const { cart } = res.data;
+        alert("Delete product success!");
+
+        // Update States component
+        setCartAfterSelected({
+          items: [],
+          totalPriceCart: "0",
+        });
+        setselectItems([]);
+        dispatch(reduxActions.user.updateCart(cart));
+      }
+    } catch (error) {
+      const { data, status } = error.response;
+      if (status !== 200) {
+        alert(data.message);
+      }
+    }
+  };
+
   const checkoutHandle = () => {
-    if (itemsSelect.length === 0) {
+    if (selectItems.length === 0) {
       alert("No product selected!");
       return false;
     }
+    console.log(cartAfterSelected);
 
-    navigate("/checkout", { replace: true });
+    // navigate("/checkout", { replace: true });
   };
 
-  const findItemIndex = (itemId) => {
-    const cloneCart = [...cart];
-    const itemIndex = cloneCart.findIndex((item) => item.id === itemId);
-    const product = cloneCart[itemIndex];
-    return { cloneCart, itemIndex, product };
-  };
+  const selectAllItemsHandle = useCallback(
+    (e) => {
+      const cloneCart = { ...cartAfterSelected };
+      const isSelectAllItem = e.target.checked;
 
-  const selectAllItemsHandle = useCallback((e) => {
-    const cloneCart = [...cart];
-    const isSelectAllItem = e.target.checked;
-    let modifiedCloneCart = [];
+      cloneCart.items = cloneCart.items.map((item) => {
+        const cloneItem = { ...item };
 
-    if (isSelectAllItem) {
-      modifiedCloneCart = cloneCart.map((item) => {
-        if (!item.checked) {
-          item.checked = true;
+        if (isSelectAllItem) {
+          if (!cloneItem.checked) {
+            cloneItem.checked = true;
+          }
+          setIsSelectedItems(true);
+          setIsShowActions(true);
+          return cloneItem;
         }
-        return item;
+
+        setIsSelectedItems(false);
+        setIsShowActions(false);
+        cloneItem.checked = false;
+        return cloneItem;
       });
-      setIsSelectedItems(true);
-      setIsShowActions(true);
-    } else {
-      modifiedCloneCart = cloneCart.map((item) => {
-        item.checked = false;
-        return item;
-      });
-      setIsSelectedItems(false);
-      setIsShowActions(false);
-    }
 
-    // Update state Cart + Items Select
-    const filterItemsSelect = modifiedCloneCart.filter((item) => item.checked);
+      // // // Update state Cart after selected
+      const filterselectItems = cloneCart.items.filter((item) => item.checked);
 
-    setItemsSelect(filterItemsSelect);
-    setCart(modifiedCloneCart);
-  }, []);
+      const sumTotalPriceCart = filterselectItems
+        .reduce((acc, cur) => parseFloat(acc) + parseFloat(cur.totalPrice), 0)
+        .toFixed(2);
 
-  const selectItemHandle = useCallback((e, itemId) => {
-    const isChecked = e.target.checked;
-    const { cloneCart, itemIndex, product } = findItemIndex(itemId);
-    product.checked = isChecked;
-    cloneCart[itemIndex] = product;
+      setselectItems(filterselectItems);
+      setCartAfterSelected((prevState) => ({
+        ...prevState,
+        items: cloneCart.items,
+        totalPriceCart: sumTotalPriceCart,
+      }));
+    },
+    [cartAfterSelected]
+  );
 
-    const isCheckItemsSelected = cloneCart.filter((item) => item.checked);
-    // If items selected => option checkbox items true
-    if (isCheckItemsSelected.length === cloneCart.length) {
-      setIsSelectedItems(true);
-      setIsShowActions(true);
-    } else {
-      setIsShowActions(false);
-    }
+  const findItemIndex = useCallback(
+    (itemId) => {
+      const cloneCart = { ...cartAfterSelected };
+      const cloneCartItems = [...cloneCart.items];
 
-    if (isCheckItemsSelected.length > 1) {
-      setIsShowActions(true);
-    }
+      // Find index product in cart has products selected
+      const itemIndex = cloneCartItems.findIndex(
+        (item) => item.itemId._id === itemId
+      );
 
-    // If 1 or more than 1 not check => option checkbox items false
-    if (!isChecked) {
-      setIsSelectedItems(false);
-    }
+      const product = { ...cloneCartItems[itemIndex] };
 
-    // Update State Cart + Items Select
-    const filterItemsSelect = cloneCart.filter((item) => item.checked);
+      return { cloneCartItems, itemIndex, product };
+    },
+    [cartAfterSelected]
+  );
 
-    setItemsSelect(filterItemsSelect);
-    setCart(cloneCart);
-  }, []);
+  const selectItemHandle = useCallback(
+    (e, itemId) => {
+      const isChecked = e.target.checked;
 
-  const updateQuantityItemHandle = useCallback((itemId, action) => {
-    const { cloneCart, itemIndex, product } = findItemIndex(itemId);
+      const { cloneCartItems, itemIndex, product } = findItemIndex(itemId);
 
-    switch (action) {
-      case "increase":
-        product.quantity = Number(product.quantity) + 1;
-        break;
-      case "decrease":
-        if (product.quantity == 1) {
-          alert("Ban muon xoa ha");
-          return false;
-        }
-        product.quantity = Number(product.quantity) - 1;
-        break;
+      product.checked = isChecked;
+      cloneCartItems[itemIndex] = product;
 
-      default:
-        return product;
-    }
+      const isCheckselectItemsed = cloneCartItems.filter(
+        (item) => item.checked
+      );
 
-    cloneCart[itemIndex] = product;
-    setCart(cloneCart);
-  }, []);
+      // If all items selected => option checkbox items true
+      if (isCheckselectItemsed.length === cloneCartItems.length) {
+        setIsSelectedItems(true);
+        setIsShowActions(true);
+      } else {
+        setIsShowActions(false);
+      }
+
+      if (isCheckselectItemsed.length > 1) {
+        setIsShowActions(true);
+      }
+
+      // // If 1 or more than 1 not check => option checkbox items false
+      if (!isChecked) {
+        setIsSelectedItems(false);
+      }
+
+      // Update State Cart + Items Select
+      const filterselectItems = cloneCartItems.filter((item) => item.checked);
+
+      const sumTotalPriceCart = filterselectItems
+        .reduce((acc, cur) => parseFloat(acc) + parseFloat(cur.totalPrice), 0)
+        .toFixed(2);
+
+      setselectItems(filterselectItems);
+      setCartAfterSelected((prevState) => ({
+        ...prevState,
+        items: cloneCartItems,
+        totalPriceCart: sumTotalPriceCart,
+      }));
+    },
+    [cartAfterSelected]
+  );
+
+  const updateQuantityItemHandle = useCallback(
+    (itemId, action) => {
+      const { cloneCartItems, itemIndex, product } = findItemIndex(itemId);
+
+      switch (action) {
+        case "increase":
+          product.quantity_item++;
+          product.totalPrice =
+            product.itemId.percent_discount > 0
+              ? (
+                  parseFloat(product.itemId.price_discount) *
+                  product.quantity_item
+                ).toFixed(2)
+              : (
+                  parseFloat(product.itemId.price) * product.quantity_item
+                ).toFixed(2);
+
+          break;
+        case "decrease":
+          if (product.quantity_item === 1) return false;
+
+          product.quantity_item--;
+          product.totalPrice =
+            product.itemId.percent_discount > 0
+              ? (
+                  parseFloat(product.itemId.price_discount) *
+                  product.quantity_item
+                ).toFixed(2)
+              : (
+                  parseFloat(product.itemId.price) * product.quantity_item
+                ).toFixed(2);
+          break;
+
+        default:
+          return product;
+      }
+
+      cloneCartItems[itemIndex] = product;
+
+      // Update State Cart + Items Select
+      const filterselectItems = cloneCartItems.filter((item) => item.checked);
+
+      const sumTotalPriceCart = filterselectItems
+        .reduce((acc, cur) => parseFloat(acc) + parseFloat(cur.totalPrice), 0)
+        .toFixed(2);
+
+      setselectItems(filterselectItems);
+      setCartAfterSelected((prevState) => ({
+        ...prevState,
+        items: cloneCartItems,
+        totalPriceCart: sumTotalPriceCart,
+      }));
+    },
+    [cartAfterSelected]
+  );
 
   const changeQuantityHandle = useCallback(
     (e, itemId) => {
@@ -214,67 +274,51 @@ export default function DetailCart() {
             />
           </Col>
 
-          {cart.map((item) => (
-            <Col className={classes["col-item-content"]} key={item.id}>
-              <SectionDetailCart
-                item={item}
-                onUpdateQuantityItem={updateQuantityItemHandle}
-                onChangeQuantity={changeQuantityHandle}
-                onSelectItem={selectItemHandle}
-              />
-            </Col>
-          ))}
+          {cartAfterSelected.items.length === 0 && (
+            <div className={classes["empty-cart"]}>
+              <p>
+                Your cart is empty. Start shopping now to fill it with your
+                favorite items!
+              </p>
+              <div className={classes["btn-actions"]}>
+                <button
+                  onClick={() => navigate("/")}
+                  className={classes["btn-go-home"]}
+                >
+                  Back Home
+                </button>
+                <button
+                  onClick={() => navigate("/products")}
+                  className={classes["btn-go-shop"]}
+                >
+                  Shop Now
+                </button>
+              </div>
+            </div>
+          )}
+
+          {cartAfterSelected.items.length > 0 &&
+            cartAfterSelected.items.map((item) => (
+              <Col className={classes["col-item-content"]} key={item._id}>
+                <SectionDetailCart
+                  item={item}
+                  onUpdateQuantityItem={updateQuantityItemHandle}
+                  onChangeQuantity={changeQuantityHandle}
+                  onSelectItem={selectItemHandle}
+                />
+              </Col>
+            ))}
         </Row>
 
-        <div className={classes["cart-payment"]} ref={payMentSumaryRef}>
-          <div className={classes["cart-payment-container"]}>
-            <div className={classes["coupon-code-main"]}>
-              <RiCoupon3Line className={classes["icon-coupon"]} />
-              <p>Coupon Code</p>
-              <form className={classes["form-coupon"]}>
-                <input
-                  className={classes["input-coupon"]}
-                  type="text"
-                  placeholder="Coupon Code"
-                />
-                <button className={classes["btn-add-coupon"]} type="submit">
-                  Apply Code
-                </button>
-              </form>
-            </div>
-            <div className={classes["cart-payment-section"]}>
-              <div className={classes["cart-payment-section-action"]}>
-                <input
-                  type="checkbox"
-                  className={classes["input-selects"]}
-                  onChange={selectAllItemsHandle}
-                  checked={isSelectedItems ? true : false}
-                />
-                <button className={classes["btn-select-items"]}>
-                  Select All <span>({itemsSelect.length})</span>
-                </button>
-                <button className={classes["btn-delete-cart"]} type="button">
-                  Delete
-                </button>
-              </div>
-              <div className={classes["cart-payment-section-info"]}>
-                <div className={classes["total-price"]}>
-                  <p className={classes["total-price-title"]}>
-                    Total Price <span>({itemsSelect.length} Item):</span>
-                  </p>
-                  <p className={classes["total-price-content"]}>$120.29</p>
-                </div>
-                <button
-                  className={classes["btn-checkout"]}
-                  type="button"
-                  onClick={checkoutHandle}
-                >
-                  Proceed To Checkout
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Payment
+          onSelectAllItems={selectAllItemsHandle}
+          onDeleteSelectItems={deleteSelectItemsHandle}
+          onCheckout={checkoutHandle}
+          isSelectedItems={isSelectedItems}
+          selectItems={selectItems}
+          cartAfterSelected={cartAfterSelected}
+          cart={cart}
+        />
       </div>
     </div>
   );

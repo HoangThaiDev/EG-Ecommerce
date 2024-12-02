@@ -1,6 +1,10 @@
 // Import Modules
 import React, { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import calculatePrice from "../../helper/products/calculator";
+import APIServer from "../../API/customAPI";
+import reduxActions from "../../redux/redux-actions";
 
 // Import File CSS
 import classes from "./css/itemProduct.module.css";
@@ -15,6 +19,10 @@ import { IoSearchSharp } from "react-icons/io5";
 export default function ItemProduct({ product }) {
   // Create + use Hooks
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  // Create + use States
+  const { isLoggedIn } = useSelector((state) => state.user);
 
   // Create + use Logics
   const modifiedProduct = useMemo(() => {
@@ -33,12 +41,39 @@ export default function ItemProduct({ product }) {
     });
   };
 
-  const addToCartHandle = (productId) => {
-    let isLogin = false;
-    if (!isLogin) {
-      navigate("../login", { replace: true });
+  const addToCartHandle = async (product) => {
+    // Check client loggedIn to use
+    if (!isLoggedIn) {
+      return alert("You need to login to use 'Add to cart'");
     }
-    console.log("add to cart:", productId);
+
+    // Calculate price of product
+    const updatePrice = calculatePrice(
+      product.price,
+      product.percent_discount,
+      1
+    );
+
+    const valueProduct = {
+      _id: product._id,
+      quantity: 1,
+      totalPrice: updatePrice,
+    };
+
+    try {
+      const res = await APIServer.cart.addToCart(valueProduct);
+
+      if (res.status === 200) {
+        const { cart } = res.data;
+        alert("Add to cart success!");
+        dispatch(reduxActions.user.updateCart(cart));
+      }
+    } catch (error) {
+      const { data, status } = error.response;
+      if (status !== 200) {
+        alert(data.message);
+      }
+    }
   };
 
   return (
@@ -100,7 +135,7 @@ export default function ItemProduct({ product }) {
         <button
           className={classes["card-detail-btn-add"]}
           type="button"
-          onClick={() => addToCartHandle(modifiedProduct._id)}
+          onClick={() => addToCartHandle(modifiedProduct)}
         >
           Add To Cart
           <HiOutlinePlusSm className={classes["card-detail-icon-btn"]} />

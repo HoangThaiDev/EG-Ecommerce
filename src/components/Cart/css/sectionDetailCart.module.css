@@ -1,7 +1,7 @@
 .list-content-container {
     width: 100%;
     display: grid;
-    grid-template-columns: 70px 1fr 150px 150px 100px;
+    grid-template-columns: 70px 1fr 150px 200px 100px;
     align-items: center;
     box-shadow: 2px 5px 10px 2px rgba(203, 211, 215, 0.4);
     background-color: #fff;
@@ -31,6 +31,7 @@
 }
 
 .bg-content.product>img {
+    cursor: pointer;
     width: 100px;
     height: 80px;
     object-fit: cover;
@@ -45,7 +46,6 @@
     color: rgb(30, 40, 54);
 }
 
-
 .product-detail .product-detail-name {
     font: 600 1rem/1rem "Roboto", sans-serif;
     color: rgba(46, 59, 78, 1);
@@ -58,17 +58,24 @@
     font: 500 .9rem/1rem "Roboto", sans-serif;
 }
 
-.product-detail .product-detail-price {
-    font: 500 1rem/1rem "Roboto", sans-serif;
+.product-detail-price {
     display: flex;
     align-items: center;
-    gap: 0 5px;
+    flex-wrap: wrap;
 }
 
-.product-detail .product-detail-price .price-old {
-    font-size: .8rem;
-    color: gray;
+.product-detail-price-origin-old {
+    color: #BCBCBC;
+    font-weight: 600;
+    font-size: 0.9rem;
     text-decoration: line-through;
+    margin-right: 10px;
+}
+
+.product-detail-price-discount,
+.product-detail-price-origin {
+    color: #00152A;
+    font-size: 1rem;
 }
 
 /* CSS: BG Content Quantity */

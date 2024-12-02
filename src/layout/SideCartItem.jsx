@@ -60,11 +60,6 @@ export default function SideCartItem({ item }) {
       return false;
     }
 
-    if (action !== "input" && valueQuantity === 0) {
-      const result = confirm("Are you sure you want to delete this product!");
-      result ? deleteProductHandle(product) : false;
-    }
-
     return valueQuantity;
   };
 
@@ -79,10 +74,17 @@ export default function SideCartItem({ item }) {
 
     if (action === "increase") {
       newQuantity++;
+      setQuantityProduct((prevState) => prevState + 1);
     }
 
     if (action === "decrease") {
       newQuantity--;
+      if (newQuantity <= 0) {
+        return alert(
+          "You can't set quantity to 0, it must at least quantity to 1!"
+        );
+      }
+      setQuantityProduct((prevState) => prevState - 1);
     }
 
     const quantityValid = checkValidateQuantity(action, newQuantity);

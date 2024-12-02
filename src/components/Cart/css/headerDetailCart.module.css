@@ -2,7 +2,7 @@
     width: 100%;
     height: 60px;
     display: grid;
-    grid-template-columns: 70px 1fr 150px 150px 100px;
+    grid-template-columns: 70px 1fr 150px 200px 100px;
     align-items: center;
     box-shadow: 2px 5px 10px 2px rgba(203, 211, 215, 0.4);
     background-color: rgb(55, 100, 122);
