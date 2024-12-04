@@ -195,11 +195,16 @@
 
     .order-row {
         width: 100%;
-        display: none;
+        max-height: 0;
+        padding-right: 10px;
+        overflow: hidden;
+        transition: .5s all ease;
     }
 
     .order-row.active {
-        display: block;
+        max-height: 400px;
+        overflow: auto;
+        transition: .5s all ease;
     }
 
     .order-header-menu {
@@ -208,7 +213,7 @@
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
-        padding-bottom: 20px;
+        padding: 0 15px 20px 0;
     }
 
     .order-header-menu .order-content {
@@ -244,6 +249,15 @@
 
     .order-item-detail {
         flex-wrap: nowrap;
+    }
+
+    .order ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    .order ::-webkit-scrollbar-thumb {
+        border-radius: 0;
+        background-color: rgba(152, 150, 150, .4);
     }
 }
 
@@ -265,11 +279,16 @@
 
     .order-row {
         width: 100%;
-        display: none;
+        max-height: 0;
+        padding-right: 20px;
+        overflow: hidden;
+        transition: .5s all ease;
     }
 
     .order-row.active {
-        display: block;
+        max-height: 400px;
+        overflow: auto;
+        transition: .5s all ease;
     }
 
     .order-header-menu {
@@ -278,7 +297,7 @@
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
-        padding-bottom: 20px;
+        padding: 0 20px 20px 0;
     }
 
     .order-header-menu .order-content {
@@ -314,6 +333,15 @@
 
     .order-item-detail {
         flex-wrap: nowrap;
+    }
+
+    .order ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    .order ::-webkit-scrollbar-thumb {
+        border-radius: 0;
+        background-color: rgba(152, 150, 150, .4);
     }
 }
 
@@ -335,11 +363,16 @@
 
     .order-row {
         width: 100%;
-        display: none;
+        max-height: 0;
+        padding-right: 20px;
+        overflow: hidden;
+        transition: .5s all ease;
     }
 
     .order-row.active {
-        display: block;
+        max-height: 400px;
+        overflow: auto;
+        transition: .5s all ease;
     }
 
     .order-header-menu {
@@ -348,7 +381,7 @@
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
-        padding-bottom: 20px;
+        padding: 0 20px 20px 0;
     }
 
     .order-header-menu .order-content {
@@ -384,6 +417,15 @@
 
     .order-item-detail {
         flex-wrap: nowrap;
+    }
+
+    .order ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    .order ::-webkit-scrollbar-thumb {
+        border-radius: 0;
+        background-color: rgba(152, 150, 150, .4);
     }
 }
 

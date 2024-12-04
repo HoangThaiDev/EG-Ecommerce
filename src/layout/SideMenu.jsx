@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createPortal } from "react-dom";
 import reduxActions from "../redux/redux-actions";
+import APIServer from "../API/customAPI";
 
 // Import Files CSS
 import classes from "./css/sideMenu.module.css";
@@ -64,10 +65,18 @@ function SideBar({ isShowSideMenu }) {
     dispatch(reduxActions.sideMenu.toggle());
   };
 
-  const logoutAccount = () => {
-    localStorage.removeItem("user");
-    dispatch(reduxActions.user.restart());
-    navigate("../");
+  const logoutHandle = async () => {
+    try {
+      const res = await APIServer.user.logout();
+
+      if (res.status === 200) {
+        dispatch(reduxActions.user.logout());
+        navigate("../");
+      }
+    } catch (error) {
+      const { data } = error.response;
+      console.log(data);
+    }
   };
 
   return (
@@ -205,8 +214,8 @@ function SideBar({ isShowSideMenu }) {
               <AiOutlineUser
                 className={`${classes.icon} ${classes["icon-user"]}`}
               />
-              {stateUser.isLogin ? (
-                <a className={classes.link} onClick={logoutAccount}>
+              {stateUser.isLoggedIn ? (
+                <a className={classes.link} onClick={logoutHandle}>
                   Logout
                 </a>
               ) : (

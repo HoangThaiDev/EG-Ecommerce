@@ -6,8 +6,9 @@ import classes from "./css/payment.module.css";
 
 // Import Icons
 import { IoIosArrowBack } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
-export default function Payment() {
+export default function Payment({ setMethodPayment }) {
   // Create + use DUMMY_DATA_CONSTANTS
   const DUMMY_PAYMENT_OPTIONS = [
     {
@@ -29,6 +30,9 @@ export default function Payment() {
       value: "cash_on_delivery",
     },
   ];
+
+  // Create + use Hooks
+  const navigate = useNavigate();
 
   // Create + use States
   const [isShowDescOption, setIsShowDescOption] = useState({
@@ -72,6 +76,7 @@ export default function Payment() {
         });
         break;
     }
+    setMethodPayment(itemTitle);
   };
 
   return (
@@ -105,7 +110,11 @@ export default function Payment() {
             </div>
           ))}
           <div className={classes["payment-actions"]}>
-            <button type="button" className={classes["btn-back"]}>
+            <button
+              type="button"
+              className={classes["btn-back"]}
+              onClick={() => navigate("../cart")}
+            >
               <IoIosArrowBack className={classes["icon-arrow-back"]} /> BACK TO
               CART
             </button>

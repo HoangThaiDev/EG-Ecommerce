@@ -3,6 +3,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import calculatePrice from "../helper/products/calculator";
+import APIServer from "../API/customAPI";
+import reduxActions from "../redux/redux-actions";
 
 // Import File CSS
 import "slick-carousel/slick/slick.css";
@@ -17,8 +19,6 @@ import { Rate } from "antd";
 // Import Icons
 import { HiOutlinePlusSm } from "react-icons/hi";
 import { IoSearchSharp } from "react-icons/io5";
-import APIServer from "../API/customAPI";
-import reduxActions from "../redux/redux-actions";
 
 // Custom + use Slide
 function CustomSlide(props) {
@@ -78,7 +78,11 @@ function CustomSlide(props) {
 
   return (
     <div {...otherProps} className="slide-item">
-      <div className="card">
+      <div
+        className={
+          product.quantity > 0 ? "card card-active" : "card card-sold-out"
+        }
+      >
         {product.percent_discount > 0 && (
           <span className="card__percent-discount">
             -{product.percent_discount}% Off
@@ -115,6 +119,7 @@ function CustomSlide(props) {
               </p>
             )}
           </div>
+
           <div className="card-detail-rating">
             <Rate
               className="card__rates"
@@ -123,14 +128,23 @@ function CustomSlide(props) {
               defaultValue={product.rating}
             />
           </div>
-          <button
-            className="card-detail-btn-add"
-            type="button"
-            onClick={() => addToCartHandle(product)}
-          >
-            Add To Cart
-            <HiOutlinePlusSm className="card-detail-icon-btn" />
-          </button>
+
+          {product.quantity === 0 && (
+            <button className="card-detail-btn-sold-out" type="button" disabled>
+              Sold Out
+            </button>
+          )}
+
+          {product.quantity > 0 && (
+            <button
+              className="card-detail-btn-add"
+              type="button"
+              onClick={() => addToCartHandle(product)}
+            >
+              Add To Cart
+              <HiOutlinePlusSm className="card-detail-icon-btn" />
+            </button>
+          )}
         </div>
       </div>
     </div>

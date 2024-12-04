@@ -90,7 +90,7 @@ export default function Payment({
             <button
               className={classes["btn-checkout"]}
               type="button"
-              onClick={onDeleteSelectItems}
+              onClick={onCheckout}
             >
               Proceed To Checkout
             </button>

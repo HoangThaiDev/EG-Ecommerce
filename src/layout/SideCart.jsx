@@ -4,9 +4,14 @@ import { createPortal } from "react-dom";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import reduxActions from "../redux/redux-actions";
+import checkCart from "../helper/cart/checkCart";
+import APIServer from "../API/customAPI";
 
 // Import File CSS
 import classes from "./css/sideCart.module.css";
+
+// Import Components
+import SideCartItem from "./SideCartItem";
 
 // Import Icons
 import { IoClose } from "react-icons/io5";
@@ -14,7 +19,6 @@ import { LiaClipboard } from "react-icons/lia";
 import { AiOutlineGift } from "react-icons/ai";
 import { LiaShippingFastSolid } from "react-icons/lia";
 import { LiaTagSolid } from "react-icons/lia";
-import SideCartItem from "./SideCartItem";
 
 // Import Components
 function Overlay({ isShowSideCart }) {
@@ -103,8 +107,25 @@ function SideBar({ isShowSideCart }) {
     navigate("cart", { replace: true });
   };
 
-  const goToCheckoutHandle = () => {
-    navigate("checkout", { replace: true });
+  const goToCheckoutHandle = async () => {
+    const cartAfterChecked = checkCart(cart.items);
+
+    if (cartAfterChecked) {
+      try {
+        const res = await APIServer.checkout.create(cartAfterChecked);
+        if (res.status === 200) {
+          const cart = res.data;
+          dispatch(reduxActions.user.updateCart(cart));
+          navigate("/checkout", { replace: true });
+        }
+      } catch (error) {
+        const { data, status } = error.response;
+
+        if (status !== 200) {
+          alert(data.message);
+        }
+      }
+    }
   };
 
   const hideSideCart = () => {

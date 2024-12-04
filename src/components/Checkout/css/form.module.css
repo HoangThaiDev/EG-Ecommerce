@@ -43,11 +43,11 @@
 
 .form-input-address,
 .form-input-city,
-.form-input-order {
+.form-input-note {
     width: 100%;
 }
 
-.form-input-order>textarea {
+.form-input-note>textarea {
     box-sizing: border-box;
     border: 1px solid rgb(211, 211, 211);
     width: 100%;
@@ -98,7 +98,7 @@
 }
 
 .form-input>input::placeholder,
-.form-input-order>textarea::placeholder {
+.form-input-note>textarea::placeholder {
     font: 500 .8rem/1.3rem "Roboto", sans-serif;
     color: rgb(163, 163, 163);
     letter-spacing: .6px;
@@ -248,7 +248,7 @@
 .form-input-city .flex-selects-city>input:focus,
 .form-input-district .flex-selects-district>input:focus,
 .form-input-ward .flex-selects-ward>input:focus,
-.form-input-order>textarea:focus {
+.form-input-note>textarea:focus {
     outline: none;
     border-color: rgba(35, 53, 68, .9);
 }

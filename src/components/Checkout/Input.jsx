@@ -394,13 +394,17 @@ function Email({ classes, formik }) {
   );
 }
 
-function OrderNote({ classes }) {
+function OrderNote({ classes, formik }) {
   return (
-    <div className={`${classes["form-input"]} ${classes["form-input-order"]}`}>
+    <div className={`${classes["form-input"]} ${classes["form-input-note"]}`}>
       <textarea
         type="text"
-        id="order"
+        id="note"
+        name="note"
         placeholder="Order Notes (Optional)"
+        value={formik.values.note}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
       ></textarea>
     </div>
   );

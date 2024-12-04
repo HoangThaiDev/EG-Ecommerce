@@ -37,7 +37,7 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   function (response) {
     // Get state of user from store redux
-    const { isLoggedIn, accessToken } = store.getState().user;
+    const { isLoggedIn } = store.getState().user;
 
     // Update accessToken current in store
     if (isLoggedIn) {

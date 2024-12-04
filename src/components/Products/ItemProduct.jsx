@@ -77,7 +77,13 @@ export default function ItemProduct({ product }) {
   };
 
   return (
-    <div className={classes["section__card"]}>
+    <div
+      className={
+        modifiedProduct.quantity > 0
+          ? classes["section__card"]
+          : `${classes["section__card"]} ${classes["section__card-sold-out"]}`
+      }
+    >
       {modifiedProduct.percent_discount > 0 && (
         <span className={classes["section__card__percent-discount"]}>
           -{modifiedProduct.percent_discount}% Off
@@ -132,14 +138,26 @@ export default function ItemProduct({ product }) {
             defaultValue={modifiedProduct.rating}
           />
         </div>
-        <button
-          className={classes["card-detail-btn-add"]}
-          type="button"
-          onClick={() => addToCartHandle(modifiedProduct)}
-        >
-          Add To Cart
-          <HiOutlinePlusSm className={classes["card-detail-icon-btn"]} />
-        </button>
+        {modifiedProduct.quantity === 0 && (
+          <button
+            className={classes["card-detail-btn-sold-out"]}
+            type="button"
+            disabled
+          >
+            Sold Out
+          </button>
+        )}
+
+        {modifiedProduct.quantity > 0 && (
+          <button
+            className={classes["card-detail-btn-add"]}
+            type="button"
+            onClick={() => addToCartHandle(product)}
+          >
+            Add To Cart
+            <HiOutlinePlusSm className="card-detail-icon-btn" />
+          </button>
+        )}
       </div>
     </div>
   );

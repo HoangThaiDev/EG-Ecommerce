@@ -48,6 +48,20 @@ const APIServer = {
       return axiosInstance.post("/cart/products", products);
     },
   },
+
+  checkout: {
+    create: (cart) => {
+      return axiosInstance.post("/checkout/create", cart);
+    },
+
+    update: (formValues) => {
+      return axiosInstance.post("/checkout/add-info", formValues);
+    },
+
+    getCheckout: () => {
+      return axiosInstance.get("/checkout");
+    },
+  },
 };
 
 export default APIServer;

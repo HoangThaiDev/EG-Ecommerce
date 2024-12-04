@@ -210,6 +210,11 @@
     border: 2px solid transparent;
 }
 
+.info-quantity-btn-buy.sold-out,
+.info-quantity-btn-add.sold-out {
+    cursor: not-allowed;
+}
+
 /* CSS: Info Detail Specs*/
 .info-specs {
     font-family: "Roboto", sans-serif;
@@ -235,6 +240,13 @@
 .info-specs-mfg span:nth-child(2) {
     font-weight: bold;
     font-size: 1rem;
+}
+
+.info-specs-quantity span.value-no-quantity {
+    background-color: #F96823;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px 10px;
 }
 
 /* CSS: Effect */

@@ -143,7 +143,7 @@
     width: 150px;
     height: 150px;
     object-fit: cover;
-    transition: .6s all ease-in-out;
+    transition: .6s all linear;
 }
 
 .card-detail {
@@ -179,7 +179,7 @@
 .card-detail-price-discount,
 .card-detail-price-origin {
     color: #00152A;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
 }
 
@@ -192,6 +192,23 @@
     left: 2px;
     text-align: left;
     background-color: #264653;
+    color: #fff;
+    border: 0;
+    width: 150px;
+    border-radius: 25px;
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    transition: .8s all ease;
+}
+
+.card-detail-btn-sold-out {
+    cursor: pointer;
+    overflow: hidden;
+    font-family: "Roboto", sans-serif;
+    position: relative;
+    bottom: -50px;
+    left: 2px;
+    background-color: #e96d51;
     color: #fff;
     border: 0;
     width: 150px;
@@ -234,8 +251,12 @@
 }
 
 /* CSS: Effect */
-.card:hover {
+.card-active:hover {
     box-shadow: 0 0 10px 1px #264653;
+}
+
+.card-sold-out:hover {
+    box-shadow: 0 0 10px 1px #e26429;
 }
 
 .card:hover>img {
@@ -250,7 +271,8 @@
     color: #e0500d;
 }
 
-.card:hover .card-detail-btn-add {
+.card:hover .card-detail-btn-add,
+.card:hover .card-detail-btn-sold-out {
     bottom: 15px;
 }
 
@@ -334,7 +356,8 @@
         font-size: .9rem;
     }
 
-    .card-detail-btn-add {
+    .card-detail-btn-add,
+    .card-detail-btn-sold-out {
         width: 110px;
         text-align: center;
         padding: 8px 10px;
@@ -407,7 +430,8 @@
         font-size: 1rem;
     }
 
-    .card-detail-btn-add {
+    .card-detail-btn-add,
+    .card-detail-btn-sold-out {
         width: 110px;
         text-align: center;
         font-size: .8rem;
@@ -477,7 +501,8 @@
         font-size: 1rem;
     }
 
-    .card-detail-btn-add {
+    .card-detail-btn-add,
+    .card-detail-btn-sold-out {
         width: 110px;
         text-align: center;
         padding: 8px 10px;
@@ -552,7 +577,8 @@
         font-size: 1rem;
     }
 
-    .card-detail-btn-add {
+    .card-detail-btn-add,
+    .card-detail-btn-sold-out {
         width: 110px;
         text-align: center;
         padding: 8px 10px;

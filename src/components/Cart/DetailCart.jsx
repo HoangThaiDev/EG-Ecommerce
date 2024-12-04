@@ -1,8 +1,10 @@
 // Import Modules
 import React, { useState, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import APIServer from "../../API/customAPI";
 import reduxActions from "../../redux/redux-actions";
+import checkCart from "../../helper/cart/checkCart";
 
 // Import File CSS
 import classes from "./css/detailCart.module.css";
@@ -11,9 +13,6 @@ import classes from "./css/detailCart.module.css";
 import { Row, Col } from "antd";
 import HeaderDetailCart from "./HeaderDetailCart";
 import SectionDetailCart from "./SectionDetailCart";
-
-// Import Icons
-import { useNavigate } from "react-router-dom";
 import Payment from "./Payment";
 
 export default function DetailCart() {
@@ -28,7 +27,7 @@ export default function DetailCart() {
     items: [],
     totalPriceCart: "0",
   });
-  const [selectItems, setselectItems] = useState([]);
+  const [selectItems, setSelectItems] = useState([]);
   const [isSelectedItems, setIsSelectedItems] = useState(false);
   const [isShowActions, setIsShowActions] = useState(false);
 
@@ -59,7 +58,7 @@ export default function DetailCart() {
           items: [],
           totalPriceCart: "0",
         });
-        setselectItems([]);
+        setSelectItems([]);
         dispatch(reduxActions.user.updateCart(cart));
       }
     } catch (error) {
@@ -70,14 +69,28 @@ export default function DetailCart() {
     }
   };
 
-  const checkoutHandle = () => {
+  const checkoutHandle = async () => {
     if (selectItems.length === 0) {
-      alert("No product selected!");
-      return false;
+      return alert("No product selected!");
     }
-    console.log(cartAfterSelected);
+    const cartAfterChecked = checkCart(selectItems);
 
-    // navigate("/checkout", { replace: true });
+    if (cartAfterChecked) {
+      try {
+        const res = await APIServer.checkout.create(cartAfterChecked);
+        if (res.status === 200) {
+          const cart = res.data;
+          dispatch(reduxActions.user.updateCart(cart));
+          navigate("/checkout", { replace: true });
+        }
+      } catch (error) {
+        const { data, status } = error.response;
+
+        if (status !== 200) {
+          alert(data.message);
+        }
+      }
+    }
   };
 
   const selectAllItemsHandle = useCallback(
@@ -110,7 +123,7 @@ export default function DetailCart() {
         .reduce((acc, cur) => parseFloat(acc) + parseFloat(cur.totalPrice), 0)
         .toFixed(2);
 
-      setselectItems(filterselectItems);
+      setSelectItems(filterselectItems);
       setCartAfterSelected((prevState) => ({
         ...prevState,
         items: cloneCart.items,
@@ -174,7 +187,7 @@ export default function DetailCart() {
         .reduce((acc, cur) => parseFloat(acc) + parseFloat(cur.totalPrice), 0)
         .toFixed(2);
 
-      setselectItems(filterselectItems);
+      setSelectItems(filterselectItems);
       setCartAfterSelected((prevState) => ({
         ...prevState,
         items: cloneCartItems,
@@ -185,7 +198,7 @@ export default function DetailCart() {
   );
 
   const updateQuantityItemHandle = useCallback(
-    (itemId, action) => {
+    (itemId, action, e) => {
       const { cloneCartItems, itemIndex, product } = findItemIndex(itemId);
 
       switch (action) {
@@ -216,7 +229,19 @@ export default function DetailCart() {
                   parseFloat(product.itemId.price) * product.quantity_item
                 ).toFixed(2);
           break;
-
+        case "input":
+          const valueQuantity = e.target.value;
+          product.quantity_item = +valueQuantity;
+          product.totalPrice =
+            product.itemId.percent_discount > 0
+              ? (
+                  parseFloat(product.itemId.price_discount) *
+                  product.quantity_item
+                ).toFixed(2)
+              : (
+                  parseFloat(product.itemId.price) * product.quantity_item
+                ).toFixed(2);
+          break;
         default:
           return product;
       }
@@ -230,7 +255,7 @@ export default function DetailCart() {
         .reduce((acc, cur) => parseFloat(acc) + parseFloat(cur.totalPrice), 0)
         .toFixed(2);
 
-      setselectItems(filterselectItems);
+      setSelectItems(filterselectItems);
       setCartAfterSelected((prevState) => ({
         ...prevState,
         items: cloneCartItems,
@@ -238,23 +263,6 @@ export default function DetailCart() {
       }));
     },
     [cartAfterSelected]
-  );
-
-  const changeQuantityHandle = useCallback(
-    (e, itemId) => {
-      const inputQuantity = e.target.value;
-      const { cloneCart, itemIndex, product } = findItemIndex(itemId);
-
-      if (inputQuantity.length == 0) {
-        product.quantity = 1;
-      } else {
-        product.quantity = inputQuantity;
-      }
-      // Update Quantity Product
-      cloneCart[itemIndex] = product;
-      setCart(cloneCart);
-    },
-    [cart]
   );
 
   return (
@@ -303,7 +311,6 @@ export default function DetailCart() {
                 <SectionDetailCart
                   item={item}
                   onUpdateQuantityItem={updateQuantityItemHandle}
-                  onChangeQuantity={changeQuantityHandle}
                   onSelectItem={selectItemHandle}
                 />
               </Col>

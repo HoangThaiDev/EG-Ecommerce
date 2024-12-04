@@ -101,9 +101,6 @@ export default function SidebarProduct({ categories, products }) {
   const { search: pathSearch } = useLocation();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-
-  const nameValueSearch = pathSearch.replace("?", "").split("=")[1];
-
   const categoryValueSearch = searchParams.get("category");
 
   // Create + use States
@@ -254,27 +251,8 @@ export default function SidebarProduct({ categories, products }) {
     );
   };
 
-  const addToCartHandle = (productId) => {
-    console.log(productId);
-  };
-
   return (
     <>
-      {/* {products.total.length === 0 && (
-        <div className={classes["main-products-empty"]}>
-          <img
-            src="https://res.cloudinary.com/dqrughrs2/image/upload/v1720533009/search_kequmx.png"
-            alt="https://res.cloudinary.com/dqrughrs2/image/upload/v1720533009/search_kequmx.png"
-            loading="lazy"
-          />
-          <h1>
-            No found products in EG Shop with your key search:
-            <span>' {nameValueSearch} '</span>
-          </h1>
-          <Link to="../products">Find products on page Products</Link>
-        </div>
-      )} */}
-
       <div className={classes.sidebarProduct}>
         <div className={classes["products__container"]}>
           <Row className={classes["products__row"]}>

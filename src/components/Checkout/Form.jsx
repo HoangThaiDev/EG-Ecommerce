@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import APIServer from "../../API/customAPI";
+import reduxActions from "../../redux/redux-actions";
 
 // Import Data JSON
 import dbVietNameProvincesCities from "../../../src/data/vietnam-provinces-cities.json";
@@ -12,6 +14,8 @@ import classes from "./css/form.module.css";
 // Import Components
 import Input from "./Input";
 import Payment from "./Payment";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 export default function Form() {
   // Create + use Schema validate Yup
@@ -36,17 +40,42 @@ export default function Form() {
       address: "",
       phone: "",
       email: "",
+      note: "",
     },
     validationSchema: formInfoSchema,
-    onSubmit: (values) => {
-      const result = checkValidateCity(valueSearchForm);
+    onSubmit: async (values) => {
+      const result = checkValidateCity(valueSelectOptions);
       if (result) {
-        console.log("lum");
+        const valuesForm = {
+          ...values,
+          ...valueSelectOptions,
+          ...{ method: methodPayment },
+        };
+
+        try {
+          const res = await APIServer.checkout.update(valuesForm);
+          if (res.status === 200) {
+            const { newCart } = res.data;
+            dispatch(reduxActions.user.updateCart(newCart));
+            navigate("..");
+          }
+        } catch (error) {
+          const { data, status } = error.response;
+          if (status !== 200) {
+            alert(data.message);
+          }
+        }
       }
     },
   });
 
+  // Create + use Hooks
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   // Create + use States
+  const [methodPayment, setMethodPayment] = useState("Direct bank tranfer");
+
   const [isShowMenuOptions, setIsShowMenuOptions] = useState({
     province: false,
     district: false,
@@ -86,6 +115,7 @@ export default function Form() {
   // Create + use handles
   const checkValidateCity = (values) => {
     let result = true;
+
     if (values.province.length === 0) {
       setIsShowErrorOptionSelect((prevState) => ({
         ...prevState,
@@ -161,7 +191,7 @@ export default function Form() {
       setCommunes((prevState) => ({ ...prevState, active: filterCommunes }));
     }
 
-    // Update State
+    // Update value states
     setValueSearchForm((prevState) => ({
       ...prevState,
       [fieldName]: valueSearch,
@@ -189,6 +219,10 @@ export default function Form() {
             clone: filterDistrictsByCity,
             active: filterDistrictsByCity,
           });
+          setIsShowErrorOptionSelect((prevState) => ({
+            ...prevState,
+            [option]: false,
+          }));
           return false;
         } else {
           setValueSelectOptions((prevState) => ({
@@ -212,6 +246,7 @@ export default function Form() {
           });
         }
         break;
+
       case "district":
         setValueSelectOptions((prevState) => ({
           ...prevState,
@@ -231,6 +266,7 @@ export default function Form() {
         });
 
         break;
+
       case "commune":
         setValueSelectOptions((prevState) => ({
           ...prevState,
@@ -241,6 +277,7 @@ export default function Form() {
           [option]: !prevState[option],
         }));
         break;
+
       default:
         console.log(">>> No Choice Option");
         break;
@@ -300,9 +337,9 @@ export default function Form() {
           <Input.Address classes={classes} formik={formik} />
           <Input.Phone classes={classes} formik={formik} />
           <Input.Email classes={classes} formik={formik} />
-          <Input.OrderNote classes={classes} />
+          <Input.OrderNote classes={classes} formik={formik} />
         </div>
-        <Payment />
+        <Payment setMethodPayment={setMethodPayment} />
       </form>
     </div>
   );

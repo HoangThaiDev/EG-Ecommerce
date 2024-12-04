@@ -75,7 +75,7 @@ function ItemDetail({ productDetail }) {
         }
         break;
       case "input":
-        setCountQuantity(quantityProduct);
+        setCountQuantity(+quantityProduct);
         break;
       default:
         alert("Error! Please check again choose quantity! ");
@@ -89,6 +89,10 @@ function ItemDetail({ productDetail }) {
       return alert("You need to login to use function!");
     }
 
+    if (countQuantity > 20) {
+      return alert("A product only has a maximum quantity of 20!");
+    }
+
     // Calculate price of product
     const updatePrice = calculatePrice(
       product.price,
@@ -99,7 +103,7 @@ function ItemDetail({ productDetail }) {
     const valueProduct = {
       _id: product._id,
       quantity: countQuantity,
-      price: updatePrice,
+      totalPrice: updatePrice,
     };
 
     try {
@@ -225,21 +229,45 @@ function ItemDetail({ productDetail }) {
                 </div>
                 <button
                   type="button"
-                  className={classes["info-quantity-btn-buy"]}
+                  className={
+                    productDetail.quantity > 0
+                      ? classes["info-quantity-btn-buy"]
+                      : `${classes["info-quantity-btn-buy"]} ${classes["sold-out"]}`
+                  }
                   onClick={() => addToCartHandle(productDetail, "buy")}
+                  disabled={productDetail.quantity === 0 ? true : false}
                 >
                   Buy Now
                 </button>
                 <button
                   type="button"
-                  className={classes["info-quantity-btn-add"]}
+                  className={
+                    productDetail.quantity > 0
+                      ? classes["info-quantity-btn-add"]
+                      : `${classes["info-quantity-btn-add"]} ${classes["sold-out"]}`
+                  }
                   onClick={() => addToCartHandle(productDetail, "add")}
+                  disabled={productDetail.quantity === 0 ? true : false}
                 >
                   Add To Cart
                 </button>
               </div>
 
               <div className={classes["info-specs"]}>
+                <p
+                  className={`${classes["info-specs-item"]} ${classes["info-specs-quantity"]}`}
+                >
+                  Quantity:
+                  {productDetail.quantity > 0 ? (
+                    <span className={classes["value-quantity"]}>
+                      {productDetail.quantity}
+                    </span>
+                  ) : (
+                    <span className={classes["value-no-quantity"]}>
+                      SOLD OUT
+                    </span>
+                  )}
+                </p>
                 <p
                   className={`${classes["info-specs-item"]} ${classes["info-specs-category"]}`}
                 >

@@ -15,12 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { APIContext } from "../../storeContext/APIContext";
 import { useDispatch } from "react-redux";
 
-function SectionDetailCart({
-  item,
-  onUpdateQuantityItem,
-  onChangeQuantity,
-  onSelectItem,
-}) {
+function SectionDetailCart({ item, onUpdateQuantityItem, onSelectItem }) {
   // Create + use Hooks
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -111,17 +106,23 @@ function SectionDetailCart({
           <div className={classes["buttons-update-quantity"]}>
             <FaMinus
               className={`${classes["icon"]} ${classes["icon-decrease"]}`}
-              onClick={() => onUpdateQuantityItem(item.itemId._id, "decrease")}
+              onClick={(e) =>
+                onUpdateQuantityItem(item.itemId._id, "decrease", e)
+              }
             />
             <input
               className={classes["input-quantity"]}
               type="number"
               value={item.quantity_item}
-              onChange={(e) => onChangeQuantity(e, item.itemId.id)}
+              onChange={(e) =>
+                onUpdateQuantityItem(item.itemId._id, "input", e)
+              }
             />
             <FaPlus
               className={`${classes["icon"]} ${classes["icon-increase"]}`}
-              onClick={() => onUpdateQuantityItem(item.itemId._id, "increase")}
+              onClick={(e) =>
+                onUpdateQuantityItem(item.itemId._id, "increase", e)
+              }
             />
           </div>
         </div>

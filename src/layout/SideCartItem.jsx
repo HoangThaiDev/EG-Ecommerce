@@ -56,7 +56,7 @@ export default function SideCartItem({ item }) {
 
   const checkValidateQuantity = (action, valueQuantity) => {
     if (action === "increase" && valueQuantity > 20) {
-      alert("Each product just has 20 quantities!");
+      alert("Each product only has a maximum quantities of 20!");
       return false;
     }
 
