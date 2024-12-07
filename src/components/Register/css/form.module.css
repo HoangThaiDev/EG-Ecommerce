@@ -131,7 +131,7 @@
     border-radius: 5px;
 }
 
-.form-signin-social {
+.form-register-social {
     font-family: "Roboto", sans-serif;
     margin-top: 30px;
     text-align: center;
@@ -139,21 +139,22 @@
     padding: 20px 10px;
 }
 
-.form-signin-social>p {
+.form-register-social>p {
     margin-bottom: 20px;
     color: rgb(63, 63, 63);
     font-weight: 600;
     font-size: .9rem;
 }
 
-.form-signin-social .form-signin-btn {
+.form-register-social .form-register-btn {
     display: flex;
     flex-wrap: wrap;
     gap: 0 20px;
     justify-content: center;
 }
 
-.form-signin-social .form-signin-btn>a {
+.form-register-social .form-register-btn>span {
+    cursor: pointer;
     text-decoration: none;
     font-size: .7rem;
     color: #fff;
@@ -162,15 +163,15 @@
     border-radius: 4px;
 }
 
-.form-signin-social .form-signin-btn>a:nth-child(1) {
+.form-register-social .form-register-btn>span:nth-child(1) {
     background-color: #4385F5;
 }
 
-.form-signin-social .form-signin-btn>a:nth-child(2) {
+.form-register-social .form-register-btn>span:nth-child(2) {
     background-color: #4268B3;
 }
 
-.form-signin-social .form-signin-btn>a>.icon {
+.form-register-social .form-register-btn>span>.icon {
     position: relative;
     top: 2px;
     margin-right: 5px;
@@ -210,11 +211,11 @@
         font-size: .8rem;
     }
 
-    .form-signin-social .form-signin-btn {
+    .form-register-social .form-register-btn {
         gap: 10px 0;
     }
 
-    .form-signin-social .form-signin-btn>a {
+    .form-register-social .form-register-btn>span {
         width: 80%;
     }
 }
@@ -244,15 +245,15 @@
         font-size: .8rem;
     }
 
-    .form-signin-social {
+    .form-register-social {
         padding: 20px;
     }
 
-    .form-signin-social .form-signin-btn {
+    .form-register-social .form-register-btn {
         gap: 10px 0;
     }
 
-    .form-signin-social .form-signin-btn>a {
+    .form-register-social .form-register-btn>span {
         width: 70%;
     }
 }
@@ -262,7 +263,7 @@
         margin: 10% 0;
     }
 
-    .form-signin-social .form-signin-btn>a {
+    .form-register-social .form-register-btn>span {
         width: 45%;
     }
 }
@@ -272,7 +273,7 @@
         margin: 10% 0;
     }
 
-    .form-signin-social .form-signin-btn>a {
+    .form-register-social .form-register-btn>span {
         width: 45%;
     }
 }

@@ -1,0 +1,121 @@
+.ant-message {
+    top: 100px !important;
+    z-index: 4;
+}
+
+/* CSS: Message Success */
+.message-add-to-cart-success,
+.message-cart-delete-product-success {
+    text-align: right;
+}
+
+.message-side-cart-delete-product-success {
+    position: relative;
+    z-index: 5;
+    text-align: left;
+}
+
+.message-add-to-cart-success .ant-message-notice-content,
+.message-cart-delete-product-success .ant-message-notice-content,
+.message-side-cart-delete-product-success .ant-message-notice-content {
+    border-radius: 5px !important;
+    border-left: 5px solid #11ca17;
+    box-shadow: 5px 5px 15px 2px rgba(202, 202, 205, .4);
+}
+
+.message-add-to-cart-success .ant-message-custom-content .anticon-check-circle,
+.message-cart-delete-product-success .ant-message-custom-content .anticon-check-circle,
+.message-side-cart-delete-product-success .ant-message-custom-content .anticon-check-circle {
+    color: #11ca17 !important;
+}
+
+.message-add-to-cart-success .ant-message-custom-content span,
+.message-cart-delete-product-success .ant-message-custom-content span,
+.message-side-cart-delete-product-success .ant-message-custom-content span {
+    font-family: "EB Garamond", serif;
+    letter-spacing: .4px;
+    font-size: 1.1rem !important;
+    color: #11ca17;
+}
+
+/* CSS: Toastify Warning */
+.message-choose-quantity-warning,
+.message-create-checkout-warning {
+    text-align: right;
+}
+
+.message-side-cart-warning {
+    text-align: left;
+}
+
+.message-choose-quantity-warning .ant-message-notice-content,
+.message-side-cart-warning .ant-message-notice-content,
+.message-create-checkout-warning .ant-message-notice-content {
+    border-radius: 5px !important;
+    border-left: 5px solid #c7a82f;
+    box-shadow: 5px 5px 15px 2px rgba(202, 202, 205, .4);
+}
+
+.message-choose-quantity-warning .ant-message-custom-content .anticon-check-circle,
+.message-side-cart-warning .ant-message-custom-content .anticon-check-circle,
+.message-create-checkout-warning .ant-message-custom-content .anticon-check-circle {
+    color: #c7a82f !important;
+}
+
+.message-choose-quantity-warning .ant-message-custom-content span,
+.message-side-cart-warning .ant-message-custom-content span,
+.message-create-checkout-warning .ant-message-custom-content span {
+    font-family: "EB Garamond", serif;
+    letter-spacing: .4px;
+    font-size: 1.1rem !important;
+    color: #c7a82f;
+}
+
+/* CSS: Toastify Error */
+.message-register-error,
+.message-add-to-cart-error,
+.message-buy-product-error,
+.message-create-checkout-error,
+.message-cart-delete-product-error,
+.message-order-error {
+    text-align: right;
+}
+
+.message-side-cart-delete-product-error {
+    text-align: left;
+}
+
+.message-register-error .ant-message-notice-content,
+.message-add-to-cart-error .ant-message-notice-content,
+.message-buy-product-error .ant-message-notice-content,
+.message-side-cart-delete-product-error .ant-message-notice-content,
+.message-cart-delete-product-error .ant-message-notice-content,
+.message-create-checkout-error .ant-message-notice-content,
+.message-order-error .ant-message-notice-content {
+    border-radius: 5px !important;
+    border-left: 5px solid #E74C3C;
+    box-shadow: 5px 5px 15px 2px rgba(202, 202, 205, .4);
+}
+
+.message-register-error .ant-message-custom-content .anticon-check-circle,
+.message-add-to-cart-error .ant-message-custom-content .anticon-check-circle,
+.message-buy-product-error .ant-message-custom-content .anticon-check-circle,
+.message-side-cart-delete-product-error .ant-message-custom-content .anticon-check-circle,
+.message-cart-delete-product-error .ant-message-custom-content .anticon-check-circle,
+.message-create-checkout-error .ant-message-custom-content .anticon-check-circle,
+.message-order-error .ant-message-custom-content .anticon-check-circle {
+    color: #E74C3C !important;
+}
+
+.message-register-error .ant-message-custom-content span,
+.message-add-to-cart-error .ant-message-custom-content span,
+.message-buy-product-error .ant-message-custom-content span,
+.message-side-cart-delete-product-error .ant-message-custom-content span,
+.message-cart-delete-product-error .ant-message-custom-content span,
+.message-create-checkout-error .ant-message-custom-content span,
+.message-order-error .ant-message-custom-content span {
+    font-family: "EB Garamond", serif;
+    letter-spacing: .4px;
+    font-size: 1.1rem !important;
+    color: #E74C3C;
+}

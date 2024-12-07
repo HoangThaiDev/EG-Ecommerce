@@ -2,6 +2,10 @@
 import React, { memo, useContext } from "react";
 import APIServer from "../../API/customAPI";
 import reduxActions from "../../redux/redux-actions";
+import { useNavigate } from "react-router-dom";
+import { APIContext } from "../../storeContext/APIContext";
+import { useDispatch } from "react-redux";
+import { useToast } from "../../UI/ToastCustom";
 
 // Import File CSS
 import classes from "./css/sectionDetailCart.module.css";
@@ -11,12 +15,10 @@ import { FaMinus } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
 import { IoCloseSharp } from "react-icons/io5";
 import { GrSearchAdvanced } from "react-icons/gr";
-import { useNavigate } from "react-router-dom";
-import { APIContext } from "../../storeContext/APIContext";
-import { useDispatch } from "react-redux";
 
 function SectionDetailCart({ item, onUpdateQuantityItem, onSelectItem }) {
   // Create + use Hooks
+  const toast = useToast();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { categories } = useContext(APIContext);
@@ -29,13 +31,16 @@ function SectionDetailCart({ item, onUpdateQuantityItem, onSelectItem }) {
       const res = await APIServer.cart.deleteProduct(productId);
       if (res.status === 200) {
         const { cart } = res.data;
-        alert("Delete product success!");
+        toast.success(
+          "Delete product success!",
+          "message-cart-delete-product-success"
+        );
         dispatch(reduxActions.user.updateCart(cart));
       }
     } catch (error) {
       const { data, status } = error.response;
       if (status !== 200) {
-        alert(data.message);
+        toast.success(data.message, "message-cart-delete-product-error");
       }
     }
   };

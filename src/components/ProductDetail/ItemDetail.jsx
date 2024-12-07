@@ -5,6 +5,7 @@ import APIServer from "../../API/customAPI";
 import { useDispatch, useSelector } from "react-redux";
 import calculatePrice from "../../helper/products/calculator";
 import reduxActions from "../../redux/redux-actions";
+import { useToast } from "../../UI/ToastCustom";
 
 // Import File CSS
 import classes from "./css/itemDetail.module.css";
@@ -27,6 +28,7 @@ function ItemDetail({ productDetail }) {
   };
 
   // Create + use Hooks
+  const toast = useToast();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -66,7 +68,10 @@ function ItemDetail({ productDetail }) {
         if (countQuantity < 20) {
           setCountQuantity((prevState) => Number(prevState) + 1);
         } else {
-          alert("Max quantity of product is 20!");
+          toast.warning(
+            "Max quantity of product is 20!",
+            "message-choose-quantity-warning"
+          );
         }
         break;
       case "d":
@@ -78,7 +83,10 @@ function ItemDetail({ productDetail }) {
         setCountQuantity(+quantityProduct);
         break;
       default:
-        alert("Error! Please check again choose quantity! ");
+        toast.error(
+          "Please check again choose quantity!",
+          "message-choose-quantity-error"
+        );
         break;
     }
   };
@@ -86,11 +94,22 @@ function ItemDetail({ productDetail }) {
   const addToCartHandle = async (product, action) => {
     // Check client loggedIn to use
     if (!isLoggedIn) {
-      return alert("You need to login to use function!");
+      return action === "buy"
+        ? toast.error(
+            "You need to login to use 'Buy product'!",
+            "message-buy-product-error"
+          )
+        : toast.error(
+            "You need to login to use 'Add to cart'!",
+            "message-add-to-cart-error"
+          );
     }
 
     if (countQuantity > 20) {
-      return alert("A product only has a maximum quantity of 20!");
+      return toast.warning(
+        "A product only has a maximum quantity of 20!",
+        "message-choose-quantity-warning"
+      );
     }
 
     // Calculate price of product
@@ -111,9 +130,7 @@ function ItemDetail({ productDetail }) {
 
       if (res.status === 200) {
         const { cart } = res.data;
-
         if (action === "add") {
-          alert("Add to cart success!");
           dispatch(reduxActions.sideCart.toggle());
         } else {
           navigate("/cart");
@@ -123,7 +140,7 @@ function ItemDetail({ productDetail }) {
     } catch (error) {
       const { data, status } = error.response;
       if (status !== 200) {
-        alert(data.message);
+        toast.error(data.message, "message-add-to-cart-error");
       }
     }
   };

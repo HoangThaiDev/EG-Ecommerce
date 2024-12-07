@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import APIServer from "../../API/customAPI";
 import reduxActions from "../../redux/redux-actions";
 import checkCart from "../../helper/cart/checkCart";
+import { useToast } from "../../UI/ToastCustom";
 
 // Import File CSS
 import classes from "./css/detailCart.module.css";
@@ -17,6 +18,7 @@ import Payment from "./Payment";
 
 export default function DetailCart() {
   // Create + use Hooks
+  const toast = useToast();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -51,7 +53,10 @@ export default function DetailCart() {
       const res = await APIServer.cart.deleteProducts(selectedItemIds);
       if (res.status === 200) {
         const { cart } = res.data;
-        alert("Delete product success!");
+        toast.success(
+          "Delete product success!",
+          "message-cart-delete-product-success"
+        );
 
         // Update States component
         setCartAfterSelected({
@@ -64,22 +69,33 @@ export default function DetailCart() {
     } catch (error) {
       const { data, status } = error.response;
       if (status !== 200) {
-        alert(data.message);
+        toast.success(data.message, ".message-cart-delete-product-error");
       }
     }
   };
 
   const checkoutHandle = async () => {
     if (selectItems.length === 0) {
-      return alert("No product selected!");
+      return toast.warning(
+        "No product selected!",
+        "message-create-checkout-warning"
+      );
     }
     const cartAfterChecked = checkCart(selectItems);
+
+    if (!cartAfterChecked) {
+      toast.error(
+        "Each product has a minimum quantity of 1, a maximum quantity of 20!",
+        "message-create-checkout-error"
+      );
+    }
 
     if (cartAfterChecked) {
       try {
         const res = await APIServer.checkout.create(cartAfterChecked);
         if (res.status === 200) {
           const cart = res.data;
+
           dispatch(reduxActions.user.updateCart(cart));
           navigate("/checkout", { replace: true });
         }
@@ -87,7 +103,7 @@ export default function DetailCart() {
         const { data, status } = error.response;
 
         if (status !== 200) {
-          alert(data.message);
+          toast.error(data.message, "message-create-checkout-error");
         }
       }
     }

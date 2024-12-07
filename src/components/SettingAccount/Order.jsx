@@ -1,6 +1,7 @@
 // Import Modules
 import React from "react";
-
+import { useSelector } from "react-redux";
+import convertDate from "../../helper/products/convertDate";
 // Import File CSS
 import classes from "./css/order.module.css";
 
@@ -11,6 +12,10 @@ import { Row, Col } from "antd";
 import { TfiEye } from "react-icons/tfi";
 
 function Order() {
+  // Create + use States
+  const orders = useSelector((state) => state.order);
+  console.log(orders);
+
   return (
     <div className={classes["order"]}>
       <div className={classes["order-container"]}>
@@ -22,41 +27,27 @@ function Order() {
             <p className={classes["header-order-total"]}>Total</p>
             <p className={classes["header-order-active"]}>Active</p>
           </Col>
-          <Col className={classes["order-col-content"]}>
-            <div className={classes["order-item"]}>
-              <p className={classes["order-item-id"]}>#12345</p>
-              <p className={classes["order-item-date"]}>21 August 2021</p>
-              <p className={classes["order-item-status"]}>Pending</p>
-              <p className={classes["order-item-total"]}>
-                $ 200.59 for 10 items
-              </p>
-              <p className={classes["order-item-active"]}>
-                <TfiEye className={classes["icon-eye"]} />
-              </p>
-            </div>
-            <div className={classes["order-item"]}>
-              <p className={classes["order-item-id"]}>#12345</p>
-              <p className={classes["order-item-date"]}>21 August 2021</p>
-              <p className={classes["order-item-status"]}>Pending</p>
-              <p className={classes["order-item-total"]}>
-                $ 200.59 for 10 items
-              </p>
-              <p className={classes["order-item-active"]}>
-                <TfiEye className={classes["icon-eye"]} />
-              </p>
-            </div>
-            <div className={classes["order-item"]}>
-              <p className={classes["order-item-id"]}>#12345</p>
-              <p className={classes["order-item-date"]}>21 August 2021</p>
-              <p className={classes["order-item-status"]}>Pending</p>
-              <p className={classes["order-item-total"]}>
-                $ 200.59 for 10 items
-              </p>
-              <p className={classes["order-item-active"]}>
-                <TfiEye className={classes["icon-eye"]} />
-              </p>
-            </div>
-          </Col>
+          {orders.items.length > 0 &&
+            orders.items.map((item) => (
+              <Col className={classes["order-col-content"]} key={item._id}>
+                <div className={classes["order-item"]}>
+                  <p className={classes["order-item-id"]}>
+                    #{item._id.slice(0, 4)}
+                  </p>
+                  <p className={classes["order-item-date"]}>
+                    {convertDate(item.createdAt)}
+                  </p>
+                  <p className={classes["order-item-status"]}>{item.status}</p>
+                  <p className={classes["order-item-total"]}>
+                    $ {item.checkoutId.cart.totalPriceCart} for{" "}
+                    {item.checkoutId.cart.items.length} items
+                  </p>
+                  <p className={classes["order-item-active"]}>
+                    <TfiEye className={classes["icon-eye"]} />
+                  </p>
+                </div>
+              </Col>
+            ))}
         </Row>
       </div>
     </div>

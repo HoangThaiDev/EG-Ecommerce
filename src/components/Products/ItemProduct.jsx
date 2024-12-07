@@ -15,9 +15,11 @@ import { Rate } from "antd";
 // Import Icons
 import { HiOutlinePlusSm } from "react-icons/hi";
 import { IoSearchSharp } from "react-icons/io5";
+import { useToast } from "../../UI/ToastCustom";
 
 export default function ItemProduct({ product }) {
   // Create + use Hooks
+  const toast = useToast();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -44,7 +46,10 @@ export default function ItemProduct({ product }) {
   const addToCartHandle = async (product) => {
     // Check client loggedIn to use
     if (!isLoggedIn) {
-      return alert("You need to login to use 'Add to cart'");
+      return toast.error(
+        "You need to login to use 'Add to cart'!",
+        "message-add-to-cart-error"
+      );
     }
 
     // Calculate price of product
@@ -65,13 +70,13 @@ export default function ItemProduct({ product }) {
 
       if (res.status === 200) {
         const { cart } = res.data;
-        alert("Add to cart success!");
+        toast.success("Add to cart success!", "message-add-to-cart-success");
         dispatch(reduxActions.user.updateCart(cart));
       }
     } catch (error) {
       const { data, status } = error.response;
       if (status !== 200) {
-        alert(data.message);
+        toast.error(data.message, "message-add-to-cart-error");
       }
     }
   };

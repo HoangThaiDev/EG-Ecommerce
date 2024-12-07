@@ -4,6 +4,7 @@ import {
   menuDropdownSlide,
   sideCartSlide,
   userSlide,
+  orderSlide,
 } from "./redux-slices";
 
 // Create + use actions
@@ -12,6 +13,7 @@ const reduxActions = {
   menuDropdown: menuDropdownSlide.actions,
   sideCart: sideCartSlide.actions,
   user: userSlide.actions,
+  order: orderSlide.actions,
 };
 
 export default reduxActions;

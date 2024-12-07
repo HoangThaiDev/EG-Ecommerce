@@ -54,6 +54,7 @@
     width: inherit;
     border: 1px solid rgba(183, 182, 182, .4);
     border-bottom: none;
+    height: 60px;
     display: flex;
     flex-wrap: wrap;
 }
@@ -63,12 +64,14 @@
 }
 
 .order-item>p {
-    height: 60px;
-    line-height: 60px;
+    align-content: center;
+    word-break: break-all;
     font-family: "Roboto", sans-serif;
+    line-height: 1.2rem;
     font-size: .8rem;
     color: rgb(87, 87, 87);
     border-right: 1px solid rgba(183, 182, 182, .4);
+    padding: 0 10px;
 }
 
 .order-item .order-item-id {
@@ -90,6 +93,7 @@
 .order-item .order-item-active {
     cursor: pointer;
     font-size: 1rem;
+    line-height: 1.2rem;
     width: 15%;
     border-right: 0;
 }

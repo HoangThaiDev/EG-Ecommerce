@@ -3,9 +3,7 @@ export default function checkCart(items) {
     (item) => 1 <= item.quantity_item && item.quantity_item <= 20
   );
   if (!result) {
-    return alert(
-      "Each product has a minimum quantity of 1, a maximum quantity of 20!"
-    );
+    return false;
   }
 
   const modifiedSelectItems = items.map((item) => {

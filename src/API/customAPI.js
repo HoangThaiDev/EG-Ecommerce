@@ -16,16 +16,18 @@ const APIServer = {
 
   user: {
     login: (valuesForm) => {
-      return axiosInstance.post("/user/login", valuesForm);
+      return axiosInstance.post("/users/login", valuesForm);
     },
     register: (valuesForm) => {
-      return axiosInstance.post("/user/register", valuesForm);
+      console.log(valuesForm);
+
+      return axiosInstance.post("/users/register", valuesForm);
     },
     logout: () => {
-      return axiosInstance.get("/user/logout");
+      return axiosInstance.get("/users/logout");
     },
     getInfo: () => {
-      return axiosInstance.get("/user/");
+      return axiosInstance.get("/users/user");
     },
   },
 
@@ -37,29 +39,35 @@ const APIServer = {
 
   cart: {
     addToCart: (valueProduct) => {
-      return axiosInstance.post("/cart/add-to-cart", valueProduct);
+      return axiosInstance.post("/carts/add-to-cart", valueProduct);
     },
 
     deleteProduct: (productID) => {
-      return axiosInstance.delete(`/cart/product/${productID}`);
+      return axiosInstance.delete(`/carts/product/${productID}`);
     },
 
     deleteProducts: (products) => {
-      return axiosInstance.post("/cart/products", products);
+      return axiosInstance.post("/carts/products", products);
     },
   },
 
   checkout: {
     create: (cart) => {
-      return axiosInstance.post("/checkout/create", cart);
+      return axiosInstance.post("/checkouts/create", cart);
     },
 
     update: (formValues) => {
-      return axiosInstance.post("/checkout/add-info", formValues);
+      return axiosInstance.post("/checkouts/add-info", formValues);
     },
 
     getCheckout: () => {
-      return axiosInstance.get("/checkout");
+      return axiosInstance.get("/checkouts/checkout");
+    },
+  },
+
+  order: {
+    getOrder: () => {
+      return axiosInstance.get("/orders/order");
     },
   },
 };

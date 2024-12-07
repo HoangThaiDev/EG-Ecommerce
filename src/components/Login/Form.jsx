@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import APIServer from "../../API/customAPI";
 import reduxActions from "../../redux/redux-actions";
-import { useDispatch } from "react-redux";
 
 // Import File CSS
 import classes from "./css/form.module.css";
@@ -47,6 +47,7 @@ function Form() {
       }
     },
   });
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -148,18 +149,18 @@ function Form() {
           <div className={classes["form-signin-social"]}>
             <p>OR SIGN IN WITH</p>
             <div className={classes["form-signin-btn"]}>
-              <Link>
+              <span>
                 <FaGoogle
                   className={`${classes["icon"]} ${classes["icon-google"]}`}
                 />
                 SIGNIN WITH GOOGLE
-              </Link>
-              <Link>
+              </span>
+              <span>
                 <FaFacebookF
                   className={`${classes["icon"]} ${classes["icon-facebook"]}`}
                 />
                 SIGNIN WITH FACEBOOK
-              </Link>
+              </span>
             </div>
           </div>
         </form>

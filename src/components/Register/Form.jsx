@@ -1,21 +1,22 @@
 // Import Modules
 import React, { useState } from "react";
 import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import APIServer from "../../API/customAPI";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { useToast } from "../../UI/ToastCustom";
 
 // Import File CSS
 import classes from "./css/form.module.css";
 
 // Import Components
 import { Link } from "react-router-dom";
+import Input from "./Input";
 
 // Import Icons
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
-import Input from "./Input";
 
 function Form() {
   // Create + use Schema Validate Yup
@@ -63,15 +64,16 @@ function Form() {
           `,
           icon: "success",
           confirmButtonText: "Close",
-        }).then((result) => {
-          if (result.isConfirmed) {
+        })
+          .then(() => {
             navigate("../login", { replace: true });
-          }
-        });
+          })
+          .catch((err) => console.log(err));
       }
     },
   });
 
+  const toast = useToast();
   const navigate = useNavigate();
 
   // Create + use States
@@ -85,11 +87,12 @@ function Form() {
   const fetchRegister = async (values) => {
     try {
       const res = await APIServer.user.register(values);
-      if (res.status === 200) return true;
+
+      if (res.status === 201) return true;
     } catch (error) {
       const { data, status } = error.response;
       if (status !== 201) {
-        alert(data.message);
+        toast.error(data.message, "message-register-error");
       }
       return false;
     }
@@ -185,21 +188,21 @@ function Form() {
               CREATE AN ACCOUNT
             </button>
           </div>
-          <div className={classes["form-signin-social"]}>
+          <div className={classes["form-register-social"]}>
             <p>OR SIGN IN WITH</p>
-            <div className={classes["form-signin-btn"]}>
-              <Link>
+            <div className={classes["form-register-btn"]}>
+              <span>
                 <FaGoogle
                   className={`${classes["icon"]} ${classes["icon-google"]}`}
                 />
                 SIGNIN WITH GOOGLE
-              </Link>
-              <Link>
+              </span>
+              <span>
                 <FaFacebookF
                   className={`${classes["icon"]} ${classes["icon-facebook"]}`}
                 />
                 SIGNIN WITH FACEBOOK
-              </Link>
+              </span>
             </div>
           </div>
         </form>

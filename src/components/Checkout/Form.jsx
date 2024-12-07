@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import APIServer from "../../API/customAPI";
 import reduxActions from "../../redux/redux-actions";
+import Swal from "sweetalert2";
 
 // Import Data JSON
 import dbVietNameProvincesCities from "../../../src/data/vietnam-provinces-cities.json";
@@ -16,6 +17,7 @@ import Input from "./Input";
 import Payment from "./Payment";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useToast } from "../../UI/ToastCustom";
 
 export default function Form() {
   // Create + use Schema validate Yup
@@ -55,14 +57,26 @@ export default function Form() {
         try {
           const res = await APIServer.checkout.update(valuesForm);
           if (res.status === 200) {
-            const { newCart } = res.data;
-            dispatch(reduxActions.user.updateCart(newCart));
-            navigate("..");
+            Swal.fire({
+              customClass: {
+                container: "popup-message-contact",
+              },
+              title: "🎉 Order Successful! 🎉",
+              html: `
+              <p class='title'>Your order has been confirmed. Thank you for shopping with <b>EG SHOP</b>. We will update you on the order status as soon as possible!"</p>       
+              `,
+              icon: "success",
+              confirmButtonText: "Close",
+            }).then(() => {
+              const { newCart } = res.data;
+              dispatch(reduxActions.user.updateCart(newCart));
+              navigate("..");
+            });
           }
         } catch (error) {
           const { data, status } = error.response;
           if (status !== 200) {
-            alert(data.message);
+            toast.error(data.message, "message-create-checkout-error");
           }
         }
       }
@@ -70,6 +84,7 @@ export default function Form() {
   });
 
   // Create + use Hooks
+  const toast = useToast();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

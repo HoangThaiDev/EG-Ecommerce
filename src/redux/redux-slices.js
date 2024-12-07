@@ -5,6 +5,7 @@ import { createSlice, current } from "@reduxjs/toolkit";
 import calculatePrice from "../helper/products/calculator";
 
 // Create initialStates
+const initialOrder = { items: [] };
 const initialSideMenu = { isShow: false };
 const initialSideCart = { isShow: false };
 const initialMenuDropdown = { isShow: false };
@@ -19,6 +20,18 @@ const initialUser = {
 };
 
 // Create + use Slide
+const orderSlide = createSlice({
+  name: "order",
+  initialState: initialOrder,
+  reducers: {
+    save(state, data) {
+      const orders = data.payload;
+
+      return { ...state, items: orders };
+    },
+  },
+});
+
 const userSlide = createSlice({
   name: "user",
   initialState: initialUser,
@@ -56,6 +69,7 @@ const userSlide = createSlice({
 
     updateCart(state, data) {
       const { items, totalPriceCart } = data.payload;
+
       return {
         ...state,
         cart: { items: items, totalPriceCart: totalPriceCart },
@@ -141,4 +155,10 @@ const menuDropdownSlide = createSlice({
   },
 });
 
-export { sideMenuSlide, menuDropdownSlide, sideCartSlide, userSlide };
+export {
+  sideMenuSlide,
+  menuDropdownSlide,
+  sideCartSlide,
+  userSlide,
+  orderSlide,
+};

@@ -20,7 +20,7 @@ import { AiOutlineGift } from "react-icons/ai";
 import { LiaShippingFastSolid } from "react-icons/lia";
 import { LiaTagSolid } from "react-icons/lia";
 
-// Import Components
+// Create + use  Main Components
 function Overlay({ isShowSideCart }) {
   // Create + use Hooks
   const dispatch = useDispatch();

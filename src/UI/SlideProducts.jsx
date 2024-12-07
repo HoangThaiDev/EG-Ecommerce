@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import calculatePrice from "../helper/products/calculator";
 import APIServer from "../API/customAPI";
 import reduxActions from "../redux/redux-actions";
+import { useToast } from "./ToastCustom";
 
 // Import File CSS
 import "slick-carousel/slick/slick.css";
@@ -23,6 +24,7 @@ import { IoSearchSharp } from "react-icons/io5";
 // Custom + use Slide
 function CustomSlide(props) {
   // Create + use Hooks
+  const toast = useToast();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -44,7 +46,10 @@ function CustomSlide(props) {
   const addToCartHandle = async (product) => {
     // Check client loggedIn to use
     if (!isLoggedIn) {
-      return alert("You need to login to use 'Add to cart'");
+      return toast.error(
+        "You need to login to use 'Add to cart'!",
+        "message-add-to-cart-error"
+      );
     }
 
     // Calculate price of product
@@ -65,13 +70,15 @@ function CustomSlide(props) {
 
       if (res.status === 200) {
         const { cart } = res.data;
-        alert("Add to cart success!");
+        toast.success("Add to cart success!", "message-add-to-cart-success");
         dispatch(reduxActions.user.updateCart(cart));
       }
     } catch (error) {
+      console.log(error);
+
       const { data, status } = error.response;
       if (status !== 200) {
-        alert(data.message);
+        toast.error(data.message, "message-add-to-cart-error");
       }
     }
   };
@@ -153,12 +160,14 @@ function CustomSlide(props) {
 
 export default function SlideProducts({ className, products, settings }) {
   return (
-    <Slider {...settings} className={className}>
-      {products.map((product) => (
-        <div key={product._id} className="slider-product-container">
-          <CustomSlide product={product} key={products.id} />
-        </div>
-      ))}
-    </Slider>
+    <>
+      <Slider {...settings} className={className}>
+        {products.map((product) => (
+          <div key={product._id} className="slider-product-container">
+            <CustomSlide product={product} key={products.id} />
+          </div>
+        ))}
+      </Slider>
+    </>
   );
 }

@@ -4,6 +4,7 @@ import ReactDOM from "react-dom/client";
 import store from "./redux/store.js";
 import { Provider as ProviderRedux } from "react-redux";
 import ProviderContext from "./storeContext/APIContext.jsx";
+import { ToastProvider } from "./UI/ToastCustom.jsx";
 
 // Import Components
 import App from "./App.jsx";
@@ -15,7 +16,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   // <React.StrictMode>
   <ProviderContext>
     <ProviderRedux store={store}>
-      <App />
+      <ToastProvider>
+        <App />
+      </ToastProvider>
     </ProviderRedux>
   </ProviderContext>
   // </React.StrictMode>

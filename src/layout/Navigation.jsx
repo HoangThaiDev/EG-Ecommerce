@@ -69,7 +69,7 @@ export default function Navigation() {
   }, []);
 
   // Create + use Event handles
-  const showSideCartHandle = () => {
+  const showSideCartHandle = async () => {
     if (location.pathname !== "/cart") {
       dispatch(reduxActions.sideCart.toggle());
     }
