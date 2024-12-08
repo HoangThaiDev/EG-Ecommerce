@@ -12,7 +12,7 @@ import { IoArrowUndoSharp } from "react-icons/io5";
 
 // Import Banner
 const bannerImg =
-  "https://res.cloudinary.com/dqrughrs2/image/upload/v1720270882/error-404-concept-illustration_114360-1811_ocodhi.jpg";
+  "https://res.cloudinary.com/eg-shop/image/upload/v1733621783/error-404-concept-illustration_114360-1811_ocodhi_kgqnng.jpg";
 
 function Section() {
   return (

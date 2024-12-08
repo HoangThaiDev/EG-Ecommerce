@@ -16,7 +16,7 @@ const DUMMY_SPECIAL_NEWS = [
   {
     id: "a12f345",
     banner:
-      "https://res.cloudinary.com/dqrughrs2/image/upload/v1719579112/hinh-nguoi-dung-thong-thai_u31tcu.jpg",
+      "https://res.cloudinary.com/eg-shop/image/upload/v1733621785/hinh-nguoi-dung-thong-thai_u31tcu_brgsll.jpg",
     title:
       "Be a wise consumer to choose the freshest and tastiest foods for your family.",
     content:
@@ -27,7 +27,7 @@ const DUMMY_SPECIAL_NEWS = [
   {
     id: "a13d255",
     banner:
-      "https://res.cloudinary.com/dqrughrs2/image/upload/v1719579113/two-men-drinking-homemade-wine-women-taking-photos_482257-77533_lxgwvf.jpg",
+      "https://res.cloudinary.com/eg-shop/image/upload/v1733621786/two-men-drinking-homemade-wine-women-taking-photos_482257-77533_lxgwvf_zviu6y.jpg",
     title:
       "Be a wise consumer to choose the freshest and tastiest foods for your family.",
     content:
@@ -38,7 +38,7 @@ const DUMMY_SPECIAL_NEWS = [
   {
     id: "a14e789",
     banner:
-      "https://res.cloudinary.com/dqrughrs2/image/upload/v1719579112/medium-shot-delivery-woman-holding-crate_23-2148767121_r0zraf.jpg",
+      "https://res.cloudinary.com/eg-shop/image/upload/v1733621786/medium-shot-delivery-woman-holding-crate_23-2148767121_r0zraf_m0tnzn.jpg",
     title:
       "  Be a wise consumer to choose the freshest and tastiest foods for your family.",
     content:

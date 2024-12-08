@@ -26,19 +26,19 @@
 }
 
 .promotional__col:nth-child(1) {
-    background: linear-gradient(45deg, rgba(69, 69, 70, 0.3), rgba(83, 83, 83, 0.6)), url("https://res.cloudinary.com/dqrughrs2/image/upload/v1719495357/top-view-grapes-cheese-with-copy-space_23-2148610608_rhi2ru.avif") no-repeat center;
+    background: linear-gradient(45deg, rgba(69, 69, 70, 0.3), rgba(83, 83, 83, 0.6)), url("https://res.cloudinary.com/eg-shop/image/upload/v1733621786/top-view-grapes-cheese-with-copy-space_23-2148610608_rhi2ru_bhgmaf.avif") no-repeat center;
     background-size: cover;
     background-clip: border-box;
 }
 
 .promotional__col:nth-child(2) {
-    background: linear-gradient(45deg, rgba(69, 69, 70, 0.3), rgba(83, 83, 83, 0.6)), url("https://res.cloudinary.com/dqrughrs2/image/upload/v1719495356/tomatoes-with-peppers-potatoes-asparagus-sorrel-green-pods-peas-carrots-wooden-wall-flat-lay_176474-5859_gyldde.avif") no-repeat center;
+    background: linear-gradient(45deg, rgba(69, 69, 70, 0.3), rgba(83, 83, 83, 0.6)), url("https://res.cloudinary.com/eg-shop/image/upload/v1733621785/tomatoes-with-peppers-potatoes-asparagus-sorrel-green-pods-peas-carrots-wooden-wall-flat-lay_176474-5859_gyldde_xhscwj.avif") no-repeat center;
     background-size: cover;
     background-clip: border-box;
 }
 
 .promotional__col:nth-child(3) {
-    background: linear-gradient(45deg, rgba(69, 69, 70, 0.6), rgba(83, 83, 83, 0.3)), url("https://res.cloudinary.com/dqrughrs2/image/upload/v1719495355/colorful-capsicum-orange-bananas-gray-concrete-background_23-2148062371_dwxbsx.avif") no-repeat center;
+    background: linear-gradient(45deg, rgba(69, 69, 70, 0.6), rgba(83, 83, 83, 0.3)), url("https://res.cloudinary.com/eg-shop/image/upload/v1733621630/colorful-capsicum-orange-bananas-gray-concrete-background_23-2148062371_dwxbsx_ubdmxr.avif") no-repeat center;
     background-size: cover;
     background-clip: border-box;
 }

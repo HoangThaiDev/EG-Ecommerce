@@ -15,8 +15,8 @@ export default function Introduce() {
         <Row className={classes["introduce__row"]}>
           <Col className={classes["introduce__col"]}>
             <img
-              src="https://res.cloudinary.com/dqrughrs2/image/upload/v1722772544/hombre-mujer-mascaras-medicas-comprando-comestibles-carrito-compras_23-2149483201_ailjer.jpg"
-              alt="https://res.cloudinary.com/dqrughrs2/image/upload/v1722772544/hombre-mujer-mascaras-medicas-comprando-comestibles-carrito-compras_23-2149483201_ailjer.jpg"
+              src="https://res.cloudinary.com/eg-shop/image/upload/v1733621785/hombre-mujer-mascaras-medicas-comprando-comestibles-carrito-compras_23-2149483201_ailjer_fx082p.jpg"
+              alt="https://res.cloudinary.com/eg-shop/image/upload/v1733621785/hombre-mujer-mascaras-medicas-comprando-comestibles-carrito-compras_23-2149483201_ailjer_fx082p.jpg"
               loading="lazy"
             />
           </Col>
